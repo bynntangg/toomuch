@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>TOO MUCH - Pilih Peran | Zero Food Waste</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: radial-gradient(circle at 10% 20%, #eef2f9 0%, #e0e8f2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Decorative background elements */
+        body::before {
+            content: "🌾";
+            font-size: 280px;
+            position: absolute;
+            bottom: -80px;
+            left: -100px;
+            opacity: 0.06;
+            pointer-events: none;
+            transform: rotate(-15deg);
+        }
+
+        body::after {
+            content: "🍃";
+            font-size: 200px;
+            position: absolute;
+            top: -50px;
+            right: -60px;
+            opacity: 0.06;
+            pointer-events: none;
+            transform: rotate(25deg);
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            animation: containerFadeIn 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        @keyframes containerFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Logo Section */
+        .logo-section {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .logo-icon-wrapper {
+            display: inline-block;
+            animation: floatIcon 3s ease-in-out infinite;
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .logo-icon {
+            font-size: 70px;
+            filter: drop-shadow(0 12px 20px rgba(29, 126, 170, 0.25));
+            background: linear-gradient(135deg, #fff, #f0f6fa);
+            padding: 12px;
+            border-radius: 60px;
+            display: inline-block;
+        }
+
+        .logo-title {
+            font-size: 46px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0a3b5c 0%, #1d7eaa 60%, #3aa8d4 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -1px;
+            margin-top: 12px;
+        }
+
+        .logo-subtitle {
+            font-size: 13px;
+            color: #5a7e94;
+            margin-top: 8px;
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(8px);
+            display: inline-block;
+            padding: 6px 20px;
+            border-radius: 40px;
+            font-weight: 500;
+        }
+
+        /* Main Card */
+        .card {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(4px);
+            border-radius: 48px;
+            padding: 36px 28px;
+            box-shadow: 0 30px 50px -20px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.6);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 40px 60px -24px rgba(0,0,0,0.25);
+        }
+
+        /* Welcome Badge */
+        .welcome-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #eef6fc, #e3f0f8);
+            padding: 8px 22px;
+            border-radius: 60px;
+            margin-bottom: 24px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1d7eaa;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .welcome-badge i {
+            font-size: 16px;
+        }
+
+        .card h2 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0a2a3b;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .card > p {
+            color: #6e8ea2;
+            font-size: 15px;
+            margin-bottom: 32px;
+            line-height: 1.4;
+        }
+
+        /* Role Buttons */
+        .role-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 32px;
+        }
+
+        .role-btn {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 18px 24px;
+            background: #ffffff;
+            border: 2px solid #e8f0f5;
+            border-radius: 32px;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .role-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(120deg, #eef9ff, #e4f2fa);
+            transition: width 0.45s ease;
+            z-index: 0;
+        }
+
+        .role-btn:hover::before {
+            width: 100%;
+        }
+
+        .role-btn:hover {
+            border-color: #1d7eaa;
+            transform: translateX(6px) scale(1.01);
+            box-shadow: 0 12px 24px -12px rgba(29,126,170,0.2);
+        }
+
+        .role-btn.active {
+            border-color: #1d7eaa;
+            background: linear-gradient(135deg, #f0f9ff, #e8f4fc);
+            box-shadow: 0 12px 28px -12px rgba(29,126,170,0.35);
+            transform: scale(1.01);
+        }
+
+        .role-icon {
+            font-size: 48px;
+            min-width: 65px;
+            text-align: center;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.05));
+            z-index: 1;
+            transition: transform 0.25s;
+        }
+
+        .role-btn:hover .role-icon {
+            transform: scale(1.08);
+        }
+
+        .role-info {
+            flex: 1;
+            z-index: 1;
+        }
+
+        .role-info h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1c3b4f;
+            margin-bottom: 5px;
+        }
+
+        .role-info p {
+            font-size: 13px;
+            color: #7a9aae;
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .check-indicator {
+            width: 32px;
+            height: 32px;
+            background: #1d7eaa;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.25s cubic-bezier(0.34, 1.2, 0.64, 1);
+            z-index: 1;
+        }
+
+        .role-btn.active .check-indicator {
+            opacity: 1;
+            transform: scale(1);
+            animation: popIn 0.35s ease-out;
+        }
+
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            60% { transform: scale(1.2); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Primary Button */
+        .btn-primary {
+            width: 100%;
+            padding: 18px 24px;
+            background: linear-gradient(105deg, #1d7eaa, #14688e);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 8px 20px rgba(29,126,170,0.35);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.4s, height 0.4s;
+        }
+
+        .btn-primary:active::after {
+            width: 200px;
+            height: 200px;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(105deg, #14688e, #0f5a7a);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(29,126,170,0.45);
+        }
+
+        .btn-primary:active {
+            transform: translateY(1px);
+        }
+
+        /* Stats Section */
+        .impact-stats {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            margin-top: 28px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(29,126,170,0.12);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 18px;
+            font-weight: 800;
+            color: #1d7eaa;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #8aaec0;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 28px;
+            font-size: 12px;
+            color: #8ba0ae;
+            background: rgba(255,255,245,0.7);
+            backdrop-filter: blur(8px);
+            padding: 12px 20px;
+            border-radius: 60px;
+            display: inline-block;
+            width: auto;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footer i {
+            margin: 0 4px;
+        }
+
+        /* Toast Notification */
+        .toast-message {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #1a2a3a;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 60px;
+            font-size: 13px;
+            font-weight: 600;
+            z-index: 1000;
+            transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            white-space: nowrap;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toast-message.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Loading state */
+        .btn-primary.loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 460px) {
+            .card {
+                padding: 28px 20px;
+            }
+            .role-btn {
+                padding: 14px 18px;
+                gap: 14px;
+            }
+            .role-icon {
+                font-size: 38px;
+                min-width: 52px;
+            }
+            .logo-title {
+                font-size: 38px;
+            }
+            .toast-message {
+                white-space: normal;
+                max-width: 85%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo-section">
+            <div class="logo-icon-wrapper">
+                <div class="logo-icon">
+                    <i class="fas fa-seedling" style="color: #3e9c6e;"></i>
+                    <i class="fas fa-utensils" style="color: #e68a2e; margin-left: 5px;"></i>
+                    <i class="fas fa-recycle" style="color: #1d7eaa; margin-left: 5px;"></i>
+                </div>
+            </div>
+            <div class="logo-title">TOO MUCH</div>
+            <div class="logo-subtitle">
+                <i class="fas fa-globe-asia"></i> Platform Digital Sirkular Pangan
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="welcome-badge">
+                <i class="fas fa-hands-helping"></i>
+                <span>Bergabung dengan 2.500+ Mitra</span>
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <h2>Pilih Peran Anda 🌟</h2>
+            <p>Mulai perjalananmu dalam mengurangi food waste dan berkontribusi untuk bumi yang lebih hijau</p>
+
+            <div class="role-buttons">
+                <div class="role-btn" data-role="consumer">
+                    <div class="role-icon">🛒✨</div>
+                    <div class="role-info">
+                        <h4>Konsumen Cerdas</h4>
+                        <p>Beli surplus premium & hemat hingga 60%</p>
+                    </div>
+                    <div class="check-indicator"><i class="fas fa-check"></i></div>
+                </div>
+
+                <div class="role-btn" data-role="horeka">
+                    <div class="role-icon">🏨🍽️</div>
+                    <div class="role-info">
+                        <h4>Mitra HOREKA</h4>
+                        <p>Jual surplus, kelola limbah & dapatkan insentif</p>
+                    </div>
+                    <div class="check-indicator"><i class="fas fa-check"></i></div>
+                </div>
+
+                <div class="role-btn" data-role="processor">
+                    <div class="role-icon">🐄♻️</div>
+                    <div class="role-info">
+                        <h4>Mitra Pengolah</h4>
+                        <p>Ubah limbah menjadi pakan ternak & kompos premium</p>
+                    </div>
+                    <div class="check-indicator"><i class="fas fa-check"></i></div>
+                </div>
+            </div>
+
+            <button class="btn-primary" id="startBtn">
+                <span>Mulai Sekarang</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+
+            <div class="impact-stats">
+                <div class="stat-item">
+                    <div class="stat-number">12.4K+ kg</div>
+                    <div class="stat-label">Limbah Terselamatkan</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">2.500+</div>
+                    <div class="stat-label">Mitra Aktif</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">45K+</div>
+                    <div class="stat-label">Porsi Terselamatkan</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <i class="fas fa-leaf"></i> #TooMuchBermanfaat • Zero Food Waste Movement
+            <i class="fas fa-heart" style="color: #e68a2e;"></i>
+        </div>
+    </div>
+
+    <div id="toast" class="toast-message">
+        <i class="fas fa-info-circle"></i>
+        <span></span>
+    </div>
+
+    <script>
+        let selectedRole = null;
+        let isProcessing = false;
+
+        // Select DOM elements
+        const roleBtns = document.querySelectorAll('.role-btn');
+        const startBtn = document.getElementById('startBtn');
+        const toastEl = document.getElementById('toast');
+        const toastText = toastEl.querySelector('span');
+
+        // Show toast notification
+        function showToast(message, isError = false) {
+            toastText.textContent = message;
+            toastEl.style.background = isError ? '#d9692c' : '#1a2a3a';
+            if (isError) {
+                toastEl.querySelector('i').className = 'fas fa-exclamation-triangle';
+            } else {
+                toastEl.querySelector('i').className = 'fas fa-check-circle';
+            }
+            toastEl.classList.add('show');
+            
+            setTimeout(() => {
+                toastEl.classList.remove('show');
+                setTimeout(() => {
+                    toastEl.querySelector('i').className = 'fas fa-info-circle';
+                }, 300);
+            }, 2500);
+        }
+
+        // Role selection handler with haptic feedback
+        roleBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (isProcessing) return;
+                
+                // Remove active class from all
+                roleBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                selectedRole = btn.dataset.role;
+                
+                // Haptic feedback (vibrate if supported)
+                if (window.navigator && window.navigator.vibrate) {
+                    window.navigator.vibrate(30);
+                }
+                
+                // Add micro animation on icon
+                const iconSpan = btn.querySelector('.role-icon');
+                if (iconSpan) {
+                    iconSpan.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        if (iconSpan) iconSpan.style.transform = '';
+                    }, 150);
+                }
+                
+                // Play subtle sound-like visual feedback (optional ripple)
+                const ripple = document.createElement('span');
+                ripple.style.position = 'absolute';
+                ripple.style.top = '50%';
+                ripple.style.left = '50%';
+                ripple.style.width = '0';
+                ripple.style.height = '0';
+                ripple.style.borderRadius = '50%';
+                ripple.style.backgroundColor = 'rgba(29,126,170,0.15)';
+                ripple.style.transform = 'translate(-50%, -50%)';
+                ripple.style.transition = 'width 0.3s, height 0.3s';
+                ripple.style.pointerEvents = 'none';
+                btn.style.position = 'relative';
+                btn.style.overflow = 'hidden';
+                btn.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.style.width = '200px';
+                    ripple.style.height = '200px';
+                }, 10);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 300);
+            });
+        });
+
+        // Start button handler
+        startBtn.addEventListener('click', async () => {
+            if (isProcessing) return;
+            
+            if (!selectedRole) {
+                showToast('Silakan pilih role terlebih dahulu', true);
+                
+                // Shake animation on card
+                const card = document.querySelector('.card');
+                card.style.animation = 'shake 0.4s ease-in-out';
+                setTimeout(() => {
+                    card.style.animation = '';
+                }, 400);
+                return;
+            }
+            
+            isProcessing = true;
+            
+            // Save user data to localStorage
+            localStorage.setItem('userRole', selectedRole);
+            localStorage.setItem('userName', 'Bintang Permana');
+            localStorage.setItem('joinTimestamp', new Date().toISOString());
+            
+            // Role specific friendly name
+            let roleDisplay = '';
+            if (selectedRole === 'consumer') roleDisplay = 'Konsumen Cerdas';
+            else if (selectedRole === 'horeka') roleDisplay = 'Mitra HOREKA';
+            else roleDisplay = 'Mitra Pengolah';
+            localStorage.setItem('roleFriendly', roleDisplay);
+            
+            // Save dashboard URL
+            let dashboardUrl = '';
+            if (selectedRole === 'consumer') {
+                dashboardUrl = 'consumer.html';
+            } else if (selectedRole === 'horeka') {
+                dashboardUrl = 'horeka.html';
+            } else if (selectedRole === 'processor') {
+                dashboardUrl = 'processor.html';
+            }
+            localStorage.setItem('lastDashboard', dashboardUrl);
+            
+            // Show loading state
+            startBtn.classList.add('loading');
+            const originalText = startBtn.innerHTML;
+            startBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Memuat Dashboard...';
+            
+            // Simulate loading for smooth transition
+            setTimeout(() => {
+                window.location.href = dashboardUrl;
+            }, 600);
+        });
+
+        // Add keyboard navigation support
+        roleBtns.forEach((btn, index) => {
+            btn.setAttribute('tabindex', '0');
+            btn.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    btn.click();
+                }
+            });
+        });
+        
+        startBtn.setAttribute('tabindex', '0');
+        startBtn.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                startBtn.click();
+            }
+        });
+
+        // Dynamic background based on hover (micro-interaction)
+        const roleStyles = {
+            consumer: 'radial-gradient(circle at 20% 30%, rgba(228,245,252,0.5), rgba(255,255,245,0.2))',
+            horeka: 'radial-gradient(circle at 80% 40%, rgba(252,235,220,0.5), rgba(245,255,245,0.2))',
+            processor: 'radial-gradient(circle at 50% 70%, rgba(220,245,210,0.5), rgba(240,248,255,0.2))'
+        };
+        
+        roleBtns.forEach(btn => {
+            btn.addEventListener('mouseenter', () => {
+                const role = btn.dataset.role;
+                if (roleStyles[role]) {
+                    document.body.style.transition = 'background 0.25s';
+                    document.body.style.background = `${roleStyles[role]}, radial-gradient(circle at 10% 20%, #eef2f9 0%, #e0e8f2 100%)`;
+                }
+            });
+            btn.addEventListener('mouseleave', () => {
+                document.body.style.background = '';
+                document.body.style.background = 'radial-gradient(circle at 10% 20%, #eef2f9 0%, #e0e8f2 100%)';
+            });
+        });
+
+        // Add shake animation keyframes if not exists
+        if (!document.querySelector('#shakeKeyframe')) {
+            const styleSheet = document.createElement('style');
+            styleSheet.id = 'shakeKeyframe';
+            styleSheet.textContent = `
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    25% { transform: translateX(-6px); }
+                    75% { transform: translateX(6px); }
+                }
+            `;
+            document.head.appendChild(styleSheet);
+        }
+
+        // Welcome greeting for returning users
+        const lastVisit = localStorage.getItem('joinTimestamp');
+        if (!lastVisit) {
+            setTimeout(() => {
+                const greeting = document.createElement('div');
+                greeting.style.cssText = `
+                    position: fixed;
+                    bottom: 100px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: rgba(26,42,58,0.95);
+                    backdrop-filter: blur(12px);
+                    color: white;
+                    padding: 10px 24px;
+                    border-radius: 60px;
+                    font-size: 13px;
+                    font-weight: 500;
+                    z-index: 999;
+                    animation: fadeInUp 0.4s ease-out;
+                    pointer-events: none;
+                    white-space: nowrap;
+                `;
+                greeting.innerHTML = '<i class="fas fa-hand-peace"></i> Halo! Pilih role untuk mulai berdampak ✨';
+                document.body.appendChild(greeting);
+                
+                setTimeout(() => {
+                    greeting.style.opacity = '0';
+                    greeting.style.transition = 'opacity 0.3s';
+                    setTimeout(() => greeting.remove(), 300);
+                }, 3500);
+            }, 300);
+        }
+
+        // Add fadeInUp animation
+        const animStyle = document.createElement('style');
+        animStyle.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateX(-50%) translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(-50%) translateY(0);
+                }
+            }
+        `;
+        document.head.appendChild(animStyle);
+    </script>
+</body>
+</html>
