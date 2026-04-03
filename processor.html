@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>TOO MUCH - Mitra Pengolah | Ubah Limbah Bernilai</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -26,7 +29,7 @@
             min-height: 100vh;
             position: relative;
             padding-bottom: 85px;
-            box-shadow: 0 0 40px rgba(0,0,0,0.03);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.03);
         }
 
         .status-bar {
@@ -80,15 +83,21 @@
             transition: all 0.2s;
         }
 
-        .ai-btn i { font-size: 15px; }
-        .ai-btn:hover { background: #e3f0e3; transform: scale(0.97); }
+        .ai-btn i {
+            font-size: 15px;
+        }
+
+        .ai-btn:hover {
+            background: #e3f0e3;
+            transform: scale(0.97);
+        }
 
         .bottom-nav {
             position: fixed;
             bottom: 0;
             max-width: 450px;
             width: 100%;
-            background: rgba(255,255,255,0.96);
+            background: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(20px);
             display: flex;
             justify-content: space-around;
@@ -113,13 +122,30 @@
             transition: all 0.2s;
         }
 
-        .nav-item i { font-size: 22px; }
-        .nav-item.active { color: #2d6a4f; background: #e6f2e6; }
+        .nav-item i {
+            font-size: 22px;
+        }
 
-        .main-content { padding: 20px; animation: fadeSlide 0.25s ease; }
+        .nav-item.active {
+            color: #2d6a4f;
+            background: #e6f2e6;
+        }
+
+        .main-content {
+            padding: 20px;
+            animation: fadeSlide 0.25s ease;
+        }
+
         @keyframes fadeSlide {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .card {
@@ -128,7 +154,7 @@
             padding: 20px;
             margin-bottom: 20px;
             border: 1px solid #e2ecd9;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
             transition: transform 0.2s;
         }
 
@@ -137,6 +163,7 @@
             gap: 14px;
             margin: 16px 0;
         }
+
         .stat-card {
             flex: 1;
             background: #fafef7;
@@ -145,8 +172,19 @@
             text-align: center;
             border: 1px solid #ddebd4;
         }
-        .stat-value { font-size: 28px; font-weight: 800; color: #2d6a4f; }
-        .stat-label { font-size: 11px; color: #6b8f6e; font-weight: 500; margin-top: 6px; }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 800;
+            color: #2d6a4f;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #6b8f6e;
+            font-weight: 500;
+            margin-top: 6px;
+        }
 
         .section-title {
             display: flex;
@@ -227,7 +265,11 @@
             margin-top: 12px;
         }
 
-        .btn-primary:hover { transform: scale(1.01); background: #1f543d; }
+        .btn-primary:hover {
+            transform: scale(1.01);
+            background: #1f543d;
+        }
+
         .btn-outline {
             background: transparent;
             border: 1.5px solid #2d6a4f;
@@ -245,9 +287,21 @@
             font-size: 11px;
             font-weight: 700;
         }
-        .badge-success { background: #e0f5ee; color: #11734c; }
-        .badge-warning { background: #fff0e0; color: #b45f2a; }
-        .badge-process { background: #e3eef9; color: #2c6e9e; }
+
+        .badge-success {
+            background: #e0f5ee;
+            color: #11734c;
+        }
+
+        .badge-warning {
+            background: #fff0e0;
+            color: #b45f2a;
+        }
+
+        .badge-process {
+            background: #e3eef9;
+            color: #2c6e9e;
+        }
 
         .history-item {
             display: flex;
@@ -263,7 +317,9 @@
             color: #92af8c;
         }
 
-        .hidden { display: none !important; }
+        .hidden {
+            display: none !important;
+        }
 
         .impact-badge {
             background: #e9f5e9;
@@ -274,6 +330,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="app-container">
         <div class="status-bar">
@@ -315,18 +372,32 @@
                 <div class="card" style="text-align: center;">
                     <i class="fas fa-chart-line" style="font-size: 48px; color: #40916c;"></i>
                     <h3 style="margin: 16px 0 8px;">Dampak Lingkunganmu</h3>
-                    <p style="color: #5b7c5e; font-size: 13px;">Setiap kg limbah yang diolah = mengurangi emisi & menghasilkan produk bernilai</p>
+                    <p style="color: #5b7c5e; font-size: 13px;">Setiap kg limbah yang diolah = mengurangi emisi &
+                        menghasilkan produk bernilai</p>
                 </div>
                 <div class="stats-row">
-                    <div class="stat-card"><div class="stat-value" id="co2Saved">0kg</div><div class="stat-label">CO₂eq Tereduksi</div></div>
-                    <div class="stat-card"><div class="stat-value" id="totalProcessed">0kg</div><div class="stat-label">Limbah Diolah</div></div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="co2Saved">0kg</div>
+                        <div class="stat-label">CO₂eq Tereduksi</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalProcessed">0kg</div>
+                        <div class="stat-label">Limbah Diolah</div>
+                    </div>
                 </div>
                 <div class="stats-row">
-                    <div class="stat-card"><div class="stat-value" id="feedProduced">0kg</div><div class="stat-label">Pakan Ternak</div></div>
-                    <div class="stat-card"><div class="stat-value" id="compostProduced">0kg</div><div class="stat-label">Kompos/ Pupuk</div></div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="feedProduced">0kg</div>
+                        <div class="stat-label">Pakan Ternak</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="compostProduced">0kg</div>
+                        <div class="stat-label">Kompos/ Pupuk</div>
+                    </div>
                 </div>
                 <div class="impact-badge">
-                    <i class="fas fa-trophy"></i> <strong>Total Penjemputan:</strong> <span id="totalPickups">0</span> kali
+                    <i class="fas fa-trophy"></i> <strong>Total Penjemputan:</strong> <span id="totalPickups">0</span>
+                    kali
                 </div>
                 <button class="btn-primary" onclick="shareImpact()">
                     <i class="fas fa-share-alt"></i> Bagikan Dampak
@@ -335,8 +406,10 @@
         </div>
 
         <div class="bottom-nav">
-            <button class="nav-item active" data-tab="available"><i class="fas fa-boxes"></i><span>Tersedia</span></button>
-            <button class="nav-item" data-tab="history"><i class="fas fa-clipboard-list"></i><span>Riwayat</span></button>
+            <button class="nav-item active" data-tab="available"><i
+                    class="fas fa-boxes"></i><span>Tersedia</span></button>
+            <button class="nav-item" data-tab="history"><i
+                    class="fas fa-clipboard-list"></i><span>Riwayat</span></button>
             <button class="nav-item" data-tab="impact"><i class="fas fa-globe-asia"></i><span>Dampak</span></button>
         </div>
     </div>
@@ -349,21 +422,21 @@
             { id: 3, source: "GreenEat Cafe", type: "Sayuran Busuk", weight: 12, distance: 1.5, icon: "🥬", status: "ready" },
             { id: 4, source: "SushiKita", type: "Sisa Nasi & Ikan", weight: 6, distance: 2.1, icon: "🍣", status: "ready" }
         ];
-        
+
         // Riwayat pickup
         let pickupHistory = JSON.parse(localStorage.getItem('processorHistory') || '[]');
-        
+
         // Fungsi untuk render limbah tersedia
         function renderAvailableWastes() {
             const container = document.getElementById('wasteAvailableList');
             const activeWastes = availableWastes.filter(w => w.status === 'ready');
             document.getElementById('availableCount').innerText = activeWastes.length + ' item';
-            
+
             if (activeWastes.length === 0) {
                 container.innerHTML = '<div class="empty-state"><i class="fas fa-check-circle"></i> Semua limbah sudah diproses! 🎉</div>';
                 return;
             }
-            
+
             container.innerHTML = activeWastes.map(waste => `
                 <div class="waste-card" data-id="${waste.id}">
                     <div class="waste-header">
@@ -387,7 +460,7 @@
                     </button>
                 </div>
             `).join('');
-            
+
             // Attach event listeners
             document.querySelectorAll('.pickup-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
@@ -399,7 +472,7 @@
                 });
             });
         }
-        
+
         function requestPickup(waste) {
             // Tambah ke riwayat
             const newPickup = {
@@ -414,34 +487,34 @@
             };
             pickupHistory.unshift(newPickup);
             localStorage.setItem('processorHistory', JSON.stringify(pickupHistory));
-            
+
             // Update status waste menjadi 'taken'
             waste.status = 'taken';
-            
+
             // Update UI
             renderAvailableWastes();
             renderHistory();
             updateImpactStats();
             showToast(`✅ Berhasil menjemput ${waste.weight}kg ${waste.type} dari ${waste.source}`, '#2d6a4f');
-            
+
             // Simulasi notifikasi ke HOREKA (optional)
             console.log(`Pickup requested: ${waste.weight}kg from ${waste.source}`);
         }
-        
+
         function renderHistory() {
             const container = document.getElementById('historyList');
             const historyCountSpan = document.getElementById('historyCount');
-            
+
             if (!container) return;
-            
+
             if (pickupHistory.length === 0) {
                 container.innerHTML = '<div class="empty-state"><i class="fas fa-inbox"></i> Belum ada riwayat penjemputan</div>';
                 if (historyCountSpan) historyCountSpan.innerText = '0 transaksi';
                 return;
             }
-            
+
             if (historyCountSpan) historyCountSpan.innerText = pickupHistory.length + ' transaksi';
-            
+
             container.innerHTML = pickupHistory.map(item => `
                 <div class="history-item">
                     <div style="display: flex; gap: 12px; align-items: center;">
@@ -456,24 +529,24 @@
                 </div>
             `).join('');
         }
-        
+
         function updateImpactStats() {
             const totalWeight = pickupHistory.reduce((sum, p) => sum + p.weight, 0);
             const co2Saved = (totalWeight * 1.65).toFixed(1); // kg CO2 eq per kg limbah
             const feedProduced = (totalWeight * 8).toFixed(0); // pakan ternak (kg)
             const compostProduced = (totalWeight * 4.5).toFixed(0); // kompos
-            
+
             document.getElementById('co2Saved').innerText = co2Saved + ' kg';
             document.getElementById('totalProcessed').innerText = totalWeight + ' kg';
             document.getElementById('feedProduced').innerText = feedProduced + ' kg';
             document.getElementById('compostProduced').innerText = compostProduced + ' kg';
             document.getElementById('totalPickups').innerText = pickupHistory.length;
-            
+
             // Update juga badge di dashboard (opsional)
             const wasteReductionElem = document.getElementById('wasteReduction');
             if (wasteReductionElem) wasteReductionElem.innerText = totalWeight + 'kg';
         }
-        
+
         function showToast(msg, color) {
             let toast = document.createElement('div');
             toast.innerText = msg;
@@ -495,14 +568,14 @@
                 setTimeout(() => toast.remove(), 300);
             }, 2500);
         }
-        
+
         function shareImpact() {
             const totalWeight = pickupHistory.reduce((sum, p) => sum + p.weight, 0);
             const co2 = (totalWeight * 1.65).toFixed(1);
             const feed = (totalWeight * 8).toFixed(0);
-            
+
             const shareText = `🌱 Saya telah mengolah ${totalWeight} kg limbah organik menjadi ${feed} kg pakan ternak & mengurangi ${co2} kg CO₂eq bersama TOO MUCH! #ZeroWaste #EkonomiSirkular`;
-            
+
             if (navigator.share) {
                 navigator.share({
                     title: 'Dampak Lingkungan - TOO MUCH',
@@ -514,12 +587,12 @@
                 alert(shareText);
             }
         }
-        
+
         function goToAI() {
             localStorage.setItem('returnUrl', 'processor.html');
             window.location.href = 'ai-detail.html';
         }
-        
+
         // Tab navigation
         let currentTab = 'available';
         function showTab(tabId) {
@@ -528,17 +601,17 @@
             document.getElementById('historyTab').classList.add('hidden');
             document.getElementById('impactTab').classList.add('hidden');
             document.getElementById(`${tabId}Tab`).classList.remove('hidden');
-            
+
             document.querySelectorAll('.nav-item').forEach(btn => {
                 btn.classList.remove('active');
                 if (btn.dataset.tab === tabId) btn.classList.add('active');
             });
-            
+
             if (tabId === 'history') renderHistory();
             if (tabId === 'impact') updateImpactStats();
             if (tabId === 'available') renderAvailableWastes();
         }
-        
+
         // Event listeners for navigation
         document.querySelectorAll('.nav-item').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -546,7 +619,7 @@
                 if (tab) showTab(tab);
             });
         });
-        
+
         // Initial render
         function init() {
             renderAvailableWastes();
@@ -554,8 +627,15 @@
             updateImpactStats();
             showTab('available');
         }
-        
+
         init();
     </script>
+
+    // Simpan last dashboard untuk splash screen下次
+    localStorage.setItem('lastDashboard', window.location.pathname.split('/').pop());
+
+    // Optional: Simpan timestamp last active
+    localStorage.setItem('lastActive', new Date().toISOString());
 </body>
+
 </html>

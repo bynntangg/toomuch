@@ -525,5 +525,10 @@
         }
         init();
     </script>
+// Simpan last dashboard untuk splash screen下次
+localStorage.setItem('lastDashboard', window.location.pathname.split('/').pop());
+
+// Optional: Simpan timestamp last active
+localStorage.setItem('lastActive', new Date().toISOString());
 </body>
 </html>
