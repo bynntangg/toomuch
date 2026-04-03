@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>TOO MUCH - AI Intelligence | Prediksi Cerdas & ESG</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0a1a2a;
+            color: #e2e8f0;
+        }
+
+        .app-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #0b1e2f 0%, #0a1825 100%);
+            min-height: 100vh;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0,0,0,0.4);
+        }
+
+        .status-bar {
+            padding: 14px 20px 8px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+            color: #8aaec0;
+            background: transparent;
+        }
+
+        .header {
+            padding: 12px 20px 24px;
+            background: linear-gradient(135deg, #0d2840, #07131f);
+            backdrop-filter: blur(10px);
+        }
+
+        .back-btn {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(29,126,170,0.5);
+            padding: 8px 18px;
+            border-radius: 40px;
+            color: white;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .back-btn:hover {
+            background: rgba(29,126,170,0.3);
+            transform: translateX(-3px);
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #5bc0ff, #1d7eaa);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header p {
+            font-size: 13px;
+            color: #7f9eb5;
+            margin-top: 8px;
+        }
+
+        .main-content {
+            padding: 20px;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: rgba(18, 35, 50, 0.8);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            padding: 22px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(29,126,170,0.25);
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: rgba(29,126,170,0.5);
+            transform: translateY(-2px);
+        }
+
+        .card h3 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #b8def5;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 12px;
+            margin: 20px 0 8px;
+        }
+        .stat-card {
+            flex: 1;
+            background: rgba(10, 25, 40, 0.7);
+            border-radius: 20px;
+            padding: 16px 8px;
+            text-align: center;
+            border: 1px solid rgba(29,126,170,0.3);
+        }
+        .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #5bc0ff, #2d9cdb);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .stat-label {
+            font-size: 11px;
+            color: #7f9eb5;
+            margin-top: 6px;
+        }
+
+        .prediction-chart {
+            background: rgba(8, 22, 35, 0.6);
+            border-radius: 20px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        .chart-bar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 12px 0;
+        }
+        .bar-label {
+            width: 65px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #9bbdd2;
+        }
+        .bar-fill {
+            flex: 1;
+            height: 36px;
+            background: rgba(30, 50, 70, 0.8);
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .bar-value {
+            height: 100%;
+            background: linear-gradient(90deg, #1d7eaa, #5bc0ff);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 12px;
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            transition: width 0.5s ease;
+        }
+        .high-risk {
+            background: linear-gradient(90deg, #e67e22, #f39c12);
+        }
+
+        .insight-badge {
+            background: rgba(230, 126, 34, 0.15);
+            border-left: 3px solid #e67e22;
+            padding: 14px;
+            border-radius: 16px;
+            margin-top: 16px;
+            font-size: 13px;
+        }
+
+        pre {
+            background: #0a1420;
+            color: #a8e6cf;
+            padding: 18px;
+            border-radius: 20px;
+            overflow-x: auto;
+            font-size: 11px;
+            font-family: 'Monaco', monospace;
+            border: 1px solid #1d3e55;
+            margin: 12px 0;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(95deg, #1d7eaa, #0f5a7a);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.01);
+            box-shadow: 0 5px 15px rgba(29,126,170,0.4);
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 12px;
+        }
+        .feature-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(29,126,170,0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 13px;
+        }
+        .feature-list i {
+            width: 28px;
+            color: #5bc0ff;
+        }
+
+        .live-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(29,126,170,0.2);
+            padding: 4px 12px;
+            border-radius: 40px;
+            font-size: 10px;
+        }
+
+        .pulse {
+            width: 8px;
+            height: 8px;
+            background: #2ecc71;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.4; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="status-bar">
+            <span>AI Dashboard</span>
+            <span><i class="fas fa-microchip"></i> <span class="live-indicator"><span class="pulse"></span> LIVE</span></span>
+        </div>
+        <div class="header">
+            <button class="back-btn" onclick="goBack()">
+                <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
+            </button>
+            <h1>
+                <i class="fas fa-brain"></i> AI Intelligence
+            </h1>
+            <p>Machine Learning untuk Prediksi Limbah & Optimasi ESG • <strong>Model v2.4</strong></p>
+        </div>
+
+        <div class="main-content">
+            <!-- Model Info Card -->
+            <div class="card">
+                <h3><i class="fas fa-chart-line"></i> Tentang Model ML</h3>
+                <p style="margin-top: 8px; line-height: 1.5;">Model <strong>Random Forest Regressor + XGBoost Ensemble</strong> dengan akurasi <strong class="stat-value" style="font-size:18px;">89.2%</strong>. Dilatih dari <strong>2.847 transaksi</strong> riwayat surplus & limbah di ekosistem TOO MUCH.</p>
+                <div class="stats-row">
+                    <div class="stat-card"><div class="stat-value">89.2%</div><div class="stat-label">Akurasi</div></div>
+                    <div class="stat-card"><div class="stat-value">1.4kg</div><div class="stat-label">MAE Error</div></div>
+                    <div class="stat-card"><div class="stat-value">14 hari</div><div class="stat-label">Prediksi Horizon</div></div>
+                </div>
+            </div>
+
+            <!-- Prediction Chart Dinamis -->
+            <div class="card">
+                <h3><i class="fas fa-chart-simple"></i> Prediksi Limbah 7 Hari ke Depan</h3>
+                <div class="prediction-chart" id="predictionChart">
+                    <!-- dynamic chart will be injected -->
+                </div>
+                <div class="insight-badge" id="insightMessage">
+                    <i class="fas fa-lightbulb"></i> <strong>AI Insight:</strong> Memuat analisis prediktif...
+                </div>
+            </div>
+
+            <!-- Real-time Recommendation -->
+            <div class="card">
+                <h3><i class="fas fa-robot"></i> Rekomendasi AI Real-time</h3>
+                <div id="recommendationBox" style="background: rgba(0,0,0,0.3); border-radius: 20px; padding: 16px; margin-top: 8px;">
+                    <div style="display: flex; gap: 12px; align-items: flex-start;">
+                        <i class="fas fa-microphone-alt" style="font-size: 28px; color:#5bc0ff;"></i>
+                        <div>
+                            <div id="recommendationText">Menganalisis data historis...</div>
+                            <div id="recommendationMeta" style="font-size: 11px; color: #7f9eb5; margin-top: 6px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ESG Report Generator -->
+            <div class="card">
+                <h3><i class="fas fa-file-alt"></i> ESG Report Generator</h3>
+                <pre id="esgPreview">
+=== TOO MUCH ESG IMPACT REPORT ===
+Mitra: [Belum dipilih]
+Periode: April 2026
+─────────────────────────
+Loading data...
+                </pre>
+                <div style="display: flex; gap: 12px; margin-top: 12px;">
+                    <select id="partnerSelect" style="flex:1; background: #0a2538; border:1px solid #1d7eaa; border-radius: 40px; padding: 12px; color: white;">
+                        <option value="warung">Warung MbaK Harum</option>
+                        <option value="burger">BurgerHaus</option>
+                        <option value="greeneat">GreenEat Cafe</option>
+                        <option value="processor">Mitra Pengolah (Semua)</option>
+                    </select>
+                    <button class="btn-primary" style="width: auto; padding: 12px 20px; margin:0;" onclick="generateESGReport()">
+                        <i class="fas fa-download"></i> Generate
+                    </button>
+                </div>
+            </div>
+
+            <!-- AI Feature List -->
+            <div class="card">
+                <h3><i class="fas fa-cogs"></i> Fitur AI Canggih</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-tag"></i> Klasifikasi jenis limbah otomatis (Computer Vision ready)</li>
+                    <li><i class="fas fa-chart-pie"></i> Rekomendasi harga surplus dinamis (price optimization)</li>
+                    <li><i class="fas fa-bell"></i> Notifikasi prediksi surplus tinggi via WhatsApp</li>
+                    <li><i class="fas fa-leaf"></i> Kalkulator karbon & ESG otomatis sesuai standar GRI</li>
+                    <li><i class="fas fa-route"></i> Optimasi rute penjemputan limbah (Hamburger algorithm)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Prediksi data ML dinamis (simulasi time series)
+        const predictionDays = [
+            { day: "Senin", kg: 6.2, risk: false },
+            { day: "Selasa", kg: 8.7, risk: false },
+            { day: "Rabu", kg: 16.4, risk: true },
+            { day: "Kamis", kg: 10.2, risk: false },
+            { day: "Jumat", kg: 14.8, risk: false },
+            { day: "Sabtu", kg: 18.1, risk: true },
+            { day: "Minggu", kg: 7.5, risk: false }
+        ];
+
+        // Historical total waste (for ESG)
+        let historicalTotalWaste = 1428; // kg from all partners
+        
+        function renderPredictionChart() {
+            const container = document.getElementById('predictionChart');
+            if (!container) return;
+            
+            const maxKg = Math.max(...predictionDays.map(d => d.kg), 1);
+            container.innerHTML = predictionDays.map(day => `
+                <div class="chart-bar">
+                    <span class="bar-label">${day.day}</span>
+                    <div class="bar-fill">
+                        <div class="bar-value ${day.risk ? 'high-risk' : ''}" style="width: ${(day.kg / maxKg) * 100}%;">
+                            ${day.kg} kg
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            
+            // Update insight message
+            const highRiskDays = predictionDays.filter(d => d.risk);
+            const insightDiv = document.getElementById('insightMessage');
+            if (highRiskDays.length > 0) {
+                const riskDayNames = highRiskDays.map(d => d.day).join(', ');
+                insightDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> <strong>AI Alert:</strong> Lonjakan limbah diprediksi pada ${riskDayNames}. Rekomendasi: tingkatkan kapasitas pickup & upload surplus lebih awal untuk memaksimalkan efisiensi.`;
+            } else {
+                insightDiv.innerHTML = `<i class="fas fa-check-circle"></i> <strong>AI Insight:</strong> Pola limbah stabil dalam 7 hari ke depan. Gunakan kesempatan untuk mengoptimalkan jadwal pickup rutin.`;
+            }
+            
+            // Generate real-time recommendation based on nearest high risk
+            generateRecommendation();
+        }
+        
+        function generateRecommendation() {
+            const today = new Date().getDay();
+            const dayMap = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const todayName = dayMap[today];
+            const todayPred = predictionDays.find(d => d.day === todayName);
+            const upcomingRisk = predictionDays.find(d => d.risk && d.day !== todayName);
+            
+            const recText = document.getElementById('recommendationText');
+            const recMeta = document.getElementById('recommendationMeta');
+            
+            if (todayPred && todayPred.risk) {
+                recText.innerHTML = '⚠️ Hari ini diperkirakan surplus tinggi! Segera upload menu surplus ke platform untuk mengurangi limbah & tingkatkan pendapatan hingga 35%.';
+                recMeta.innerHTML = 'Berdasarkan analisis 50 transaksi terakhir di wilayah Anda • confidence: 92%';
+            } else if (upcomingRisk) {
+                recText.innerHTML = `📈 Prediksi lonjakan pada ${upcomingRisk.day} (${upcomingRisk.kg}kg). Siapkan tim logistik & aktifkan notifikasi AI untuk antisipasi lebih awal.`;
+                recMeta.innerHTML = 'Rekomendasi dihasilkan oleh model XGBoost • update 2 jam lalu';
+            } else {
+                recText.innerHTML = '✅ Kondisi stabil. Gunakan fitur "Optimasi Harga Dinamis" untuk meningkatkan daya tarik surplus makanan dan kurangi waste lebih agresif.';
+                recMeta.innerHTML = 'Saran berdasarkan pola konsumsi musiman • Ramah lingkungan';
+            }
+        }
+        
+        function generateESGReport() {
+            const partner = document.getElementById('partnerSelect').value;
+            let partnerName = "";
+            let wasteContribution = 0;
+            let co2Saved = 0;
+            let mealsSaved = 0;
+            
+            switch(partner) {
+                case 'warung':
+                    partnerName = "Warung MbaK Harum";
+                    wasteContribution = 312;
+                    break;
+                case 'burger':
+                    partnerName = "BurgerHaus";
+                    wasteContribution = 248;
+                    break;
+                case 'greeneat':
+                    partnerName = "GreenEat Cafe";
+                    wasteContribution = 198;
+                    break;
+                default:
+                    partnerName = "Semua Mitra Pengolah & HOREKA";
+                    wasteContribution = historicalTotalWaste;
+            }
+            
+            co2Saved = (wasteContribution * 1.65).toFixed(1);
+            mealsSaved = Math.round(wasteContribution * 3.2);
+            const treesEquivalent = (co2Saved / 22).toFixed(1);
+            
+            const esgText = `=== TOO MUCH ESG IMPACT REPORT ===
+Mitra: ${partnerName}
+Periode: April 2026 (YTD)
+─────────────────────────
+✅ Total limbah terkelola: ${wasteContribution} kg
+🌱 Estimasi emisi dihindari: ${co2Saved} kg CO₂eq
+🍽️ Makanan terselamatkan: ${mealsSaved} porsi
+🌳 Setara dengan menanam ${treesEquivalent} pohon/tahun
+🎯 Kontribusi ke SDGs: 12.3 (Zero Food Waste) ✔️
+🏆 Sertifikasi: TOO MUCH Circular Economy Verified
+─────────────────────────
+*Laporan dihasilkan oleh AI Impact Tracker v2.4
+*Data real-time dari blockchain pangan TOO MUCH`;
+            
+            document.getElementById('esgPreview').innerText = esgText;
+            showToast(`✅ Laporan ESG untuk ${partnerName} berhasil di-generate`, '#2ecc71');
+        }
+        
+        function showToast(msg, color) {
+            let toast = document.createElement('div');
+            toast.innerText = msg;
+            toast.style.position = 'fixed';
+            toast.style.bottom = '100px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.backgroundColor = color;
+            toast.style.color = 'white';
+            toast.style.padding = '12px 24px';
+            toast.style.borderRadius = '60px';
+            toast.style.fontWeight = '600';
+            toast.style.fontSize = '13px';
+            toast.style.zIndex = '3000';
+            toast.style.boxShadow = '0 8px 20px rgba(0,0,0,0.3)';
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 2800);
+        }
+        
+        function goBack() {
+            let returnUrl = localStorage.getItem('returnUrl') || 'index.html';
+            window.location.href = returnUrl;
+        }
+        
+        // Simulate realtime data refresh setiap 30 detik (optional)
+        let insightInterval;
+        function startRealtimeInsights() {
+            // Update rekomendasi secara periodik untuk menunjukkan "live"
+            insightInterval = setInterval(() => {
+                generateRecommendation();
+                // slight random update untuk demo live
+                const randomRisk = Math.random() > 0.7;
+                if (randomRisk && document.getElementById('insightMessage')) {
+                    // optional small blink
+                }
+            }, 30000);
+        }
+        
+        // Initialize everything
+        function init() {
+            renderPredictionChart();
+            startRealtimeInsights();
+            // Set initial ESG preview
+            generateESGReport();
+        }
+        
+        init();
+        
+        // Cleanup on page unload (optional)
+        window.addEventListener('beforeunload', () => {
+            if (insightInterval) clearInterval(insightInterval);
+        });
+    </script>
+</body>
+</html>

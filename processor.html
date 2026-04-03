@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>TOO MUCH - Mitra Pengolah | Ubah Limbah Bernilai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #eef3e8;
+            color: #1a2a3a;
+        }
+
+        .app-container {
+            max-width: 450px;
+            margin: 0 auto;
+            background: #f6fbf3;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 85px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.03);
+        }
+
+        .status-bar {
+            padding: 14px 20px 8px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+            color: #2d4a33;
+            background: #f6fbf3;
+        }
+
+        .header {
+            padding: 8px 20px 16px;
+            background: #f6fbf3;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(60, 110, 60, 0.12);
+        }
+
+        .logo-area h1 {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #2d6a4f, #40916c);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+
+        .logo-area p {
+            font-size: 11px;
+            color: #5f8b6f;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .ai-btn {
+            background: linear-gradient(145deg, #ffffff, #eff6ea);
+            border: 1px solid #cde0cd;
+            padding: 10px 18px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #2d6a4f;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .ai-btn i { font-size: 15px; }
+        .ai-btn:hover { background: #e3f0e3; transform: scale(0.97); }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            max-width: 450px;
+            width: 100%;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 16px 24px;
+            border-top: 1px solid rgba(60, 110, 60, 0.12);
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #93b097;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 40px;
+            transition: all 0.2s;
+        }
+
+        .nav-item i { font-size: 22px; }
+        .nav-item.active { color: #2d6a4f; background: #e6f2e6; }
+
+        .main-content { padding: 20px; animation: fadeSlide 0.25s ease; }
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #e2ecd9;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+            transition: transform 0.2s;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 14px;
+            margin: 16px 0;
+        }
+        .stat-card {
+            flex: 1;
+            background: #fafef7;
+            border-radius: 24px;
+            padding: 16px 8px;
+            text-align: center;
+            border: 1px solid #ddebd4;
+        }
+        .stat-value { font-size: 28px; font-weight: 800; color: #2d6a4f; }
+        .stat-label { font-size: 11px; color: #6b8f6e; font-weight: 500; margin-top: 6px; }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            font-weight: 700;
+            font-size: 16px;
+            color: #2c5a2e;
+        }
+
+        .waste-card {
+            background: #fefef7;
+            border-radius: 24px;
+            padding: 16px;
+            margin-bottom: 14px;
+            border: 1px solid #e5efde;
+            transition: all 0.2s;
+        }
+
+        .waste-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .resto-name {
+            font-weight: 800;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .distance {
+            font-size: 11px;
+            color: #7fa07b;
+            background: #eff7ea;
+            padding: 4px 10px;
+            border-radius: 30px;
+        }
+
+        .waste-detail {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 12px 0;
+        }
+
+        .waste-type {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+        }
+
+        .waste-weight {
+            font-weight: 800;
+            font-size: 20px;
+            color: #2d6a4f;
+        }
+
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(95deg, #2d6a4f, #40916c);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .btn-primary:hover { transform: scale(1.01); background: #1f543d; }
+        .btn-outline {
+            background: transparent;
+            border: 1.5px solid #2d6a4f;
+            color: #2d6a4f;
+            padding: 10px;
+            border-radius: 40px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .badge-success { background: #e0f5ee; color: #11734c; }
+        .badge-warning { background: #fff0e0; color: #b45f2a; }
+        .badge-process { background: #e3eef9; color: #2c6e9e; }
+
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            border-bottom: 1px solid #e9f0e5;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 50px 20px;
+            color: #92af8c;
+        }
+
+        .hidden { display: none !important; }
+
+        .impact-badge {
+            background: #e9f5e9;
+            border-radius: 20px;
+            padding: 12px;
+            text-align: center;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="status-bar">
+            <span>9:41</span>
+            <span><i class="fas fa-leaf"></i> <i class="fas fa-battery-full"></i></span>
+        </div>
+
+        <div class="header">
+            <div class="logo-area">
+                <h1>🐄 TOO MUCH</h1>
+                <p><i class="fas fa-recycle"></i> Mitra Pengolah • Zero Waste</p>
+            </div>
+            <button class="ai-btn" onclick="goToAI()">
+                <i class="fas fa-robot"></i> AI Optimasi
+            </button>
+        </div>
+
+        <div class="main-content" id="mainContent">
+            <!-- Tersedia Tab (Limbah Tersedia) -->
+            <div id="availableTab">
+                <div class="section-title">
+                    <span><i class="fas fa-truck"></i> Limbah Tersedia</span>
+                    <span class="badge badge-success" id="availableCount">0 permintaan</span>
+                </div>
+                <div id="wasteAvailableList"></div>
+            </div>
+
+            <!-- Riwayat Tab -->
+            <div id="historyTab" class="hidden">
+                <div class="section-title">
+                    <span><i class="fas fa-history"></i> Riwayat Penjemputan</span>
+                    <span id="historyCount" class="badge badge-process">0 transaksi</span>
+                </div>
+                <div id="historyList"></div>
+            </div>
+
+            <!-- Dampak Tab -->
+            <div id="impactTab" class="hidden">
+                <div class="card" style="text-align: center;">
+                    <i class="fas fa-chart-line" style="font-size: 48px; color: #40916c;"></i>
+                    <h3 style="margin: 16px 0 8px;">Dampak Lingkunganmu</h3>
+                    <p style="color: #5b7c5e; font-size: 13px;">Setiap kg limbah yang diolah = mengurangi emisi & menghasilkan produk bernilai</p>
+                </div>
+                <div class="stats-row">
+                    <div class="stat-card"><div class="stat-value" id="co2Saved">0kg</div><div class="stat-label">CO₂eq Tereduksi</div></div>
+                    <div class="stat-card"><div class="stat-value" id="totalProcessed">0kg</div><div class="stat-label">Limbah Diolah</div></div>
+                </div>
+                <div class="stats-row">
+                    <div class="stat-card"><div class="stat-value" id="feedProduced">0kg</div><div class="stat-label">Pakan Ternak</div></div>
+                    <div class="stat-card"><div class="stat-value" id="compostProduced">0kg</div><div class="stat-label">Kompos/ Pupuk</div></div>
+                </div>
+                <div class="impact-badge">
+                    <i class="fas fa-trophy"></i> <strong>Total Penjemputan:</strong> <span id="totalPickups">0</span> kali
+                </div>
+                <button class="btn-primary" onclick="shareImpact()">
+                    <i class="fas fa-share-alt"></i> Bagikan Dampak
+                </button>
+            </div>
+        </div>
+
+        <div class="bottom-nav">
+            <button class="nav-item active" data-tab="available"><i class="fas fa-boxes"></i><span>Tersedia</span></button>
+            <button class="nav-item" data-tab="history"><i class="fas fa-clipboard-list"></i><span>Riwayat</span></button>
+            <button class="nav-item" data-tab="impact"><i class="fas fa-globe-asia"></i><span>Dampak</span></button>
+        </div>
+    </div>
+
+    <script>
+        // Data limbah yang tersedia dari HOREKA (simulasi realtime)
+        let availableWastes = [
+            { id: 1, source: "Warung MbaK Harum", type: "Sisa Makanan", weight: 15, distance: 1.2, icon: "🍚", status: "ready" },
+            { id: 2, source: "BurgerHaus", type: "Sisa Roti & Sayur", weight: 8, distance: 0.8, icon: "🍔", status: "ready" },
+            { id: 3, source: "GreenEat Cafe", type: "Sayuran Busuk", weight: 12, distance: 1.5, icon: "🥬", status: "ready" },
+            { id: 4, source: "SushiKita", type: "Sisa Nasi & Ikan", weight: 6, distance: 2.1, icon: "🍣", status: "ready" }
+        ];
+        
+        // Riwayat pickup
+        let pickupHistory = JSON.parse(localStorage.getItem('processorHistory') || '[]');
+        
+        // Fungsi untuk render limbah tersedia
+        function renderAvailableWastes() {
+            const container = document.getElementById('wasteAvailableList');
+            const activeWastes = availableWastes.filter(w => w.status === 'ready');
+            document.getElementById('availableCount').innerText = activeWastes.length + ' item';
+            
+            if (activeWastes.length === 0) {
+                container.innerHTML = '<div class="empty-state"><i class="fas fa-check-circle"></i> Semua limbah sudah diproses! 🎉</div>';
+                return;
+            }
+            
+            container.innerHTML = activeWastes.map(waste => `
+                <div class="waste-card" data-id="${waste.id}">
+                    <div class="waste-header">
+                        <div class="resto-name">
+                            <i class="fas fa-store"></i> ${waste.source}
+                        </div>
+                        <div class="distance"><i class="fas fa-map-marker-alt"></i> ${waste.distance} km</div>
+                    </div>
+                    <div class="waste-detail">
+                        <div class="waste-type">
+                            <span style="font-size: 28px;">${waste.icon}</span>
+                            <div>
+                                <strong>${waste.type}</strong><br>
+                                <span style="font-size: 11px; color:#7f9e7a;">Organik · siap olah</span>
+                            </div>
+                        </div>
+                        <div class="waste-weight">${waste.weight} kg</div>
+                    </div>
+                    <button class="btn-primary pickup-btn" data-id="${waste.id}">
+                        <i class="fas fa-truck-fast"></i> Ajukan Penjemputan
+                    </button>
+                </div>
+            `).join('');
+            
+            // Attach event listeners
+            document.querySelectorAll('.pickup-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = parseInt(btn.dataset.id);
+                    const waste = availableWastes.find(w => w.id === id);
+                    if (waste && waste.status === 'ready') {
+                        requestPickup(waste);
+                    }
+                });
+            });
+        }
+        
+        function requestPickup(waste) {
+            // Tambah ke riwayat
+            const newPickup = {
+                id: Date.now(),
+                source: waste.source,
+                type: waste.type,
+                weight: waste.weight,
+                icon: waste.icon,
+                date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }),
+                timestamp: new Date().toISOString(),
+                status: 'Selesai'
+            };
+            pickupHistory.unshift(newPickup);
+            localStorage.setItem('processorHistory', JSON.stringify(pickupHistory));
+            
+            // Update status waste menjadi 'taken'
+            waste.status = 'taken';
+            
+            // Update UI
+            renderAvailableWastes();
+            renderHistory();
+            updateImpactStats();
+            showToast(`✅ Berhasil menjemput ${waste.weight}kg ${waste.type} dari ${waste.source}`, '#2d6a4f');
+            
+            // Simulasi notifikasi ke HOREKA (optional)
+            console.log(`Pickup requested: ${waste.weight}kg from ${waste.source}`);
+        }
+        
+        function renderHistory() {
+            const container = document.getElementById('historyList');
+            const historyCountSpan = document.getElementById('historyCount');
+            
+            if (!container) return;
+            
+            if (pickupHistory.length === 0) {
+                container.innerHTML = '<div class="empty-state"><i class="fas fa-inbox"></i> Belum ada riwayat penjemputan</div>';
+                if (historyCountSpan) historyCountSpan.innerText = '0 transaksi';
+                return;
+            }
+            
+            if (historyCountSpan) historyCountSpan.innerText = pickupHistory.length + ' transaksi';
+            
+            container.innerHTML = pickupHistory.map(item => `
+                <div class="history-item">
+                    <div style="display: flex; gap: 12px; align-items: center;">
+                        <span style="font-size: 32px;">${item.icon || '♻️'}</span>
+                        <div>
+                            <div><strong>${item.source}</strong></div>
+                            <div style="font-size: 12px; color: #6f9e6b;">${item.type} • ${item.weight} kg</div>
+                            <div style="font-size: 10px; color: #9bbf96;"><i class="far fa-calendar-alt"></i> ${item.date}</div>
+                        </div>
+                    </div>
+                    <span class="badge badge-success">${item.status}</span>
+                </div>
+            `).join('');
+        }
+        
+        function updateImpactStats() {
+            const totalWeight = pickupHistory.reduce((sum, p) => sum + p.weight, 0);
+            const co2Saved = (totalWeight * 1.65).toFixed(1); // kg CO2 eq per kg limbah
+            const feedProduced = (totalWeight * 8).toFixed(0); // pakan ternak (kg)
+            const compostProduced = (totalWeight * 4.5).toFixed(0); // kompos
+            
+            document.getElementById('co2Saved').innerText = co2Saved + ' kg';
+            document.getElementById('totalProcessed').innerText = totalWeight + ' kg';
+            document.getElementById('feedProduced').innerText = feedProduced + ' kg';
+            document.getElementById('compostProduced').innerText = compostProduced + ' kg';
+            document.getElementById('totalPickups').innerText = pickupHistory.length;
+            
+            // Update juga badge di dashboard (opsional)
+            const wasteReductionElem = document.getElementById('wasteReduction');
+            if (wasteReductionElem) wasteReductionElem.innerText = totalWeight + 'kg';
+        }
+        
+        function showToast(msg, color) {
+            let toast = document.createElement('div');
+            toast.innerText = msg;
+            toast.style.position = 'fixed';
+            toast.style.bottom = '90px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.backgroundColor = color;
+            toast.style.color = 'white';
+            toast.style.padding = '12px 24px';
+            toast.style.borderRadius = '60px';
+            toast.style.fontWeight = '600';
+            toast.style.fontSize = '13px';
+            toast.style.zIndex = '2000';
+            toast.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)';
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 2500);
+        }
+        
+        function shareImpact() {
+            const totalWeight = pickupHistory.reduce((sum, p) => sum + p.weight, 0);
+            const co2 = (totalWeight * 1.65).toFixed(1);
+            const feed = (totalWeight * 8).toFixed(0);
+            
+            const shareText = `🌱 Saya telah mengolah ${totalWeight} kg limbah organik menjadi ${feed} kg pakan ternak & mengurangi ${co2} kg CO₂eq bersama TOO MUCH! #ZeroWaste #EkonomiSirkular`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Dampak Lingkungan - TOO MUCH',
+                    text: shareText,
+                }).catch(() => {
+                    alert(shareText);
+                });
+            } else {
+                alert(shareText);
+            }
+        }
+        
+        function goToAI() {
+            localStorage.setItem('returnUrl', 'processor.html');
+            window.location.href = 'ai-detail.html';
+        }
+        
+        // Tab navigation
+        let currentTab = 'available';
+        function showTab(tabId) {
+            currentTab = tabId;
+            document.getElementById('availableTab').classList.add('hidden');
+            document.getElementById('historyTab').classList.add('hidden');
+            document.getElementById('impactTab').classList.add('hidden');
+            document.getElementById(`${tabId}Tab`).classList.remove('hidden');
+            
+            document.querySelectorAll('.nav-item').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.tab === tabId) btn.classList.add('active');
+            });
+            
+            if (tabId === 'history') renderHistory();
+            if (tabId === 'impact') updateImpactStats();
+            if (tabId === 'available') renderAvailableWastes();
+        }
+        
+        // Event listeners for navigation
+        document.querySelectorAll('.nav-item').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tab = btn.dataset.tab;
+                if (tab) showTab(tab);
+            });
+        });
+        
+        // Initial render
+        function init() {
+            renderAvailableWastes();
+            renderHistory();
+            updateImpactStats();
+            showTab('available');
+        }
+        
+        init();
+    </script>
+</body>
+</html>

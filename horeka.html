@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>TOO MUCH - Mitra HOREKA | Kelola Surplus & Limbah</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #ecf3f8;
+            color: #1a2a3a;
+        }
+
+        .app-container {
+            max-width: 450px;
+            margin: 0 auto;
+            background: #f6fafd;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 85px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.03);
+        }
+
+        .status-bar {
+            padding: 14px 20px 8px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e2f3a;
+            background: #f6fafd;
+        }
+
+        .header {
+            padding: 8px 20px 16px;
+            background: #f6fafd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(29,126,170,0.12);
+        }
+
+        .logo-area h1 {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0f4b5e, #1d7eaa);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+
+        .logo-area p {
+            font-size: 11px;
+            color: #5f8b9f;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .ai-btn {
+            background: linear-gradient(145deg, #ffffff, #eff6fa);
+            border: 1px solid #cde3ed;
+            padding: 10px 18px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1d7eaa;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .ai-btn i { font-size: 15px; }
+        .ai-btn:hover { background: #e3f0f8; transform: scale(0.97); }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            max-width: 450px;
+            width: 100%;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 16px 24px;
+            border-top: 1px solid rgba(29,126,170,0.12);
+            z-index: 100;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #93afbf;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px 12px;
+            border-radius: 40px;
+            transition: all 0.2s;
+        }
+
+        .nav-item i { font-size: 22px; }
+        .nav-item.active { color: #1d7eaa; background: #e9f3f9; }
+
+        .main-content { padding: 20px; animation: fadeSlide 0.25s ease; }
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #eaf1f8;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+            transition: transform 0.2s;
+        }
+
+        .stats-row {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            flex: 1;
+            background: #fafeff;
+            border-radius: 24px;
+            padding: 16px 8px;
+            text-align: center;
+            border: 1px solid #e2eff6;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+        .stat-value { font-size: 26px; font-weight: 800; color: #1d7eaa; }
+        .stat-label { font-size: 11px; color: #6f96aa; font-weight: 500; margin-top: 6px; }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            font-weight: 700;
+        }
+
+        .form-group { margin-bottom: 18px; }
+        .form-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; color: #2c5a74; }
+        .form-input, .form-select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1.5px solid #e2edf2;
+            border-radius: 20px;
+            font-size: 14px;
+            background: white;
+            transition: 0.2s;
+        }
+        .form-input:focus, .form-select:focus { border-color: #1d7eaa; outline: none; box-shadow: 0 0 0 3px rgba(29,126,170,0.1); }
+
+        .btn-primary {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(95deg, #1d7eaa, #166e94);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .btn-primary:hover { transform: scale(1.01); background: #156a90; }
+
+        .prediction-chart { background: #fafeff; border-radius: 24px; padding: 16px; margin-top: 8px; }
+        .chart-bar { display: flex; align-items: center; gap: 12px; margin: 12px 0; }
+        .bar-label { width: 60px; font-size: 13px; font-weight: 600; }
+        .bar-fill { flex: 1; height: 34px; background: #e9f1f6; border-radius: 20px; overflow: hidden; }
+        .bar-value { height: 100%; background: #1d7eaa; border-radius: 20px; display: flex; align-items: center; justify-content: flex-end; padding-right: 12px; color: white; font-size: 11px; font-weight: 700; }
+        .alert-warning {
+            background: #fff2e5;
+            border-left: 5px solid #f39c12;
+            padding: 14px;
+            border-radius: 20px;
+            color: #b45f1b;
+            margin-top: 16px;
+            font-weight: 500;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .badge-success { background: #e0f5ee; color: #11734c; }
+        .badge-warning { background: #fff0e0; color: #c46e2a; }
+
+        .surplus-item, .waste-item {
+            background: #fbfefd;
+            padding: 14px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            border: 1px solid #e9f0f5;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .empty-state { text-align: center; padding: 40px 20px; color: #95b6c8; }
+
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <div class="status-bar">
+            <span>9:41</span>
+            <span><i class="fas fa-wifi"></i> <i class="fas fa-battery-full"></i></span>
+        </div>
+
+        <div class="header">
+            <div class="logo-area">
+                <h1>🏨 TOO MUCH</h1>
+                <p><i class="fas fa-chart-line"></i> Mitra HOREKA • Zero Waste</p>
+            </div>
+            <button class="ai-btn" onclick="goToAI()">
+                <i class="fas fa-microchip"></i> AI Bisnis
+            </button>
+        </div>
+
+        <div class="main-content" id="mainContent">
+            <!-- Dashboard Tab -->
+            <div id="dashboardTab">
+                <div class="stats-row">
+                    <div class="stat-card"><div class="stat-value" id="revenue">Rp0</div><div class="stat-label"><i class="fas fa-money-bill-wave"></i> Pendapatan</div></div>
+                    <div class="stat-card"><div class="stat-value" id="wasteAmount">0kg</div><div class="stat-label"><i class="fas fa-recycle"></i> Limbah Tersalurkan</div></div>
+                </div>
+                <div class="card">
+                    <div class="section-title"><span><i class="fas fa-utensils"></i> Menu Surplus Aktif</span> <span class="badge badge-success" id="surplusCount">0 item</span></div>
+                    <div id="activeSurplusList" class="active-surplus"></div>
+                </div>
+                <div class="card">
+                    <div class="section-title"><span><i class="fas fa-chart-simple"></i> Rekomendasi AI</span></div>
+                    <div class="alert-warning" id="aiRecommendMsg">
+                        <i class="fas fa-brain"></i> Memuat prediksi pintar...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Upload Surplus Tab -->
+            <div id="uploadTab" class="hidden">
+                <div class="card">
+                    <h4 style="margin-bottom: 16px;"><i class="fas fa-cloud-upload-alt"></i> Upload Surplus Makanan</h4>
+                    <div class="form-group"><label class="form-label">Nama Menu</label><input class="form-input" id="menuName" placeholder="Contoh: Nasi Goreng Special"></div>
+                    <div class="form-group"><label class="form-label">Harga Normal (Rp)</label><input class="form-input" id="normalPrice" placeholder="35000" type="number"></div>
+                    <div class="form-group"><label class="form-label">Harga Surplus (Rp)</label><input class="form-input" id="surplusPrice" placeholder="21000" type="number"></div>
+                    <div class="form-group"><label class="form-label">Jumlah Porsi</label><input class="form-input" id="portion" placeholder="5" type="number"></div>
+                    <button class="btn-primary" onclick="uploadSurplus()"><i class="fas fa-check-circle"></i> Upload Sekarang</button>
+                </div>
+            </div>
+
+            <!-- Limbah Tab -->
+            <div id="wasteTab" class="hidden">
+                <div class="card">
+                    <h4><i class="fas fa-trash-alt"></i> Catat Limbah Organik</h4>
+                    <div class="form-group"><label class="form-label">Jenis Limbah</label><select class="form-select" id="wasteType"><option>Sisa Makanan</option><option>Sayuran Busuk</option><option>Kulit Buah</option><option>Amplas/Sisa Olahan</option></select></div>
+                    <div class="form-group"><label class="form-label">Berat (kg)</label><input class="form-input" id="wasteWeight" placeholder="12" type="number"></div>
+                    <button class="btn-primary" onclick="recordWaste()"><i class="fas fa-leaf"></i> Kirim ke Pengolah</button>
+                </div>
+                <div class="card">
+                    <div class="section-title"><span><i class="fas fa-history"></i> Riwayat Limbah</span></div>
+                    <div id="wasteHistoryList"></div>
+                </div>
+            </div>
+
+            <!-- Prediksi ML Tab -->
+            <div id="predictionTab" class="hidden">
+                <div class="card">
+                    <h4><i class="fas fa-chart-line"></i> Prediksi Limbah (Machine Learning)</h4>
+                    <div class="prediction-chart" id="predictionChart"></div>
+                    <div class="alert-warning" id="predictionAlert">⚠️ Prediksi: Rabu surplus tinggi! Siapkan upload lebih awal.</div>
+                </div>
+            </div>
+
+            <!-- ESG Tab -->
+            <div id="esgTab" class="hidden">
+                <div class="card" style="text-align: center;">
+                    <i class="fas fa-globe-asia" style="font-size: 48px; color: #2e7d64;"></i>
+                    <h3 style="margin: 12px 0;">Laporan Dampak Lingkungan</h3>
+                    <div class="stats-row">
+                        <div class="stat-card"><div class="stat-value" id="co2Reduction">0kg</div><div class="stat-label">CO₂eq Tereduksi</div></div>
+                        <div class="stat-card"><div class="stat-value" id="totalWasteSaved">0kg</div><div class="stat-label">Limbah Terselamatkan</div></div>
+                    </div>
+                    <button class="btn-primary" onclick="downloadESG()"><i class="fas fa-file-pdf"></i> Download Laporan ESG</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-nav">
+            <button class="nav-item active" data-tab="dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></button>
+            <button class="nav-item" data-tab="upload"><i class="fas fa-upload"></i><span>Upload</span></button>
+            <button class="nav-item" data-tab="waste"><i class="fas fa-dumpster"></i><span>Limbah</span></button>
+            <button class="nav-item" data-tab="prediction"><i class="fas fa-robot"></i><span>Prediksi</span></button>
+            <button class="nav-item" data-tab="esg"><i class="fas fa-seedling"></i><span>ESG</span></button>
+        </div>
+    </div>
+
+    <script>
+        // Data storage
+        let wasteRecords = JSON.parse(localStorage.getItem('horekaWaste') || '[]');
+        let surplusList = JSON.parse(localStorage.getItem('horekaSurplus') || '[]');
+        let revenueTotal = parseFloat(localStorage.getItem('horekaRevenue') || '0');
+        
+        // Prediksi data ML (simulasi pintar)
+        const predictionData = [
+            { day: "Senin", kg: 6, risk: false }, { day: "Selasa", kg: 9, risk: false },
+            { day: "Rabu", kg: 16, risk: true }, { day: "Kamis", kg: 10, risk: false },
+            { day: "Jumat", kg: 14, risk: false }, { day: "Sabtu", kg: 12, risk: false }
+        ];
+
+        function updateDashboard() {
+            let totalWaste = wasteRecords.reduce((sum, w) => sum + (w.weight || 0), 0);
+            document.getElementById('wasteAmount').innerText = totalWaste + ' kg';
+            document.getElementById('totalWasteSaved').innerText = totalWaste + ' kg';
+            
+            // revenue (from uploaded surplus * 0.7 asumsi)
+            let estimatedRevenue = surplusList.reduce((sum, s) => sum + (s.price * (s.sold || 0)), 0);
+            if(estimatedRevenue === 0 && surplusList.length > 0) estimatedRevenue = surplusList.length * 18000;
+            document.getElementById('revenue').innerText = 'Rp' + (estimatedRevenue + revenueTotal).toLocaleString();
+            
+            document.getElementById('co2Reduction').innerText = (totalWaste * 0.85).toFixed(1) + 'kg';
+            
+            // render active surplus
+            const activeContainer = document.getElementById('activeSurplusList');
+            if (surplusList.length === 0) {
+                activeContainer.innerHTML = '<div class="empty-state"><i class="fas fa-info-circle"></i> Belum ada surplus diupload</div>';
+                document.getElementById('surplusCount').innerText = '0 item';
+            } else {
+                document.getElementById('surplusCount').innerText = surplusList.length + ' item';
+                activeContainer.innerHTML = surplusList.map(s => `
+                    <div class="surplus-item">
+                        <div><strong>${s.name}</strong><br><span style="font-size:12px;">Rp${s.price.toLocaleString()} / porsi</span></div>
+                        <span class="badge badge-success">Aktif</span>
+                    </div>
+                `).join('');
+            }
+            
+            // AI rekomendasi dinamis
+            const aiMsg = document.getElementById('aiRecommendMsg');
+            if (predictionData.find(d => d.risk)) {
+                aiMsg.innerHTML = '<i class="fas fa-exclamation-triangle"></i> AI memprediksi lonjakan surplus 40% besok. Upload menu lebih awal untuk memaksimalkan pendapatan!';
+            } else {
+                aiMsg.innerHTML = '<i class="fas fa-chart-line"></i> Tren stabil. Kamu bisa meningkatkan visibilitas dengan diskon tambahan 5% untuk surplus malam.';
+            }
+        }
+
+        function uploadSurplus() {
+            let name = document.getElementById('menuName').value.trim();
+            let normalPrice = parseInt(document.getElementById('normalPrice').value);
+            let surplusPrice = parseInt(document.getElementById('surplusPrice').value);
+            let portion = parseInt(document.getElementById('portion').value);
+            
+            if (!name || isNaN(surplusPrice) || isNaN(portion) || surplusPrice <= 0) {
+                alert('Isi semua field dengan benar!');
+                return;
+            }
+            
+            surplusList.push({
+                id: Date.now(),
+                name: name,
+                normalPrice: normalPrice || surplusPrice * 1.5,
+                price: surplusPrice,
+                portion: portion,
+                sold: 0,
+                date: new Date().toLocaleDateString('id-ID')
+            });
+            localStorage.setItem('horekaSurplus', JSON.stringify(surplusList));
+            alert(`✅ ${name} berhasil diupload sebagai surplus!`);
+            document.getElementById('menuName').value = '';
+            document.getElementById('normalPrice').value = '';
+            document.getElementById('surplusPrice').value = '';
+            document.getElementById('portion').value = '';
+            updateDashboard();
+            showToast('Surplus makanan ditambahkan', '#1d7eaa');
+        }
+
+        function recordWaste() {
+            let type = document.getElementById('wasteType').value;
+            let weight = parseFloat(document.getElementById('wasteWeight').value);
+            if (isNaN(weight) || weight <= 0) {
+                alert('Masukkan berat limbah yang valid (kg)');
+                return;
+            }
+            wasteRecords.push({
+                id: Date.now(),
+                type: type,
+                weight: weight,
+                date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', hour: '2-digit', minute:'2-digit' })
+            });
+            localStorage.setItem('horekaWaste', JSON.stringify(wasteRecords));
+            // update revenue incentive
+            let incentive = weight * 500;
+            revenueTotal += incentive;
+            localStorage.setItem('horekaRevenue', revenueTotal);
+            document.getElementById('wasteWeight').value = '';
+            updateDashboard();
+            renderWasteHistory();
+            showToast(`Limbah ${weight}kg tercatat + insentif Rp${incentive}`, '#2c7a5e');
+        }
+
+        function renderWasteHistory() {
+            const container = document.getElementById('wasteHistoryList');
+            if (!container) return;
+            if (wasteRecords.length === 0) {
+                container.innerHTML = '<div class="empty-state">Belum ada catatan limbah</div>';
+                return;
+            }
+            container.innerHTML = wasteRecords.slice().reverse().map(w => `
+                <div class="waste-item">
+                    <div><i class="fas fa-apple-alt"></i> ${w.type}<br><span style="font-size:11px;">${w.date}</span></div>
+                    <div><strong>${w.weight} kg</strong> <span class="badge badge-warning">terkirim</span></div>
+                </div>
+            `).join('');
+        }
+
+        function renderPrediction() {
+            const chartContainer = document.getElementById('predictionChart');
+            if (!chartContainer) return;
+            let maxKg = Math.max(...predictionData.map(d => d.kg), 1);
+            chartContainer.innerHTML = predictionData.map(day => `
+                <div class="chart-bar">
+                    <span class="bar-label">${day.day}</span>
+                    <div class="bar-fill">
+                        <div class="bar-value" style="width: ${(day.kg / maxKg) * 100}%; background: ${day.risk ? '#e67e22' : '#1d7eaa'};">${day.kg} kg</div>
+                    </div>
+                </div>
+            `).join('');
+            
+            const alertDiv = document.getElementById('predictionAlert');
+            if (predictionData.find(d => d.risk)) {
+                alertDiv.innerHTML = '⚠️ <strong>Rabu diprediksi lonjakan limbah 60%</strong> — segera atur stok dan upload surplus lebih pagi untuk mengurangi kerugian.';
+            } else {
+                alertDiv.innerHTML = '📊 Pola limbah stabil. Optimalkan upload surplus di jam 13.00 - 15.00 untuk hasil maksimal.';
+            }
+        }
+
+        function showToast(msg, color) {
+            let toast = document.createElement('div');
+            toast.innerText = msg;
+            toast.style.position = 'fixed';
+            toast.style.bottom = '90px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.backgroundColor = color;
+            toast.style.color = 'white';
+            toast.style.padding = '12px 24px';
+            toast.style.borderRadius = '60px';
+            toast.style.fontWeight = '600';
+            toast.style.fontSize = '13px';
+            toast.style.zIndex = '2000';
+            toast.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)';
+            document.body.appendChild(toast);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 2200);
+        }
+
+        let currentTab = 'dashboard';
+        function showTab(tabId) {
+            currentTab = tabId;
+            ['dashboard', 'upload', 'waste', 'prediction', 'esg'].forEach(t => {
+                const el = document.getElementById(`${t}Tab`);
+                if (el) el.classList.add('hidden');
+            });
+            document.getElementById(`${tabId}Tab`).classList.remove('hidden');
+            document.querySelectorAll('.nav-item').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.tab === tabId) btn.classList.add('active');
+            });
+            if (tabId === 'waste') renderWasteHistory();
+            if (tabId === 'prediction') renderPrediction();
+            if (tabId === 'dashboard') updateDashboard();
+        }
+
+        function goToAI() {
+            localStorage.setItem('returnUrl', 'horeka.html');
+            window.location.href = 'ai-detail.html';
+        }
+
+        function downloadESG() {
+            let totalWaste = wasteRecords.reduce((s, w) => s + w.weight, 0);
+            let co2 = (totalWaste * 0.85).toFixed(1);
+            alert(`📄 Laporan ESG untuk Mitra HOREKA\n✅ Total limbah terselamatkan: ${totalWaste} kg\n🌱 Reduksi CO₂eq: ${co2} kg\n💚 Pendapatan dari surplus: ${document.getElementById('revenue').innerText}\nTerima kasih telah berkontribusi pada ekonomi sirkular!`);
+        }
+
+        // Navigation event listeners
+        document.querySelectorAll('.nav-item').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const tab = btn.dataset.tab;
+                if (tab) showTab(tab);
+            });
+        });
+
+        // Initial load
+        function init() {
+            updateDashboard();
+            renderWasteHistory();
+            renderPrediction();
+            showTab('dashboard');
+        }
+        init();
+    </script>
+</body>
+</html>

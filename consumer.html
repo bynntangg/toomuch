@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>TOO MUCH - Konsumen | Hemat Makanan</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f4f7fc;
+            color: #1a2a3a;
+        }
+
+        .app-container {
+            max-width: 450px;
+            margin: 0 auto;
+            background: #f8fafd;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 85px;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+        }
+
+        /* status bar modern */
+        .status-bar {
+            padding: 14px 20px 8px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e293b;
+            background: #f8fafd;
+            letter-spacing: 0.2px;
+        }
+
+        .header {
+            padding: 8px 20px 16px;
+            background: #f8fafd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(29, 126, 170, 0.1);
+        }
+
+        .logo-area h1 {
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0f3b5e, #1d7eaa);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-area p {
+            font-size: 12px;
+            color: #5f8b9f;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .ai-btn {
+            background: linear-gradient(145deg, #ffffff, #eff6fa);
+            border: 1px solid #cde3ed;
+            padding: 10px 18px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #1d7eaa;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        .ai-btn i {
+            font-size: 16px;
+        }
+
+        .ai-btn:hover {
+            background: #e3f0f8;
+            transform: scale(0.98);
+            border-color: #1d7eaa;
+        }
+
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            max-width: 450px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(20px);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 20px 24px;
+            border-top: 1px solid rgba(29, 126, 170, 0.15);
+            z-index: 100;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.02);
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #94abb9;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-family: inherit;
+            transition: all 0.2s;
+            padding: 6px 12px;
+            border-radius: 40px;
+        }
+
+        .nav-item i {
+            font-size: 24px;
+        }
+
+        .nav-item.active {
+            color: #1d7eaa;
+            background: #e9f3f9;
+        }
+
+        .main-content {
+            padding: 20px;
+            animation: fadeSlide 0.3s ease;
+        }
+
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .alert {
+            background: linear-gradient(105deg, #fff4e6, #ffe8d9);
+            padding: 14px 18px;
+            border-radius: 28px;
+            margin-bottom: 24px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #c26b1a;
+            border-left: 4px solid #f5a65b;
+            box-shadow: 0 6px 12px -8px rgba(0, 0, 0, 0.08);
+        }
+
+        .search-wrapper {
+            position: relative;
+            margin-bottom: 24px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px 20px 16px 48px;
+            border: 1.5px solid #e2edf2;
+            border-radius: 44px;
+            font-size: 15px;
+            background: white;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .search-input:focus {
+            border-color: #1d7eaa;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(29, 126, 170, 0.1);
+        }
+
+        .search-wrapper i {
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8fbbd0;
+            font-size: 18px;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin: 20px 0 14px 0;
+        }
+
+        .section-title h3 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .section-title span {
+            font-size: 12px;
+            color: #1d7eaa;
+            font-weight: 600;
+        }
+
+        .food-card {
+            background: white;
+            border-radius: 28px;
+            margin-bottom: 16px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.02), 0 2px 4px rgba(0, 0, 0, 0.03);
+            transition: all 0.25s;
+            border: 1px solid #ecf3f8;
+            overflow: hidden;
+        }
+
+        .food-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 18px 28px -12px rgba(29, 126, 170, 0.2);
+            border-color: #cde3ef;
+        }
+
+        .food-card-inner {
+            display: flex;
+            gap: 16px;
+            padding: 16px;
+        }
+
+        .food-image {
+            width: 88px;
+            height: 88px;
+            background: linear-gradient(145deg, #f0f7fb, #e9f2f8);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 44px;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.8), 0 6px 12px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        .food-info {
+            flex: 1;
+        }
+
+        .food-name {
+            font-weight: 800;
+            font-size: 17px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .food-resto {
+            font-size: 12px;
+            color: #789eb2;
+            margin: 6px 0 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .price-wrapper {
+            margin: 6px 0 8px;
+        }
+
+        .price-original {
+            font-size: 13px;
+            color: #a3bfce;
+            text-decoration: line-through;
+            margin-right: 8px;
+        }
+
+        .price-surplus {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1d7eaa;
+        }
+
+        .badge-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 8px 0 4px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .badge-green {
+            background: #e1f7f0;
+            color: #11734c;
+        }
+
+        .badge-orange {
+            background: #fee6dd;
+            color: #cf6f2c;
+        }
+
+        .btn-buy {
+            background: #f0f7fc;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 13px;
+            color: #1d7eaa;
+            cursor: pointer;
+            transition: all 0.2s;
+            align-self: center;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-buy:hover {
+            background: #1d7eaa;
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 24px;
+            padding: 14px 8px;
+            text-align: center;
+            flex: 1;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+            border: 1px solid #eaf1f6;
+        }
+
+        .stat-value {
+            font-size: 26px;
+            font-weight: 800;
+            color: #1d7eaa;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #7f9eb0;
+            font-weight: 500;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 50px 20px;
+            color: #8fadbe;
+        }
+
+        .order-item {
+            background: white;
+            border-radius: 24px;
+            padding: 16px;
+            margin-bottom: 12px;
+            border: 1px solid #eef3f8;
+            transition: 0.1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <div class="status-bar">
+            <span>9:41</span>
+            <span><i class="fas fa-signal"></i> <i class="fas fa-battery-full"></i></span>
+        </div>
+
+        <div class="header">
+            <div class="logo-area">
+                <h1>🛒 TOO MUCH</h1>
+                <p><i class="fas fa-seedling"></i> Hemat pangan · Selamatkan bumi</p>
+            </div>
+            <button class="ai-btn" onclick="goToAI()">
+                <i class="fas fa-robot"></i> AI Rekomendasi
+            </button>
+        </div>
+
+        <div class="main-content" id="mainContent">
+            <!-- Home Tab -->
+            <div id="homeTab">
+                <div class="alert">
+                    <i class="fas fa-bolt"></i> Flash sale! Diskon hingga 50% untuk 2 jam ke depan.
+                </div>
+                <div class="search-wrapper">
+                    <i class="fas fa-search"></i>
+                    <input type="text" class="search-input" id="searchFood" placeholder="Cari makanan favoritmu...">
+                </div>
+
+                <div class="section-title">
+                    <h3><i class="fas fa-fire"></i> Rekomendasi untukmu</h3>
+                    <span>Lihat semua →</span>
+                </div>
+
+                <div id="foodListContainer">
+                    <!-- dynamic food list from JS -->
+                </div>
+            </div>
+
+            <!-- Orders Tab -->
+            <div id="ordersTab" class="hidden">
+                <div class="section-title">
+                    <h3><i class="fas fa-receipt"></i> Pesanan Saya</h3>
+                </div>
+                <div id="ordersList" class="orders-list"></div>
+            </div>
+
+            <!-- Profile Tab -->
+            <div id="profileTab" class="hidden">
+                <div class="card"
+                    style="background: white; border-radius: 32px; padding: 24px; text-align: center; margin-bottom: 20px;">
+                    <div style="width: 80px; height: 80px; border-radius: 60px; overflow: hidden; margin: 0 auto 16px;">
+                        <img id="profileImage" src="bintang.png" alt="Profile"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <h3 id="userName" style="font-size: 22px; font-weight: 800;">Bintang Permana</h3>
+                    <p style="color: #5a7e94; margin-top: 4px;" id="userEmail">bintang@too-much.id</p>
+                    <div style="display: flex; gap: 12px; margin: 28px 0;">
+                        <div class="stat-card">
+                            <div class="stat-value" id="orderCount">0</div>
+                            <div class="stat-label">Pesanan</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="totalSaved">Rp0</div>
+                            <div class="stat-label">Total Hemat</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="wasteSaved">0kg</div>
+                            <div class="stat-label">Limbah Terselamatkan</div>
+                        </div>
+                    </div>
+                    <button class="btn-buy"
+                        style="background: #fee; color:#b45b2b; width: 100%; justify-content: center;"
+                        onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+                <div style="background: #fff4e8; border-radius: 24px; padding: 16px; text-align: center;">
+                    <i class="fas fa-leaf" style="color: #3e9c6e;"></i> <strong>Dampak Positifmu</strong><br>
+                    Dengan bergabung, kamu sudah membantu mengurangi <strong id="totalWasteKg">0 kg</strong> sampah
+                    makanan 🌎
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-nav">
+            <button class="nav-item active" data-tab="home">
+                <i class="fas fa-home"></i><span>Beranda</span>
+            </button>
+            <button class="nav-item" data-tab="orders">
+                <i class="fas fa-shopping-bag"></i><span>Pesanan</span>
+            </button>
+            <button class="nav-item" data-tab="profile">
+                <i class="fas fa-user-circle"></i><span>Profil</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Menu Data (surplus food)
+        const foodDatabase = [
+            { id: 1, name: "Nasi Goreng Spesial", resto: "Warung MbaK Harum", distance: 1.2, originalPrice: 35000, surplusPrice: 21000, discount: 40, stock: 3, icon: "🍛", category: "makanan" },
+            { id: 2, name: "Chicken Burger + Fries", resto: "BurgerHaus", distance: 0.8, originalPrice: 45000, surplusPrice: 27000, discount: 40, stock: 2, icon: "🍔", category: "fastfood" },
+            { id: 3, name: "Salad Ayam + Quinoa", resto: "GreenEat Cafe", distance: 1.5, originalPrice: 38000, surplusPrice: 22000, discount: 42, stock: 5, icon: "🥗", category: "sehat" },
+            { id: 4, name: "Sushi Platter (6 pcs)", resto: "SushiKita", distance: 2.1, originalPrice: 65000, surplusPrice: 35000, discount: 46, stock: 2, icon: "🍣", category: "japanese" },
+            { id: 5, name: "Rendang + Nasi", resto: "Dapoer Uni", distance: 0.9, originalPrice: 48000, surplusPrice: 29000, discount: 40, stock: 4, icon: "🍲", category: "indonesian" }
+        ];
+
+        let orders = JSON.parse(localStorage.getItem('consumerOrders') || '[]');
+        let currentTab = 'home';
+
+        // Helper functions
+        function formatRupiah(angka) {
+            return 'Rp' + angka.toLocaleString('id-ID');
+        }
+
+        function updateStats() {
+            document.getElementById('orderCount').innerText = orders.length;
+            let totalHemat = orders.reduce((sum, o) => sum + (o.originalPrice - o.price), 0);
+            document.getElementById('totalSaved').innerText = formatRupiah(totalHemat);
+            let wasteSaved = (orders.length * 0.7).toFixed(1);
+            document.getElementById('wasteSaved').innerText = wasteSaved + 'kg';
+            document.getElementById('totalWasteKg').innerText = wasteSaved + ' kg';
+        }
+
+        function renderFoodList(filterText = "") {
+            const container = document.getElementById('foodListContainer');
+            let filtered = [...foodDatabase];
+            if (filterText) {
+                filtered = filtered.filter(item => item.name.toLowerCase().includes(filterText.toLowerCase()) || item.resto.toLowerCase().includes(filterText.toLowerCase()));
+            }
+            if (filtered.length === 0) {
+                container.innerHTML = `<div class="empty-state"><i class="fas fa-utensils"></i> <br/>Makanan tidak ditemukan 😢</div>`;
+                return;
+            }
+            container.innerHTML = filtered.map(item => `
+                <div class="food-card">
+                    <div class="food-card-inner">
+                        <div class="food-image">${item.icon}</div>
+                        <div class="food-info">
+                            <div class="food-name">${item.name}</div>
+                            <div class="food-resto"><i class="fas fa-store"></i> ${item.resto} • <i class="fas fa-map-marker-alt"></i> ${item.distance}km</div>
+                            <div class="price-wrapper">
+                                <span class="price-original">${formatRupiah(item.originalPrice)}</span>
+                                <span class="price-surplus">${formatRupiah(item.surplusPrice)}</span>
+                            </div>
+                            <div class="badge-group">
+                                <span class="badge badge-green"><i class="fas fa-tag"></i> Hemat ${item.discount}%</span>
+                                <span class="badge badge-orange"><i class="fas fa-clock"></i> Sisa ${item.stock} porsi</span>
+                            </div>
+                        </div>
+                        <button class="btn-buy" data-id="${item.id}"><i class="fas fa-cart-plus"></i> Beli</button>
+                    </div>
+                </div>
+            `).join('');
+
+            // Attach event listeners to buy buttons
+            document.querySelectorAll('.btn-buy[data-id]').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const id = parseInt(btn.dataset.id);
+                    const food = foodDatabase.find(f => f.id === id);
+                    if (food) addToCart(food);
+                });
+            });
+        }
+
+        function addToCart(food) {
+            // cek apakah masih stock?
+            const orderExists = orders.find(o => o.id === food.id && o.status !== 'cancelled');
+            if (orderExists && (orderExists.status === 'completed' || true)) {
+                // allow multiple orders but simple approach
+            }
+            orders.push({
+                id: food.id,
+                name: food.name,
+                price: food.surplusPrice,
+                originalPrice: food.originalPrice,
+                date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }),
+                icon: food.icon,
+                status: 'completed'
+            });
+            localStorage.setItem('consumerOrders', JSON.stringify(orders));
+            updateStats();
+            renderOrders();
+            showTemporaryToast(`${food.name} berhasil ditambahkan ✨`, '#1d7eaa');
+            if (currentTab === 'orders') renderOrders();
+        }
+
+        function renderOrders() {
+            const ordersContainer = document.getElementById('ordersList');
+            if (!ordersContainer) return;
+            if (orders.length === 0) {
+                ordersContainer.innerHTML = `<div class="empty-state"><i class="fas fa-box-open"></i> <br/>Belum ada pesanan. Yuk beli surplus food!</div>`;
+                return;
+            }
+            ordersContainer.innerHTML = orders.map((order, idx) => `
+                <div class="order-item">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <span style="font-size: 32px;">${order.icon || '🍱'}</span>
+                            <div>
+                                <strong style="font-size: 16px;">${order.name}</strong><br>
+                                <span style="font-size: 11px; color:#7f9eb0;"><i class="far fa-calendar-alt"></i> ${order.date}</span>
+                            </div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div><strong>${formatRupiah(order.price)}</strong></div>
+                            <span class="badge badge-green">Selesai</span>
+                        </div>
+                    </div>
+                </div>
+            `).reverse().join('');
+        }
+
+        function showTemporaryToast(msg, bgColor = '#1d7eaa') {
+            let toast = document.createElement('div');
+            toast.innerText = msg;
+            toast.style.position = 'fixed';
+            toast.style.bottom = '80px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.backgroundColor = bgColor;
+            toast.style.color = 'white';
+            toast.style.padding = '12px 24px';
+            toast.style.borderRadius = '60px';
+            toast.style.fontWeight = '600';
+            toast.style.fontSize = '14px';
+            toast.style.zIndex = '1000';
+            toast.style.boxShadow = '0 8px 20px rgba(0,0,0,0.2)';
+            toast.style.backdropFilter = 'blur(4px)';
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 2000);
+        }
+
+        function showTab(tabId) {
+            currentTab = tabId;
+            document.getElementById('homeTab').classList.add('hidden');
+            document.getElementById('ordersTab').classList.add('hidden');
+            document.getElementById('profileTab').classList.add('hidden');
+            document.getElementById(`${tabId}Tab`).classList.remove('hidden');
+
+            document.querySelectorAll('.nav-item').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.tab === tabId) btn.classList.add('active');
+            });
+
+            if (tabId === 'orders') renderOrders();
+            if (tabId === 'profile') updateStats();
+        }
+
+        function goToAI() {
+            localStorage.setItem('returnUrl', 'consumer.html');
+            window.location.href = 'ai-detail.html';
+        }
+
+        function logout() {
+            localStorage.removeItem('userRole');
+            localStorage.removeItem('consumerOrders');
+            window.location.href = 'index.html';
+        }
+
+        // Search functionality
+        const searchInput = document.getElementById('searchFood');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                renderFoodList(e.target.value);
+            });
+        }
+
+        // Tab event listeners
+        document.querySelectorAll('.nav-item').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tab = btn.dataset.tab;
+                showTab(tab);
+            });
+        });
+
+        // Initialize 
+        function init() {
+            renderFoodList('');
+            updateStats();
+            renderOrders();
+            // Set default user
+            if (!localStorage.getItem('userName')) localStorage.setItem('userName', 'Bintang Permana');
+            document.getElementById('userName').innerText = localStorage.getItem('userName') || 'Bintang Permana';
+            document.getElementById('userEmail').innerText = 'bintang@too-much.id';
+            showTab('home');
+        }
+
+        init();
+    </script>
+</body>
+
+</html>
