@@ -6,6 +6,7 @@
     <title>TOO MUCH - Mitra HOREKA | Kelola Surplus & Limbah</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
             margin: 0;
@@ -83,6 +84,27 @@
         .ai-btn i { font-size: 15px; }
         .ai-btn:hover { background: #e3f0f8; transform: scale(0.97); }
 
+        /* Welcome Banner */
+        .welcome-banner {
+            background: linear-gradient(135deg, #1d7eaa, #0f5a7a);
+            border-radius: 28px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .welcome-banner::before {
+            content: '🏨';
+            position: absolute;
+            font-size: 70px;
+            right: -10px;
+            bottom: -15px;
+            opacity: 0.15;
+        }
+        .greeting { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+        .greeting span { font-size: 14px; opacity: 0.9; }
+
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -145,7 +167,9 @@
             text-align: center;
             border: 1px solid #e2eff6;
             box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+            transition: transform 0.2s;
         }
+        .stat-card:hover { transform: translateY(-3px); }
         .stat-value { font-size: 26px; font-weight: 800; color: #1d7eaa; }
         .stat-label { font-size: 11px; color: #6f96aa; font-weight: 500; margin-top: 6px; }
 
@@ -155,6 +179,26 @@
             margin-bottom: 14px;
             font-weight: 700;
         }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .quick-btn {
+            background: white;
+            border: 1px solid #e2edf2;
+            border-radius: 20px;
+            padding: 12px 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .quick-btn i { font-size: 24px; color: #1d7eaa; margin-bottom: 6px; display: block; }
+        .quick-btn span { font-size: 11px; font-weight: 600; color: #5f8b9f; }
+        .quick-btn:hover { background: #e9f3f9; transform: translateY(-2px); }
 
         .form-group { margin-bottom: 18px; }
         .form-label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 8px; color: #2c5a74; }
@@ -186,6 +230,12 @@
             gap: 10px;
         }
         .btn-primary:hover { transform: scale(1.01); background: #156a90; }
+        .btn-secondary {
+            background: #f0f7fc;
+            color: #1d7eaa;
+            border: 1px solid #cde3ed;
+        }
+        .btn-secondary:hover { background: #e3f0f8; }
 
         .prediction-chart { background: #fafeff; border-radius: 24px; padding: 16px; margin-top: 8px; }
         .chart-bar { display: flex; align-items: center; gap: 12px; margin: 12px 0; }
@@ -201,6 +251,14 @@
             margin-top: 16px;
             font-weight: 500;
         }
+        .alert-success {
+            background: #e0f5ee;
+            border-left: 5px solid #2ecc71;
+            padding: 14px;
+            border-radius: 20px;
+            color: #11734c;
+            margin-top: 16px;
+        }
 
         .badge {
             display: inline-block;
@@ -211,6 +269,7 @@
         }
         .badge-success { background: #e0f5ee; color: #11734c; }
         .badge-warning { background: #fff0e0; color: #c46e2a; }
+        .badge-danger { background: #fee2e2; color: #c0392b; }
 
         .surplus-item, .waste-item {
             background: #fbfefd;
@@ -223,9 +282,47 @@
             align-items: center;
         }
 
+        /* Analytics Cards */
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        .analytics-card {
+            background: linear-gradient(135deg, #f8fbfe, #ffffff);
+            border-radius: 20px;
+            padding: 16px;
+            text-align: center;
+            border: 1px solid #e2edf2;
+        }
+        .analytics-number { font-size: 28px; font-weight: 800; color: #1d7eaa; }
+        .analytics-label { font-size: 11px; color: #7f9eb0; margin-top: 4px; }
+
         .empty-state { text-align: center; padding: 40px 20px; color: #95b6c8; }
 
         .hidden { display: none !important; }
+
+        /* Chart Container */
+        .chart-container {
+            margin: 16px 0;
+            position: relative;
+            height: 180px;
+        }
+
+        /* Notification Badge */
+        .notification-badge {
+            position: relative;
+        }
+        .badge-dot {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 8px;
+            height: 8px;
+            background: #e74c3c;
+            border-radius: 50%;
+        }
     </style>
 </head>
 <body>
@@ -248,18 +345,89 @@
         <div class="main-content" id="mainContent">
             <!-- Dashboard Tab -->
             <div id="dashboardTab">
-                <div class="stats-row">
-                    <div class="stat-card"><div class="stat-value" id="revenue">Rp0</div><div class="stat-label"><i class="fas fa-money-bill-wave"></i> Pendapatan</div></div>
-                    <div class="stat-card"><div class="stat-value" id="wasteAmount">0kg</div><div class="stat-label"><i class="fas fa-recycle"></i> Limbah Tersalurkan</div></div>
+                <!-- Welcome Banner -->
+                <div class="welcome-banner">
+                    <div class="greeting">Selamat datang, <span id="ownerName">Warung MbaK Harum</span>! 👋</div>
+                    <p style="font-size: 13px; opacity: 0.9; margin-top: 4px;">Terus berkontribusi mengurangi food waste 🌱</p>
                 </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <div class="quick-btn" onclick="showTab('upload')">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Upload Surplus</span>
+                    </div>
+                    <div class="quick-btn" onclick="showTab('waste')">
+                        <i class="fas fa-trash-alt"></i>
+                        <span>Catat Limbah</span>
+                    </div>
+                    <div class="quick-btn" onclick="showTab('prediction')">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Prediksi</span>
+                    </div>
+                    <div class="quick-btn" onclick="downloadESG()">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Laporan ESG</span>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <div class="stat-value" id="revenue">Rp0</div>
+                        <div class="stat-label"><i class="fas fa-money-bill-wave"></i> Pendapatan</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="wasteAmount">0kg</div>
+                        <div class="stat-label"><i class="fas fa-recycle"></i> Limbah Tersalurkan</div>
+                    </div>
+                </div>
+
+                <!-- Analytics Section -->
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <div class="analytics-number" id="totalOrders">0</div>
+                        <div class="analytics-label">Total Pesanan</div>
+                    </div>
+                    <div class="analytics-card">
+                        <div class="analytics-number" id="totalCustomers">0</div>
+                        <div class="analytics-label">Pembeli Unik</div>
+                    </div>
+                    <div class="analytics-card">
+                        <div class="analytics-number" id="satisfactionRate">0%</div>
+                        <div class="analytics-label">Kepuasan</div>
+                    </div>
+                    <div class="analytics-card">
+                        <div class="analytics-number" id="co2Saved">0kg</div>
+                        <div class="analytics-label">CO₂ Tereduksi</div>
+                    </div>
+                </div>
+
+                <!-- Chart Section -->
                 <div class="card">
-                    <div class="section-title"><span><i class="fas fa-utensils"></i> Menu Surplus Aktif</span> <span class="badge badge-success" id="surplusCount">0 item</span></div>
+                    <div class="section-title">
+                        <span><i class="fas fa-chart-line"></i> Tren Penjualan Mingguan</span>
+                        <span class="badge badge-success">+12%</span>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="salesChart" style="max-height: 180px; width: 100%;"></canvas>
+                    </div>
+                </div>
+
+                <!-- Active Surplus -->
+                <div class="card">
+                    <div class="section-title">
+                        <span><i class="fas fa-utensils"></i> Menu Surplus Aktif</span>
+                        <span class="badge badge-success" id="surplusCount">0 item</span>
+                    </div>
                     <div id="activeSurplusList" class="active-surplus"></div>
                 </div>
+
+                <!-- AI Recommendation -->
                 <div class="card">
-                    <div class="section-title"><span><i class="fas fa-chart-simple"></i> Rekomendasi AI</span></div>
+                    <div class="section-title"><span><i class="fas fa-brain"></i> Rekomendasi AI</span></div>
                     <div class="alert-warning" id="aiRecommendMsg">
-                        <i class="fas fa-brain"></i> Memuat prediksi pintar...
+                        <i class="fas fa-spinner fa-pulse"></i> Memuat prediksi pintar...
                     </div>
                 </div>
             </div>
@@ -268,10 +436,24 @@
             <div id="uploadTab" class="hidden">
                 <div class="card">
                     <h4 style="margin-bottom: 16px;"><i class="fas fa-cloud-upload-alt"></i> Upload Surplus Makanan</h4>
-                    <div class="form-group"><label class="form-label">Nama Menu</label><input class="form-input" id="menuName" placeholder="Contoh: Nasi Goreng Special"></div>
+                    <div class="form-group">
+                        <label class="form-label">Foto Menu</label>
+                        <div style="border: 2px dashed #e2edf2; border-radius: 20px; padding: 20px; text-align: center; cursor: pointer;" onclick="alert('Demo: Pilih foto dari galeri')">
+                            <i class="fas fa-camera" style="font-size: 32px; color: #8fbbd0;"></i>
+                            <p style="font-size: 12px; color: #8fbbd0; margin-top: 8px;">Upload foto menu</p>
+                        </div>
+                    </div>
+                    <div class="form-group"><label class="form-label">Nama Menu *</label><input class="form-input" id="menuName" placeholder="Contoh: Nasi Goreng Special"></div>
                     <div class="form-group"><label class="form-label">Harga Normal (Rp)</label><input class="form-input" id="normalPrice" placeholder="35000" type="number"></div>
-                    <div class="form-group"><label class="form-label">Harga Surplus (Rp)</label><input class="form-input" id="surplusPrice" placeholder="21000" type="number"></div>
-                    <div class="form-group"><label class="form-label">Jumlah Porsi</label><input class="form-input" id="portion" placeholder="5" type="number"></div>
+                    <div class="form-group"><label class="form-label">Harga Surplus (Rp) *</label><input class="form-input" id="surplusPrice" placeholder="21000" type="number"></div>
+                    <div class="form-group"><label class="form-label">Jumlah Porsi *</label><input class="form-input" id="portion" placeholder="5" type="number"></div>
+                    <div class="form-group"><label class="form-label">Waktu Tersedia</label>
+                        <select class="form-select" id="availableTime">
+                            <option>09:00 - 14:00</option>
+                            <option>14:00 - 18:00</option>
+                            <option>18:00 - 21:00</option>
+                        </select>
+                    </div>
                     <button class="btn-primary" onclick="uploadSurplus()"><i class="fas fa-check-circle"></i> Upload Sekarang</button>
                 </div>
             </div>
@@ -280,8 +462,16 @@
             <div id="wasteTab" class="hidden">
                 <div class="card">
                     <h4><i class="fas fa-trash-alt"></i> Catat Limbah Organik</h4>
-                    <div class="form-group"><label class="form-label">Jenis Limbah</label><select class="form-select" id="wasteType"><option>Sisa Makanan</option><option>Sayuran Busuk</option><option>Kulit Buah</option><option>Amplas/Sisa Olahan</option></select></div>
+                    <div class="form-group"><label class="form-label">Jenis Limbah</label>
+                        <select class="form-select" id="wasteType">
+                            <option>Sisa Makanan</option>
+                            <option>Sayuran Busuk</option>
+                            <option>Kulit Buah</option>
+                            <option>Amplas/Sisa Olahan</option>
+                        </select>
+                    </div>
                     <div class="form-group"><label class="form-label">Berat (kg)</label><input class="form-input" id="wasteWeight" placeholder="12" type="number"></div>
+                    <div class="form-group"><label class="form-label">Catatan (opsional)</label><input class="form-input" id="wasteNote" placeholder="Misal: sisa buffet"></div>
                     <button class="btn-primary" onclick="recordWaste()"><i class="fas fa-leaf"></i> Kirim ke Pengolah</button>
                 </div>
                 <div class="card">
@@ -297,6 +487,10 @@
                     <div class="prediction-chart" id="predictionChart"></div>
                     <div class="alert-warning" id="predictionAlert">⚠️ Prediksi: Rabu surplus tinggi! Siapkan upload lebih awal.</div>
                 </div>
+                <div class="card">
+                    <div class="section-title"><span><i class="fas fa-lightbulb"></i> Rekomendasi AI</span></div>
+                    <div id="recommendationList" class="recommendation-list"></div>
+                </div>
             </div>
 
             <!-- ESG Tab -->
@@ -308,7 +502,11 @@
                         <div class="stat-card"><div class="stat-value" id="co2Reduction">0kg</div><div class="stat-label">CO₂eq Tereduksi</div></div>
                         <div class="stat-card"><div class="stat-value" id="totalWasteSaved">0kg</div><div class="stat-label">Limbah Terselamatkan</div></div>
                     </div>
+                    <div class="alert-success" style="margin: 16px 0;">
+                        <i class="fas fa-tree"></i> Kontribusi Anda setara dengan menanam <strong id="treesEquivalent">0</strong> pohon!
+                    </div>
                     <button class="btn-primary" onclick="downloadESG()"><i class="fas fa-file-pdf"></i> Download Laporan ESG</button>
+                    <button class="btn-primary btn-secondary" onclick="shareESG()" style="margin-top: 12px;"><i class="fas fa-share-alt"></i> Bagikan Dampak</button>
                 </div>
             </div>
         </div>
@@ -327,25 +525,72 @@
         let wasteRecords = JSON.parse(localStorage.getItem('horekaWaste') || '[]');
         let surplusList = JSON.parse(localStorage.getItem('horekaSurplus') || '[]');
         let revenueTotal = parseFloat(localStorage.getItem('horekaRevenue') || '0');
+        let orderHistory = JSON.parse(localStorage.getItem('horekaOrders') || '[]');
         
-        // Prediksi data ML (simulasi pintar)
+        // Prediksi data ML
         const predictionData = [
             { day: "Senin", kg: 6, risk: false }, { day: "Selasa", kg: 9, risk: false },
             { day: "Rabu", kg: 16, risk: true }, { day: "Kamis", kg: 10, risk: false },
-            { day: "Jumat", kg: 14, risk: false }, { day: "Sabtu", kg: 12, risk: false }
+            { day: "Jumat", kg: 14, risk: false }, { day: "Sabtu", kg: 12, risk: false },
+            { day: "Minggu", kg: 8, risk: false }
         ];
+
+        let salesChart = null;
+
+        function initChart() {
+            const ctx = document.getElementById('salesChart').getContext('2d');
+            salesChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab', 'Min'],
+                    datasets: [{
+                        label: 'Pendapatan (Rp)',
+                        data: [180000, 220000, 350000, 280000, 420000, 380000, 250000],
+                        borderColor: '#1d7eaa',
+                        backgroundColor: 'rgba(29, 126, 170, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#1d7eaa',
+                        pointBorderColor: 'white',
+                        pointRadius: 4,
+                        pointHoverRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { label: (ctx) => `Rp${ctx.raw.toLocaleString()}` } }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { callback: (v) => `Rp${(v/1000).toFixed(0)}k` } }
+                    }
+                }
+            });
+        }
 
         function updateDashboard() {
             let totalWaste = wasteRecords.reduce((sum, w) => sum + (w.weight || 0), 0);
             document.getElementById('wasteAmount').innerText = totalWaste + ' kg';
             document.getElementById('totalWasteSaved').innerText = totalWaste + ' kg';
             
-            // revenue (from uploaded surplus * 0.7 asumsi)
-            let estimatedRevenue = surplusList.reduce((sum, s) => sum + (s.price * (s.sold || 0)), 0);
-            if(estimatedRevenue === 0 && surplusList.length > 0) estimatedRevenue = surplusList.length * 18000;
-            document.getElementById('revenue').innerText = 'Rp' + (estimatedRevenue + revenueTotal).toLocaleString();
+            let estimatedRevenue = surplusList.reduce((sum, s) => sum + (s.price * (s.sold || Math.floor(Math.random() * 5) + 1)), 0);
+            let finalRevenue = estimatedRevenue + revenueTotal;
+            document.getElementById('revenue').innerText = 'Rp' + finalRevenue.toLocaleString();
             
-            document.getElementById('co2Reduction').innerText = (totalWaste * 0.85).toFixed(1) + 'kg';
+            let co2Reduction = (totalWaste * 0.85).toFixed(1);
+            document.getElementById('co2Reduction').innerText = co2Reduction + 'kg';
+            document.getElementById('co2Saved').innerText = co2Reduction + 'kg';
+            
+            let trees = Math.floor(totalWaste * 0.05);
+            document.getElementById('treesEquivalent').innerText = trees;
+            
+            let totalOrders = surplusList.reduce((sum, s) => sum + (s.sold || Math.floor(Math.random() * 10) + 1), 0);
+            document.getElementById('totalOrders').innerText = totalOrders;
+            document.getElementById('totalCustomers').innerText = Math.floor(totalOrders * 0.7) + 15;
+            document.getElementById('satisfactionRate').innerText = Math.floor(Math.random() * 15 + 85) + '%';
             
             // render active surplus
             const activeContainer = document.getElementById('activeSurplusList');
@@ -389,7 +634,8 @@
                 price: surplusPrice,
                 portion: portion,
                 sold: 0,
-                date: new Date().toLocaleDateString('id-ID')
+                date: new Date().toLocaleDateString('id-ID'),
+                time: document.getElementById('availableTime').value
             });
             localStorage.setItem('horekaSurplus', JSON.stringify(surplusList));
             alert(`✅ ${name} berhasil diupload sebagai surplus!`);
@@ -404,6 +650,7 @@
         function recordWaste() {
             let type = document.getElementById('wasteType').value;
             let weight = parseFloat(document.getElementById('wasteWeight').value);
+            let note = document.getElementById('wasteNote').value;
             if (isNaN(weight) || weight <= 0) {
                 alert('Masukkan berat limbah yang valid (kg)');
                 return;
@@ -412,14 +659,15 @@
                 id: Date.now(),
                 type: type,
                 weight: weight,
+                note: note,
                 date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', hour: '2-digit', minute:'2-digit' })
             });
             localStorage.setItem('horekaWaste', JSON.stringify(wasteRecords));
-            // update revenue incentive
             let incentive = weight * 500;
             revenueTotal += incentive;
             localStorage.setItem('horekaRevenue', revenueTotal);
             document.getElementById('wasteWeight').value = '';
+            document.getElementById('wasteNote').value = '';
             updateDashboard();
             renderWasteHistory();
             showToast(`Limbah ${weight}kg tercatat + insentif Rp${incentive}`, '#2c7a5e');
@@ -432,7 +680,7 @@
                 container.innerHTML = '<div class="empty-state">Belum ada catatan limbah</div>';
                 return;
             }
-            container.innerHTML = wasteRecords.slice().reverse().map(w => `
+            container.innerHTML = wasteRecords.slice().reverse().slice(0, 5).map(w => `
                 <div class="waste-item">
                     <div><i class="fas fa-apple-alt"></i> ${w.type}<br><span style="font-size:11px;">${w.date}</span></div>
                     <div><strong>${w.weight} kg</strong> <span class="badge badge-warning">terkirim</span></div>
@@ -459,6 +707,13 @@
             } else {
                 alertDiv.innerHTML = '📊 Pola limbah stabil. Optimalkan upload surplus di jam 13.00 - 15.00 untuk hasil maksimal.';
             }
+            
+            // Recommendations
+            const recDiv = document.getElementById('recommendationList');
+            recDiv.innerHTML = `
+                <div class="alert-success" style="margin-bottom: 12px;"><i class="fas fa-chart-line"></i> 📈 Upload surplus di jam makan siang (12:00-13:00) meningkatkan penjualan 35%</div>
+                <div class="alert-warning"><i class="fas fa-leaf"></i> 🌱 Dengan mendaur ulang 50kg limbah, Anda menghemat 42.5kg CO₂eq</div>
+            `;
         }
 
         function showToast(msg, color) {
@@ -505,7 +760,14 @@
         function downloadESG() {
             let totalWaste = wasteRecords.reduce((s, w) => s + w.weight, 0);
             let co2 = (totalWaste * 0.85).toFixed(1);
-            alert(`📄 Laporan ESG untuk Mitra HOREKA\n✅ Total limbah terselamatkan: ${totalWaste} kg\n🌱 Reduksi CO₂eq: ${co2} kg\n💚 Pendapatan dari surplus: ${document.getElementById('revenue').innerText}\nTerima kasih telah berkontribusi pada ekonomi sirkular!`);
+            let trees = Math.floor(totalWaste * 0.05);
+            alert(`📄 Laporan ESG untuk Mitra HOREKA\n━━━━━━━━━━━━━━━━━━━━━\n✅ Total limbah terselamatkan: ${totalWaste} kg\n🌱 Reduksi CO₂eq: ${co2} kg\n🌳 Setara menanam ${trees} pohon\n💚 Pendapatan: ${document.getElementById('revenue').innerText}\n━━━━━━━━━━━━━━━━━━━━━\nTerima kasih telah berkontribusi pada ekonomi sirkular!`);
+        }
+
+        function shareESG() {
+            let totalWaste = wasteRecords.reduce((s, w) => s + w.weight, 0);
+            let co2 = (totalWaste * 0.85).toFixed(1);
+            alert(`✨ Bagikan ke sosial media:\n\n"Saya telah menyelamatkan ${totalWaste}kg limbah makanan dan mereduksi ${co2}kg CO₂eq bersama @TOOMUCH! 🌱 #ZeroFoodWaste #EkonomiSirkular"`);
         }
 
         // Navigation event listeners
@@ -521,14 +783,11 @@
             updateDashboard();
             renderWasteHistory();
             renderPrediction();
+            initChart();
             showTab('dashboard');
+            document.getElementById('ownerName').innerText = localStorage.getItem('horekaName') || 'Warung MbaK Harum';
         }
         init();
     </script>
-// Simpan last dashboard untuk splash screen下次
-localStorage.setItem('lastDashboard', window.location.pathname.split('/').pop());
-
-// Optional: Simpan timestamp last active
-localStorage.setItem('lastActive', new Date().toISOString());
 </body>
 </html>
