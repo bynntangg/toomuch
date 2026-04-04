@@ -17,12 +17,14 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: linear-gradient(145deg, #0f0717 0%, #1a0f2e 50%, #0d0718 100%);
             color: #e9d5ff;
+            min-height: 100vh;
         }
 
         .app-container {
             max-width: 500px;
+            width: 100%;
             margin: 0 auto;
-            background: rgba(30, 20, 50, 0.4);
+            background: rgba(30, 20, 50, 0.3);
             min-height: 100vh;
             position: relative;
             box-shadow: 0 0 40px rgba(0,0,0,0.4);
@@ -39,8 +41,8 @@
         }
 
         .header {
-            padding: 12px 20px 24px;
-            background: linear-gradient(135deg, rgba(26, 15, 46, 0.9), rgba(13, 7, 24, 0.9));
+            padding: 12px 20px 20px;
+            background: linear-gradient(135deg, rgba(26, 15, 46, 0.95), rgba(13, 7, 24, 0.95));
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(139, 92, 246, 0.2);
         }
@@ -48,7 +50,7 @@
         .back-btn {
             background: rgba(139, 92, 246, 0.15);
             border: 1px solid rgba(139, 92, 246, 0.3);
-            padding: 8px 18px;
+            padding: 10px 18px;
             border-radius: 40px;
             color: #c084fc;
             cursor: pointer;
@@ -68,7 +70,7 @@
         }
 
         .header h1 {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: 800;
             background: linear-gradient(135deg, #c084fc, #a855f7);
             background-clip: text;
@@ -78,16 +80,18 @@
             display: flex;
             align-items: center;
             gap: 12px;
+            flex-wrap: wrap;
         }
 
         .header p {
-            font-size: 13px;
+            font-size: 12px;
             color: #a78bfa;
             margin-top: 8px;
+            line-height: 1.4;
         }
 
         .main-content {
-            padding: 20px;
+            padding: 16px;
             animation: fadeIn 0.4s ease;
         }
 
@@ -99,9 +103,9 @@
         .card {
             background: rgba(30, 20, 50, 0.6);
             backdrop-filter: blur(12px);
-            border-radius: 28px;
-            padding: 22px;
-            margin-bottom: 20px;
+            border-radius: 24px;
+            padding: 18px;
+            margin-bottom: 16px;
             border: 1px solid rgba(139, 92, 246, 0.2);
             transition: transform 0.2s, border-color 0.2s;
         }
@@ -112,30 +116,33 @@
         }
 
         .card h3 {
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
             margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 10px;
             color: #c084fc;
+            flex-wrap: wrap;
         }
 
         .stats-row {
             display: flex;
-            gap: 12px;
-            margin: 20px 0 8px;
+            gap: 10px;
+            margin: 16px 0 8px;
+            flex-wrap: wrap;
         }
         .stat-card {
             flex: 1;
+            min-width: 90px;
             background: rgba(20, 12, 35, 0.7);
-            border-radius: 20px;
-            padding: 16px 8px;
+            border-radius: 18px;
+            padding: 14px 6px;
             text-align: center;
             border: 1px solid rgba(139, 92, 246, 0.2);
         }
         .stat-value {
-            font-size: 32px;
+            font-size: 26px;
             font-weight: 800;
             background: linear-gradient(135deg, #c084fc, #a855f7);
             background-clip: text;
@@ -143,33 +150,35 @@
             color: transparent;
         }
         .stat-label {
-            font-size: 11px;
+            font-size: 10px;
             color: #a78bfa;
             margin-top: 6px;
         }
 
         .prediction-chart {
             background: rgba(20, 12, 35, 0.5);
-            border-radius: 20px;
-            padding: 16px;
-            margin: 16px 0;
+            border-radius: 18px;
+            padding: 14px;
+            margin: 12px 0;
             border: 1px solid rgba(139, 92, 246, 0.15);
         }
         .chart-bar {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin: 12px 0;
+            gap: 10px;
+            margin: 10px 0;
+            flex-wrap: wrap;
         }
         .bar-label {
-            width: 65px;
+            width: 55px;
             font-size: 12px;
             font-weight: 600;
             color: #c084fc;
         }
         .bar-fill {
             flex: 1;
-            height: 36px;
+            min-width: 150px;
+            height: 34px;
             background: rgba(30, 20, 50, 0.8);
             border-radius: 20px;
             overflow: hidden;
@@ -194,40 +203,43 @@
         .insight-badge {
             background: rgba(168, 85, 247, 0.15);
             border-left: 3px solid #a855f7;
-            padding: 14px;
-            border-radius: 16px;
-            margin-top: 16px;
-            font-size: 13px;
+            padding: 12px;
+            border-radius: 14px;
+            margin-top: 14px;
+            font-size: 12px;
             color: #c084fc;
+            line-height: 1.5;
         }
 
         pre {
             background: rgba(20, 12, 35, 0.8);
             color: #c084fc;
-            padding: 18px;
-            border-radius: 20px;
+            padding: 14px;
+            border-radius: 16px;
             overflow-x: auto;
-            font-size: 11px;
+            font-size: 10px;
             font-family: 'Monaco', monospace;
             border: 1px solid rgba(139, 92, 246, 0.3);
             margin: 12px 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
         }
 
         .btn-primary {
             width: 100%;
-            padding: 14px;
+            padding: 12px;
             background: linear-gradient(95deg, #a855f7, #7c3aed);
             color: white;
             border: none;
             border-radius: 40px;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
             transition: all 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .btn-primary:hover {
@@ -238,7 +250,7 @@
 
         .feature-list {
             list-style: none;
-            margin-top: 12px;
+            margin-top: 10px;
         }
         .feature-list li {
             padding: 10px 0;
@@ -246,11 +258,12 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 13px;
+            font-size: 12px;
             color: #a78bfa;
+            flex-wrap: wrap;
         }
         .feature-list i {
-            width: 28px;
+            width: 24px;
             color: #c084fc;
         }
 
@@ -259,7 +272,7 @@
             align-items: center;
             gap: 6px;
             background: rgba(139, 92, 246, 0.2);
-            padding: 4px 12px;
+            padding: 4px 10px;
             border-radius: 40px;
             font-size: 10px;
             color: #c084fc;
@@ -274,15 +287,20 @@
         }
 
         @keyframes pulse {
-            0% { opacity: 0.4; transform: scale(0.8); }
-            100% { opacity: 1; transform: scale(1.2); }
+            0%, 100% { opacity: 0.4; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .form-group {
+            margin-bottom: 12px;
         }
 
         select {
+            width: 100%;
             background: rgba(20, 12, 35, 0.8);
             border: 1px solid rgba(139, 92, 246, 0.3);
             border-radius: 40px;
-            padding: 12px;
+            padding: 12px 16px;
             color: #e9d5ff;
             font-family: 'Inter', sans-serif;
             font-size: 13px;
@@ -298,27 +316,118 @@
             background: #1a0f2e;
         }
 
+        .btn-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-secondary {
+            flex: 1;
+            padding: 12px;
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 40px;
+            color: #c084fc;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
         /* Toast */
         .toast-message {
             position: fixed;
-            bottom: 100px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%) translateY(100px);
             background: rgba(30, 20, 50, 0.95);
             backdrop-filter: blur(20px);
             color: #e9d5ff;
-            padding: 12px 24px;
+            padding: 12px 20px;
             border-radius: 60px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
             z-index: 1000;
             transition: transform 0.3s ease;
             white-space: nowrap;
             border: 1px solid rgba(139, 92, 246, 0.3);
+            max-width: 90%;
+            white-space: normal;
+            text-align: center;
         }
 
         .toast-message.show {
             transform: translateX(-50%) translateY(0);
+        }
+
+        /* Recommendation Box */
+        .recommendation-box {
+            background: rgba(20, 12, 35, 0.5);
+            border-radius: 18px;
+            padding: 14px;
+            margin-top: 8px;
+            border: 1px solid rgba(139, 92, 246, 0.15);
+        }
+        .recommendation-content {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .recommendation-icon {
+            font-size: 24px;
+            color: #c084fc;
+            flex-shrink: 0;
+        }
+        .recommendation-text {
+            flex: 1;
+        }
+        .recommendation-title {
+            color: #e9d5ff;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .recommendation-meta {
+            font-size: 10px;
+            color: #a78bfa;
+            margin-top: 8px;
+        }
+
+        /* Scroll fix */
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(30, 20, 50, 0.5);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #a855f7;
+            border-radius: 10px;
+        }
+
+        /* Responsive */
+        @media (max-width: 450px) {
+            .chart-bar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+            .bar-label {
+                width: auto;
+            }
+            .bar-fill {
+                width: 100%;
+            }
+            .stats-row {
+                flex-direction: row;
+            }
+            .stat-card {
+                min-width: 80px;
+            }
         }
     </style>
 </head>
@@ -330,7 +439,7 @@
         </div>
         <div class="header">
             <button class="back-btn" onclick="goBack()">
-                <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
+                <i class="fas fa-arrow-left"></i> Kembali
             </button>
             <h1>
                 <i class="fas fa-brain"></i> AI Intelligence
@@ -342,17 +451,17 @@
             <!-- Model Info Card -->
             <div class="card">
                 <h3><i class="fas fa-chart-line"></i> Tentang Model ML</h3>
-                <p style="margin-top: 8px; line-height: 1.5; color: #a78bfa;">Model <strong style="color: #c084fc;">Random Forest Regressor + XGBoost Ensemble</strong> dengan akurasi <strong style="color: #c084fc;">89.2%</strong>. Dilatih dari <strong style="color: #c084fc;">2.847 transaksi</strong> riwayat surplus & limbah di ekosistem TOO MUCH.</p>
+                <p style="margin-top: 8px; line-height: 1.5; color: #a78bfa; font-size: 13px;">Model <strong style="color: #c084fc;">Random Forest Regressor + XGBoost Ensemble</strong> dengan akurasi <strong style="color: #c084fc;">89.2%</strong>. Dilatih dari <strong style="color: #c084fc;">2.847 transaksi</strong> riwayat surplus & limbah di ekosistem TOO MUCH.</p>
                 <div class="stats-row">
                     <div class="stat-card"><div class="stat-value">89.2%</div><div class="stat-label">Akurasi</div></div>
                     <div class="stat-card"><div class="stat-value">1.4kg</div><div class="stat-label">MAE Error</div></div>
-                    <div class="stat-card"><div class="stat-value">14 hari</div><div class="stat-label">Prediksi Horizon</div></div>
+                    <div class="stat-card"><div class="stat-value">14 hari</div><div class="stat-label">Prediksi</div></div>
                 </div>
             </div>
 
             <!-- Prediction Chart -->
             <div class="card">
-                <h3><i class="fas fa-chart-simple"></i> Prediksi Limbah 7 Hari ke Depan</h3>
+                <h3><i class="fas fa-chart-simple"></i> Prediksi Limbah 7 Hari</h3>
                 <div class="prediction-chart" id="predictionChart"></div>
                 <div class="insight-badge" id="insightMessage">
                     <i class="fas fa-lightbulb"></i> <strong>AI Insight:</strong> Memuat analisis prediktif...
@@ -362,12 +471,12 @@
             <!-- Real-time Recommendation -->
             <div class="card">
                 <h3><i class="fas fa-robot"></i> Rekomendasi AI Real-time</h3>
-                <div id="recommendationBox" style="background: rgba(20, 12, 35, 0.5); border-radius: 20px; padding: 16px; margin-top: 8px; border: 1px solid rgba(139, 92, 246, 0.15);">
-                    <div style="display: flex; gap: 12px; align-items: flex-start;">
-                        <i class="fas fa-microphone-alt" style="font-size: 28px; color: #c084fc;"></i>
-                        <div>
-                            <div id="recommendationText" style="color: #e9d5ff;">Menganalisis data historis...</div>
-                            <div id="recommendationMeta" style="font-size: 11px; color: #a78bfa; margin-top: 6px;"></div>
+                <div class="recommendation-box" id="recommendationBox">
+                    <div class="recommendation-content">
+                        <i class="fas fa-microphone-alt recommendation-icon"></i>
+                        <div class="recommendation-text">
+                            <div class="recommendation-title" id="recommendationText">Menganalisis data historis...</div>
+                            <div class="recommendation-meta" id="recommendationMeta"></div>
                         </div>
                     </div>
                 </div>
@@ -383,15 +492,20 @@ Periode: April 2026
 ─────────────────────────
 Loading data...
                 </pre>
-                <div style="display: flex; gap: 12px; margin-top: 12px;">
+                <div class="form-group">
                     <select id="partnerSelect">
                         <option value="warung">Warung MbaK Harum</option>
                         <option value="burger">BurgerHaus</option>
                         <option value="greeneat">GreenEat Cafe</option>
                         <option value="processor">Mitra Pengolah (Semua)</option>
                     </select>
-                    <button class="btn-primary" style="width: auto; padding: 12px 20px; margin:0;" onclick="generateESGReport()">
-                        <i class="fas fa-download"></i> Generate
+                </div>
+                <div class="btn-group">
+                    <button class="btn-primary" onclick="generateESGReport()">
+                        <i class="fas fa-download"></i> Generate PDF
+                    </button>
+                    <button class="btn-secondary" onclick="shareESG()">
+                        <i class="fas fa-share-alt"></i> Bagikan
                     </button>
                 </div>
             </div>
@@ -400,11 +514,11 @@ Loading data...
             <div class="card">
                 <h3><i class="fas fa-cogs"></i> Fitur AI Canggih</h3>
                 <ul class="feature-list">
-                    <li><i class="fas fa-tag"></i> Klasifikasi jenis limbah otomatis (Computer Vision ready)</li>
-                    <li><i class="fas fa-chart-pie"></i> Rekomendasi harga surplus dinamis (price optimization)</li>
-                    <li><i class="fas fa-bell"></i> Notifikasi prediksi surplus tinggi via WhatsApp</li>
-                    <li><i class="fas fa-leaf"></i> Kalkulator karbon & ESG otomatis sesuai standar GRI</li>
-                    <li><i class="fas fa-route"></i> Optimasi rute penjemputan limbah (Hamburger algorithm)</li>
+                    <li><i class="fas fa-tag"></i> Klasifikasi jenis limbah otomatis (Computer Vision)</li>
+                    <li><i class="fas fa-chart-pie"></i> Rekomendasi harga surplus dinamis</li>
+                    <li><i class="fas fa-bell"></i> Notifikasi prediksi surplus via WhatsApp</li>
+                    <li><i class="fas fa-leaf"></i> Kalkulator karbon & ESG otomatis (GRI)</li>
+                    <li><i class="fas fa-route"></i> Optimasi rute penjemputan limbah</li>
                 </ul>
             </div>
         </div>
@@ -449,7 +563,7 @@ Loading data...
             const insightDiv = document.getElementById('insightMessage');
             if (highRiskDays.length > 0) {
                 const riskDayNames = highRiskDays.map(d => d.day).join(', ');
-                insightDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> <strong>AI Alert:</strong> Lonjakan limbah diprediksi pada ${riskDayNames}. Rekomendasi: tingkatkan kapasitas pickup & upload surplus lebih awal untuk memaksimalkan efisiensi.`;
+                insightDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> <strong>AI Alert:</strong> Lonjakan limbah diprediksi pada ${riskDayNames}. Rekomendasi: tingkatkan kapasitas pickup & upload surplus lebih awal.`;
             } else {
                 insightDiv.innerHTML = `<i class="fas fa-check-circle"></i> <strong>AI Insight:</strong> Pola limbah stabil dalam 7 hari ke depan. Gunakan kesempatan untuk mengoptimalkan jadwal pickup rutin.`;
             }
@@ -469,7 +583,7 @@ Loading data...
             
             if (todayPred && todayPred.risk) {
                 recText.innerHTML = '⚠️ Hari ini diperkirakan surplus tinggi! Segera upload menu surplus ke platform untuk mengurangi limbah & tingkatkan pendapatan hingga 35%.';
-                recMeta.innerHTML = 'Berdasarkan analisis 50 transaksi terakhir di wilayah Anda • confidence: 92%';
+                recMeta.innerHTML = 'Berdasarkan analisis 50 transaksi terakhir • confidence: 92%';
             } else if (upcomingRisk) {
                 recText.innerHTML = `📈 Prediksi lonjakan pada ${upcomingRisk.day} (${upcomingRisk.kg}kg). Siapkan tim logistik & aktifkan notifikasi AI untuk antisipasi lebih awal.`;
                 recMeta.innerHTML = 'Rekomendasi dihasilkan oleh model XGBoost • update 2 jam lalu';
@@ -521,14 +635,32 @@ Periode: April 2026 (YTD)
 *Data real-time dari blockchain pangan TOO MUCH`;
             
             document.getElementById('esgPreview').innerText = esgText;
-            showToast(`✅ Laporan ESG untuk ${partnerName} berhasil di-generate`, '#34d399');
+            showToast(`✅ Laporan ESG untuk ${partnerName} berhasil di-generate`);
         }
         
-        function showToast(msg, color) {
+        function shareESG() {
+            const esgText = document.getElementById('esgPreview').innerText;
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Laporan ESG TOO MUCH',
+                    text: esgText,
+                }).catch(() => {
+                    copyToClipboard(esgText);
+                });
+            } else {
+                copyToClipboard(esgText);
+            }
+        }
+        
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+            showToast('📋 Laporan ESG disalin ke clipboard');
+        }
+        
+        function showToast(msg) {
             const toast = document.getElementById('toast');
             const toastSpan = toast.querySelector('span');
             toastSpan.textContent = msg;
-            toast.style.borderColor = color;
             toast.classList.add('show');
             
             setTimeout(() => {

@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* RESET & BASE - Dioptimalkan */
         * {
             margin: 0;
             padding: 0;
@@ -23,174 +24,120 @@
             padding: 24px;
             position: relative;
             overflow-x: hidden;
+            /* Optimasi rendering */
+            will-change: auto;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Animated Gradient Orbs */
+        /* Hanya 1 orb dengan transform sederhana (lebih ringan) */
         .orb {
             position: absolute;
             border-radius: 50%;
             filter: blur(80px);
             z-index: 0;
-            animation: floatOrb 12s ease-in-out infinite;
+            opacity: 0.5;
+            pointer-events: none;
         }
 
-        @keyframes floatOrb {
-            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
-            33% { transform: translate(30px, -40px) scale(1.1); opacity: 0.6; }
-            66% { transform: translate(-20px, 30px) scale(0.9); opacity: 0.5; }
-        }
-
+        /* Kurangi jumlah orb, hanya 2 dengan animasi lebih sederhana */
         .orb-1 {
-            width: 400px;
-            height: 400px;
+            width: 380px;
+            height: 380px;
             background: radial-gradient(circle, rgba(139, 92, 246, 0.4), rgba(79, 70, 229, 0.1));
             top: -150px;
             right: -150px;
-            animation-delay: 0s;
+            animation: floatOrb 10s ease-in-out infinite;
         }
 
         .orb-2 {
-            width: 350px;
-            height: 350px;
+            width: 320px;
+            height: 320px;
             background: radial-gradient(circle, rgba(192, 132, 252, 0.3), rgba(168, 85, 247, 0.1));
             bottom: -120px;
             left: -120px;
-            animation-delay: 4s;
+            animation: floatOrb2 11s ease-in-out infinite;
         }
 
-        .orb-3 {
-            width: 250px;
-            height: 250px;
-            background: radial-gradient(circle, rgba(236, 72, 153, 0.2), rgba(219, 39, 119, 0.05));
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation-delay: 8s;
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(20px, -30px) scale(1.05); }
+        }
+        @keyframes floatOrb2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-20px, 25px) scale(1.07); }
         }
 
+        /* Grid pattern ringan */
         .grid-pattern {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(139, 92, 246, 0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(139, 92, 246, 0.02) 1px, transparent 1px);
             background-size: 50px 50px;
             pointer-events: none;
             z-index: 0;
         }
 
+        /* Container utama */
         .container {
             max-width: 520px;
             width: 100%;
             margin: 0 auto;
             position: relative;
             z-index: 10;
-            animation: containerGlow 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            animation: containerGlow 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
         }
 
         @keyframes containerGlow {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.98);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* ========== NEW HEADER / TOP SECTION ========== */
+        /* ========== HEADER SECTION (Ringan) ========== */
         .hero-section {
             text-align: center;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
             position: relative;
         }
 
-        /* Decorative line top */
         .hero-section::before {
             content: '';
             position: absolute;
-            top: -20px;
+            top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #a855f7, #c084fc, #a855f7, transparent);
-            border-radius: 3px;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #a855f7, #c084fc, transparent);
+            border-radius: 2px;
         }
 
-        /* Badge atas */
         .hero-badge {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(139, 92, 246, 0.15);
-            backdrop-filter: blur(8px);
-            padding: 6px 16px;
+            background: rgba(139, 92, 246, 0.12);
+            backdrop-filter: blur(4px);
+            padding: 5px 14px;
             border-radius: 40px;
-            margin-bottom: 24px;
-            border: 1px solid rgba(139, 92, 246, 0.25);
+            margin-bottom: 20px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
             font-size: 11px;
             font-weight: 500;
             color: #c084fc;
-            letter-spacing: 0.5px;
         }
 
-        .hero-badge i {
-            font-size: 11px;
-        }
-
-        /* Logo Container - New Style */
+        /* Logo Container - tanpa ring berputar (heavy), ganti dengan pulse ringan */
         .logo-container {
             position: relative;
             display: inline-block;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
-        /* Outer ring berputar */
-        .logo-outer-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 120px;
-            height: 120px;
-            margin-left: -60px;
-            margin-top: -60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #a855f7, #7c3aed, #c084fc);
-            animation: rotateRing 4s linear infinite;
-            opacity: 0.6;
-            filter: blur(4px);
-        }
-
-        @keyframes rotateRing {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        /* Middle ring */
-        .logo-mid-ring {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 105px;
-            height: 105px;
-            margin-left: -52.5px;
-            margin-top: -52.5px;
-            border-radius: 50%;
-            border: 1.5px dashed rgba(192, 132, 252, 0.5);
-            animation: rotateRingReverse 6s linear infinite;
-        }
-
-        @keyframes rotateRingReverse {
-            from { transform: translate(-50%, -50%) rotate(360deg); }
-            to { transform: translate(-50%, -50%) rotate(0deg); }
-        }
-
-        /* Core Logo */
+        /* Hanya static glow, tidak ada animasi rotate (lebih ringan) */
         .logo-core {
             position: relative;
             z-index: 5;
@@ -202,7 +149,7 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto;
-            box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
             border: 1px solid rgba(139, 92, 246, 0.3);
         }
 
@@ -214,9 +161,8 @@
             color: transparent;
         }
 
-        /* Title dengan efek modern */
         .logo-title-wrapper {
-            margin-top: 20px;
+            margin-top: 16px;
         }
 
         .logo-title {
@@ -227,17 +173,15 @@
             -webkit-background-clip: text;
             color: transparent;
             letter-spacing: -1px;
-            text-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
         }
 
         .logo-title-accent {
             display: inline-block;
-            font-size: 14px;
+            font-size: 13px;
             background: rgba(139, 92, 246, 0.2);
-            padding: 2px 12px;
+            padding: 2px 10px;
             border-radius: 20px;
-            margin-left: 8px;
-            vertical-align: middle;
+            margin-left: 6px;
             font-weight: 500;
             color: #c084fc;
         }
@@ -246,33 +190,27 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            margin-top: 12px;
+            gap: 10px;
+            margin-top: 10px;
         }
 
         .tagline-line {
-            width: 30px;
+            width: 25px;
             height: 1px;
             background: linear-gradient(90deg, transparent, #a855f7, transparent);
         }
 
         .tagline-text {
-            font-size: 12px;
+            font-size: 11px;
             color: #a78bfa;
             letter-spacing: 1px;
-            font-weight: 400;
         }
 
-        /* Stats mini di header */
         .hero-stats {
             display: flex;
             justify-content: center;
-            gap: 24px;
-            margin-top: 20px;
-        }
-
-        .hero-stat-item {
-            text-align: center;
+            gap: 22px;
+            margin-top: 18px;
         }
 
         .hero-stat-number {
@@ -280,38 +218,34 @@
             font-weight: 700;
             color: #c084fc;
         }
-
         .hero-stat-label {
             font-size: 9px;
             color: #7e6b9e;
-            letter-spacing: 0.5px;
         }
 
-        /* Main Card - Glassmorphism */
+        /* Main Card - glassmorphism lebih ringan (backdrop-filter blur ringan) */
         .card {
-            background: rgba(30, 20, 50, 0.6);
-            backdrop-filter: blur(20px);
+            background: rgba(30, 20, 50, 0.55);
+            backdrop-filter: blur(12px);
             border-radius: 48px;
-            padding: 36px 28px;
+            padding: 32px 24px;
             border: 1px solid rgba(139, 92, 246, 0.2);
-            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(139, 92, 246, 0.1);
-            transition: all 0.4s ease;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4);
+            transition: all 0.25s ease;
         }
 
         .card:hover {
-            border-color: rgba(139, 92, 246, 0.4);
-            box-shadow: 0 30px 55px -15px rgba(139, 92, 246, 0.2);
+            border-color: rgba(139, 92, 246, 0.35);
         }
 
-        /* Welcome Badge inside card */
         .welcome-badge {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.1));
-            padding: 8px 22px;
+            padding: 6px 20px;
             border-radius: 60px;
-            margin-bottom: 24px;
+            margin-bottom: 22px;
             font-size: 13px;
             font-weight: 600;
             color: #c084fc;
@@ -326,134 +260,101 @@
             -webkit-background-clip: text;
             color: transparent;
             margin-bottom: 8px;
-            letter-spacing: -0.5px;
         }
 
         .card > p {
             color: #a78bfa;
             font-size: 14px;
-            margin-bottom: 32px;
-            line-height: 1.5;
-            opacity: 0.8;
+            margin-bottom: 28px;
+            opacity: 0.85;
         }
 
-        /* Role Buttons */
+        /* Role Buttons - tanpa pseudo-element yang berat */
         .role-buttons {
             display: flex;
             flex-direction: column;
-            gap: 14px;
-            margin-bottom: 32px;
+            gap: 12px;
+            margin-bottom: 28px;
         }
 
         .role-btn {
             display: flex;
             align-items: center;
-            gap: 20px;
-            padding: 18px 24px;
+            gap: 18px;
+            padding: 16px 20px;
             background: rgba(20, 12, 35, 0.7);
             border: 1.5px solid rgba(139, 92, 246, 0.2);
             border-radius: 28px;
             cursor: pointer;
-            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transition: all 0.2s ease;
             text-align: left;
             position: relative;
-            overflow: hidden;
-        }
-
-        .role-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(120deg, rgba(139, 92, 246, 0.15), rgba(168, 85, 247, 0.08));
-            transition: width 0.45s ease;
-            z-index: 0;
-        }
-
-        .role-btn:hover::before {
-            width: 100%;
         }
 
         .role-btn:hover {
             border-color: rgba(139, 92, 246, 0.5);
-            transform: translateX(6px) scale(1.01);
-            box-shadow: 0 8px 20px -8px rgba(139, 92, 246, 0.3);
+            transform: translateX(4px);
+            background: rgba(30, 20, 50, 0.85);
         }
 
         .role-btn.active {
             border-color: #a855f7;
-            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.15));
-            box-shadow: 0 8px 25px -10px rgba(168, 85, 247, 0.4);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.12));
+            box-shadow: 0 6px 14px -8px rgba(168, 85, 247, 0.3);
         }
 
         .role-icon {
-            font-size: 44px;
-            min-width: 60px;
+            font-size: 40px;
+            min-width: 52px;
             text-align: center;
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-            z-index: 1;
-            transition: transform 0.25s;
+            transition: transform 0.2s;
         }
 
         .role-btn:hover .role-icon {
-            transform: scale(1.05);
+            transform: scale(1.02);
         }
 
         .role-info {
             flex: 1;
-            z-index: 1;
         }
 
         .role-info h4 {
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 600;
             color: #e9d5ff;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
 
         .role-info p {
-            font-size: 12px;
+            font-size: 11px;
             color: #a78bfa;
-            margin: 0;
-            font-weight: 400;
-            opacity: 0.8;
+            opacity: 0.85;
         }
 
         .check-indicator {
-            width: 30px;
-            height: 30px;
+            width: 28px;
+            height: 28px;
             background: linear-gradient(135deg, #a855f7, #7c3aed);
             border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 13px;
+            font-size: 12px;
             opacity: 0;
-            transform: scale(0.5);
-            transition: all 0.25s cubic-bezier(0.34, 1.2, 0.64, 1);
-            z-index: 1;
-            box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+            transform: scale(0.6);
+            transition: all 0.2s cubic-bezier(0.34, 1.2, 0.64, 1);
         }
 
         .role-btn.active .check-indicator {
             opacity: 1;
             transform: scale(1);
-            animation: popIn 0.35s ease-out;
-        }
-
-        @keyframes popIn {
-            0% { transform: scale(0); opacity: 0; }
-            60% { transform: scale(1.2); }
-            100% { transform: scale(1); opacity: 1; }
         }
 
         /* Primary Button */
         .btn-primary {
             width: 100%;
-            padding: 18px 24px;
+            padding: 16px 24px;
             background: linear-gradient(105deg, #a855f7, #7c3aed);
             color: white;
             border: none;
@@ -461,62 +362,31 @@
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-primary::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.25);
-            transform: translate(-50%, -50%);
-            transition: width 0.5s, height 0.5s;
-        }
-
-        .btn-primary:active::after {
-            width: 250px;
-            height: 250px;
+            gap: 10px;
+            box-shadow: 0 6px 18px rgba(124, 58, 237, 0.4);
         }
 
         .btn-primary:hover {
             background: linear-gradient(105deg, #9333ea, #6d28d9);
             transform: translateY(-2px);
-            box-shadow: 0 12px 30px rgba(124, 58, 237, 0.5);
+            box-shadow: 0 10px 22px rgba(124, 58, 237, 0.45);
         }
-
         .btn-primary:active {
             transform: translateY(1px);
         }
 
-        /* Stats Section inside card */
+        /* Impact stats */
         .impact-stats {
             display: flex;
             justify-content: center;
             gap: 24px;
-            margin-top: 28px;
-            padding-top: 20px;
+            margin-top: 24px;
+            padding-top: 18px;
             border-top: 1px solid rgba(139, 92, 246, 0.15);
-        }
-
-        .stat-item {
-            text-align: center;
-            cursor: default;
-            transition: transform 0.2s;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-3px);
         }
 
         .stat-number {
@@ -531,32 +401,27 @@
         .stat-label {
             font-size: 10px;
             color: #a78bfa;
-            font-weight: 400;
-            margin-top: 4px;
+            margin-top: 3px;
         }
 
         /* Footer */
         .footer {
             text-align: center;
-            margin-top: 28px;
+            margin-top: 24px;
             font-size: 11px;
             color: #7e6b9e;
-            background: rgba(139, 92, 246, 0.1);
-            backdrop-filter: blur(8px);
-            padding: 10px 20px;
+            background: rgba(139, 92, 246, 0.08);
+            backdrop-filter: blur(4px);
+            padding: 8px 18px;
             border-radius: 60px;
             display: inline-block;
             width: auto;
             margin-left: auto;
             margin-right: auto;
-            border: 1px solid rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.12);
         }
 
-        .footer i {
-            margin: 0 4px;
-        }
-
-        /* Toast Notification */
+        /* Toast notif */
         .toast-message {
             position: fixed;
             bottom: 30px;
@@ -564,109 +429,82 @@
             transform: translateX(-50%) translateY(100px);
             background: #2a1a4a;
             color: #e9d5ff;
-            padding: 14px 28px;
+            padding: 12px 24px;
             border-radius: 60px;
             font-size: 13px;
             font-weight: 500;
             z-index: 1000;
-            transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transition: transform 0.3s ease;
             white-space: nowrap;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             display: flex;
             align-items: center;
             gap: 10px;
             border: 1px solid rgba(139, 92, 246, 0.3);
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
+            pointer-events: none;
         }
-
         .toast-message.show {
             transform: translateX(-50%) translateY(0);
         }
 
-        /* Loading state */
+        /* loading state */
         .btn-primary.loading {
             pointer-events: none;
-            opacity: 0.8;
+            opacity: 0.85;
         }
 
-        /* Floating Particles */
+        /* Animasi shake sederhana */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        .shake-card {
+            animation: shake 0.3s ease-in-out;
+        }
+
+        /* Partikel hanya sedikit & lebih ringan (menggunakan CSS saja tanpa JS berat) */
         .floating-particle {
             position: absolute;
-            font-size: 14px;
+            font-size: 12px;
             pointer-events: none;
             z-index: 0;
-            animation: floatParticle 15s linear infinite;
-            opacity: 0.15;
+            animation: floatParticle 18s linear infinite;
+            opacity: 0.12;
         }
 
         @keyframes floatParticle {
             0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.2; }
-            90% { opacity: 0.2; }
+            15% { opacity: 0.15; }
+            85% { opacity: 0.15; }
             100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Responsive */
+        /* responsive */
         @media (max-width: 480px) {
-            .card {
-                padding: 28px 20px;
-            }
-            .role-btn {
-                padding: 14px 18px;
-                gap: 14px;
-            }
-            .role-icon {
-                font-size: 36px;
-                min-width: 48px;
-            }
-            .logo-title {
-                font-size: 32px;
-            }
-            .toast-message {
-                white-space: normal;
-                max-width: 85%;
-                text-align: center;
-            }
-            .impact-stats {
-                gap: 16px;
-            }
-            .hero-stats {
-                gap: 16px;
-            }
-            .logo-core {
-                width: 75px;
-                height: 75px;
-            }
-            .logo-core i {
-                font-size: 38px;
-            }
-            .logo-outer-ring {
-                width: 100px;
-                height: 100px;
-                margin-left: -50px;
-                margin-top: -50px;
-            }
-            .logo-mid-ring {
-                width: 88px;
-                height: 88px;
-                margin-left: -44px;
-                margin-top: -44px;
-            }
+            .card { padding: 26px 18px; }
+            .role-btn { padding: 12px 16px; gap: 12px; }
+            .role-icon { font-size: 34px; min-width: 45px; }
+            .logo-title { font-size: 32px; }
+            .logo-core { width: 75px; height: 75px; }
+            .logo-core i { font-size: 38px; }
+            .impact-stats { gap: 16px; }
+            .toast-message { white-space: normal; max-width: 85%; text-align: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Animated Orbs -->
+    <!-- Background elements ringan -->
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
     <div class="grid-pattern"></div>
 
-    <!-- Floating Particles -->
-    <div id="particlesContainer"></div>
+    <!-- Floating particles dihasilkan dengan JS minimal, hanya beberapa (lebih ringan) -->
+    <div id="particlesContainer" style="position:fixed; top:0; left:0; width:100%; height:100%; overflow:hidden; pointer-events:none; z-index:0;"></div>
 
     <div class="container">
-        <!-- ========== NEW HEADER / TOP SECTION ========== -->
+        <!-- Header -->
         <div class="hero-section">
             <div class="hero-badge">
                 <i class="fas fa-certificate"></i>
@@ -675,8 +513,6 @@
             </div>
 
             <div class="logo-container">
-                <div class="logo-outer-ring"></div>
-                <div class="logo-mid-ring"></div>
                 <div class="logo-core">
                     <i class="fas fa-seedling"></i>
                 </div>
@@ -694,21 +530,13 @@
             </div>
 
             <div class="hero-stats">
-                <div class="hero-stat-item">
-                    <div class="hero-stat-number">12.4K kg</div>
-                    <div class="hero-stat-label">WASTE SAVED</div>
-                </div>
-                <div class="hero-stat-item">
-                    <div class="hero-stat-number">2.5K+</div>
-                    <div class="hero-stat-label">PARTNERS</div>
-                </div>
-                <div class="hero-stat-item">
-                    <div class="hero-stat-number">45K+</div>
-                    <div class="hero-stat-label">MEALS</div>
-                </div>
+                <div class="hero-stat-item"><div class="hero-stat-number">12.4K kg</div><div class="hero-stat-label">WASTE SAVED</div></div>
+                <div class="hero-stat-item"><div class="hero-stat-number">2.5K+</div><div class="hero-stat-label">PARTNERS</div></div>
+                <div class="hero-stat-item"><div class="hero-stat-number">45K+</div><div class="hero-stat-label">MEALS</div></div>
             </div>
         </div>
 
+        <!-- Main Card -->
         <div class="card">
             <div class="welcome-badge">
                 <i class="fas fa-sparkles"></i>
@@ -751,18 +579,9 @@
             </button>
 
             <div class="impact-stats">
-                <div class="stat-item">
-                    <div class="stat-number">40%+</div>
-                    <div class="stat-label">Penghematan</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label">Mitra HOREKA</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">87%</div>
-                    <div class="stat-label">Akurasi AI</div>
-                </div>
+                <div class="stat-item"><div class="stat-number">40%+</div><div class="stat-label">Penghematan</div></div>
+                <div class="stat-item"><div class="stat-number">100+</div><div class="stat-label">Mitra HOREKA</div></div>
+                <div class="stat-item"><div class="stat-number">87%</div><div class="stat-label">Akurasi AI</div></div>
             </div>
         </div>
 
@@ -778,175 +597,142 @@
     </div>
 
     <script>
-        let selectedRole = null;
-        let isProcessing = false;
-
-        // Create floating particles
-        function createParticles() {
-            const container = document.getElementById('particlesContainer');
-            const icons = ['✨', '⭐', '🌙', '💜', '🪄', '🌟', '💫', '✨', '🍃', '🌱'];
-            
-            for (let i = 0; i < 40; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('floating-particle');
-                particle.textContent = icons[Math.floor(Math.random() * icons.length)];
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.fontSize = (Math.random() * 16 + 10) + 'px';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = Math.random() * 12 + 8 + 's';
-                particle.style.opacity = Math.random() * 0.2 + 0.05;
-                container.appendChild(particle);
-            }
-        }
-
-        // DOM elements
-        const roleBtns = document.querySelectorAll('.role-btn');
-        const startBtn = document.getElementById('startBtn');
-        const toastEl = document.getElementById('toast');
-        const toastText = toastEl.querySelector('span');
-
-        function showToast(message, isError = false) {
-            toastText.textContent = message;
-            toastEl.style.background = isError ? 'rgba(217, 70, 239, 0.3)' : 'rgba(139, 92, 246, 0.3)';
-            toastEl.style.borderColor = isError ? '#f472b6' : '#a855f7';
-            if (isError) {
-                toastEl.querySelector('i').className = 'fas fa-exclamation-triangle';
-            } else {
-                toastEl.querySelector('i').className = 'fas fa-check-circle';
-            }
-            toastEl.classList.add('show');
-            
-            setTimeout(() => {
-                toastEl.classList.remove('show');
-                setTimeout(() => {
-                    toastEl.querySelector('i').className = 'fas fa-info-circle';
-                }, 300);
-            }, 2500);
-        }
-
-        // Role selection
-        roleBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                if (isProcessing) return;
-                
-                roleBtns.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                selectedRole = btn.dataset.role;
-                
-                if (window.navigator && window.navigator.vibrate) {
-                    window.navigator.vibrate(30);
+        (function() {
+            // ---------- OPTIMASI PERFORMANCE ----------
+            // 1. Hanya membuat sedikit partikel (8-10) bukan 40, tetap terlihat estetik tapi ringan
+            function createLightParticles() {
+                const container = document.getElementById('particlesContainer');
+                if (!container) return;
+                const icons = ['✨', '⭐', '💜', '🌟', '💫', '🍃', '🌱'];
+                const particleCount = window.innerWidth < 768 ? 8 : 12; // jumlah partikel kecil
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.classList.add('floating-particle');
+                    particle.textContent = icons[Math.floor(Math.random() * icons.length)];
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.fontSize = (Math.random() * 12 + 8) + 'px';
+                    particle.style.animationDelay = (Math.random() * 15) + 's';
+                    particle.style.animationDuration = (Math.random() * 12 + 10) + 's';
+                    particle.style.opacity = (Math.random() * 0.12 + 0.05).toString();
+                    container.appendChild(particle);
                 }
-                
-                const iconSpan = btn.querySelector('.role-icon');
-                if (iconSpan) {
-                    iconSpan.style.transform = 'scale(1.1)';
-                    setTimeout(() => {
-                        if (iconSpan) iconSpan.style.transform = '';
-                    }, 150);
+            }
+            
+            // 2. Hindari penggunaan vibrate yang tidak perlu pada setiap klik (opsional, dapat mengganggu performa)
+            // 3. Meminimalisir DOM reflow dengan event listener yang efisien
+            
+            let selectedRole = null;
+            let isProcessing = false;
+            const roleBtns = document.querySelectorAll('.role-btn');
+            const startBtn = document.getElementById('startBtn');
+            const toastEl = document.getElementById('toast');
+            const toastText = toastEl?.querySelector('span');
+            
+            function showToast(message, isError = false) {
+                if (!toastEl || !toastText) return;
+                toastText.textContent = message;
+                toastEl.style.background = isError ? 'rgba(217, 70, 239, 0.3)' : 'rgba(139, 92, 246, 0.3)';
+                toastEl.style.borderColor = isError ? '#f472b6' : '#a855f7';
+                const iconElem = toastEl.querySelector('i');
+                if (iconElem) {
+                    if (isError) iconElem.className = 'fas fa-exclamation-triangle';
+                    else iconElem.className = 'fas fa-check-circle';
                 }
-                
-                // Ripple effect
-                const ripple = document.createElement('span');
-                ripple.style.position = 'absolute';
-                ripple.style.top = '50%';
-                ripple.style.left = '50%';
-                ripple.style.width = '0';
-                ripple.style.height = '0';
-                ripple.style.borderRadius = '50%';
-                ripple.style.backgroundColor = 'rgba(139, 92, 246, 0.3)';
-                ripple.style.transform = 'translate(-50%, -50%)';
-                ripple.style.transition = 'width 0.3s, height 0.3s';
-                ripple.style.pointerEvents = 'none';
-                btn.style.position = 'relative';
-                btn.style.overflow = 'hidden';
-                btn.appendChild(ripple);
-                
+                toastEl.classList.add('show');
                 setTimeout(() => {
-                    ripple.style.width = '250px';
-                    ripple.style.height = '250px';
-                }, 10);
+                    toastEl.classList.remove('show');
+                    if (iconElem && !isError) setTimeout(() => { if(iconElem) iconElem.className = 'fas fa-info-circle'; }, 200);
+                }, 2200);
+            }
+            
+            // Role selection (tanpa efek ripple yang membuat layout thrashing)
+            roleBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    if (isProcessing) return;
+                    roleBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    selectedRole = btn.dataset.role;
+                    
+                    // Efek hover ringan pada icon
+                    const iconSpan = btn.querySelector('.role-icon');
+                    if (iconSpan) {
+                        iconSpan.style.transform = 'scale(1.05)';
+                        setTimeout(() => { if(iconSpan) iconSpan.style.transform = ''; }, 120);
+                    }
+                });
                 
-                setTimeout(() => {
-                    ripple.remove();
-                }, 300);
+                // aksesibilitas keyboard
+                btn.setAttribute('tabindex', '0');
+                btn.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        btn.click();
+                    }
+                });
             });
-        });
-
-        // Start button
-        startBtn.addEventListener('click', () => {
-            if (isProcessing) return;
             
-            if (!selectedRole) {
-                showToast('Pilih peran terlebih dahulu', true);
-                const card = document.querySelector('.card');
-                card.style.animation = 'shake 0.4s ease-in-out';
+            // Tombol start
+            startBtn?.addEventListener('click', () => {
+                if (isProcessing) return;
+                if (!selectedRole) {
+                    showToast('Pilih peran terlebih dahulu', true);
+                    const cardElem = document.querySelector('.card');
+                    if (cardElem) {
+                        cardElem.classList.add('shake-card');
+                        setTimeout(() => cardElem.classList.remove('shake-card'), 350);
+                    }
+                    return;
+                }
+                
+                isProcessing = true;
+                // Simpan data
+                localStorage.setItem('userRole', selectedRole);
+                localStorage.setItem('userName', 'Bintang Permana');
+                localStorage.setItem('joinTimestamp', new Date().toISOString());
+                let roleDisplay = '';
+                if (selectedRole === 'consumer') roleDisplay = 'Konsumen Cerdas';
+                else if (selectedRole === 'horeka') roleDisplay = 'Mitra HOREKA';
+                else roleDisplay = 'Mitra Pengolah';
+                localStorage.setItem('roleFriendly', roleDisplay);
+                
+                let dashboardUrl = '';
+                if (selectedRole === 'consumer') dashboardUrl = 'consumer.html';
+                else if (selectedRole === 'horeka') dashboardUrl = 'horeka.html';
+                else dashboardUrl = 'processor.html';
+                localStorage.setItem('lastDashboard', dashboardUrl);
+                
+                // Ubah tombol menjadi loading state
+                startBtn.classList.add('loading');
+                const originalHTML = startBtn.innerHTML;
+                startBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Memuat Dashboard...';
+                
+                // Timeout untuk memberikan kesan smooth, namun navigasi cepat
                 setTimeout(() => {
-                    card.style.animation = '';
-                }, 400);
-                return;
-            }
+                    window.location.href = dashboardUrl;
+                }, 350);
+            });
             
-            isProcessing = true;
-            
-            localStorage.setItem('userRole', selectedRole);
-            localStorage.setItem('userName', 'Bintang Permana');
-            localStorage.setItem('joinTimestamp', new Date().toISOString());
-            
-            let roleDisplay = '';
-            if (selectedRole === 'consumer') roleDisplay = 'Konsumen Cerdas';
-            else if (selectedRole === 'horeka') roleDisplay = 'Mitra HOREKA';
-            else roleDisplay = 'Mitra Pengolah';
-            localStorage.setItem('roleFriendly', roleDisplay);
-            
-            let dashboardUrl = '';
-            if (selectedRole === 'consumer') dashboardUrl = 'consumer.html';
-            else if (selectedRole === 'horeka') dashboardUrl = 'horeka.html';
-            else dashboardUrl = 'processor.html';
-            localStorage.setItem('lastDashboard', dashboardUrl);
-            
-            startBtn.classList.add('loading');
-            startBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Memuat Dashboard...';
-            
-            setTimeout(() => {
-                window.location.href = dashboardUrl;
-            }, 600);
-        });
-
-        // Keyboard navigation
-        roleBtns.forEach(btn => {
-            btn.setAttribute('tabindex', '0');
-            btn.addEventListener('keypress', (e) => {
+            // StartBtn keyboard support
+            startBtn?.setAttribute('tabindex', '0');
+            startBtn?.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    btn.click();
+                    startBtn.click();
                 }
             });
-        });
-        
-        startBtn.setAttribute('tabindex', '0');
-        startBtn.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                startBtn.click();
+            
+            // Inisialisasi partikel ringan setelah DOM siap
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', () => {
+                    createLightParticles();
+                });
+            } else {
+                createLightParticles();
             }
-        });
-
-        // Add shake animation
-        if (!document.querySelector('#shakeKeyframe')) {
-            const styleSheet = document.createElement('style');
-            styleSheet.id = 'shakeKeyframe';
-            styleSheet.textContent = `
-                @keyframes shake {
-                    0%, 100% { transform: translateX(0); }
-                    25% { transform: translateX(-6px); }
-                    75% { transform: translateX(6px); }
-                }
-            `;
-            document.head.appendChild(styleSheet);
-        }
-
-        // Initialize particles
-        createParticles();
+            
+            // Optional: Preload halaman tujuan? tidak perlu agar tidak memberatkan.
+            // Hapus event listener yang tidak diperlukan dan hindari memory leak.
+        })();
     </script>
 </body>
 </html>
