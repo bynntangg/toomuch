@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* RESET & BASE - Mobile First */
+        /* RESET & BASE - Optimal untuk Desktop & Mobile */
         * {
             margin: 0;
             padding: 0;
@@ -22,18 +22,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 16px;
+            padding: 24px;
             position: relative;
             overflow-x: hidden;
             overflow-y: auto;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Background elements - lebih halus untuk mobile */
+        /* Background Orbs - lebih smooth */
         .orb {
             position: fixed;
             border-radius: 50%;
-            filter: blur(70px);
+            filter: blur(80px);
             z-index: 0;
             opacity: 0.4;
             pointer-events: none;
@@ -41,30 +41,30 @@
         }
 
         .orb-1 {
-            width: 280px;
-            height: 280px;
+            width: 380px;
+            height: 380px;
             background: radial-gradient(circle, rgba(139, 92, 246, 0.4), rgba(79, 70, 229, 0.1));
-            top: -100px;
-            right: -100px;
+            top: -150px;
+            right: -150px;
             animation: floatOrb 12s ease-in-out infinite;
         }
 
         .orb-2 {
-            width: 240px;
-            height: 240px;
+            width: 320px;
+            height: 320px;
             background: radial-gradient(circle, rgba(192, 132, 252, 0.3), rgba(168, 85, 247, 0.1));
-            bottom: -80px;
-            left: -80px;
+            bottom: -120px;
+            left: -120px;
             animation: floatOrb2 14s ease-in-out infinite;
         }
 
         @keyframes floatOrb {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(15px, -20px) scale(1.04); }
+            50% { transform: translate(20px, -25px) scale(1.04); }
         }
         @keyframes floatOrb2 {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(-15px, 18px) scale(1.05); }
+            50% { transform: translate(-20px, 22px) scale(1.05); }
         }
 
         .grid-pattern {
@@ -73,76 +73,76 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: linear-gradient(rgba(139, 92, 246, 0.015) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(139, 92, 246, 0.015) 1px, transparent 1px);
-            background-size: 40px 40px;
+            background-image: linear-gradient(rgba(139, 92, 246, 0.02) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(139, 92, 246, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
             pointer-events: none;
             z-index: 0;
         }
 
-        /* Container utama - full width dengan padding aman */
+        /* Container Utama - Responsif */
         .container {
-            max-width: 560px;
+            max-width: 580px;
             width: 100%;
             margin: 0 auto;
             position: relative;
             z-index: 10;
             animation: containerGlow 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            padding: 0 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         @keyframes containerGlow {
-            from { opacity: 0; transform: translateY(15px) scale(0.98); }
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
             to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Untuk Desktop, container bisa sedikit lebih lebar tapi tetap proporsional */
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 620px;
+            }
+            body {
+                padding: 32px;
+            }
         }
 
         /* ========== HEADER SECTION ========== */
         .hero-section {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             position: relative;
-            padding: 0 8px;
+            width: 100%;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
             background: rgba(139, 92, 246, 0.12);
             backdrop-filter: blur(4px);
-            padding: 5px 14px;
+            padding: 6px 16px;
             border-radius: 40px;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
             border: 1px solid rgba(139, 92, 246, 0.2);
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 500;
             color: #c084fc;
-            white-space: nowrap;
-            flex-wrap: nowrap;
-        }
-        
-        /* Responsive badge */
-        @media (max-width: 400px) {
-            .hero-badge span {
-                font-size: 10px;
-            }
-            .hero-badge i {
-                font-size: 10px;
-            }
         }
 
         .logo-container {
             position: relative;
             display: inline-block;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .logo-core {
             position: relative;
             z-index: 5;
             background: linear-gradient(145deg, #2a1a4a, #1a0f2e);
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -153,7 +153,7 @@
         }
 
         .logo-core i {
-            font-size: 42px;
+            font-size: 48px;
             background: linear-gradient(135deg, #c084fc, #e9d5ff);
             background-clip: text;
             -webkit-background-clip: text;
@@ -161,26 +161,26 @@
         }
 
         .logo-title-wrapper {
-            margin-top: 12px;
+            margin-top: 14px;
         }
 
         .logo-title {
-            font-size: 36px;
+            font-size: 42px;
             font-weight: 800;
             background: linear-gradient(135deg, #ffffff 0%, #c084fc 40%, #a855f7 100%);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            letter-spacing: -0.5px;
+            letter-spacing: -1px;
         }
 
         .logo-title-accent {
             display: inline-block;
-            font-size: 11px;
+            font-size: 12px;
             background: rgba(139, 92, 246, 0.2);
-            padding: 2px 8px;
+            padding: 2px 10px;
             border-radius: 20px;
-            margin-left: 5px;
+            margin-left: 6px;
             font-weight: 500;
             color: #c084fc;
             vertical-align: middle;
@@ -190,18 +190,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            margin-top: 8px;
+            gap: 10px;
+            margin-top: 10px;
         }
 
         .tagline-line {
-            width: 20px;
+            width: 25px;
             height: 1px;
             background: linear-gradient(90deg, transparent, #a855f7, transparent);
         }
 
         .tagline-text {
-            font-size: 10px;
+            font-size: 11px;
             color: #a78bfa;
             letter-spacing: 1px;
         }
@@ -209,8 +209,8 @@
         .hero-stats {
             display: flex;
             justify-content: center;
-            gap: 18px;
-            margin-top: 16px;
+            gap: 28px;
+            margin-top: 18px;
             flex-wrap: wrap;
         }
 
@@ -218,33 +218,30 @@
             text-align: center;
         }
         .hero-stat-number {
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 700;
             color: #c084fc;
         }
         .hero-stat-label {
-            font-size: 8px;
+            font-size: 9px;
             color: #7e6b9e;
-            letter-spacing: 0.3px;
+            letter-spacing: 0.5px;
         }
 
-        /* Main Card - Glassmorphism dengan padding yang aman */
+        /* Main Card - Glassmorphism */
         .card {
             background: rgba(30, 20, 50, 0.65);
             backdrop-filter: blur(14px);
-            border-radius: 44px;
-            padding: 28px 20px;
+            border-radius: 48px;
+            padding: 32px 28px;
             border: 1px solid rgba(139, 92, 246, 0.2);
             box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4);
             transition: all 0.25s ease;
             width: 100%;
         }
 
-        @media (max-width: 480px) {
-            .card {
-                padding: 22px 16px;
-                border-radius: 36px;
-            }
+        .card:hover {
+            border-color: rgba(139, 92, 246, 0.35);
         }
 
         .welcome-badge {
@@ -252,66 +249,57 @@
             align-items: center;
             gap: 8px;
             background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.1));
-            padding: 5px 18px;
+            padding: 6px 22px;
             border-radius: 60px;
-            margin-bottom: 20px;
-            font-size: 12px;
+            margin-bottom: 24px;
+            font-size: 13px;
             font-weight: 600;
             color: #c084fc;
             border: 1px solid rgba(139, 92, 246, 0.25);
         }
 
         .card h2 {
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 700;
             background: linear-gradient(135deg, #f0e6ff, #d8b4fe);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            margin-bottom: 6px;
-            line-height: 1.2;
+            margin-bottom: 8px;
         }
 
         .card > p {
             color: #a78bfa;
-            font-size: 13px;
-            margin-bottom: 24px;
+            font-size: 14px;
+            margin-bottom: 28px;
             opacity: 0.85;
-            line-height: 1.3;
         }
 
-        /* Role Buttons - tata letak yang tidak overlap */
+        /* Role Buttons */
         .role-buttons {
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            margin-bottom: 28px;
+            gap: 14px;
+            margin-bottom: 30px;
         }
 
         .role-btn {
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding: 14px 18px;
+            gap: 18px;
+            padding: 16px 22px;
             background: rgba(20, 12, 35, 0.75);
             border: 1.5px solid rgba(139, 92, 246, 0.2);
-            border-radius: 28px;
+            border-radius: 32px;
             cursor: pointer;
             transition: all 0.2s ease;
             text-align: left;
             width: 100%;
         }
 
-        @media (max-width: 450px) {
-            .role-btn {
-                padding: 12px 14px;
-                gap: 12px;
-            }
-        }
-
         .role-btn:hover {
             border-color: rgba(139, 92, 246, 0.5);
-            transform: translateX(3px);
+            transform: translateX(4px);
             background: rgba(30, 20, 50, 0.9);
         }
 
@@ -322,17 +310,10 @@
         }
 
         .role-icon {
-            font-size: 36px;
-            min-width: 48px;
+            font-size: 42px;
+            min-width: 56px;
             text-align: center;
             transition: transform 0.2s;
-        }
-
-        @media (max-width: 420px) {
-            .role-icon {
-                font-size: 32px;
-                min-width: 44px;
-            }
         }
 
         .role-info {
@@ -340,30 +321,28 @@
         }
 
         .role-info h4 {
-            font-size: 15px;
+            font-size: 17px;
             font-weight: 600;
             color: #e9d5ff;
             margin-bottom: 4px;
-            line-height: 1.3;
         }
 
         .role-info p {
-            font-size: 10px;
+            font-size: 11px;
             color: #a78bfa;
             opacity: 0.85;
-            line-height: 1.3;
         }
 
         .check-indicator {
-            width: 26px;
-            height: 26px;
+            width: 28px;
+            height: 28px;
             background: linear-gradient(135deg, #a855f7, #7c3aed);
             border-radius: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 12px;
+            font-size: 13px;
             opacity: 0;
             transform: scale(0.6);
             transition: all 0.2s cubic-bezier(0.34, 1.2, 0.64, 1);
@@ -378,11 +357,11 @@
         /* Primary Button */
         .btn-primary {
             width: 100%;
-            padding: 14px 20px;
+            padding: 16px 24px;
             background: linear-gradient(105deg, #a855f7, #7c3aed);
             color: white;
             border: none;
-            border-radius: 50px;
+            border-radius: 60px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
@@ -390,10 +369,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
             box-shadow: 0 6px 18px rgba(124, 58, 237, 0.4);
         }
 
+        .btn-primary:hover {
+            background: linear-gradient(105deg, #9333ea, #6d28d9);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 22px rgba(124, 58, 237, 0.45);
+        }
         .btn-primary:active {
             transform: translateY(1px);
         }
@@ -403,68 +387,70 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 12px;
-            margin-top: 22px;
-            padding-top: 18px;
+            gap: 16px;
+            margin-top: 24px;
+            padding-top: 20px;
             border-top: 1px solid rgba(139, 92, 246, 0.15);
-            flex-wrap: wrap;
         }
 
         .stat-item {
             text-align: center;
             flex: 1;
-            min-width: 70px;
         }
 
         .stat-number {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
             background: linear-gradient(135deg, #c084fc, #a855f7);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            line-height: 1.2;
         }
 
         .stat-label {
-            font-size: 9px;
+            font-size: 10px;
             color: #a78bfa;
             margin-top: 4px;
         }
 
-        /* Footer */
+        /* Footer - CENTERED SEMPURNA untuk semua ukuran layar */
         .footer {
             text-align: center;
-            margin-top: 20px;
-            font-size: 10px;
+            margin-top: 24px;
+            margin-bottom: 6px;
+            font-size: 11px;
             color: #7e6b9e;
             background: rgba(139, 92, 246, 0.08);
             backdrop-filter: blur(4px);
-            padding: 8px 16px;
+            padding: 10px 22px;
             border-radius: 60px;
-            width: auto;
-            display: inline-block;
-            width: auto;
-            margin-left: auto;
-            margin-right: auto;
             border: 1px solid rgba(139, 92, 246, 0.12);
             line-height: 1.4;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            width: auto;
+            max-width: 95%;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Toast notif - aman untuk mobile */
+        /* Toast Notification */
         .toast-message {
             position: fixed;
-            bottom: 20px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%) translateY(120px);
             background: #2a1a4a;
             color: #e9d5ff;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 60px;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 500;
             z-index: 1000;
-            transition: transform 0.25s ease;
+            transition: transform 0.3s ease;
             max-width: 85%;
             width: auto;
             text-align: center;
@@ -491,17 +477,17 @@
         /* Shake animation */
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-4px); }
-            75% { transform: translateX(4px); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
         }
         .shake-card {
             animation: shake 0.3s ease-in-out;
         }
 
-        /* Floating particles - lebih sedikit dan tidak mengganggu layout */
+        /* Floating particles */
         .floating-particle {
             position: fixed;
-            font-size: 10px;
+            font-size: 12px;
             pointer-events: none;
             z-index: 0;
             animation: floatParticle 20s linear infinite;
@@ -516,88 +502,169 @@
             100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Mobile landscape & small devices */
-        @media (max-width: 480px) {
-            body {
-                padding: 12px;
-                align-items: flex-start;
-                padding-top: 20px;
-                padding-bottom: 30px;
+        /* ========== RESPONSIVE DESIGN: MOBILE & DESKTOP ========== */
+        /* Tablet & Desktop lebih lebar */
+        @media (min-width: 768px) {
+            .card {
+                padding: 38px 32px;
             }
-            .hero-section {
-                margin-bottom: 16px;
+            .role-btn {
+                padding: 18px 24px;
             }
-            .logo-core {
-                width: 70px;
-                height: 70px;
+            .role-icon {
+                font-size: 46px;
+                min-width: 62px;
             }
-            .logo-core i {
-                font-size: 36px;
+            .role-info h4 {
+                font-size: 18px;
             }
-            .logo-title {
-                font-size: 30px;
-            }
-            .card h2 {
-                font-size: 22px;
-            }
-            .card > p {
+            .role-info p {
                 font-size: 12px;
-                margin-bottom: 20px;
             }
-            .impact-stats {
-                gap: 8px;
+            .hero-stats {
+                gap: 36px;
             }
-            .stat-number {
-                font-size: 14px;
+            .footer {
+                padding: 10px 28px;
+                font-size: 12px;
             }
         }
 
-        /* Very small devices (<= 360px) */
+        /* Mobile (max-width: 640px) */
+        @media (max-width: 640px) {
+            body {
+                padding: 16px;
+                align-items: flex-start;
+                padding-top: 24px;
+                padding-bottom: 32px;
+            }
+            .container {
+                max-width: 100%;
+            }
+            .hero-section {
+                margin-bottom: 18px;
+            }
+            .logo-core {
+                width: 75px;
+                height: 75px;
+            }
+            .logo-core i {
+                font-size: 40px;
+            }
+            .logo-title {
+                font-size: 34px;
+            }
+            .logo-title-accent {
+                font-size: 10px;
+            }
+            .card {
+                padding: 24px 18px;
+                border-radius: 40px;
+            }
+            .welcome-badge {
+                font-size: 11px;
+                padding: 5px 16px;
+                margin-bottom: 18px;
+            }
+            .card h2 {
+                font-size: 24px;
+            }
+            .card > p {
+                font-size: 12px;
+                margin-bottom: 22px;
+            }
+            .role-buttons {
+                gap: 12px;
+                margin-bottom: 24px;
+            }
+            .role-btn {
+                padding: 12px 16px;
+                gap: 14px;
+                border-radius: 28px;
+            }
+            .role-icon {
+                font-size: 34px;
+                min-width: 48px;
+            }
+            .role-info h4 {
+                font-size: 15px;
+            }
+            .role-info p {
+                font-size: 10px;
+            }
+            .check-indicator {
+                width: 24px;
+                height: 24px;
+                font-size: 11px;
+            }
+            .btn-primary {
+                padding: 14px 20px;
+                font-size: 15px;
+            }
+            .impact-stats {
+                gap: 12px;
+                margin-top: 20px;
+            }
+            .stat-number {
+                font-size: 15px;
+            }
+            .stat-label {
+                font-size: 9px;
+            }
+            .footer {
+                margin-top: 20px;
+                padding: 8px 16px;
+                font-size: 10px;
+                gap: 6px;
+            }
+            .hero-stats {
+                gap: 20px;
+            }
+        }
+
+        /* Mobile sangat kecil (<= 380px) */
         @media (max-width: 380px) {
+            .role-icon {
+                font-size: 28px;
+                min-width: 42px;
+            }
             .role-info h4 {
                 font-size: 13px;
             }
             .role-info p {
                 font-size: 9px;
             }
-            .role-icon {
-                font-size: 28px;
-                min-width: 40px;
+            .card {
+                padding: 20px 14px;
             }
             .hero-stats {
-                gap: 12px;
+                gap: 14px;
             }
-            .card {
-                padding: 18px 14px;
-            }
-            .welcome-badge {
-                font-size: 10px;
-                padding: 4px 14px;
-                margin-bottom: 16px;
+            .hero-stat-number {
+                font-size: 12px;
             }
             .btn-primary {
                 padding: 12px 16px;
                 font-size: 14px;
             }
             .footer {
+                padding: 6px 12px;
                 font-size: 9px;
-                margin-top: 16px;
             }
         }
 
-        /* Mencegah overflow pada konten */
+        /* Mencegah overflow */
         .hero-badge span, .tagline-text, .role-info p {
             word-break: keep-all;
         }
         
-        /* Memastikan container tidak melebihi viewport */
         img, svg, iframe {
             max-width: 100%;
         }
     </style>
 </head>
 <body>
-    <!-- Background elements ringan -->
+    <!-- Background Elements -->
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="grid-pattern"></div>
@@ -686,6 +753,7 @@
             </div>
         </div>
 
+        <!-- Footer Center Perfect -->
         <div class="footer">
             <i class="fas fa-star"></i> #TooMuchBermanfaat • Zero Food Waste Movement
             <i class="fas fa-smile" style="color: #f472b6;"></i>
@@ -699,28 +767,25 @@
 
     <script>
         (function() {
-            // --- OPTIMASI MOBILE & PREVENT OVERLAP ---
-            // Membuat partikel ringan hanya 6-10, tidak mengganggu layout
+            // Lightweight particles
             function createLightParticles() {
                 const container = document.getElementById('particlesContainer');
                 if (!container) return;
-                // Bersihkan dulu jika ada (untuk keamanan)
                 while (container.firstChild) container.removeChild(container.firstChild);
                 
                 const icons = ['✨', '⭐', '💜', '🌟', '🍃', '🌱', '🌀'];
-                // Lebih sedikit partikel pada mobile agar ringan
                 const isMobile = window.innerWidth < 768;
-                const particleCount = isMobile ? 6 : 10;
+                const particleCount = isMobile ? 6 : 12;
                 
                 for (let i = 0; i < particleCount; i++) {
                     const particle = document.createElement('div');
                     particle.classList.add('floating-particle');
                     particle.textContent = icons[Math.floor(Math.random() * icons.length)];
                     particle.style.left = Math.random() * 100 + '%';
-                    particle.style.fontSize = (Math.random() * 10 + 8) + 'px';
+                    particle.style.fontSize = (Math.random() * 12 + 8) + 'px';
                     particle.style.animationDelay = (Math.random() * 15) + 's';
-                    particle.style.animationDuration = (Math.random() * 12 + 12) + 's';
-                    particle.style.opacity = (Math.random() * 0.1 + 0.05).toString();
+                    particle.style.animationDuration = (Math.random() * 14 + 12) + 's';
+                    particle.style.opacity = (Math.random() * 0.12 + 0.05).toString();
                     container.appendChild(particle);
                 }
             }
@@ -755,20 +820,17 @@
             roleBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     if (isProcessing) return;
-                    // Hapus active dari semua, lalu set active
                     roleBtns.forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     selectedRole = btn.dataset.role;
                     
-                    // Animasi ringan pada icon
                     const iconSpan = btn.querySelector('.role-icon');
                     if (iconSpan) {
-                        iconSpan.style.transform = 'scale(1.04)';
+                        iconSpan.style.transform = 'scale(1.05)';
                         setTimeout(() => { if(iconSpan) iconSpan.style.transform = ''; }, 130);
                     }
                 });
                 
-                // Aksesibilitas: keyboard support
                 btn.setAttribute('tabindex', '0');
                 btn.addEventListener('keypress', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
@@ -778,7 +840,7 @@
                 });
             });
             
-            // Tombol Mulai
+            // Start button action
             startBtn?.addEventListener('click', () => {
                 if (isProcessing) return;
                 if (!selectedRole) {
@@ -792,7 +854,6 @@
                 }
                 
                 isProcessing = true;
-                // Simpan data user
                 localStorage.setItem('userRole', selectedRole);
                 localStorage.setItem('userName', 'Bintang Permana');
                 localStorage.setItem('joinTimestamp', new Date().toISOString());
@@ -809,18 +870,14 @@
                 else dashboardUrl = 'processor.html';
                 localStorage.setItem('lastDashboard', dashboardUrl);
                 
-                // Loading state tombol
                 startBtn.classList.add('loading');
-                const originalHTML = startBtn.innerHTML;
-                startBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Memuat...';
+                startBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Memuat Dashboard...';
                 
-                // Navigasi setelah delay singkat (memberikan feedback visual)
                 setTimeout(() => {
                     window.location.href = dashboardUrl;
-                }, 280);
+                }, 300);
             });
             
-            // Keyboard support untuk tombol start
             startBtn?.setAttribute('tabindex', '0');
             startBtn?.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
@@ -829,11 +886,10 @@
                 }
             });
             
-            // Inisialisasi partikel dan memastikan tidak ada overlap konten
+            // Initialize
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', () => {
                     createLightParticles();
-                    // Memastikan body tidak scroll horizontal berlebih
                     document.body.style.overflowX = 'hidden';
                 });
             } else {
@@ -841,18 +897,15 @@
                 document.body.style.overflowX = 'hidden';
             }
             
-            // Optional: Fix untuk resize pada mobile (menjaga tampilan tidak overlap)
+            // Handle resize untuk menjaga tampilan
             let resizeTimer;
             window.addEventListener('resize', function() {
                 if (resizeTimer) clearTimeout(resizeTimer);
                 resizeTimer = setTimeout(function() {
-                    // Memastikan viewport tidak menyebabkan layout bergeser
                     document.body.style.overflowX = 'hidden';
-                    // Refresh partikel hanya jika perlu (tapi tidak perlu untuk performance)
                 }, 100);
             });
             
-            // Tambahan: jika ada content yang meluber, atur ulang margin
             const checkOverflow = () => {
                 if (document.body.scrollWidth > window.innerWidth) {
                     document.body.style.overflowX = 'hidden';
