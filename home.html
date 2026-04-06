@@ -2,148 +2,147 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>TOO MUCH - Pilih Peran | Zero Food Waste</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* RESET & BASE - Dioptimalkan */
+        /* RESET & BASE - Mobile First */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background: linear-gradient(145deg, #0f0717 0%, #1a0f2e 50%, #0d0718 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 24px;
+            padding: 16px;
             position: relative;
             overflow-x: hidden;
-            /* Optimasi rendering */
-            will-change: auto;
+            overflow-y: auto;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Hanya 1 orb dengan transform sederhana (lebih ringan) */
+        /* Background elements - lebih halus untuk mobile */
         .orb {
-            position: absolute;
+            position: fixed;
             border-radius: 50%;
-            filter: blur(80px);
+            filter: blur(70px);
             z-index: 0;
-            opacity: 0.5;
+            opacity: 0.4;
             pointer-events: none;
+            will-change: transform;
         }
 
-        /* Kurangi jumlah orb, hanya 2 dengan animasi lebih sederhana */
         .orb-1 {
-            width: 380px;
-            height: 380px;
+            width: 280px;
+            height: 280px;
             background: radial-gradient(circle, rgba(139, 92, 246, 0.4), rgba(79, 70, 229, 0.1));
-            top: -150px;
-            right: -150px;
-            animation: floatOrb 10s ease-in-out infinite;
+            top: -100px;
+            right: -100px;
+            animation: floatOrb 12s ease-in-out infinite;
         }
 
         .orb-2 {
-            width: 320px;
-            height: 320px;
+            width: 240px;
+            height: 240px;
             background: radial-gradient(circle, rgba(192, 132, 252, 0.3), rgba(168, 85, 247, 0.1));
-            bottom: -120px;
-            left: -120px;
-            animation: floatOrb2 11s ease-in-out infinite;
+            bottom: -80px;
+            left: -80px;
+            animation: floatOrb2 14s ease-in-out infinite;
         }
 
         @keyframes floatOrb {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(20px, -30px) scale(1.05); }
+            50% { transform: translate(15px, -20px) scale(1.04); }
         }
         @keyframes floatOrb2 {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(-20px, 25px) scale(1.07); }
+            50% { transform: translate(-15px, 18px) scale(1.05); }
         }
 
-        /* Grid pattern ringan */
         .grid-pattern {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: linear-gradient(rgba(139, 92, 246, 0.02) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(139, 92, 246, 0.02) 1px, transparent 1px);
-            background-size: 50px 50px;
+            background-image: linear-gradient(rgba(139, 92, 246, 0.015) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(139, 92, 246, 0.015) 1px, transparent 1px);
+            background-size: 40px 40px;
             pointer-events: none;
             z-index: 0;
         }
 
-        /* Container utama */
+        /* Container utama - full width dengan padding aman */
         .container {
-            max-width: 520px;
+            max-width: 560px;
             width: 100%;
             margin: 0 auto;
             position: relative;
             z-index: 10;
             animation: containerGlow 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            padding: 0 4px;
         }
 
         @keyframes containerGlow {
-            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            from { opacity: 0; transform: translateY(15px) scale(0.98); }
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* ========== HEADER SECTION (Ringan) ========== */
+        /* ========== HEADER SECTION ========== */
         .hero-section {
             text-align: center;
-            margin-bottom: 28px;
+            margin-bottom: 20px;
             position: relative;
-        }
-
-        .hero-section::before {
-            content: '';
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #a855f7, #c084fc, transparent);
-            border-radius: 2px;
+            padding: 0 8px;
         }
 
         .hero-badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             background: rgba(139, 92, 246, 0.12);
             backdrop-filter: blur(4px);
             padding: 5px 14px;
             border-radius: 40px;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             border: 1px solid rgba(139, 92, 246, 0.2);
             font-size: 11px;
             font-weight: 500;
             color: #c084fc;
+            white-space: nowrap;
+            flex-wrap: nowrap;
+        }
+        
+        /* Responsive badge */
+        @media (max-width: 400px) {
+            .hero-badge span {
+                font-size: 10px;
+            }
+            .hero-badge i {
+                font-size: 10px;
+            }
         }
 
-        /* Logo Container - tanpa ring berputar (heavy), ganti dengan pulse ringan */
         .logo-container {
             position: relative;
             display: inline-block;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
-        /* Hanya static glow, tidak ada animasi rotate (lebih ringan) */
         .logo-core {
             position: relative;
             z-index: 5;
             background: linear-gradient(145deg, #2a1a4a, #1a0f2e);
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -154,7 +153,7 @@
         }
 
         .logo-core i {
-            font-size: 48px;
+            font-size: 42px;
             background: linear-gradient(135deg, #c084fc, #e9d5ff);
             background-clip: text;
             -webkit-background-clip: text;
@@ -162,46 +161,47 @@
         }
 
         .logo-title-wrapper {
-            margin-top: 16px;
+            margin-top: 12px;
         }
 
         .logo-title {
-            font-size: 42px;
+            font-size: 36px;
             font-weight: 800;
             background: linear-gradient(135deg, #ffffff 0%, #c084fc 40%, #a855f7 100%);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
         }
 
         .logo-title-accent {
             display: inline-block;
-            font-size: 13px;
+            font-size: 11px;
             background: rgba(139, 92, 246, 0.2);
-            padding: 2px 10px;
+            padding: 2px 8px;
             border-radius: 20px;
-            margin-left: 6px;
+            margin-left: 5px;
             font-weight: 500;
             color: #c084fc;
+            vertical-align: middle;
         }
 
         .tagline {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 8px;
+            margin-top: 8px;
         }
 
         .tagline-line {
-            width: 25px;
+            width: 20px;
             height: 1px;
             background: linear-gradient(90deg, transparent, #a855f7, transparent);
         }
 
         .tagline-text {
-            font-size: 11px;
+            font-size: 10px;
             color: #a78bfa;
             letter-spacing: 1px;
         }
@@ -209,33 +209,42 @@
         .hero-stats {
             display: flex;
             justify-content: center;
-            gap: 22px;
-            margin-top: 18px;
+            gap: 18px;
+            margin-top: 16px;
+            flex-wrap: wrap;
         }
 
+        .hero-stat-item {
+            text-align: center;
+        }
         .hero-stat-number {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             color: #c084fc;
         }
         .hero-stat-label {
-            font-size: 9px;
+            font-size: 8px;
             color: #7e6b9e;
+            letter-spacing: 0.3px;
         }
 
-        /* Main Card - glassmorphism lebih ringan (backdrop-filter blur ringan) */
+        /* Main Card - Glassmorphism dengan padding yang aman */
         .card {
-            background: rgba(30, 20, 50, 0.55);
-            backdrop-filter: blur(12px);
-            border-radius: 48px;
-            padding: 32px 24px;
+            background: rgba(30, 20, 50, 0.65);
+            backdrop-filter: blur(14px);
+            border-radius: 44px;
+            padding: 28px 20px;
             border: 1px solid rgba(139, 92, 246, 0.2);
             box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.4);
             transition: all 0.25s ease;
+            width: 100%;
         }
 
-        .card:hover {
-            border-color: rgba(139, 92, 246, 0.35);
+        @media (max-width: 480px) {
+            .card {
+                padding: 22px 16px;
+                border-radius: 36px;
+            }
         }
 
         .welcome-badge {
@@ -243,33 +252,35 @@
             align-items: center;
             gap: 8px;
             background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.1));
-            padding: 6px 20px;
+            padding: 5px 18px;
             border-radius: 60px;
-            margin-bottom: 22px;
-            font-size: 13px;
+            margin-bottom: 20px;
+            font-size: 12px;
             font-weight: 600;
             color: #c084fc;
             border: 1px solid rgba(139, 92, 246, 0.25);
         }
 
         .card h2 {
-            font-size: 28px;
+            font-size: 26px;
             font-weight: 700;
             background: linear-gradient(135deg, #f0e6ff, #d8b4fe);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
+            line-height: 1.2;
         }
 
         .card > p {
             color: #a78bfa;
-            font-size: 14px;
-            margin-bottom: 28px;
+            font-size: 13px;
+            margin-bottom: 24px;
             opacity: 0.85;
+            line-height: 1.3;
         }
 
-        /* Role Buttons - tanpa pseudo-element yang berat */
+        /* Role Buttons - tata letak yang tidak overlap */
         .role-buttons {
             display: flex;
             flex-direction: column;
@@ -280,21 +291,28 @@
         .role-btn {
             display: flex;
             align-items: center;
-            gap: 18px;
-            padding: 16px 20px;
-            background: rgba(20, 12, 35, 0.7);
+            gap: 14px;
+            padding: 14px 18px;
+            background: rgba(20, 12, 35, 0.75);
             border: 1.5px solid rgba(139, 92, 246, 0.2);
             border-radius: 28px;
             cursor: pointer;
             transition: all 0.2s ease;
             text-align: left;
-            position: relative;
+            width: 100%;
+        }
+
+        @media (max-width: 450px) {
+            .role-btn {
+                padding: 12px 14px;
+                gap: 12px;
+            }
         }
 
         .role-btn:hover {
             border-color: rgba(139, 92, 246, 0.5);
-            transform: translateX(4px);
-            background: rgba(30, 20, 50, 0.85);
+            transform: translateX(3px);
+            background: rgba(30, 20, 50, 0.9);
         }
 
         .role-btn.active {
@@ -304,14 +322,17 @@
         }
 
         .role-icon {
-            font-size: 40px;
-            min-width: 52px;
+            font-size: 36px;
+            min-width: 48px;
             text-align: center;
             transition: transform 0.2s;
         }
 
-        .role-btn:hover .role-icon {
-            transform: scale(1.02);
+        @media (max-width: 420px) {
+            .role-icon {
+                font-size: 32px;
+                min-width: 44px;
+            }
         }
 
         .role-info {
@@ -319,21 +340,23 @@
         }
 
         .role-info h4 {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
             color: #e9d5ff;
-            margin-bottom: 3px;
+            margin-bottom: 4px;
+            line-height: 1.3;
         }
 
         .role-info p {
-            font-size: 11px;
+            font-size: 10px;
             color: #a78bfa;
             opacity: 0.85;
+            line-height: 1.3;
         }
 
         .check-indicator {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             background: linear-gradient(135deg, #a855f7, #7c3aed);
             border-radius: 30px;
             display: flex;
@@ -344,6 +367,7 @@
             opacity: 0;
             transform: scale(0.6);
             transition: all 0.2s cubic-bezier(0.34, 1.2, 0.64, 1);
+            flex-shrink: 0;
         }
 
         .role-btn.active .check-indicator {
@@ -354,7 +378,7 @@
         /* Primary Button */
         .btn-primary {
             width: 100%;
-            padding: 16px 24px;
+            padding: 14px 20px;
             background: linear-gradient(105deg, #a855f7, #7c3aed);
             color: white;
             border: none;
@@ -370,11 +394,6 @@
             box-shadow: 0 6px 18px rgba(124, 58, 237, 0.4);
         }
 
-        .btn-primary:hover {
-            background: linear-gradient(105deg, #9333ea, #6d28d9);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 22px rgba(124, 58, 237, 0.45);
-        }
         .btn-primary:active {
             transform: translateY(1px);
         }
@@ -382,115 +401,198 @@
         /* Impact stats */
         .impact-stats {
             display: flex;
-            justify-content: center;
-            gap: 24px;
-            margin-top: 24px;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-top: 22px;
             padding-top: 18px;
             border-top: 1px solid rgba(139, 92, 246, 0.15);
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            flex: 1;
+            min-width: 70px;
         }
 
         .stat-number {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             background: linear-gradient(135deg, #c084fc, #a855f7);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
+            line-height: 1.2;
         }
 
         .stat-label {
-            font-size: 10px;
+            font-size: 9px;
             color: #a78bfa;
-            margin-top: 3px;
+            margin-top: 4px;
         }
 
         /* Footer */
         .footer {
             text-align: center;
-            margin-top: 24px;
-            font-size: 11px;
+            margin-top: 20px;
+            font-size: 10px;
             color: #7e6b9e;
             background: rgba(139, 92, 246, 0.08);
             backdrop-filter: blur(4px);
-            padding: 8px 18px;
+            padding: 8px 16px;
             border-radius: 60px;
+            width: auto;
             display: inline-block;
             width: auto;
             margin-left: auto;
             margin-right: auto;
             border: 1px solid rgba(139, 92, 246, 0.12);
+            line-height: 1.4;
         }
 
-        /* Toast notif */
+        /* Toast notif - aman untuk mobile */
         .toast-message {
             position: fixed;
-            bottom: 30px;
+            bottom: 20px;
             left: 50%;
-            transform: translateX(-50%) translateY(100px);
+            transform: translateX(-50%) translateY(120px);
             background: #2a1a4a;
             color: #e9d5ff;
-            padding: 12px 24px;
+            padding: 10px 20px;
             border-radius: 60px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
             z-index: 1000;
-            transition: transform 0.3s ease;
-            white-space: nowrap;
+            transition: transform 0.25s ease;
+            max-width: 85%;
+            width: auto;
+            text-align: center;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
             display: flex;
             align-items: center;
             gap: 10px;
             border: 1px solid rgba(139, 92, 246, 0.3);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
             pointer-events: none;
+            white-space: normal;
+            word-break: break-word;
         }
         .toast-message.show {
             transform: translateX(-50%) translateY(0);
         }
 
-        /* loading state */
+        /* Loading state */
         .btn-primary.loading {
             pointer-events: none;
             opacity: 0.85;
         }
 
-        /* Animasi shake sederhana */
+        /* Shake animation */
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
+            25% { transform: translateX(-4px); }
+            75% { transform: translateX(4px); }
         }
         .shake-card {
             animation: shake 0.3s ease-in-out;
         }
 
-        /* Partikel hanya sedikit & lebih ringan (menggunakan CSS saja tanpa JS berat) */
+        /* Floating particles - lebih sedikit dan tidak mengganggu layout */
         .floating-particle {
-            position: absolute;
-            font-size: 12px;
+            position: fixed;
+            font-size: 10px;
             pointer-events: none;
             z-index: 0;
-            animation: floatParticle 18s linear infinite;
-            opacity: 0.12;
+            animation: floatParticle 20s linear infinite;
+            opacity: 0.1;
+            will-change: transform;
         }
 
         @keyframes floatParticle {
             0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            15% { opacity: 0.15; }
-            85% { opacity: 0.15; }
-            100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+            10% { opacity: 0.12; }
+            90% { opacity: 0.12; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
-        /* responsive */
+        /* Mobile landscape & small devices */
         @media (max-width: 480px) {
-            .card { padding: 26px 18px; }
-            .role-btn { padding: 12px 16px; gap: 12px; }
-            .role-icon { font-size: 34px; min-width: 45px; }
-            .logo-title { font-size: 32px; }
-            .logo-core { width: 75px; height: 75px; }
-            .logo-core i { font-size: 38px; }
-            .impact-stats { gap: 16px; }
-            .toast-message { white-space: normal; max-width: 85%; text-align: center; }
+            body {
+                padding: 12px;
+                align-items: flex-start;
+                padding-top: 20px;
+                padding-bottom: 30px;
+            }
+            .hero-section {
+                margin-bottom: 16px;
+            }
+            .logo-core {
+                width: 70px;
+                height: 70px;
+            }
+            .logo-core i {
+                font-size: 36px;
+            }
+            .logo-title {
+                font-size: 30px;
+            }
+            .card h2 {
+                font-size: 22px;
+            }
+            .card > p {
+                font-size: 12px;
+                margin-bottom: 20px;
+            }
+            .impact-stats {
+                gap: 8px;
+            }
+            .stat-number {
+                font-size: 14px;
+            }
+        }
+
+        /* Very small devices (<= 360px) */
+        @media (max-width: 380px) {
+            .role-info h4 {
+                font-size: 13px;
+            }
+            .role-info p {
+                font-size: 9px;
+            }
+            .role-icon {
+                font-size: 28px;
+                min-width: 40px;
+            }
+            .hero-stats {
+                gap: 12px;
+            }
+            .card {
+                padding: 18px 14px;
+            }
+            .welcome-badge {
+                font-size: 10px;
+                padding: 4px 14px;
+                margin-bottom: 16px;
+            }
+            .btn-primary {
+                padding: 12px 16px;
+                font-size: 14px;
+            }
+            .footer {
+                font-size: 9px;
+                margin-top: 16px;
+            }
+        }
+
+        /* Mencegah overflow pada konten */
+        .hero-badge span, .tagline-text, .role-info p {
+            word-break: keep-all;
+        }
+        
+        /* Memastikan container tidak melebihi viewport */
+        img, svg, iframe {
+            max-width: 100%;
         }
     </style>
 </head>
@@ -500,11 +602,10 @@
     <div class="orb orb-2"></div>
     <div class="grid-pattern"></div>
 
-    <!-- Floating particles dihasilkan dengan JS minimal, hanya beberapa (lebih ringan) -->
     <div id="particlesContainer" style="position:fixed; top:0; left:0; width:100%; height:100%; overflow:hidden; pointer-events:none; z-index:0;"></div>
 
     <div class="container">
-        <!-- Header -->
+        <!-- Header Section -->
         <div class="hero-section">
             <div class="hero-badge">
                 <i class="fas fa-certificate"></i>
@@ -587,7 +688,7 @@
 
         <div class="footer">
             <i class="fas fa-star"></i> #TooMuchBermanfaat • Zero Food Waste Movement
-            <i class="fas fa-heart" style="color: #f472b6;"></i>
+            <i class="fas fa-smile" style="color: #f472b6;"></i>
         </div>
     </div>
 
@@ -598,28 +699,31 @@
 
     <script>
         (function() {
-            // ---------- OPTIMASI PERFORMANCE ----------
-            // 1. Hanya membuat sedikit partikel (8-10) bukan 40, tetap terlihat estetik tapi ringan
+            // --- OPTIMASI MOBILE & PREVENT OVERLAP ---
+            // Membuat partikel ringan hanya 6-10, tidak mengganggu layout
             function createLightParticles() {
                 const container = document.getElementById('particlesContainer');
                 if (!container) return;
-                const icons = ['✨', '⭐', '💜', '🌟', '💫', '🍃', '🌱'];
-                const particleCount = window.innerWidth < 768 ? 8 : 12; // jumlah partikel kecil
+                // Bersihkan dulu jika ada (untuk keamanan)
+                while (container.firstChild) container.removeChild(container.firstChild);
+                
+                const icons = ['✨', '⭐', '💜', '🌟', '🍃', '🌱', '🌀'];
+                // Lebih sedikit partikel pada mobile agar ringan
+                const isMobile = window.innerWidth < 768;
+                const particleCount = isMobile ? 6 : 10;
+                
                 for (let i = 0; i < particleCount; i++) {
                     const particle = document.createElement('div');
                     particle.classList.add('floating-particle');
                     particle.textContent = icons[Math.floor(Math.random() * icons.length)];
                     particle.style.left = Math.random() * 100 + '%';
-                    particle.style.fontSize = (Math.random() * 12 + 8) + 'px';
+                    particle.style.fontSize = (Math.random() * 10 + 8) + 'px';
                     particle.style.animationDelay = (Math.random() * 15) + 's';
-                    particle.style.animationDuration = (Math.random() * 12 + 10) + 's';
-                    particle.style.opacity = (Math.random() * 0.12 + 0.05).toString();
+                    particle.style.animationDuration = (Math.random() * 12 + 12) + 's';
+                    particle.style.opacity = (Math.random() * 0.1 + 0.05).toString();
                     container.appendChild(particle);
                 }
             }
-            
-            // 2. Hindari penggunaan vibrate yang tidak perlu pada setiap klik (opsional, dapat mengganggu performa)
-            // 3. Meminimalisir DOM reflow dengan event listener yang efisien
             
             let selectedRole = null;
             let isProcessing = false;
@@ -631,7 +735,7 @@
             function showToast(message, isError = false) {
                 if (!toastEl || !toastText) return;
                 toastText.textContent = message;
-                toastEl.style.background = isError ? 'rgba(217, 70, 239, 0.3)' : 'rgba(139, 92, 246, 0.3)';
+                toastEl.style.background = isError ? 'rgba(217, 70, 239, 0.4)' : 'rgba(139, 92, 246, 0.4)';
                 toastEl.style.borderColor = isError ? '#f472b6' : '#a855f7';
                 const iconElem = toastEl.querySelector('i');
                 if (iconElem) {
@@ -641,27 +745,30 @@
                 toastEl.classList.add('show');
                 setTimeout(() => {
                     toastEl.classList.remove('show');
-                    if (iconElem && !isError) setTimeout(() => { if(iconElem) iconElem.className = 'fas fa-info-circle'; }, 200);
+                    if (iconElem && !isError) {
+                        setTimeout(() => { if(iconElem) iconElem.className = 'fas fa-info-circle'; }, 200);
+                    }
                 }, 2200);
             }
             
-            // Role selection (tanpa efek ripple yang membuat layout thrashing)
+            // Role selection
             roleBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     if (isProcessing) return;
+                    // Hapus active dari semua, lalu set active
                     roleBtns.forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     selectedRole = btn.dataset.role;
                     
-                    // Efek hover ringan pada icon
+                    // Animasi ringan pada icon
                     const iconSpan = btn.querySelector('.role-icon');
                     if (iconSpan) {
-                        iconSpan.style.transform = 'scale(1.05)';
-                        setTimeout(() => { if(iconSpan) iconSpan.style.transform = ''; }, 120);
+                        iconSpan.style.transform = 'scale(1.04)';
+                        setTimeout(() => { if(iconSpan) iconSpan.style.transform = ''; }, 130);
                     }
                 });
                 
-                // aksesibilitas keyboard
+                // Aksesibilitas: keyboard support
                 btn.setAttribute('tabindex', '0');
                 btn.addEventListener('keypress', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
@@ -671,11 +778,11 @@
                 });
             });
             
-            // Tombol start
+            // Tombol Mulai
             startBtn?.addEventListener('click', () => {
                 if (isProcessing) return;
                 if (!selectedRole) {
-                    showToast('Pilih peran terlebih dahulu', true);
+                    showToast('Pilih peran terlebih dahulu ✨', true);
                     const cardElem = document.querySelector('.card');
                     if (cardElem) {
                         cardElem.classList.add('shake-card');
@@ -685,10 +792,11 @@
                 }
                 
                 isProcessing = true;
-                // Simpan data
+                // Simpan data user
                 localStorage.setItem('userRole', selectedRole);
                 localStorage.setItem('userName', 'Bintang Permana');
                 localStorage.setItem('joinTimestamp', new Date().toISOString());
+                
                 let roleDisplay = '';
                 if (selectedRole === 'consumer') roleDisplay = 'Konsumen Cerdas';
                 else if (selectedRole === 'horeka') roleDisplay = 'Mitra HOREKA';
@@ -701,18 +809,18 @@
                 else dashboardUrl = 'processor.html';
                 localStorage.setItem('lastDashboard', dashboardUrl);
                 
-                // Ubah tombol menjadi loading state
+                // Loading state tombol
                 startBtn.classList.add('loading');
                 const originalHTML = startBtn.innerHTML;
-                startBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Memuat Dashboard...';
+                startBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Memuat...';
                 
-                // Timeout untuk memberikan kesan smooth, namun navigasi cepat
+                // Navigasi setelah delay singkat (memberikan feedback visual)
                 setTimeout(() => {
                     window.location.href = dashboardUrl;
-                }, 350);
+                }, 280);
             });
             
-            // StartBtn keyboard support
+            // Keyboard support untuk tombol start
             startBtn?.setAttribute('tabindex', '0');
             startBtn?.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
@@ -721,17 +829,37 @@
                 }
             });
             
-            // Inisialisasi partikel ringan setelah DOM siap
+            // Inisialisasi partikel dan memastikan tidak ada overlap konten
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', () => {
                     createLightParticles();
+                    // Memastikan body tidak scroll horizontal berlebih
+                    document.body.style.overflowX = 'hidden';
                 });
             } else {
                 createLightParticles();
+                document.body.style.overflowX = 'hidden';
             }
             
-            // Optional: Preload halaman tujuan? tidak perlu agar tidak memberatkan.
-            // Hapus event listener yang tidak diperlukan dan hindari memory leak.
+            // Optional: Fix untuk resize pada mobile (menjaga tampilan tidak overlap)
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                if (resizeTimer) clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function() {
+                    // Memastikan viewport tidak menyebabkan layout bergeser
+                    document.body.style.overflowX = 'hidden';
+                    // Refresh partikel hanya jika perlu (tapi tidak perlu untuk performance)
+                }, 100);
+            });
+            
+            // Tambahan: jika ada content yang meluber, atur ulang margin
+            const checkOverflow = () => {
+                if (document.body.scrollWidth > window.innerWidth) {
+                    document.body.style.overflowX = 'hidden';
+                }
+            };
+            window.addEventListener('load', checkOverflow);
+            checkOverflow();
         })();
     </script>
 </body>
