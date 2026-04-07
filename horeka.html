@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
-        /* Semua style sama seperti sebelumnya, tidak diubah */
         * {
             margin: 0;
             padding: 0;
@@ -507,7 +506,7 @@
             margin-top: 6px;
         }
 
-        /* MODAL */
+        /* MODAL - DIPERBAIKI */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -516,10 +515,19 @@
             bottom: 0;
             background: rgba(0, 0, 0, 0.85);
             z-index: 2000;
-            display: flex;
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(8px);
+            transition: all 0.3s ease;
+        }
+        
+        /* State modal */
+        .modal-overlay[data-visible="true"] {
+            display: flex !important;
+        }
+        
+        .modal-overlay[data-visible="false"] {
+            display: none !important;
         }
 
         .modal-container {
@@ -678,6 +686,11 @@
 
         .hide-content {
             display: none !important;
+        }
+        
+        /* Mencegah flash modal */
+        .no-flash {
+            visibility: visible;
         }
     </style>
 </head>
@@ -888,8 +901,8 @@
         </div>
     </div>
 
-    <!-- MODAL KEBIJAKAN MITRA - HAPUS style="display: none;" -->
-    <div class="modal-overlay" id="policyModal">
+    <!-- MODAL KEBIJAKAN MITRA -->
+    <div class="modal-overlay" id="policyModal" data-visible="false">
         <div class="modal-container">
             <div class="modal-header">
                 <h2><i class="fas fa-handshake"></i> Perjanjian Mitra HOREKA</h2>
@@ -954,9 +967,6 @@
     </div>
 
     <script>
-        // HAPUS deklarasi hasAgreed di sini karena akan conflict
-        // let hasAgreed = localStorage.getItem('horekaAgreementAccepted') === 'true';
-        
         // Data awal
         let wasteRecords = JSON.parse(localStorage.getItem('horekaWaste') || '[]');
         let surplusList = JSON.parse(localStorage.getItem('horekaSurplus') || '[]');
@@ -1319,7 +1329,7 @@
             let mainContent = document.getElementById('mainContent');
             let bottomNav = document.getElementById('bottomNav');
             
-            if (modal) modal.style.display = 'none';
+            if (modal) modal.setAttribute('data-visible', 'false');
             if (mainContent) mainContent.classList.remove('hide-content');
             if (bottomNav) bottomNav.classList.remove('hide-content');
             
@@ -1352,6 +1362,31 @@
             }
         }
 
+        // ========== PERBAIKAN UTAMA - MODAL TIDAK LANGSUNG HILANG ==========
+        function startApp() {
+            // Ambil status persetujuan dari localStorage
+            const userHasAgreed = localStorage.getItem('horekaAgreementAccepted') === 'true';
+            
+            const modal = document.getElementById('policyModal');
+            const mainContent = document.getElementById('mainContent');
+            const bottomNav = document.getElementById('bottomNav');
+            
+            if (!userHasAgreed) {
+                // Belum setuju: tampilkan modal, sembunyikan konten utama
+                if (modal) modal.setAttribute('data-visible', 'true');
+                if (mainContent) mainContent.classList.add('hide-content');
+                if (bottomNav) bottomNav.classList.add('hide-content');
+                setupCheckboxListeners();
+            } else {
+                // Sudah setuju: sembunyikan modal, tampilkan konten utama
+                if (modal) modal.setAttribute('data-visible', 'false');
+                if (mainContent) mainContent.classList.remove('hide-content');
+                if (bottomNav) bottomNav.classList.remove('hide-content');
+                initDashboard();
+                setupRatingClick();
+            }
+        }
+        
         // Event listener untuk nav items
         document.querySelectorAll('.nav-item').forEach(btn => { 
             btn.addEventListener('click', () => { 
@@ -1364,35 +1399,16 @@
         if (agreeBtn) {
             agreeBtn.onclick = acceptAgreement;
         }
-
-        // ========== PERBAIKAN UTAMA ==========
-        // Fungsi untuk memulai aplikasi (dipanggil setelah DOM siap)
-        function startApp() {
-            // Ambil status persetujuan dari localStorage
-            const userHasAgreed = localStorage.getItem('horekaAgreementAccepted') === 'true';
-            
-            const modal = document.getElementById('policyModal');
-            const mainContent = document.getElementById('mainContent');
-            const bottomNav = document.getElementById('bottomNav');
-            
-            if (!userHasAgreed) {
-                // Belum setuju: tampilkan modal, sembunyikan konten
-                if (modal) modal.style.display = 'flex';
-                if (mainContent) mainContent.classList.add('hide-content');
-                if (bottomNav) bottomNav.classList.add('hide-content');
-                setupCheckboxListeners();
-            } else {
-                // Sudah setuju: sembunyikan modal, tampilkan konten
-                if (modal) modal.style.display = 'none';
-                if (mainContent) mainContent.classList.remove('hide-content');
-                if (bottomNav) bottomNav.classList.remove('hide-content');
-                initDashboard();
-                setupRatingClick();
-            }
-        }
         
         // Jalankan startApp setelah DOM sepenuhnya dimuat
-        document.addEventListener('DOMContentLoaded', startApp);
+        // Gunakan requestAnimationFrame untuk memastikan rendering di mobile lebih stabil
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function() {
+                requestAnimationFrame(startApp);
+            });
+        } else {
+            requestAnimationFrame(startApp);
+        }
     </script>
 </body>
 
