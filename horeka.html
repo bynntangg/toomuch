@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>TOO MUCH - Mitra HOREKA | Real Time Analytics</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
@@ -21,81 +21,118 @@
             font-family: 'Inter', sans-serif;
             background: #ecf3f8;
             color: #1a2a3a;
+            overflow-x: hidden;
         }
 
         .app-container {
-            max-width: 450px;
+            max-width: 500px;
+            width: 100%;
             margin: 0 auto;
             background: #f6fafd;
             min-height: 100vh;
             position: relative;
             padding-bottom: 85px;
+            overflow-x: hidden;
         }
 
         .status-bar {
-            padding: 14px 20px 8px;
+            padding: 12px 18px 6px;
             display: flex;
             justify-content: space-between;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             color: #1e2f3a;
             background: #f6fafd;
         }
 
         .header {
-            padding: 8px 20px 16px;
+            padding: 8px 18px 16px;
             background: #f6fafd;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 12px;
             border-bottom: 1px solid rgba(29, 126, 170, 0.12);
+            flex-wrap: nowrap;
+        }
+
+        .logo-area {
+            flex: 1;
+            min-width: 0;
         }
 
         .logo-area h1 {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 800;
             background: linear-gradient(135deg, #0f4b5e, #1d7eaa);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .logo-area p {
-            font-size: 11px;
+            font-size: 10px;
             color: #5f8b9f;
             margin-top: 2px;
+            white-space: nowrap;
         }
 
         .ai-btn {
             background: linear-gradient(145deg, #fff, #eff6fa);
             border: 1px solid #cde3ed;
-            padding: 10px 18px;
+            padding: 8px 14px;
             border-radius: 40px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             color: #1d7eaa;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             transition: all 0.2s;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
-        .ai-btn:hover {
-            background: #e3f0f8;
-            transform: scale(0.97);
+        .ai-btn i {
+            font-size: 12px;
+        }
+
+        /* Responsive untuk HP */
+        @media (max-width: 450px) {
+            .logo-area h1 {
+                font-size: 18px;
+            }
+            .logo-area p {
+                font-size: 9px;
+            }
+            .ai-btn span {
+                display: none;
+            }
+            .ai-btn {
+                padding: 8px 12px;
+            }
+            .ai-btn i {
+                font-size: 14px;
+                margin: 0;
+            }
         }
 
         .bottom-nav {
             position: fixed;
             bottom: 0;
-            max-width: 450px;
+            left: 50%;
+            transform: translateX(-50%);
+            max-width: 500px;
             width: 100%;
             background: rgba(255, 255, 255, 0.96);
             backdrop-filter: blur(20px);
             display: flex;
             justify-content: space-around;
-            padding: 10px 16px 24px;
+            padding: 8px 12px 22px;
             border-top: 1px solid rgba(29, 126, 170, 0.12);
             z-index: 100;
         }
@@ -104,20 +141,20 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 5px;
-            font-size: 11px;
+            gap: 4px;
+            font-size: 10px;
             font-weight: 600;
             color: #93afbf;
             background: none;
             border: none;
             cursor: pointer;
-            padding: 6px 12px;
+            padding: 6px 8px;
             border-radius: 40px;
             transition: all 0.2s;
         }
 
         .nav-item i {
-            font-size: 22px;
+            font-size: 20px;
         }
 
         .nav-item.active {
@@ -126,7 +163,7 @@
         }
 
         .main-content {
-            padding: 20px;
+            padding: 16px;
             animation: fadeSlide 0.25s ease;
         }
 
@@ -135,7 +172,6 @@
                 opacity: 0;
                 transform: translateY(10px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -144,41 +180,38 @@
 
         .card {
             background: white;
-            border-radius: 28px;
-            padding: 20px;
-            margin-bottom: 20px;
+            border-radius: 24px;
+            padding: 16px;
+            margin-bottom: 16px;
             border: 1px solid #eaf1f8;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
         }
 
         .stats-row {
             display: flex;
-            gap: 14px;
-            margin-bottom: 20px;
+            gap: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
         }
 
         .stat-card {
             flex: 1;
+            min-width: 100px;
             background: #fafeff;
-            border-radius: 24px;
-            padding: 16px 8px;
+            border-radius: 20px;
+            padding: 14px 8px;
             text-align: center;
             border: 1px solid #e2eff6;
-            transition: transform 0.2s;
-        }
-
-        .stat-card:hover {
-            transform: translateY(-3px);
         }
 
         .stat-value {
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 800;
             color: #1d7eaa;
         }
 
         .stat-label {
-            font-size: 11px;
+            font-size: 10px;
             color: #6f96aa;
             margin-top: 6px;
         }
@@ -186,79 +219,68 @@
         .section-title {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 14px;
+            margin-bottom: 12px;
             font-weight: 700;
             align-items: center;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
         }
 
         .quick-actions {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 10px;
+            margin-bottom: 16px;
         }
 
         .quick-btn {
             background: white;
             border: 1px solid #e2edf2;
-            border-radius: 20px;
-            padding: 12px 8px;
+            border-radius: 16px;
+            padding: 10px 6px;
             text-align: center;
             cursor: pointer;
             transition: all 0.2s;
         }
 
         .quick-btn i {
-            font-size: 24px;
+            font-size: 20px;
             color: #1d7eaa;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             display: block;
         }
 
         .quick-btn span {
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 600;
             color: #5f8b9f;
         }
 
-        .quick-btn:hover {
-            background: #e9f3f9;
-            transform: translateY(-2px);
-        }
-
         .form-group {
-            margin-bottom: 18px;
+            margin-bottom: 14px;
         }
 
         .form-label {
             display: block;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: #2c5a74;
         }
 
         .form-input,
         .form-select {
             width: 100%;
-            padding: 14px 16px;
+            padding: 12px 14px;
             border: 1.5px solid #e2edf2;
-            border-radius: 20px;
-            font-size: 14px;
+            border-radius: 16px;
+            font-size: 13px;
             background: white;
-        }
-
-        .form-input:focus,
-        .form-select:focus {
-            border-color: #1d7eaa;
-            outline: none;
         }
 
         .btn-primary {
             width: 100%;
-            padding: 16px;
+            padding: 14px;
             background: linear-gradient(95deg, #1d7eaa, #166e94);
             color: white;
             border: none;
@@ -268,12 +290,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-        }
-
-        .btn-primary:hover {
-            transform: scale(1.01);
-            background: #156a90;
+            gap: 8px;
+            font-size: 14px;
         }
 
         .btn-secondary {
@@ -284,9 +302,9 @@
 
         .badge {
             display: inline-block;
-            padding: 5px 12px;
+            padding: 4px 10px;
             border-radius: 30px;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
         }
 
@@ -307,47 +325,53 @@
 
         .alert-warning {
             background: #fff2e5;
-            border-left: 5px solid #f39c12;
-            padding: 14px;
-            border-radius: 20px;
+            border-left: 4px solid #f39c12;
+            padding: 12px;
+            border-radius: 16px;
             color: #b45f1b;
-            margin-top: 16px;
+            margin-top: 12px;
+            font-size: 12px;
         }
 
         .alert-success {
             background: #e0f5ee;
-            border-left: 5px solid #2ecc71;
-            padding: 14px;
-            border-radius: 20px;
+            border-left: 4px solid #2ecc71;
+            padding: 12px;
+            border-radius: 16px;
             color: #11734c;
-            margin-top: 16px;
+            margin-top: 12px;
+            font-size: 12px;
         }
 
         .alert-info {
             background: #e3f2fd;
-            border-left: 5px solid #2196f3;
-            padding: 14px;
-            border-radius: 20px;
+            border-left: 4px solid #2196f3;
+            padding: 12px;
+            border-radius: 16px;
             color: #1565c0;
+            font-size: 12px;
         }
 
         .surplus-item,
         .waste-item,
         .review-item {
             background: #fbfefd;
-            padding: 14px;
-            border-radius: 20px;
-            margin-bottom: 10px;
+            padding: 12px;
+            border-radius: 16px;
+            margin-bottom: 8px;
             border: 1px solid #e9f0f5;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .empty-state {
             text-align: center;
-            padding: 40px 20px;
+            padding: 30px 16px;
             color: #95b6c8;
+            font-size: 13px;
         }
 
         .hidden {
@@ -355,53 +379,56 @@
         }
 
         .chart-container {
-            margin: 16px 0;
+            margin: 12px 0;
             position: relative;
-            height: 220px;
+            height: 200px;
         }
 
         .stats-summary {
             display: flex;
             justify-content: space-between;
-            margin-top: 12px;
-            padding-top: 12px;
+            margin-top: 10px;
+            padding-top: 10px;
             border-top: 1px solid #e2edf2;
+            gap: 8px;
+            flex-wrap: wrap;
         }
 
         .stats-summary-item {
             text-align: center;
             flex: 1;
+            min-width: 80px;
         }
 
         .stats-summary-item .value {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 800;
             color: #1d7eaa;
         }
 
         .stats-summary-item .label {
-            font-size: 10px;
+            font-size: 9px;
             color: #8fadbe;
         }
 
         .filter-buttons {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             background: #f0f4f8;
             padding: 4px;
             border-radius: 40px;
+            flex-wrap: wrap;
         }
 
         .filter-btn {
-            padding: 6px 14px;
+            padding: 5px 10px;
             border-radius: 30px;
-            font-size: 12px;
+            font-size: 10px;
             font-weight: 600;
             background: transparent;
             border: none;
             cursor: pointer;
             color: #6f96aa;
-            transition: all 0.2s;
         }
 
         .filter-btn.active {
@@ -411,27 +438,29 @@
 
         .prediction-chart {
             background: #fafeff;
-            border-radius: 24px;
-            padding: 16px;
+            border-radius: 20px;
+            padding: 12px;
             margin-top: 8px;
         }
 
         .chart-bar {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin: 12px 0;
+            gap: 10px;
+            margin: 10px 0;
+            flex-wrap: wrap;
         }
 
         .bar-label {
-            width: 60px;
-            font-size: 13px;
+            width: 55px;
+            font-size: 12px;
             font-weight: 600;
         }
 
         .bar-fill {
             flex: 1;
-            height: 34px;
+            min-width: 120px;
+            height: 30px;
             background: #e9f1f6;
             border-radius: 20px;
             overflow: hidden;
@@ -444,39 +473,25 @@
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            padding-right: 12px;
+            padding-right: 10px;
             color: white;
-            font-size: 11px;
+            font-size: 10px;
             font-weight: 700;
         }
 
         .welcome-banner {
             background: linear-gradient(135deg, #1d7eaa, #0f5a7a);
-            border-radius: 28px;
-            padding: 20px;
-            margin-bottom: 20px;
+            border-radius: 24px;
+            padding: 16px;
+            margin-bottom: 16px;
             color: white;
             position: relative;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.1s ease;
-        }
-
-        .welcome-banner:active {
-            transform: scale(0.99);
-        }
-
-        .welcome-banner::before {
-            content: '🏨';
-            position: absolute;
-            font-size: 70px;
-            right: -10px;
-            bottom: -15px;
-            opacity: 0.15;
         }
 
         .greeting {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             margin-bottom: 4px;
         }
@@ -484,34 +499,15 @@
         .rating-compact {
             background: rgba(255, 255, 255, 0.15);
             border-radius: 40px;
-            padding: 6px 14px;
+            padding: 5px 12px;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            font-size: 13px;
-            margin-top: 8px;
-            backdrop-filter: blur(2px);
-            transition: all 0.2s;
+            gap: 6px;
+            font-size: 12px;
+            margin-top: 6px;
         }
 
-        .rating-compact:hover {
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        .rating-compact i {
-            color: #ffc107;
-        }
-
-        .rating-compact .score {
-            font-weight: 800;
-        }
-
-        .rating-compact .count {
-            font-size: 11px;
-            opacity: 0.9;
-        }
-
-        /* PERBAIKAN MODAL - Kunci utama ada di sini */
+        /* MODAL */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -520,172 +516,138 @@
             bottom: 0;
             background: rgba(0, 0, 0, 0.75);
             z-index: 1000;
-            display: none; /* Awalnya hidden */
+            display: none;
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(5px);
         }
 
         .modal-overlay.show {
-            display: flex; /* Tampilkan saat ada class show */
+            display: flex;
         }
 
         .modal-container {
-            max-width: 420px;
+            max-width: 400px;
             width: 90%;
             background: white;
-            border-radius: 32px;
-            max-height: 88vh;
+            border-radius: 28px;
+            max-height: 85vh;
             overflow-y: auto;
-            animation: modalSlideIn 0.3s ease;
-        }
-
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            margin: 20px;
         }
 
         .modal-header {
-            padding: 24px 24px 16px;
+            padding: 20px 20px 12px;
             border-bottom: 1px solid #e2edf2;
             position: sticky;
             top: 0;
             background: white;
-            border-radius: 32px 32px 0 0;
+            border-radius: 28px 28px 0 0;
         }
 
         .modal-header h2 {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
             color: #1d7eaa;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .modal-body {
-            padding: 20px 24px;
-        }
-
-        .policy-section {
-            margin-bottom: 24px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #f0f4f8;
-        }
-
-        .policy-section h3 {
-            font-size: 16px;
-            font-weight: 700;
-            color: #2c5a74;
-            margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
+        .modal-body {
+            padding: 16px 20px;
+        }
+
+        .policy-section {
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f0f4f8;
+        }
+
+        .policy-section h3 {
+            font-size: 15px;
+            font-weight: 700;
+            color: #2c5a74;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
         .spec-list {
             background: #f8fafd;
-            border-radius: 20px;
-            padding: 16px;
-            margin: 12px 0;
+            border-radius: 16px;
+            padding: 12px;
+            margin: 10px 0;
         }
 
         .spec-item {
             display: flex;
             align-items: center;
-            gap: 12px;
-            padding: 10px 0;
+            gap: 10px;
+            padding: 8px 0;
             border-bottom: 1px solid #e9f0f5;
         }
 
         .spec-icon {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             background: #e9f3f9;
-            border-radius: 12px;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #1d7eaa;
         }
 
-        .spec-text {
-            flex: 1;
-        }
-
-        .spec-text strong {
-            font-size: 13px;
-            color: #2c5a74;
-            display: block;
-        }
-
-        .spec-text small {
-            font-size: 11px;
-            color: #8fadbe;
-        }
-
         .checkbox-item {
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 16px;
-            padding: 12px;
+            gap: 10px;
+            margin-bottom: 12px;
+            padding: 10px;
             background: #f8fafd;
-            border-radius: 16px;
+            border-radius: 14px;
             cursor: pointer;
         }
 
         .checkbox-item input {
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
             accent-color: #1d7eaa;
         }
 
         .checkbox-item label {
             flex: 1;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
             color: #2c5a74;
-            cursor: pointer;
             line-height: 1.4;
         }
 
         .checkbox-item small {
             display: block;
-            font-size: 11px;
+            font-size: 10px;
             color: #8fadbe;
         }
 
         .btn-agree {
             width: 100%;
-            padding: 16px;
+            padding: 14px;
             background: linear-gradient(95deg, #1d7eaa, #166e94);
             color: white;
             border: none;
             border-radius: 40px;
             font-weight: 700;
-            font-size: 16px;
+            font-size: 15px;
             cursor: pointer;
-            margin-top: 16px;
+            margin-top: 12px;
         }
 
         .btn-agree:disabled {
             opacity: 0.5;
             cursor: not-allowed;
-        }
-
-        .modal-footer {
-            padding: 16px 24px 24px;
-            border-top: 1px solid #e2edf2;
-            background: white;
-            border-radius: 0 0 32px 32px;
         }
 
         .review-stars {
@@ -694,21 +656,40 @@
         }
 
         .review-stars i {
+            font-size: 10px;
+        }
+
+        /* Toast */
+        .toast-message {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1d7eaa;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 40px;
             font-size: 12px;
+            font-weight: 600;
+            z-index: 1000;
+            white-space: nowrap;
+            max-width: 90%;
+            white-space: normal;
+            text-align: center;
         }
     </style>
 </head>
 
 <body>
     <div class="app-container">
-        <div class="status-bar"><span>9:41</span><span><i class="fas fa-wifi"></i> <i
-                    class="fas fa-battery-full"></i></span></div>
+        <div class="status-bar"><span>9:41</span><span><i class="fas fa-wifi"></i> <i class="fas fa-battery-full"></i></span></div>
         <div class="header">
             <div class="logo-area">
                 <h1>🏨 TOO MUCH</h1>
                 <p><i class="fas fa-chart-line"></i> Mitra HOREKA • Zero Waste</p>
-            </div><button class="ai-btn" onclick="window.location.href='ai-detail.html'">
-                <i class="fas fa-microchip"></i> AI Bisnis
+            </div>
+            <button class="ai-btn" onclick="window.location.href='ai-detail.html'">
+                <i class="fas fa-microchip"></i> <span>AI Bisnis</span>
             </button>
         </div>
 
@@ -716,7 +697,7 @@
             <div id="dashboardTab">
                 <div class="welcome-banner" id="ratingBannerBtn">
                     <div class="greeting">Selamat datang, <span id="ownerName">Warung MbaK Harum</span>! 👋</div>
-                    <p style="font-size: 13px; opacity: 0.9;">Terus berkontribusi mengurangi food waste 🌱</p>
+                    <p style="font-size: 12px; opacity: 0.9;">Terus berkontribusi mengurangi food waste 🌱</p>
                     <div class="rating-compact" id="simpleRating">
                         <i class="fas fa-star"></i>
                         <span class="score" id="ratingScore">4.8</span>
@@ -726,14 +707,10 @@
                 </div>
 
                 <div class="quick-actions">
-                    <div class="quick-btn" onclick="showTab('upload')"><i class="fas fa-plus-circle"></i><span>Upload
-                            Surplus</span></div>
-                    <div class="quick-btn" onclick="showTab('waste')"><i class="fas fa-trash-alt"></i><span>Catat
-                            Limbah</span></div>
-                    <div class="quick-btn" onclick="showTab('prediction')"><i
-                            class="fas fa-chart-line"></i><span>Prediksi</span></div>
-                    <div class="quick-btn" onclick="downloadESG()"><i class="fas fa-file-alt"></i><span>Laporan
-                            ESG</span></div>
+                    <div class="quick-btn" onclick="showTab('upload')"><i class="fas fa-plus-circle"></i><span>Upload Surplus</span></div>
+                    <div class="quick-btn" onclick="showTab('waste')"><i class="fas fa-trash-alt"></i><span>Catat Limbah</span></div>
+                    <div class="quick-btn" onclick="showTab('prediction')"><i class="fas fa-chart-line"></i><span>Prediksi</span></div>
+                    <div class="quick-btn" onclick="downloadESG()"><i class="fas fa-file-alt"></i><span>Laporan ESG</span></div>
                 </div>
 
                 <div class="stats-row">
@@ -814,56 +791,44 @@
                 </div>
 
                 <div class="card">
-                    <div class="section-title"><span><i class="fas fa-utensils"></i> Menu Surplus Aktif</span><span
-                            class="badge badge-success" id="surplusCount">0 item</span></div>
+                    <div class="section-title"><span><i class="fas fa-utensils"></i> Menu Surplus Aktif</span><span class="badge badge-success" id="surplusCount">0 item</span></div>
                     <div id="activeSurplusList"></div>
                 </div>
 
                 <div class="card">
                     <div class="section-title"><span><i class="fas fa-brain"></i> Rekomendasi AI</span></div>
-                    <div class="alert-warning" id="aiRecommendMsg"><i class="fas fa-spinner fa-pulse"></i> Memuat
-                        prediksi pintar...</div>
+                    <div class="alert-warning" id="aiRecommendMsg"><i class="fas fa-spinner fa-pulse"></i> Memuat prediksi pintar...</div>
                 </div>
             </div>
 
             <div id="uploadTab" class="hidden">
                 <div class="card">
-                    <h4><i class="fas fa-cloud-upload-alt"></i> Upload Surplus Makanan</h4>
-                    <div class="form-group"><label class="form-label">Nama Menu *</label><input class="form-input"
-                            id="menuName" placeholder="Contoh: Nasi Goreng Special"></div>
-                    <div class="form-group"><label class="form-label">Harga Normal (Rp)</label><input class="form-input"
-                            id="normalPrice" placeholder="35000" type="number"></div>
-                    <div class="form-group"><label class="form-label">Harga Surplus (Rp) *</label><input
-                            class="form-input" id="surplusPrice" placeholder="21000" type="number"></div>
-                    <div class="form-group"><label class="form-label">Jumlah Porsi *</label><input class="form-input"
-                            id="portion" placeholder="5" type="number"></div>
-                    <div class="form-group"><label class="form-label">Waktu Tersedia</label><select class="form-select"
-                            id="availableTime">
+                    <h4 style="margin-bottom: 12px;"><i class="fas fa-cloud-upload-alt"></i> Upload Surplus Makanan</h4>
+                    <div class="form-group"><label class="form-label">Nama Menu *</label><input class="form-input" id="menuName" placeholder="Contoh: Nasi Goreng Special"></div>
+                    <div class="form-group"><label class="form-label">Harga Normal (Rp)</label><input class="form-input" id="normalPrice" placeholder="35000" type="number"></div>
+                    <div class="form-group"><label class="form-label">Harga Surplus (Rp) *</label><input class="form-input" id="surplusPrice" placeholder="21000" type="number"></div>
+                    <div class="form-group"><label class="form-label">Jumlah Porsi *</label><input class="form-input" id="portion" placeholder="5" type="number"></div>
+                    <div class="form-group"><label class="form-label">Waktu Tersedia</label><select class="form-select" id="availableTime">
                             <option>09:00 - 14:00</option>
                             <option>14:00 - 18:00</option>
                             <option>18:00 - 21:00</option>
                         </select></div>
-                    <button class="btn-primary" onclick="uploadSurplus()"><i class="fas fa-check-circle"></i> Upload
-                        Sekarang</button>
+                    <button class="btn-primary" onclick="uploadSurplus()"><i class="fas fa-check-circle"></i> Upload Sekarang</button>
                 </div>
             </div>
 
             <div id="wasteTab" class="hidden">
                 <div class="card">
-                    <h4><i class="fas fa-trash-alt"></i> Catat Limbah Organik</h4>
-                    <div class="form-group"><label class="form-label">Jenis Limbah</label><select class="form-select"
-                            id="wasteType">
+                    <h4 style="margin-bottom: 12px;"><i class="fas fa-trash-alt"></i> Catat Limbah Organik</h4>
+                    <div class="form-group"><label class="form-label">Jenis Limbah</label><select class="form-select" id="wasteType">
                             <option>Sisa Makanan</option>
                             <option>Sayuran Busuk</option>
                             <option>Kulit Buah</option>
                             <option>Amplas/Sisa Olahan</option>
                         </select></div>
-                    <div class="form-group"><label class="form-label">Berat (kg)</label><input class="form-input"
-                            id="wasteWeight" placeholder="12" type="number"></div>
-                    <div class="form-group"><label class="form-label">Catatan (opsional)</label><input
-                            class="form-input" id="wasteNote" placeholder="Misal: sisa buffet"></div>
-                    <button class="btn-primary" onclick="recordWaste()"><i class="fas fa-leaf"></i> Kirim ke Pengolah +
-                        Insentif</button>
+                    <div class="form-group"><label class="form-label">Berat (kg)</label><input class="form-input" id="wasteWeight" placeholder="12" type="number"></div>
+                    <div class="form-group"><label class="form-label">Catatan (opsional)</label><input class="form-input" id="wasteNote" placeholder="Misal: sisa buffet"></div>
+                    <button class="btn-primary" onclick="recordWaste()"><i class="fas fa-leaf"></i> Kirim ke Pengolah + Insentif</button>
                 </div>
                 <div class="card">
                     <div class="section-title"><span><i class="fas fa-history"></i> Riwayat Limbah</span></div>
@@ -873,7 +838,7 @@
 
             <div id="predictionTab" class="hidden">
                 <div class="card">
-                    <h4><i class="fas fa-chart-line"></i> Prediksi Limbah (Machine Learning)</h4>
+                    <h4 style="margin-bottom: 12px;"><i class="fas fa-chart-line"></i> Prediksi Limbah (Machine Learning)</h4>
                     <div class="prediction-chart" id="predictionChart"></div>
                     <div class="alert-warning" id="predictionAlert"></div>
                 </div>
@@ -884,9 +849,9 @@
             </div>
 
             <div id="esgTab" class="hidden">
-                <div class="card" style="text-align: center;"><i class="fas fa-globe-asia"
-                        style="font-size: 48px; color: #2e7d64;"></i>
-                    <h3 style="margin: 12px 0;">Laporan Dampak Lingkungan</h3>
+                <div class="card" style="text-align: center;">
+                    <i class="fas fa-globe-asia" style="font-size: 40px; color: #2e7d64;"></i>
+                    <h3 style="margin: 10px 0; font-size: 16px;">Laporan Dampak Lingkungan</h3>
                     <div class="stats-row">
                         <div class="stat-card">
                             <div class="stat-value" id="co2Reduction">0kg</div>
@@ -897,27 +862,22 @@
                             <div class="stat-label">Limbah Terselamatkan</div>
                         </div>
                     </div>
-                    <div class="alert-success" style="margin: 16px 0;"><i class="fas fa-tree"></i> Kontribusi Anda
-                        setara dengan menanam <strong id="treesEquivalent">0</strong> pohon!</div>
-                    <button class="btn-primary" onclick="downloadESG()"><i class="fas fa-file-pdf"></i> Download Laporan
-                        ESG</button>
-                    <button class="btn-primary btn-secondary" onclick="shareESG()" style="margin-top: 12px;"><i
-                            class="fas fa-share-alt"></i> Bagikan Dampak</button>
+                    <div class="alert-success" style="margin: 12px 0;"><i class="fas fa-tree"></i> Kontribusi Anda setara dengan menanam <strong id="treesEquivalent">0</strong> pohon!</div>
+                    <button class="btn-primary" onclick="downloadESG()"><i class="fas fa-file-pdf"></i> Download Laporan ESG</button>
+                    <button class="btn-primary btn-secondary" onclick="shareESG()" style="margin-top: 10px;"><i class="fas fa-share-alt"></i> Bagikan Dampak</button>
                 </div>
             </div>
 
             <div id="reviewsTab" class="hidden">
                 <div class="card">
-                    <div class="section-title"><span><i class="fas fa-star" style="color:#ffc107;"></i> Semua Ulasan
-                            Pelanggan</span><span id="totalReviewsCount" class="badge badge-info">0</span></div>
+                    <div class="section-title"><span><i class="fas fa-star" style="color:#ffc107;"></i> Semua Ulasan Pelanggan</span><span id="totalReviewsCount" class="badge badge-info">0</span></div>
                     <div id="allReviewsList"></div>
                 </div>
             </div>
         </div>
 
         <div class="bottom-nav" style="display: none;" id="bottomNav">
-            <button class="nav-item active" data-tab="dashboard"><i
-                    class="fas fa-tachometer-alt"></i><span>Dashboard</span></button>
+            <button class="nav-item active" data-tab="dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></button>
             <button class="nav-item" data-tab="upload"><i class="fas fa-upload"></i><span>Upload</span></button>
             <button class="nav-item" data-tab="waste"><i class="fas fa-dumpster"></i><span>Limbah</span></button>
             <button class="nav-item" data-tab="prediction"><i class="fas fa-robot"></i><span>Prediksi</span></button>
@@ -926,12 +886,12 @@
         </div>
     </div>
 
-    <!-- MODAL KEBIJAKAN MITRA - Perbaikan: menggunakan class show untuk menampilkan -->
+    <!-- MODAL KEBIJAKAN MITRA -->
     <div class="modal-overlay" id="policyModal">
         <div class="modal-container">
             <div class="modal-header">
                 <h2><i class="fas fa-handshake"></i> Perjanjian Mitra HOREKA</h2>
-                <p style="font-size: 12px; color: #8fadbe;">Baca dan setujui kebijakan berikut</p>
+                <p style="font-size: 11px; color: #8fadbe;">Baca dan setujui kebijakan berikut</p>
             </div>
             <div class="modal-body">
                 <div class="policy-section">
@@ -939,51 +899,33 @@
                     <div class="spec-list">
                         <div class="spec-item">
                             <div class="spec-icon"><i class="fas fa-temperature-high"></i></div>
-                            <div class="spec-text"><strong>Suhu Penyimpanan</strong><small>Makanan panas minimal 60°C,
-                                    dingin maksimal 5°C</small></div>
+                            <div class="spec-text"><strong>Suhu Penyimpanan</strong><small>Makanan panas minimal 60°C, dingin maksimal 5°C</small></div>
                         </div>
                         <div class="spec-item">
                             <div class="spec-icon"><i class="fas fa-clock"></i></div>
-                            <div class="spec-text"><strong>Batas Waktu</strong><small>Maksimal 4 jam setelah
-                                    masak</small></div>
+                            <div class="spec-text"><strong>Batas Waktu</strong><small>Maksimal 4 jam setelah masak</small></div>
                         </div>
                         <div class="spec-item">
                             <div class="spec-icon"><i class="fas fa-box"></i></div>
-                            <div class="spec-text"><strong>Kemasan Higienis</strong><small>Wadah food-grade, tertutup
-                                    rapat</small></div>
+                            <div class="spec-text"><strong>Kemasan Higienis</strong><small>Wadah food-grade, tertutup rapat</small></div>
                         </div>
                     </div>
-                    <div class="alert-info"><i class="fas fa-shield-alt"></i> Sanksi: Peringatan → Penangguhan 7 hari →
-                        Hapus akun</div>
+                    <div class="alert-info"><i class="fas fa-shield-alt"></i> Sanksi: Peringatan → Penangguhan 7 hari → Hapus akun</div>
                 </div>
                 <div class="policy-section">
                     <h3><i class="fas fa-leaf"></i> Komitmen Zero Waste</h3>
-                    <p>Target pengurangan limbah: Minimal 20% dalam 6 bulan pertama. Mitra wajib melaporkan data limbah
-                        secara berkala.</p>
+                    <p style="font-size: 12px;">Target pengurangan limbah: Minimal 20% dalam 6 bulan pertama. Mitra wajib melaporkan data limbah secara berkala.</p>
                 </div>
                 <div class="policy-section">
                     <h3><i class="fas fa-check-circle"></i> Persetujuan Mitra</h3>
-                    <div class="checkbox-item" onclick="toggleCheckbox('check1')"><input type="checkbox"
-                            id="check1"><label>Memenuhi standar spesifikasi makanan serta menjamin keamanan pangan
-                            konsumen</label><small>Wajib mematuhi standar HACCP dasar</small></div>
-                    <div class="checkbox-item" onclick="toggleCheckbox('check2')"><input type="checkbox"
-                            id="check2"><label>Berkomitmen mengurangi limbah makanan dan aktif mengupload
-                            surplus</label><small>Zero waste adalah prioritas utama</small></div>
-                    <div class="checkbox-item" onclick="toggleCheckbox('check3')"><input type="checkbox"
-                            id="check3"><label>Menyetujui pengumpulan data penjualan dan limbah untuk analitik &
-                            prediksi AI</label><small>Data dianonimkan untuk keperluan peningkatan layanan</small></div>
-                    <div class="checkbox-item" onclick="toggleCheckbox('check4')"><input type="checkbox"
-                            id="check4"><label>Memahami sanksi pelanggaran: Peringatan tertulis, penangguhan akun 7
-                            hari, hingga penghapusan permanen</label><small>Kebijakan diberlakukan untuk menjaga
-                            ekosistem</small></div>
-                    <div class="checkbox-item" onclick="toggleCheckbox('check5')"><input type="checkbox"
-                            id="check5"><label>Bersedia mengikuti pelatihan keamanan pangan & food waste management yang
-                            diselenggarakan mitra utama</label><small>Pelatihan online gratis setiap 3 bulan</small>
-                    </div>
+                    <div class="checkbox-item" onclick="toggleCheckbox('check1')"><input type="checkbox" id="check1"><label>Memenuhi standar spesifikasi makanan serta menjamin keamanan pangan konsumen</label><small>Wajib mematuhi standar HACCP dasar</small></div>
+                    <div class="checkbox-item" onclick="toggleCheckbox('check2')"><input type="checkbox" id="check2"><label>Berkomitmen mengurangi limbah makanan dan aktif mengupload surplus</label><small>Zero waste adalah prioritas utama</small></div>
+                    <div class="checkbox-item" onclick="toggleCheckbox('check3')"><input type="checkbox" id="check3"><label>Menyetujui pengumpulan data penjualan dan limbah untuk analitik & prediksi AI</label><small>Data dianonimkan untuk keperluan peningkatan layanan</small></div>
+                    <div class="checkbox-item" onclick="toggleCheckbox('check4')"><input type="checkbox" id="check4"><label>Memahami sanksi pelanggaran: Peringatan tertulis, penangguhan akun 7 hari, hingga penghapusan permanen</label><small>Kebijakan diberlakukan untuk menjaga ekosistem</small></div>
+                    <div class="checkbox-item" onclick="toggleCheckbox('check5')"><input type="checkbox" id="check5"><label>Bersedia mengikuti pelatihan keamanan pangan & food waste management yang diselenggarakan mitra utama</label><small>Pelatihan online gratis setiap 3 bulan</small></div>
                 </div>
             </div>
-            <div class="modal-footer"><button class="btn-agree" id="agreeBtn" disabled onclick="acceptAgreement()"><i
-                        class="fas fa-check-circle"></i> Setuju & Mulai Berjualan</button></div>
+            <div class="modal-footer" style="padding: 16px 20px 20px;"><button class="btn-agree" id="agreeBtn" disabled onclick="acceptAgreement()"><i class="fas fa-check-circle"></i> Setuju & Mulai Berjualan</button></div>
         </div>
     </div>
 
@@ -1019,7 +961,7 @@
             yearly: { labels: ['2020', '2021', '2022', '2023', '2024'], sales: [1950, 2680, 3520, 4710, 5980], revenue: [41437500, 56950000, 74800000, 100087500, 127075000], carbon: [1657.5, 2278, 2992, 4003.5, 5083] }
         };
 
-        function renderStars(rating, size = '12px') {
+        function renderStars(rating, size = '10px') {
             let fullStars = Math.floor(rating);
             let stars = '';
             for (let i = 1; i <= 5; i++) {
@@ -1053,12 +995,12 @@
             container.innerHTML = reviews.map(r => `
                 <div class="review-item">
                     <div style="flex:1;">
-                        <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px; flex-wrap:wrap;">
-                            <strong style="font-size:13px;">${r.name}</strong>
-                            <div class="review-stars">${renderStars(r.rating, '11px')}</div>
-                            <span style="font-size:10px; color:#aaa;">${r.date}</span>
+                        <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px; flex-wrap:wrap;">
+                            <strong style="font-size:12px;">${r.name}</strong>
+                            <div class="review-stars">${renderStars(r.rating, '10px')}</div>
+                            <span style="font-size:9px; color:#aaa;">${r.date}</span>
                         </div>
-                        <div style="font-size:12px; color:#4a6272;">"${r.comment}"</div>
+                        <div style="font-size:11px; color:#4a6272;">"${r.comment}"</div>
                     </div>
                 </div>
             `).join('');
@@ -1091,11 +1033,11 @@
 
         function initCharts() {
             let salesCtx = document.getElementById('surplusSalesChart').getContext('2d');
-            salesChart = new Chart(salesCtx, { type: 'bar', data: { labels: chartData.daily.labels, datasets: [{ label: 'Porsi Terjual', data: chartData.daily.sales, backgroundColor: 'rgba(29,126,170,0.75)', borderRadius: 12 }] }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } } });
+            salesChart = new Chart(salesCtx, { type: 'bar', data: { labels: chartData.daily.labels, datasets: [{ label: 'Porsi Terjual', data: chartData.daily.sales, backgroundColor: 'rgba(29,126,170,0.75)', borderRadius: 10 }] }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } } });
             let revenueCtx = document.getElementById('revenueChart').getContext('2d');
-            revenueChart = new Chart(revenueCtx, { type: 'line', data: { labels: chartData.daily.labels, datasets: [{ label: 'Pendapatan (Rp)', data: chartData.daily.revenue, borderColor: '#2ecc71', backgroundColor: 'rgba(46,204,113,0.08)', borderWidth: 3, fill: true, tension: 0.3 }] }, options: { responsive: true, maintainAspectRatio: true, scales: { y: { beginAtZero: true, ticks: { callback: (v) => `Rp${(v / 1000).toFixed(0)}k` } } } } });
+            revenueChart = new Chart(revenueCtx, { type: 'line', data: { labels: chartData.daily.labels, datasets: [{ label: 'Pendapatan (Rp)', data: chartData.daily.revenue, borderColor: '#2ecc71', backgroundColor: 'rgba(46,204,113,0.08)', borderWidth: 2, fill: true, tension: 0.3 }] }, options: { responsive: true, maintainAspectRatio: true, scales: { y: { beginAtZero: true, ticks: { callback: (v) => `Rp${(v / 1000).toFixed(0)}k` } } } } });
             let carbonCtx = document.getElementById('carbonChart').getContext('2d');
-            carbonChart = new Chart(carbonCtx, { type: 'line', data: { labels: chartData.daily.labels, datasets: [{ label: 'CO₂eq (kg)', data: chartData.daily.carbon, borderColor: '#27ae60', backgroundColor: 'rgba(39,174,96,0.08)', borderWidth: 3, fill: true, tension: 0.3 }] }, options: { responsive: true, maintainAspectRatio: true, scales: { y: { beginAtZero: true } } } });
+            carbonChart = new Chart(carbonCtx, { type: 'line', data: { labels: chartData.daily.labels, datasets: [{ label: 'CO₂eq (kg)', data: chartData.daily.carbon, borderColor: '#27ae60', backgroundColor: 'rgba(39,174,96,0.08)', borderWidth: 2, fill: true, tension: 0.3 }] }, options: { responsive: true, maintainAspectRatio: true, scales: { y: { beginAtZero: true } } } });
             updateChartStats('daily', 'sales'); updateChartStats('daily', 'revenue'); updateChartStats('daily', 'carbon');
         }
 
@@ -1117,7 +1059,7 @@
             document.getElementById('treesEquivalent').innerText = Math.floor(totalWaste * 0.05);
             const activeContainer = document.getElementById('activeSurplusList');
             if (surplusList.length === 0) { activeContainer.innerHTML = '<div class="empty-state">Belum ada surplus diupload</div>'; document.getElementById('surplusCount').innerText = '0 item'; }
-            else { document.getElementById('surplusCount').innerText = surplusList.length + ' item'; activeContainer.innerHTML = surplusList.map(s => `<div class="surplus-item"><div><strong>${s.name}</strong><br><span>Rp${s.price.toLocaleString()} / porsi</span></div><span class="badge badge-success">Aktif</span></div>`).join(''); }
+            else { document.getElementById('surplusCount').innerText = surplusList.length + ' item'; activeContainer.innerHTML = surplusList.map(s => `<div class="surplus-item"><div><strong style="font-size:13px;">${s.name}</strong><br><span style="font-size:11px;">Rp${s.price.toLocaleString()} / porsi</span></div><span class="badge badge-success">Aktif</span></div>`).join(''); }
             document.getElementById('aiRecommendMsg').innerHTML = '<i class="fas fa-chart-line"></i> Rekomendasi AI: Berdasarkan tren realtime, tingkatkan promo surplus di Rabu & Jumat untuk maksimalkan pendapatan.';
             updateSimpleRating();
         }
@@ -1131,7 +1073,7 @@
             localStorage.setItem('horekaSurplus', JSON.stringify(surplusList));
             alert(`✅ ${name} berhasil diupload!`);
             document.getElementById('menuName').value = ''; document.getElementById('surplusPrice').value = ''; document.getElementById('portion').value = '';
-            updateDashboard(); showToast('Surplus makanan ditambahkan', '#1d7eaa');
+            updateDashboard(); showToast('Surplus makanan ditambahkan');
         }
 
         function recordWaste() {
@@ -1141,14 +1083,14 @@
             localStorage.setItem('horekaWaste', JSON.stringify(wasteRecords));
             let incentive = weight * 500; revenueTotal += incentive; localStorage.setItem('horekaRevenue', revenueTotal);
             document.getElementById('wasteWeight').value = ''; document.getElementById('wasteNote').value = '';
-            updateDashboard(); renderWasteHistory(); showToast(`Limbah ${weight}kg tercatat + insentif Rp${incentive}`, '#2c7a5e');
+            updateDashboard(); renderWasteHistory(); showToast(`Limbah ${weight}kg tercatat + insentif Rp${incentive}`);
         }
 
         function renderWasteHistory() {
             const container = document.getElementById('wasteHistoryList');
             if (!container) return;
             if (wasteRecords.length === 0) { container.innerHTML = '<div class="empty-state">Belum ada catatan limbah</div>'; return; }
-            container.innerHTML = wasteRecords.slice().reverse().slice(0, 5).map(w => `<div class="waste-item"><div><i class="fas fa-apple-alt"></i> ${w.type}<br><span style="font-size:11px;">${w.date}</span></div><div><strong>${w.weight} kg</strong> <span class="badge badge-warning">terkirim</span></div></div>`).join('');
+            container.innerHTML = wasteRecords.slice().reverse().slice(0, 5).map(w => `<div class="waste-item"><div><i class="fas fa-apple-alt"></i> ${w.type}<br><span style="font-size:10px;">${w.date}</span></div><div><strong>${w.weight} kg</strong> <span class="badge badge-warning">terkirim</span></div></div>`).join('');
         }
 
         function renderPrediction() {
@@ -1160,7 +1102,13 @@
             document.getElementById('recommendationList').innerHTML = `<div class="alert-success">📈 Upload surplus di jam makan siang meningkatkan penjualan 42% berdasarkan analitik realtime.</div><div class="alert-warning">🌱 Dengan mendaur ulang 50kg limbah, hemat 42.5kg CO₂eq setara tanam 1 pohon.</div>`;
         }
 
-        function showToast(msg, color) { let toast = document.createElement('div'); toast.innerText = msg; toast.style.cssText = `position:fixed; bottom:90px; left:50%; transform:translateX(-50%); background:${color}; color:white; padding:12px 24px; border-radius:60px; font-weight:600; font-size:13px; z-index:2000;`; document.body.appendChild(toast); setTimeout(() => toast.remove(), 2200); }
+        function showToast(msg) { 
+            let toast = document.createElement('div'); 
+            toast.className = 'toast-message';
+            toast.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`; 
+            document.body.appendChild(toast); 
+            setTimeout(() => toast.remove(), 2000); 
+        }
 
         function showTab(tabId) {
             ['dashboard', 'upload', 'waste', 'prediction', 'esg', 'reviews'].forEach(t => {
@@ -1176,10 +1124,8 @@
             if (tabId === 'waste') renderWasteHistory();
             if (tabId === 'prediction') renderPrediction();
             if (tabId === 'dashboard') updateDashboard();
-            if (tabId === 'reviews') { renderAllReviews(); }
+            if (tabId === 'reviews') renderAllReviews();
         }
-
-        function goToAI() { alert("✨ AI Bisnis: Rekomendasi stok real-time → Kurangi waste hingga 30% dengan dynamic pricing."); }
 
         function downloadESG() {
             let totalWaste = wasteRecords.reduce((s, w) => s + w.weight, 0);
@@ -1196,17 +1142,22 @@
             alert(`✨ Bagikan:\n"⭐ Rating ${stats.avg.toFixed(1)}/5 dari ${stats.total} pelanggan! Saya menyelamatkan ${totalWaste}kg limbah & mereduksi ${co2}kg CO₂eq! #ZeroFoodWaste #TooMuchHoreka"`);
         }
 
-        function toggleCheckbox(id) { let cb = document.getElementById(id); cb.checked = !cb.checked; let allChecked = true; for (let i = 1; i <= 5; i++) if (!document.getElementById(`check${i}`).checked) allChecked = false; document.getElementById('agreeBtn').disabled = !allChecked; }
+        function toggleCheckbox(id) { 
+            let cb = document.getElementById(id); 
+            cb.checked = !cb.checked; 
+            let allChecked = true; 
+            for (let i = 1; i <= 5; i++) if (!document.getElementById(`check${i}`).checked) allChecked = false; 
+            document.getElementById('agreeBtn').disabled = !allChecked; 
+        }
 
         function acceptAgreement() {
             localStorage.setItem('horekaAgreementAccepted', 'true');
             localStorage.setItem('horekaName', 'Warung MbaK Harum');
-            // Sembunyikan modal - gunakan class 'show' untuk mengontrol
             document.getElementById('policyModal').classList.remove('show');
             document.getElementById('mainContent').style.display = 'block';
             document.getElementById('bottomNav').style.display = 'flex';
             initDashboard();
-            showToast('Selamat bergabung! Pelanggan sudah memberi rating untuk Anda ⭐', '#1d7eaa');
+            showToast('Selamat bergabung! Pelanggan sudah memberi rating untuk Anda ⭐');
         }
 
         function initDashboard() {
@@ -1227,20 +1178,18 @@
                 ratingBanner.addEventListener('click', (e) => {
                     e.stopPropagation();
                     showTab('reviews');
-                    showToast('⭐ Membuka halaman ulasan pelanggan', '#1d7eaa');
+                    showToast('⭐ Membuka halaman ulasan pelanggan');
                 });
             }
         }
 
         document.querySelectorAll('.nav-item').forEach(btn => { btn.addEventListener('click', () => { if (btn.dataset.tab) showTab(btn.dataset.tab); }); });
 
-        // PERBAIKAN UTAMA: Menampilkan modal dengan class 'show'
         if (!hasAgreed) { 
-            document.getElementById('policyModal').classList.add('show');  // Tambah class show
+            document.getElementById('policyModal').classList.add('show');
             document.getElementById('mainContent').style.display = 'none'; 
             document.getElementById('bottomNav').style.display = 'none'; 
-        }
-        else {
+        } else {
             document.getElementById('policyModal').classList.remove('show');
             document.getElementById('mainContent').style.display = 'block';
             document.getElementById('bottomNav').style.display = 'flex';
