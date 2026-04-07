@@ -506,155 +506,124 @@
             margin-top: 6px;
         }
 
-        /* MODAL - DIPERBAIKI */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(8px);
-            transition: all 0.3s ease;
+        /* MODAL PERSETUJUAN - MENGGUNAKAN STYLE DARI DRIVER */
+        .consent-modal-overlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0; 
+            background: rgba(0,0,0,0.85); 
+            z-index: 2000; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            backdrop-filter: blur(6px); 
         }
         
-        /* State modal */
-        .modal-overlay[data-visible="true"] {
-            display: flex !important;
+        .consent-modal-container { 
+            max-width: 400px; 
+            width: 90%; 
+            background: white; 
+            border-radius: 28px; 
+            max-height: 85vh; 
+            overflow-y: auto; 
         }
         
-        .modal-overlay[data-visible="false"] {
-            display: none !important;
+        .consent-modal-header { 
+            padding: 20px 20px 10px; 
+            text-align: center; 
+            border-bottom: 1px solid #e2edf2; 
         }
-
-        .modal-container {
-            max-width: 400px;
-            width: 90%;
-            background: white;
-            border-radius: 28px;
-            max-height: 85vh;
-            overflow-y: auto;
-            margin: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        .modal-header {
-            padding: 20px 20px 12px;
-            border-bottom: 1px solid #e2edf2;
-            position: sticky;
-            top: 0;
-            background: white;
-            border-radius: 28px 28px 0 0;
-        }
-
-        .modal-header h2 {
+        
+        .consent-modal-header h2 {
             font-size: 20px;
-            font-weight: 800;
-            color: #1d7eaa;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .modal-body {
-            padding: 16px 20px;
-        }
-
-        .policy-section {
-            margin-bottom: 20px;
-            padding-bottom: 16px;
-            border-bottom: 1px solid #f0f4f8;
-        }
-
-        .policy-section h3 {
-            font-size: 15px;
-            font-weight: 700;
-            color: #2c5a74;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .spec-list {
-            background: #f8fafd;
-            border-radius: 16px;
-            padding: 12px;
-            margin: 10px 0;
-        }
-
-        .spec-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 0;
-            border-bottom: 1px solid #e9f0f5;
-        }
-
-        .spec-icon {
-            width: 28px;
-            height: 28px;
-            background: #e9f3f9;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             color: #1d7eaa;
         }
-
-        .checkbox-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            margin-bottom: 12px;
-            padding: 10px;
-            background: #f8fafd;
-            border-radius: 14px;
-            cursor: pointer;
+        
+        .consent-modal-body { 
+            padding: 16px 18px; 
         }
-
-        .checkbox-item input {
+        
+        .policy-card { 
+            background: #f8fbfe; 
+            border-radius: 20px; 
+            padding: 14px; 
+            margin-bottom: 16px; 
+            border: 1px solid #e2edf2; 
+        }
+        
+        .policy-title { 
+            font-weight: 800; 
+            margin-bottom: 10px; 
+            color: #1d7eaa; 
+            font-size: 14px;
+        }
+        
+        .spec-list { 
+            list-style: none; 
+            padding-left: 0; 
+        }
+        
+        .spec-list li { 
+            padding: 6px 0; 
+            display: flex; 
+            gap: 10px; 
+            font-size: 12px; 
+            border-bottom: 1px solid #eef2f5; 
+        }
+        
+        .checkbox-group { 
+            margin: 16px 0 14px; 
+            background: #f9f9fc; 
+            padding: 10px; 
+            border-radius: 16px; 
+        }
+        
+        .checkbox-label { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            margin-bottom: 12px; 
+            font-size: 12px; 
+            cursor: pointer; 
+        }
+        
+        .checkbox-label input {
             width: 18px;
             height: 18px;
-            margin-top: 2px;
-            accent-color: #1d7eaa;
+            margin: 0;
             cursor: pointer;
         }
-
-        .checkbox-item label {
+        
+        .checkbox-label label {
             flex: 1;
-            font-size: 12px;
-            font-weight: 500;
+            cursor: pointer;
             color: #2c5a74;
             line-height: 1.4;
-            cursor: pointer;
         }
-
-        .checkbox-item small {
+        
+        .checkbox-label small {
             display: block;
             font-size: 10px;
             color: #8fadbe;
         }
-
-        .btn-agree {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(95deg, #1d7eaa, #166e94);
-            color: white;
-            border: none;
-            border-radius: 40px;
-            font-weight: 700;
+        
+        .agree-btn { 
+            width: 100%; 
+            padding: 14px; 
+            background: linear-gradient(95deg, #1d7eaa, #166e94); 
+            border: none; 
+            border-radius: 40px; 
+            color: white; 
+            font-weight: 700; 
+            cursor: pointer; 
             font-size: 15px;
-            cursor: pointer;
-            margin-top: 12px;
         }
-
-        .btn-agree:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+        
+        .agree-btn:disabled { 
+            opacity: 0.5; 
+            cursor: not-allowed; 
         }
 
         .review-stars {
@@ -670,7 +639,7 @@
             position: fixed;
             bottom: 90px;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-50%) translateY(120px);
             background: #1d7eaa;
             color: white;
             padding: 10px 20px;
@@ -678,25 +647,25 @@
             font-size: 12px;
             font-weight: 600;
             z-index: 1000;
-            white-space: nowrap;
-            max-width: 90%;
-            white-space: normal;
             text-align: center;
+            transition: all 0.2s ease;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .toast-message.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
         }
 
         .hide-content {
             display: none !important;
         }
-        
-        /* Mencegah flash modal */
-        .no-flash {
-            visibility: visible;
-        }
     </style>
 </head>
 
 <body>
-    <div class="app-container">
+    <div class="app-container" id="appContainer" style="display: none;">
         <div class="status-bar"><span>9:41</span><span><i class="fas fa-wifi"></i> <i class="fas fa-battery-full"></i></span></div>
         <div class="header">
             <div class="logo-area">
@@ -901,76 +870,76 @@
         </div>
     </div>
 
-    <!-- MODAL KEBIJAKAN MITRA -->
-    <div class="modal-overlay" id="policyModal" data-visible="false">
-        <div class="modal-container">
-            <div class="modal-header">
+    <!-- MODAL PERSETUJUAN - MENGGUNAKAN STRUKTUR DARI DRIVER -->
+    <div id="consentModal" class="consent-modal-overlay">
+        <div class="consent-modal-container">
+            <div class="consent-modal-header">
                 <h2><i class="fas fa-handshake"></i> Perjanjian Mitra HOREKA</h2>
                 <p style="font-size: 11px; color: #8fadbe;">Baca dan setujui kebijakan berikut</p>
             </div>
-            <div class="modal-body">
-                <div class="policy-section">
-                    <h3><i class="fas fa-utensils"></i> Standar & Spesifikasi Makanan</h3>
-                    <div class="spec-list">
-                        <div class="spec-item">
-                            <div class="spec-icon"><i class="fas fa-temperature-high"></i></div>
-                            <div class="spec-text"><strong>Suhu Penyimpanan</strong><small>Makanan panas minimal 60°C, dingin maksimal 5°C</small></div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-icon"><i class="fas fa-clock"></i></div>
-                            <div class="spec-text"><strong>Batas Waktu</strong><small>Maksimal 4 jam setelah masak</small></div>
-                        </div>
-                        <div class="spec-item">
-                            <div class="spec-icon"><i class="fas fa-box"></i></div>
-                            <div class="spec-text"><strong>Kemasan Higienis</strong><small>Wadah food-grade, tertutup rapat</small></div>
-                        </div>
-                    </div>
-                    <div class="alert-info"><i class="fas fa-shield-alt"></i> Sanksi: Peringatan → Penangguhan 7 hari → Hapus akun</div>
+            <div class="consent-modal-body">
+                <div class="policy-card">
+                    <div class="policy-title"><i class="fas fa-utensils"></i> Standar & Spesifikasi Makanan</div>
+                    <ul class="spec-list">
+                        <li><i class="fas fa-temperature-high"></i> <strong>Suhu Penyimpanan:</strong> Makanan panas minimal 60°C, dingin maksimal 5°C</li>
+                        <li><i class="fas fa-clock"></i> <strong>Batas Waktu:</strong> Maksimal 4 jam setelah masak</li>
+                        <li><i class="fas fa-box"></i> <strong>Kemasan Higienis:</strong> Wadah food-grade, tertutup rapat</li>
+                        <li><i class="fas fa-shield-alt"></i> <strong>Sanksi:</strong> Peringatan → Penangguhan 7 hari → Hapus akun</li>
+                    </ul>
                 </div>
-                <div class="policy-section">
-                    <h3><i class="fas fa-leaf"></i> Komitmen Zero Waste</h3>
-                    <p style="font-size: 12px;">Target pengurangan limbah: Minimal 20% dalam 6 bulan pertama. Mitra wajib melaporkan data limbah secara berkala.</p>
+                <div class="policy-card">
+                    <div class="policy-title"><i class="fas fa-leaf"></i> Komitmen Zero Waste</div>
+                    <ul class="spec-list">
+                        <li><i class="fas fa-chart-line"></i> Target pengurangan limbah: Minimal 20% dalam 6 bulan pertama</li>
+                        <li><i class="fas fa-file-alt"></i> Mitra wajib melaporkan data limbah secara berkala</li>
+                        <li><i class="fas fa-recycle"></i> Aktif mengupload makanan surplus minimal 3x per minggu</li>
+                    </ul>
                 </div>
-                <div class="policy-section">
-                    <h3><i class="fas fa-check-circle"></i> Persetujuan Mitra</h3>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="check1">
-                        <label>Memenuhi standar spesifikasi makanan serta menjamin keamanan pangan konsumen</label>
-                        <small>Wajib mematuhi standar HACCP dasar</small>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="check2">
-                        <label>Berkomitmen mengurangi limbah makanan dan aktif mengupload surplus</label>
-                        <small>Zero waste adalah prioritas utama</small>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="check3">
-                        <label>Menyetujui pengumpulan data penjualan dan limbah untuk analitik & prediksi AI</label>
-                        <small>Data dianonimkan untuk keperluan peningkatan layanan</small>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="check4">
-                        <label>Memahami sanksi pelanggaran: Peringatan tertulis, penangguhan akun 7 hari, hingga penghapusan permanen</label>
-                        <small>Kebijakan diberlakukan untuk menjaga ekosistem</small>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" id="check5">
-                        <label>Bersedia mengikuti pelatihan keamanan pangan & food waste management yang diselenggarakan mitra utama</label>
-                        <small>Pelatihan online gratis setiap 3 bulan</small>
+                <div class="policy-card">
+                    <div class="policy-title"><i class="fas fa-check-circle"></i> Persetujuan Mitra</div>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeStandard">
+                            <label>✅ Saya memenuhi standar spesifikasi makanan serta menjamin keamanan pangan konsumen</label>
+                            <small>Wajib mematuhi standar HACCP dasar</small>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeZeroWaste">
+                            <label>✅ Saya berkomitmen mengurangi limbah makanan dan aktif mengupload surplus</label>
+                            <small>Zero waste adalah prioritas utama</small>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeData">
+                            <label>✅ Saya menyetujui pengumpulan data penjualan dan limbah untuk analitik & prediksi AI</label>
+                            <small>Data dianonimkan untuk keperluan peningkatan layanan</small>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeSanction">
+                            <label>✅ Saya memahami sanksi pelanggaran: Peringatan tertulis, penangguhan akun 7 hari, hingga penghapusan permanen</label>
+                            <small>Kebijakan diberlakukan untuk menjaga ekosistem</small>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="agreeTraining">
+                            <label>✅ Saya bersedia mengikuti pelatihan keamanan pangan & food waste management yang diselenggarakan mitra utama</label>
+                            <small>Pelatihan online gratis setiap 3 bulan</small>
+                        </label>
                     </div>
                 </div>
             </div>
-            <div class="modal-footer" style="padding: 16px 20px 20px;">
-                <button class="btn-agree" id="agreeBtn" disabled><i class="fas fa-check-circle"></i> Setuju & Mulai Berjualan</button>
+            <div style="padding: 16px 20px 20px;">
+                <button id="confirmConsentBtn" class="agree-btn" disabled><i class="fas fa-check-circle"></i> Setuju & Mulai Berjualan</button>
             </div>
         </div>
     </div>
 
+    <div id="toast" class="toast-message"><span></span></div>
+
     <script>
-        // Data awal
+        // ========== DATA AWAL ==========
         let wasteRecords = JSON.parse(localStorage.getItem('horekaWaste') || '[]');
         let surplusList = JSON.parse(localStorage.getItem('horekaSurplus') || '[]');
         let revenueTotal = parseFloat(localStorage.getItem('horekaRevenue') || '0');
+        let toastTimeout = null;
 
         let defaultReviews = [
             { id: 1, rating: 5, name: "Budi Santoso", comment: "Makanannya enak banget! Porsi besar dan harga terjangkau. Recommended!", date: "2 hari lalu" },
@@ -997,6 +966,26 @@
             monthly: { labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'], sales: [340, 380, 410, 445, 485, 520, 550, 585, 620, 655, 690, 730], revenue: [7225000, 8075000, 8712500, 9456250, 10306250, 11050000, 11687500, 12431250, 13175000, 13918750, 14662500, 15512500], carbon: [289, 323, 348.5, 378.25, 412.25, 442, 467.5, 497.25, 527, 556.75, 586.5, 620.5] },
             yearly: { labels: ['2020', '2021', '2022', '2023', '2024'], sales: [1950, 2680, 3520, 4710, 5980], revenue: [41437500, 56950000, 74800000, 100087500, 127075000], carbon: [1657.5, 2278, 2992, 4003.5, 5083] }
         };
+
+        // ========== FUNGSI UTILITY ==========
+        function showToast(msg, isError = false) {
+            let toast = document.getElementById('toast');
+            if (!toast) return;
+            if (toastTimeout) clearTimeout(toastTimeout);
+            toast.querySelector('span').innerText = msg;
+            toast.style.background = isError ? '#c0392b' : '#1d7eaa';
+            toast.classList.remove('show');
+            void toast.offsetWidth;
+            toast.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show');
+                toastTimeout = null;
+            }, 2500);
+        }
+
+        function formatRupiah(amount) {
+            return 'Rp' + amount.toLocaleString('id-ID');
+        }
 
         function renderStars(rating, size = '10px') {
             let fullStars = Math.floor(rating);
@@ -1209,23 +1198,22 @@
             let surplusPrice = parseInt(document.getElementById('surplusPrice').value);
             let portion = parseInt(document.getElementById('portion').value);
             if (!name || isNaN(surplusPrice) || isNaN(portion) || surplusPrice <= 0) { 
-                alert('Isi semua field dengan benar!'); 
+                showToast('Isi semua field dengan benar!', true); 
                 return; 
             }
             surplusList.push({ id: Date.now(), name: name, price: surplusPrice, portion: portion, sold: 0, date: new Date().toLocaleDateString('id-ID'), time: document.getElementById('availableTime').value });
             localStorage.setItem('horekaSurplus', JSON.stringify(surplusList));
-            alert(`✅ ${name} berhasil diupload!`);
+            showToast(`✅ ${name} berhasil diupload!`);
             document.getElementById('menuName').value = ''; 
             document.getElementById('surplusPrice').value = ''; 
             document.getElementById('portion').value = '';
             updateDashboard(); 
-            showToast('Surplus makanan ditambahkan');
         }
 
         function recordWaste() {
             let weight = parseFloat(document.getElementById('wasteWeight').value);
             if (isNaN(weight) || weight <= 0) { 
-                alert('Masukkan berat limbah yang valid (kg)'); 
+                showToast('Masukkan berat limbah yang valid (kg)', true); 
                 return; 
             }
             wasteRecords.push({ id: Date.now(), type: document.getElementById('wasteType').value, weight: weight, note: document.getElementById('wasteNote').value, date: new Date().toLocaleDateString('id-ID') });
@@ -1263,14 +1251,6 @@
             if (recommendationList) recommendationList.innerHTML = `<div class="alert-success">📈 Upload surplus di jam makan siang meningkatkan penjualan 42% berdasarkan analitik realtime.</div><div class="alert-warning">🌱 Dengan mendaur ulang 50kg limbah, hemat 42.5kg CO₂eq setara tanam 1 pohon.</div>`;
         }
 
-        function showToast(msg) { 
-            let toast = document.createElement('div'); 
-            toast.className = 'toast-message';
-            toast.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`; 
-            document.body.appendChild(toast); 
-            setTimeout(() => toast.remove(), 2000); 
-        }
-
         function showTab(tabId) {
             ['dashboard', 'upload', 'waste', 'prediction', 'esg', 'reviews'].forEach(t => {
                 let el = document.getElementById(`${t}Tab`);
@@ -1303,41 +1283,6 @@
             alert(`✨ Bagikan:\n"⭐ Rating ${stats.avg.toFixed(1)}/5 dari ${stats.total} pelanggan! Saya menyelamatkan ${totalWaste}kg limbah & mereduksi ${co2}kg CO₂eq! #ZeroFoodWaste #TooMuchHoreka"`);
         }
 
-        function checkAllCheckboxes() {
-            let allChecked = true;
-            for (let i = 1; i <= 5; i++) {
-                let cb = document.getElementById(`check${i}`);
-                if (cb && !cb.checked) allChecked = false;
-            }
-            let agreeBtn = document.getElementById('agreeBtn');
-            if (agreeBtn) agreeBtn.disabled = !allChecked;
-        }
-
-        function setupCheckboxListeners() {
-            for (let i = 1; i <= 5; i++) {
-                let cb = document.getElementById(`check${i}`);
-                if (cb) {
-                    cb.addEventListener('change', checkAllCheckboxes);
-                }
-            }
-        }
-
-        function acceptAgreement() {
-            localStorage.setItem('horekaAgreementAccepted', 'true');
-            localStorage.setItem('horekaName', 'Warung MbaK Harum');
-            let modal = document.getElementById('policyModal');
-            let mainContent = document.getElementById('mainContent');
-            let bottomNav = document.getElementById('bottomNav');
-            
-            if (modal) modal.setAttribute('data-visible', 'false');
-            if (mainContent) mainContent.classList.remove('hide-content');
-            if (bottomNav) bottomNav.classList.remove('hide-content');
-            
-            initDashboard();
-            setupRatingClick();
-            showToast('Selamat bergabung! Pelanggan sudah memberi rating untuk Anda ⭐');
-        }
-
         function initDashboard() {
             initCharts();
             setupFilters();
@@ -1362,26 +1307,53 @@
             }
         }
 
-        // ========== PERBAIKAN UTAMA - MODAL TIDAK LANGSUNG HILANG ==========
-        function startApp() {
-            // Ambil status persetujuan dari localStorage
-            const userHasAgreed = localStorage.getItem('horekaAgreementAccepted') === 'true';
+        // ========== SETUP CONSENT MODAL (SAMA SEPERTI DRIVER) ==========
+        function setupConsent() {
+            const agreeStandard = document.getElementById('agreeStandard');
+            const agreeZeroWaste = document.getElementById('agreeZeroWaste');
+            const agreeData = document.getElementById('agreeData');
+            const agreeSanction = document.getElementById('agreeSanction');
+            const agreeTraining = document.getElementById('agreeTraining');
+            const confirmBtn = document.getElementById('confirmConsentBtn');
+            const modal = document.getElementById('consentModal');
+            const appContainer = document.getElementById('appContainer');
             
-            const modal = document.getElementById('policyModal');
-            const mainContent = document.getElementById('mainContent');
-            const bottomNav = document.getElementById('bottomNav');
+            function checkAll() {
+                confirmBtn.disabled = !(agreeStandard.checked && agreeZeroWaste.checked && agreeData.checked && agreeSanction.checked && agreeTraining.checked);
+            }
+            
+            agreeStandard.addEventListener('change', checkAll);
+            agreeZeroWaste.addEventListener('change', checkAll);
+            agreeData.addEventListener('change', checkAll);
+            agreeSanction.addEventListener('change', checkAll);
+            agreeTraining.addEventListener('change', checkAll);
+            
+            confirmBtn.addEventListener('click', () => {
+                localStorage.setItem('horekaAgreementAccepted', 'true');
+                localStorage.setItem('horekaName', 'Warung MbaK Harum');
+                modal.style.display = 'none';
+                appContainer.style.display = 'flex';
+                initDashboard();
+                setupRatingClick();
+                showToast('Selamat bergabung! Pelanggan sudah memberi rating untuk Anda ⭐');
+            });
+        }
+
+        // ========== CEK PERSETUJUAN DAN START APP ==========
+        function startApp() {
+            const userHasAgreed = localStorage.getItem('horekaAgreementAccepted') === 'true';
+            const modal = document.getElementById('consentModal');
+            const appContainer = document.getElementById('appContainer');
             
             if (!userHasAgreed) {
-                // Belum setuju: tampilkan modal, sembunyikan konten utama
-                if (modal) modal.setAttribute('data-visible', 'true');
-                if (mainContent) mainContent.classList.add('hide-content');
-                if (bottomNav) bottomNav.classList.add('hide-content');
-                setupCheckboxListeners();
+                // Belum setuju: tampilkan modal, sembunyikan konten
+                if (modal) modal.style.display = 'flex';
+                if (appContainer) appContainer.style.display = 'none';
+                setupConsent();
             } else {
-                // Sudah setuju: sembunyikan modal, tampilkan konten utama
-                if (modal) modal.setAttribute('data-visible', 'false');
-                if (mainContent) mainContent.classList.remove('hide-content');
-                if (bottomNav) bottomNav.classList.remove('hide-content');
+                // Sudah setuju: sembunyikan modal, tampilkan konten
+                if (modal) modal.style.display = 'none';
+                if (appContainer) appContainer.style.display = 'flex';
                 initDashboard();
                 setupRatingClick();
             }
@@ -1393,21 +1365,12 @@
                 if (btn.dataset.tab) showTab(btn.dataset.tab); 
             }); 
         });
-
-        // Setup tombol agree
-        let agreeBtn = document.getElementById('agreeBtn');
-        if (agreeBtn) {
-            agreeBtn.onclick = acceptAgreement;
-        }
         
-        // Jalankan startApp setelah DOM sepenuhnya dimuat
-        // Gunakan requestAnimationFrame untuk memastikan rendering di mobile lebih stabil
+        // Jalankan startApp setelah DOM siap
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', function() {
-                requestAnimationFrame(startApp);
-            });
+            document.addEventListener('DOMContentLoaded', startApp);
         } else {
-            requestAnimationFrame(startApp);
+            startApp();
         }
     </script>
 </body>
