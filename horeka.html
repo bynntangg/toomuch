@@ -101,7 +101,6 @@
             font-size: 12px;
         }
 
-        /* Responsive untuk HP */
         @media (max-width: 450px) {
             .logo-area h1 {
                 font-size: 18px;
@@ -514,16 +513,12 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.75);
-            z-index: 1000;
-            display: none;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            display: flex;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-overlay.show {
-            display: flex;
+            backdrop-filter: blur(8px);
         }
 
         .modal-container {
@@ -534,6 +529,7 @@
             max-height: 85vh;
             overflow-y: auto;
             margin: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
 
         .modal-header {
@@ -616,6 +612,7 @@
             height: 18px;
             margin-top: 2px;
             accent-color: #1d7eaa;
+            cursor: pointer;
         }
 
         .checkbox-item label {
@@ -624,6 +621,7 @@
             font-weight: 500;
             color: #2c5a74;
             line-height: 1.4;
+            cursor: pointer;
         }
 
         .checkbox-item small {
@@ -659,7 +657,6 @@
             font-size: 10px;
         }
 
-        /* Toast */
         .toast-message {
             position: fixed;
             bottom: 90px;
@@ -677,6 +674,10 @@
             white-space: normal;
             text-align: center;
         }
+
+        .hide-content {
+            display: none !important;
+        }
     </style>
 </head>
 
@@ -693,7 +694,7 @@
             </button>
         </div>
 
-        <div class="main-content" id="mainContent" style="display: none;">
+        <div class="main-content" id="mainContent">
             <div id="dashboardTab">
                 <div class="welcome-banner" id="ratingBannerBtn">
                     <div class="greeting">Selamat datang, <span id="ownerName">Warung MbaK Harum</span>! 👋</div>
@@ -876,7 +877,7 @@
             </div>
         </div>
 
-        <div class="bottom-nav" style="display: none;" id="bottomNav">
+        <div class="bottom-nav" id="bottomNav">
             <button class="nav-item active" data-tab="dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></button>
             <button class="nav-item" data-tab="upload"><i class="fas fa-upload"></i><span>Upload</span></button>
             <button class="nav-item" data-tab="waste"><i class="fas fa-dumpster"></i><span>Limbah</span></button>
@@ -887,7 +888,7 @@
     </div>
 
     <!-- MODAL KEBIJAKAN MITRA -->
-    <div class="modal-overlay" id="policyModal">
+    <div class="modal-overlay" id="policyModal" style="display: none;">
         <div class="modal-container">
             <div class="modal-header">
                 <h2><i class="fas fa-handshake"></i> Perjanjian Mitra HOREKA</h2>
@@ -918,19 +919,44 @@
                 </div>
                 <div class="policy-section">
                     <h3><i class="fas fa-check-circle"></i> Persetujuan Mitra</h3>
-                    <div class="checkbox-item" onclick="toggleCheckbox('check1')"><input type="checkbox" id="check1"><label>Memenuhi standar spesifikasi makanan serta menjamin keamanan pangan konsumen</label><small>Wajib mematuhi standar HACCP dasar</small></div>
-                    <div class="checkbox-item" onclick="toggleCheckbox('check2')"><input type="checkbox" id="check2"><label>Berkomitmen mengurangi limbah makanan dan aktif mengupload surplus</label><small>Zero waste adalah prioritas utama</small></div>
-                    <div class="checkbox-item" onclick="toggleCheckbox('check3')"><input type="checkbox" id="check3"><label>Menyetujui pengumpulan data penjualan dan limbah untuk analitik & prediksi AI</label><small>Data dianonimkan untuk keperluan peningkatan layanan</small></div>
-                    <div class="checkbox-item" onclick="toggleCheckbox('check4')"><input type="checkbox" id="check4"><label>Memahami sanksi pelanggaran: Peringatan tertulis, penangguhan akun 7 hari, hingga penghapusan permanen</label><small>Kebijakan diberlakukan untuk menjaga ekosistem</small></div>
-                    <div class="checkbox-item" onclick="toggleCheckbox('check5')"><input type="checkbox" id="check5"><label>Bersedia mengikuti pelatihan keamanan pangan & food waste management yang diselenggarakan mitra utama</label><small>Pelatihan online gratis setiap 3 bulan</small></div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="check1">
+                        <label>Memenuhi standar spesifikasi makanan serta menjamin keamanan pangan konsumen</label>
+                        <small>Wajib mematuhi standar HACCP dasar</small>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="check2">
+                        <label>Berkomitmen mengurangi limbah makanan dan aktif mengupload surplus</label>
+                        <small>Zero waste adalah prioritas utama</small>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="check3">
+                        <label>Menyetujui pengumpulan data penjualan dan limbah untuk analitik & prediksi AI</label>
+                        <small>Data dianonimkan untuk keperluan peningkatan layanan</small>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="check4">
+                        <label>Memahami sanksi pelanggaran: Peringatan tertulis, penangguhan akun 7 hari, hingga penghapusan permanen</label>
+                        <small>Kebijakan diberlakukan untuk menjaga ekosistem</small>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="check5">
+                        <label>Bersedia mengikuti pelatihan keamanan pangan & food waste management yang diselenggarakan mitra utama</label>
+                        <small>Pelatihan online gratis setiap 3 bulan</small>
+                    </div>
                 </div>
             </div>
-            <div class="modal-footer" style="padding: 16px 20px 20px;"><button class="btn-agree" id="agreeBtn" disabled onclick="acceptAgreement()"><i class="fas fa-check-circle"></i> Setuju & Mulai Berjualan</button></div>
+            <div class="modal-footer" style="padding: 16px 20px 20px;">
+                <button class="btn-agree" id="agreeBtn" disabled><i class="fas fa-check-circle"></i> Setuju & Mulai Berjualan</button>
+            </div>
         </div>
     </div>
 
     <script>
+        // Cek apakah user sudah pernah setuju
         let hasAgreed = localStorage.getItem('horekaAgreementAccepted') === 'true';
+        
+        // Data awal
         let wasteRecords = JSON.parse(localStorage.getItem('horekaWaste') || '[]');
         let surplusList = JSON.parse(localStorage.getItem('horekaSurplus') || '[]');
         let revenueTotal = parseFloat(localStorage.getItem('horekaRevenue') || '0');
@@ -981,8 +1007,10 @@
 
         function updateSimpleRating() {
             let stats = calculateRatingStats();
-            document.getElementById('ratingScore').innerText = stats.avg.toFixed(1);
-            document.getElementById('ratingCount').innerText = `(${stats.total} ulasan)`;
+            let scoreEl = document.getElementById('ratingScore');
+            let countEl = document.getElementById('ratingCount');
+            if (scoreEl) scoreEl.innerText = stats.avg.toFixed(1);
+            if (countEl) countEl.innerText = `(${stats.total} ulasan)`;
         }
 
         function renderAllReviews() {
@@ -1004,7 +1032,8 @@
                     </div>
                 </div>
             `).join('');
-            document.getElementById('totalReviewsCount').innerText = reviews.length;
+            let totalEl = document.getElementById('totalReviewsCount');
+            if (totalEl) totalEl.innerText = reviews.length;
         }
 
         function updateChartStats(period, type) {
@@ -1012,55 +1041,155 @@
             if (type === 'sales') {
                 let total = data.sales.reduce((a, b) => a + b, 0);
                 let avg = Math.round(total / data.sales.length);
-                document.getElementById('totalSold').innerText = total;
-                document.getElementById('avgSales').innerText = avg;
+                let totalEl = document.getElementById('totalSold');
+                let avgEl = document.getElementById('avgSales');
+                if (totalEl) totalEl.innerText = total;
+                if (avgEl) avgEl.innerText = avg;
             } else if (type === 'revenue') {
                 let total = data.revenue.reduce((a, b) => a + b, 0);
                 let avg = Math.round(total / data.revenue.length);
-                document.getElementById('totalRevenue').innerText = 'Rp' + total.toLocaleString();
-                document.getElementById('avgRevenue').innerText = 'Rp' + avg.toLocaleString();
+                let totalEl = document.getElementById('totalRevenue');
+                let avgEl = document.getElementById('avgRevenue');
+                if (totalEl) totalEl.innerText = 'Rp' + total.toLocaleString();
+                if (avgEl) avgEl.innerText = 'Rp' + avg.toLocaleString();
             } else if (type === 'carbon') {
                 let total = data.carbon.reduce((a, b) => a + b, 0);
                 let trees = Math.floor(total / 50);
-                document.getElementById('totalCarbon').innerText = total.toFixed(1) + ' kg';
-                document.getElementById('treesPlanted').innerText = trees;
+                let totalEl = document.getElementById('totalCarbon');
+                let treesEl = document.getElementById('treesPlanted');
+                if (totalEl) totalEl.innerText = total.toFixed(1) + ' kg';
+                if (treesEl) treesEl.innerText = trees;
             }
         }
 
-        function updateSalesChart(period) { let data = chartData[period]; salesChart.data.labels = data.labels; salesChart.data.datasets[0].data = data.sales; salesChart.update(); updateChartStats(period, 'sales'); }
-        function updateRevenueChart(period) { let data = chartData[period]; revenueChart.data.labels = data.labels; revenueChart.data.datasets[0].data = data.revenue; revenueChart.update(); updateChartStats(period, 'revenue'); }
-        function updateCarbonChart(period) { let data = chartData[period]; carbonChart.data.labels = data.labels; carbonChart.data.datasets[0].data = data.carbon; carbonChart.update(); updateChartStats(period, 'carbon'); }
+        function updateSalesChart(period) { 
+            let data = chartData[period]; 
+            if (salesChart) {
+                salesChart.data.labels = data.labels; 
+                salesChart.data.datasets[0].data = data.sales; 
+                salesChart.update(); 
+            }
+            updateChartStats(period, 'sales'); 
+        }
+        
+        function updateRevenueChart(period) { 
+            let data = chartData[period]; 
+            if (revenueChart) {
+                revenueChart.data.labels = data.labels; 
+                revenueChart.data.datasets[0].data = data.revenue; 
+                revenueChart.update(); 
+            }
+            updateChartStats(period, 'revenue'); 
+        }
+        
+        function updateCarbonChart(period) { 
+            let data = chartData[period]; 
+            if (carbonChart) {
+                carbonChart.data.labels = data.labels; 
+                carbonChart.data.datasets[0].data = data.carbon; 
+                carbonChart.update(); 
+            }
+            updateChartStats(period, 'carbon'); 
+        }
 
         function initCharts() {
-            let salesCtx = document.getElementById('surplusSalesChart').getContext('2d');
-            salesChart = new Chart(salesCtx, { type: 'bar', data: { labels: chartData.daily.labels, datasets: [{ label: 'Porsi Terjual', data: chartData.daily.sales, backgroundColor: 'rgba(29,126,170,0.75)', borderRadius: 10 }] }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } } });
-            let revenueCtx = document.getElementById('revenueChart').getContext('2d');
-            revenueChart = new Chart(revenueCtx, { type: 'line', data: { labels: chartData.daily.labels, datasets: [{ label: 'Pendapatan (Rp)', data: chartData.daily.revenue, borderColor: '#2ecc71', backgroundColor: 'rgba(46,204,113,0.08)', borderWidth: 2, fill: true, tension: 0.3 }] }, options: { responsive: true, maintainAspectRatio: true, scales: { y: { beginAtZero: true, ticks: { callback: (v) => `Rp${(v / 1000).toFixed(0)}k` } } } } });
-            let carbonCtx = document.getElementById('carbonChart').getContext('2d');
-            carbonChart = new Chart(carbonCtx, { type: 'line', data: { labels: chartData.daily.labels, datasets: [{ label: 'CO₂eq (kg)', data: chartData.daily.carbon, borderColor: '#27ae60', backgroundColor: 'rgba(39,174,96,0.08)', borderWidth: 2, fill: true, tension: 0.3 }] }, options: { responsive: true, maintainAspectRatio: true, scales: { y: { beginAtZero: true } } } });
-            updateChartStats('daily', 'sales'); updateChartStats('daily', 'revenue'); updateChartStats('daily', 'carbon');
+            let salesCtx = document.getElementById('surplusSalesChart');
+            let revenueCtx = document.getElementById('revenueChart');
+            let carbonCtx = document.getElementById('carbonChart');
+            
+            if (salesCtx) {
+                salesChart = new Chart(salesCtx.getContext('2d'), { 
+                    type: 'bar', 
+                    data: { labels: chartData.daily.labels, datasets: [{ label: 'Porsi Terjual', data: chartData.daily.sales, backgroundColor: 'rgba(29,126,170,0.75)', borderRadius: 10 }] }, 
+                    options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true } } } 
+                });
+            }
+            
+            if (revenueCtx) {
+                revenueChart = new Chart(revenueCtx.getContext('2d'), { 
+                    type: 'line', 
+                    data: { labels: chartData.daily.labels, datasets: [{ label: 'Pendapatan (Rp)', data: chartData.daily.revenue, borderColor: '#2ecc71', backgroundColor: 'rgba(46,204,113,0.08)', borderWidth: 2, fill: true, tension: 0.3 }] }, 
+                    options: { responsive: true, maintainAspectRatio: true, scales: { y: { beginAtZero: true, ticks: { callback: (v) => `Rp${(v / 1000).toFixed(0)}k` } } } } 
+                });
+            }
+            
+            if (carbonCtx) {
+                carbonChart = new Chart(carbonCtx.getContext('2d'), { 
+                    type: 'line', 
+                    data: { labels: chartData.daily.labels, datasets: [{ label: 'CO₂eq (kg)', data: chartData.daily.carbon, borderColor: '#27ae60', backgroundColor: 'rgba(39,174,96,0.08)', borderWidth: 2, fill: true, tension: 0.3 }] }, 
+                    options: { responsive: true, maintainAspectRatio: true, scales: { y: { beginAtZero: true } } } 
+                });
+            }
+            
+            updateChartStats('daily', 'sales');
+            updateChartStats('daily', 'revenue');
+            updateChartStats('daily', 'carbon');
         }
 
         function setupFilters() {
-            document.querySelectorAll('#salesFilter .filter-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('#salesFilter .filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); updateSalesChart(btn.dataset.period); }); });
-            document.querySelectorAll('#revenueFilter .filter-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('#revenueFilter .filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); updateRevenueChart(btn.dataset.period); }); });
-            document.querySelectorAll('#carbonFilter .filter-btn').forEach(btn => { btn.addEventListener('click', () => { document.querySelectorAll('#carbonFilter .filter-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); updateCarbonChart(btn.dataset.period); }); });
+            let salesFilter = document.querySelectorAll('#salesFilter .filter-btn');
+            let revenueFilter = document.querySelectorAll('#revenueFilter .filter-btn');
+            let carbonFilter = document.querySelectorAll('#carbonFilter .filter-btn');
+            
+            salesFilter.forEach(btn => { 
+                btn.addEventListener('click', () => { 
+                    salesFilter.forEach(b => b.classList.remove('active')); 
+                    btn.classList.add('active'); 
+                    updateSalesChart(btn.dataset.period); 
+                }); 
+            });
+            
+            revenueFilter.forEach(btn => { 
+                btn.addEventListener('click', () => { 
+                    revenueFilter.forEach(b => b.classList.remove('active')); 
+                    btn.classList.add('active'); 
+                    updateRevenueChart(btn.dataset.period); 
+                }); 
+            });
+            
+            carbonFilter.forEach(btn => { 
+                btn.addEventListener('click', () => { 
+                    carbonFilter.forEach(b => b.classList.remove('active')); 
+                    btn.classList.add('active'); 
+                    updateCarbonChart(btn.dataset.period); 
+                }); 
+            });
         }
 
         function updateDashboard() {
             let totalWaste = wasteRecords.reduce((sum, w) => sum + (w.weight || 0), 0);
-            document.getElementById('wasteAmount').innerText = totalWaste + ' kg';
-            document.getElementById('totalWasteSaved').innerText = totalWaste + ' kg';
+            let wasteAmountEl = document.getElementById('wasteAmount');
+            let totalWasteSavedEl = document.getElementById('totalWasteSaved');
+            if (wasteAmountEl) wasteAmountEl.innerText = totalWaste + ' kg';
+            if (totalWasteSavedEl) totalWasteSavedEl.innerText = totalWaste + ' kg';
+            
             let estimatedRevenue = surplusList.reduce((sum, s) => sum + (s.price * (s.sold || Math.floor(Math.random() * 4) + 2)), 0);
             let finalRevenue = estimatedRevenue + revenueTotal;
-            document.getElementById('revenue').innerText = 'Rp' + finalRevenue.toLocaleString();
+            let revenueEl = document.getElementById('revenue');
+            if (revenueEl) revenueEl.innerText = 'Rp' + finalRevenue.toLocaleString();
+            
             let co2Reduction = (totalWaste * 0.85).toFixed(1);
-            document.getElementById('co2Reduction').innerText = co2Reduction + 'kg';
-            document.getElementById('treesEquivalent').innerText = Math.floor(totalWaste * 0.05);
+            let co2ReductionEl = document.getElementById('co2Reduction');
+            let treesEquivalentEl = document.getElementById('treesEquivalent');
+            if (co2ReductionEl) co2ReductionEl.innerText = co2Reduction + 'kg';
+            if (treesEquivalentEl) treesEquivalentEl.innerText = Math.floor(totalWaste * 0.05);
+            
             const activeContainer = document.getElementById('activeSurplusList');
-            if (surplusList.length === 0) { activeContainer.innerHTML = '<div class="empty-state">Belum ada surplus diupload</div>'; document.getElementById('surplusCount').innerText = '0 item'; }
-            else { document.getElementById('surplusCount').innerText = surplusList.length + ' item'; activeContainer.innerHTML = surplusList.map(s => `<div class="surplus-item"><div><strong style="font-size:13px;">${s.name}</strong><br><span style="font-size:11px;">Rp${s.price.toLocaleString()} / porsi</span></div><span class="badge badge-success">Aktif</span></div>`).join(''); }
-            document.getElementById('aiRecommendMsg').innerHTML = '<i class="fas fa-chart-line"></i> Rekomendasi AI: Berdasarkan tren realtime, tingkatkan promo surplus di Rabu & Jumat untuk maksimalkan pendapatan.';
+            const surplusCountEl = document.getElementById('surplusCount');
+            if (activeContainer) {
+                if (surplusList.length === 0) { 
+                    activeContainer.innerHTML = '<div class="empty-state">Belum ada surplus diupload</div>'; 
+                    if (surplusCountEl) surplusCountEl.innerText = '0 item';
+                }
+                else { 
+                    if (surplusCountEl) surplusCountEl.innerText = surplusList.length + ' item'; 
+                    activeContainer.innerHTML = surplusList.map(s => `<div class="surplus-item"><div><strong style="font-size:13px;">${s.name}</strong><br><span style="font-size:11px;">Rp${s.price.toLocaleString()} / porsi</span></div><span class="badge badge-success">Aktif</span></div>`).join(''); 
+                }
+            }
+            
+            let aiMsgEl = document.getElementById('aiRecommendMsg');
+            if (aiMsgEl) aiMsgEl.innerHTML = '<i class="fas fa-chart-line"></i> Rekomendasi AI: Berdasarkan tren realtime, tingkatkan promo surplus di Rabu & Jumat untuk maksimalkan pendapatan.';
+            
             updateSimpleRating();
         }
 
@@ -1068,38 +1197,59 @@
             let name = document.getElementById('menuName').value.trim();
             let surplusPrice = parseInt(document.getElementById('surplusPrice').value);
             let portion = parseInt(document.getElementById('portion').value);
-            if (!name || isNaN(surplusPrice) || isNaN(portion) || surplusPrice <= 0) { alert('Isi semua field dengan benar!'); return; }
+            if (!name || isNaN(surplusPrice) || isNaN(portion) || surplusPrice <= 0) { 
+                alert('Isi semua field dengan benar!'); 
+                return; 
+            }
             surplusList.push({ id: Date.now(), name: name, price: surplusPrice, portion: portion, sold: 0, date: new Date().toLocaleDateString('id-ID'), time: document.getElementById('availableTime').value });
             localStorage.setItem('horekaSurplus', JSON.stringify(surplusList));
             alert(`✅ ${name} berhasil diupload!`);
-            document.getElementById('menuName').value = ''; document.getElementById('surplusPrice').value = ''; document.getElementById('portion').value = '';
-            updateDashboard(); showToast('Surplus makanan ditambahkan');
+            document.getElementById('menuName').value = ''; 
+            document.getElementById('surplusPrice').value = ''; 
+            document.getElementById('portion').value = '';
+            updateDashboard(); 
+            showToast('Surplus makanan ditambahkan');
         }
 
         function recordWaste() {
             let weight = parseFloat(document.getElementById('wasteWeight').value);
-            if (isNaN(weight) || weight <= 0) { alert('Masukkan berat limbah yang valid (kg)'); return; }
+            if (isNaN(weight) || weight <= 0) { 
+                alert('Masukkan berat limbah yang valid (kg)'); 
+                return; 
+            }
             wasteRecords.push({ id: Date.now(), type: document.getElementById('wasteType').value, weight: weight, note: document.getElementById('wasteNote').value, date: new Date().toLocaleDateString('id-ID') });
             localStorage.setItem('horekaWaste', JSON.stringify(wasteRecords));
-            let incentive = weight * 500; revenueTotal += incentive; localStorage.setItem('horekaRevenue', revenueTotal);
-            document.getElementById('wasteWeight').value = ''; document.getElementById('wasteNote').value = '';
-            updateDashboard(); renderWasteHistory(); showToast(`Limbah ${weight}kg tercatat + insentif Rp${incentive}`);
+            let incentive = weight * 500; 
+            revenueTotal += incentive; 
+            localStorage.setItem('horekaRevenue', revenueTotal);
+            document.getElementById('wasteWeight').value = ''; 
+            document.getElementById('wasteNote').value = '';
+            updateDashboard(); 
+            renderWasteHistory(); 
+            showToast(`Limbah ${weight}kg tercatat + insentif Rp${incentive}`);
         }
 
         function renderWasteHistory() {
             const container = document.getElementById('wasteHistoryList');
             if (!container) return;
-            if (wasteRecords.length === 0) { container.innerHTML = '<div class="empty-state">Belum ada catatan limbah</div>'; return; }
+            if (wasteRecords.length === 0) { 
+                container.innerHTML = '<div class="empty-state">Belum ada catatan limbah</div>'; 
+                return; 
+            }
             container.innerHTML = wasteRecords.slice().reverse().slice(0, 5).map(w => `<div class="waste-item"><div><i class="fas fa-apple-alt"></i> ${w.type}<br><span style="font-size:10px;">${w.date}</span></div><div><strong>${w.weight} kg</strong> <span class="badge badge-warning">terkirim</span></div></div>`).join('');
         }
 
         function renderPrediction() {
             const predData = [{ day: "Senin", kg: 6.5 }, { day: "Selasa", kg: 9.2 }, { day: "Rabu", kg: 17.8 }, { day: "Kamis", kg: 11.4 }, { day: "Jumat", kg: 15.3 }, { day: "Sabtu", kg: 13.0 }, { day: "Minggu", kg: 8.7 }];
             const chartContainer = document.getElementById('predictionChart');
-            let maxKg = Math.max(...predData.map(d => d.kg), 1);
-            chartContainer.innerHTML = predData.map(day => `<div class="chart-bar"><span class="bar-label">${day.day}</span><div class="bar-fill"><div class="bar-value" style="width: ${(day.kg / maxKg) * 100}%; background: ${day.kg > 14 ? '#e67e22' : '#1d7eaa'};">${day.kg} kg</div></div></div>`).join('');
-            document.getElementById('predictionAlert').innerHTML = '⚠️ <strong>Rabu diprediksi lonjakan limbah 68%</strong> — segera atur stok dan upload surplus!';
-            document.getElementById('recommendationList').innerHTML = `<div class="alert-success">📈 Upload surplus di jam makan siang meningkatkan penjualan 42% berdasarkan analitik realtime.</div><div class="alert-warning">🌱 Dengan mendaur ulang 50kg limbah, hemat 42.5kg CO₂eq setara tanam 1 pohon.</div>`;
+            if (chartContainer) {
+                let maxKg = Math.max(...predData.map(d => d.kg), 1);
+                chartContainer.innerHTML = predData.map(day => `<div class="chart-bar"><span class="bar-label">${day.day}</span><div class="bar-fill"><div class="bar-value" style="width: ${(day.kg / maxKg) * 100}%; background: ${day.kg > 14 ? '#e67e22' : '#1d7eaa'};">${day.kg} kg</div></div></div>`).join('');
+            }
+            let predictionAlert = document.getElementById('predictionAlert');
+            if (predictionAlert) predictionAlert.innerHTML = '⚠️ <strong>Rabu diprediksi lonjakan limbah 68%</strong> — segera atur stok dan upload surplus!';
+            let recommendationList = document.getElementById('recommendationList');
+            if (recommendationList) recommendationList.innerHTML = `<div class="alert-success">📈 Upload surplus di jam makan siang meningkatkan penjualan 42% berdasarkan analitik realtime.</div><div class="alert-warning">🌱 Dengan mendaur ulang 50kg limbah, hemat 42.5kg CO₂eq setara tanam 1 pohon.</div>`;
         }
 
         function showToast(msg) { 
@@ -1142,20 +1292,36 @@
             alert(`✨ Bagikan:\n"⭐ Rating ${stats.avg.toFixed(1)}/5 dari ${stats.total} pelanggan! Saya menyelamatkan ${totalWaste}kg limbah & mereduksi ${co2}kg CO₂eq! #ZeroFoodWaste #TooMuchHoreka"`);
         }
 
-        function toggleCheckbox(id) { 
-            let cb = document.getElementById(id); 
-            cb.checked = !cb.checked; 
-            let allChecked = true; 
-            for (let i = 1; i <= 5; i++) if (!document.getElementById(`check${i}`).checked) allChecked = false; 
-            document.getElementById('agreeBtn').disabled = !allChecked; 
+        function checkAllCheckboxes() {
+            let allChecked = true;
+            for (let i = 1; i <= 5; i++) {
+                let cb = document.getElementById(`check${i}`);
+                if (cb && !cb.checked) allChecked = false;
+            }
+            let agreeBtn = document.getElementById('agreeBtn');
+            if (agreeBtn) agreeBtn.disabled = !allChecked;
+        }
+
+        function setupCheckboxListeners() {
+            for (let i = 1; i <= 5; i++) {
+                let cb = document.getElementById(`check${i}`);
+                if (cb) {
+                    cb.addEventListener('change', checkAllCheckboxes);
+                }
+            }
         }
 
         function acceptAgreement() {
             localStorage.setItem('horekaAgreementAccepted', 'true');
             localStorage.setItem('horekaName', 'Warung MbaK Harum');
-            document.getElementById('policyModal').classList.remove('show');
-            document.getElementById('mainContent').style.display = 'block';
-            document.getElementById('bottomNav').style.display = 'flex';
+            let modal = document.getElementById('policyModal');
+            let mainContent = document.getElementById('mainContent');
+            let bottomNav = document.getElementById('bottomNav');
+            
+            if (modal) modal.style.display = 'none';
+            if (mainContent) mainContent.classList.remove('hide-content');
+            if (bottomNav) bottomNav.classList.remove('hide-content');
+            
             initDashboard();
             showToast('Selamat bergabung! Pelanggan sudah memberi rating untuk Anda ⭐');
         }
@@ -1169,7 +1335,8 @@
             renderAllReviews();
             updateSimpleRating();
             showTab('dashboard');
-            document.getElementById('ownerName').innerText = localStorage.getItem('horekaName') || 'Warung MbaK Harum';
+            let ownerNameEl = document.getElementById('ownerName');
+            if (ownerNameEl) ownerNameEl.innerText = localStorage.getItem('horekaName') || 'Warung MbaK Harum';
         }
 
         function setupRatingClick() {
@@ -1183,25 +1350,74 @@
             }
         }
 
-        document.querySelectorAll('.nav-item').forEach(btn => { btn.addEventListener('click', () => { if (btn.dataset.tab) showTab(btn.dataset.tab); }); });
+        // Event listener untuk nav items
+        document.querySelectorAll('.nav-item').forEach(btn => { 
+            btn.addEventListener('click', () => { 
+                if (btn.dataset.tab) showTab(btn.dataset.tab); 
+            }); 
+        });
 
-        if (!hasAgreed) { 
-            document.getElementById('policyModal').classList.add('show');
-            document.getElementById('mainContent').style.display = 'none'; 
-            document.getElementById('bottomNav').style.display = 'none'; 
-        } else {
-            document.getElementById('policyModal').classList.remove('show');
-            document.getElementById('mainContent').style.display = 'block';
-            document.getElementById('bottomNav').style.display = 'flex';
-            initDashboard();
-            setupRatingClick();
+        // --- PERBAIKAN UTAMA: Inisialisasi Modal dan Tampilan Awal ---
+        // Fungsi untuk menampilkan modal dan menyembunyikan konten utama
+        function showModalAndHideContent() {
+            let modal = document.getElementById('policyModal');
+            let mainContent = document.getElementById('mainContent');
+            let bottomNav = document.getElementById('bottomNav');
+            
+            if (modal) {
+                modal.style.display = 'flex'; // Tampilkan modal
+            }
+            if (mainContent) {
+                mainContent.classList.add('hide-content'); // Sembunyikan konten utama
+            }
+            if (bottomNav) {
+                bottomNav.classList.add('hide-content'); // Sembunyikan bottom nav
+            }
+            
+            // Setup checkbox listeners setelah modal ditampilkan
+            setupCheckboxListeners();
         }
 
-        for (let i = 1; i <= 5; i++) document.getElementById(`check${i}`).addEventListener('change', () => toggleCheckbox(`check${i}`));
-
-        if (hasAgreed) {
-            setTimeout(() => setupRatingClick(), 100);
+        // Fungsi untuk menyembunyikan modal dan menampilkan konten utama (jika sudah setuju)
+        function hideModalAndShowContent() {
+            let modal = document.getElementById('policyModal');
+            let mainContent = document.getElementById('mainContent');
+            let bottomNav = document.getElementById('bottomNav');
+            
+            if (modal) {
+                modal.style.display = 'none';
+            }
+            if (mainContent) {
+                mainContent.classList.remove('hide-content');
+            }
+            if (bottomNav) {
+                bottomNav.classList.remove('hide-content');
+            }
         }
+
+        // Fungsi utama untuk memulai aplikasi
+        function startApp() {
+            const hasAgreed = localStorage.getItem('horekaAgreementAccepted') === 'true';
+            
+            if (!hasAgreed) {
+                // Belum setuju: tampilkan modal, sembunyikan konten
+                showModalAndHideContent();
+            } else {
+                // Sudah setuju: sembunyikan modal, tampilkan konten, inisialisasi dashboard
+                hideModalAndShowContent();
+                initDashboard();
+                setupRatingClick();
+            }
+        }
+
+        // Setup tombol agree
+        let agreeBtn = document.getElementById('agreeBtn');
+        if (agreeBtn) {
+            agreeBtn.onclick = acceptAgreement;
+        }
+
+        // Jalankan aplikasi setelah DOM siap
+        document.addEventListener('DOMContentLoaded', startApp);
     </script>
 </body>
 
