@@ -69,6 +69,10 @@
             border-color: #a855f7;
         }
 
+        .back-btn:active {
+            transform: translateX(-1px);
+        }
+
         .header h1 {
             font-size: 28px;
             font-weight: 800;
@@ -669,8 +673,19 @@ Periode: April 2026 (YTD)
         }
         
         function goBack() {
-            let returnUrl = localStorage.getItem('returnUrl') || 'index.html';
-            window.location.href = returnUrl;
+            // Menggunakan history.back() untuk kembali ke halaman sebelumnya
+            // Jika tidak ada history (misal dibuka di tab baru), fallback ke halaman utama
+            if (document.referrer && document.referrer !== '') {
+                window.history.back();
+            } else {
+                // Jika tidak ada referrer, cek apakah ada history
+                if (window.history.length > 1) {
+                    window.history.back();
+                } else {
+                    // Fallback terakhir: cek apakah dari file index sebelumnya
+                    window.location.href = 'index.html';
+                }
+            }
         }
         
         let insightInterval;
