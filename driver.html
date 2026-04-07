@@ -2,109 +2,673 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>TOO MUCH - Driver Mitra | Zero Food Waste (Pickup/Hotel Focus)</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: #eef2f5; color: #1a2a3a; height: 100vh; overflow: hidden; }
-        .app-container { max-width: 450px; width: 100%; margin: 0 auto; background: #f8fbfd; height: 100vh; display: flex; flex-direction: column; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.05); overflow: hidden; }
-        .status-bar { padding: 12px 20px 6px; display: flex; justify-content: space-between; font-size: 14px; font-weight: 600; color: #1e2f3a; background: #f8fbfd; flex-shrink: 0; }
-        .header { padding: 4px 20px 12px; background: #f8fbfd; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(29,126,170,0.12); flex-shrink: 0; }
-        .logo-area h1 { font-size: 24px; font-weight: 800; background: linear-gradient(135deg, #0f4b5e, #1d7eaa); background-clip: text; -webkit-background-clip: text; color: transparent; }
-        .logo-area p { font-size: 11px; color: #5f8b9f; margin-top: 2px; }
-        .driver-badge { background: linear-gradient(145deg, #fff, #eff6fa); border: 1px solid #cde3ed; padding: 6px 14px; border-radius: 40px; font-size: 12px; font-weight: 600; color: #1d7eaa; display: flex; align-items: center; gap: 8px; }
-        .main-content { flex: 1; overflow-y: auto; padding: 16px 18px 24px; scroll-behavior: smooth; }
-        .main-content::-webkit-scrollbar { width: 4px; }
-        .bottom-nav { flex-shrink: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(12px); display: flex; justify-content: space-around; padding: 8px 16px 18px; border-top: 1px solid rgba(29,126,170,0.15); }
-        .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #93afbf; background: none; border: none; cursor: pointer; padding: 6px 12px; border-radius: 40px; transition: all 0.2s; }
-        .nav-item i { font-size: 22px; }
-        .nav-item.active { color: #1d7eaa; background: #e9f3f9; }
-        .card { background: white; border-radius: 28px; padding: 20px; margin-bottom: 20px; border: 1px solid #eaf1f8; box-shadow: 0 6px 14px rgba(0,0,0,0.02); }
-        .earnings-card { background: linear-gradient(135deg, #ffffff, #fafeff); }
-        .balance-row { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
-        .balance-label { font-size: 13px; color: #5f8b9f; }
-        .balance-amount { font-size: 32px; font-weight: 800; color: #1d7eaa; }
-        .withdraw-btn { background: linear-gradient(95deg, #1d7eaa, #166e94); border: none; padding: 10px 20px; border-radius: 40px; color: white; font-weight: 600; font-size: 13px; cursor: pointer; display: flex; align-items: center; gap: 8px; }
-        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px; }
-        .stat-badge { background: #f0f7fc; border-radius: 20px; padding: 12px; text-align: center; }
-        .stat-badge .value { font-size: 18px; font-weight: 700; color: #1d7eaa; }
-        .stat-badge .label { font-size: 10px; color: #6f96aa; }
-        .order-item { background: #fbfefd; border-radius: 20px; padding: 14px; margin-bottom: 12px; border: 1px solid #e2edf2; border-left: 3px solid #1d7eaa; }
-        .order-header { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 13px; }
-        .order-merchant { font-weight: 700; color: #1d7eaa; }
-        .order-earning { font-weight: 700; color: #11734c; }
-        .order-detail { font-size: 11px; color: #6f96aa; display: flex; gap: 16px; margin-bottom: 8px; flex-wrap: wrap; }
-        .order-status { font-size: 11px; padding: 4px 8px; border-radius: 20px; background: #e0f5ee; color: #11734c; display: inline-block; }
-        .bonus-item { background: #f8fafd; border-radius: 16px; padding: 12px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #eaf1f8; flex-wrap: wrap; gap: 8px; }
-        .progress-bar { height: 6px; background: #e2edf2; border-radius: 10px; margin-top: 8px; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, #1d7eaa, #3ba0c9); border-radius: 10px; width: 0%; }
-        .surge-badge { background: #fff8e7; border: 1px solid #fde6b6; padding: 8px 14px; border-radius: 40px; display: inline-flex; align-items: center; gap: 8px; font-size: 12px; margin-bottom: 16px; color: #c46e2a; }
-        .section-title { font-size: 16px; font-weight: 700; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; color: #1e2f3a; }
-        .empty-state { text-align: center; padding: 30px; color: #95b6c8; }
-        .btn-primary { width: 100%; padding: 14px; background: linear-gradient(95deg, #1d7eaa, #166e94); border: none; border-radius: 40px; color: white; font-weight: 600; cursor: pointer; margin-top: 8px; }
-        .btn-secondary { background: #f0f7fc; color: #1d7eaa; border: 1px solid #cde3ed; }
-        .form-input { width: 100%; padding: 14px 16px; border: 1.5px solid #e2edf2; border-radius: 20px; font-size: 14px; background: white; margin-bottom: 16px; }
-        .alert-info { background: #e3f2fd; border-left: 5px solid #2196f3; padding: 12px; border-radius: 16px; color: #1565c0; font-size: 12px; margin: 12px 0; }
-        .hidden { display: none !important; }
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: #eef2f5; 
+            color: #1a2a3a; 
+            overflow-x: hidden;
+        }
+        
+        .app-container { 
+            max-width: 500px; 
+            width: 100%; 
+            margin: 0 auto; 
+            background: #f8fbfd; 
+            min-height: 100vh;
+            display: flex; 
+            flex-direction: column; 
+            position: relative; 
+            box-shadow: 0 0 20px rgba(0,0,0,0.05); 
+            overflow-x: hidden;
+        }
+        
+        .status-bar { 
+            padding: 10px 16px 6px; 
+            display: flex; 
+            justify-content: space-between; 
+            font-size: 13px; 
+            font-weight: 600; 
+            color: #1e2f3a; 
+            background: #f8fbfd; 
+            flex-shrink: 0; 
+        }
+        
+        .header { 
+            padding: 8px 16px 12px; 
+            background: #f8fbfd; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            gap: 12px;
+            border-bottom: 1px solid rgba(29,126,170,0.12); 
+            flex-shrink: 0; 
+            flex-wrap: nowrap;
+        }
+        
+        .logo-area {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .logo-area h1 { 
+            font-size: 20px; 
+            font-weight: 800; 
+            background: linear-gradient(135deg, #0f4b5e, #1d7eaa); 
+            background-clip: text; 
+            -webkit-background-clip: text; 
+            color: transparent;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .logo-area p { 
+            font-size: 10px; 
+            color: #5f8b9f; 
+            margin-top: 2px; 
+            white-space: nowrap;
+        }
+        
+        .driver-badge { 
+            background: linear-gradient(145deg, #fff, #eff6fa); 
+            border: 1px solid #cde3ed; 
+            padding: 6px 12px; 
+            border-radius: 40px; 
+            font-size: 11px; 
+            font-weight: 600; 
+            color: #1d7eaa; 
+            display: flex; 
+            align-items: center; 
+            gap: 6px; 
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        
+        /* Responsive untuk HP kecil */
+        @media (max-width: 450px) {
+            .logo-area h1 {
+                font-size: 17px;
+            }
+            .logo-area p {
+                font-size: 9px;
+            }
+            .driver-badge {
+                padding: 5px 10px;
+                font-size: 10px;
+            }
+            .driver-badge i {
+                font-size: 12px;
+            }
+        }
+        
+        .main-content { 
+            flex: 1; 
+            overflow-y: auto; 
+            padding: 14px; 
+            scroll-behavior: smooth; 
+        }
+        
+        .main-content::-webkit-scrollbar { 
+            width: 3px; 
+        }
+        
+        .bottom-nav { 
+            flex-shrink: 0; 
+            background: rgba(255,255,255,0.98); 
+            backdrop-filter: blur(12px); 
+            display: flex; 
+            justify-content: space-around; 
+            padding: 6px 12px 18px; 
+            border-top: 1px solid rgba(29,126,170,0.15); 
+        }
+        
+        .nav-item { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            gap: 3px; 
+            font-size: 10px; 
+            font-weight: 600; 
+            color: #93afbf; 
+            background: none; 
+            border: none; 
+            cursor: pointer; 
+            padding: 5px 10px; 
+            border-radius: 40px; 
+            transition: all 0.2s; 
+        }
+        
+        .nav-item i { 
+            font-size: 20px; 
+        }
+        
+        .nav-item.active { 
+            color: #1d7eaa; 
+            background: #e9f3f9; 
+        }
+        
+        .card { 
+            background: white; 
+            border-radius: 20px; 
+            padding: 16px; 
+            margin-bottom: 16px; 
+            border: 1px solid #eaf1f8; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02); 
+        }
+        
+        .earnings-card { 
+            background: linear-gradient(135deg, #ffffff, #fafeff); 
+        }
+        
+        .balance-row { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: baseline; 
+            flex-wrap: wrap; 
+            gap: 10px; 
+            margin-bottom: 14px; 
+        }
+        
+        .balance-label { 
+            font-size: 12px; 
+            color: #5f8b9f; 
+        }
+        
+        .balance-amount { 
+            font-size: 26px; 
+            font-weight: 800; 
+            color: #1d7eaa; 
+        }
+        
+        .withdraw-btn { 
+            background: linear-gradient(95deg, #1d7eaa, #166e94); 
+            border: none; 
+            padding: 8px 16px; 
+            border-radius: 40px; 
+            color: white; 
+            font-weight: 600; 
+            font-size: 12px; 
+            cursor: pointer; 
+            display: flex; 
+            align-items: center; 
+            gap: 6px; 
+        }
+        
+        .stats-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 10px; 
+            margin-top: 14px; 
+        }
+        
+        .stat-badge { 
+            background: #f0f7fc; 
+            border-radius: 16px; 
+            padding: 10px; 
+            text-align: center; 
+        }
+        
+        .stat-badge .value { 
+            font-size: 16px; 
+            font-weight: 700; 
+            color: #1d7eaa; 
+        }
+        
+        .stat-badge .label { 
+            font-size: 9px; 
+            color: #6f96aa; 
+        }
+        
+        .order-item { 
+            background: #fbfefd; 
+            border-radius: 16px; 
+            padding: 12px; 
+            margin-bottom: 10px; 
+            border: 1px solid #e2edf2; 
+            border-left: 3px solid #1d7eaa; 
+        }
+        
+        .order-header { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-bottom: 6px; 
+            font-size: 12px; 
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        
+        .order-merchant { 
+            font-weight: 700; 
+            color: #1d7eaa; 
+            font-size: 12px;
+        }
+        
+        .order-earning { 
+            font-weight: 700; 
+            color: #11734c; 
+            font-size: 12px;
+        }
+        
+        .order-detail { 
+            font-size: 10px; 
+            color: #6f96aa; 
+            display: flex; 
+            gap: 12px; 
+            margin-bottom: 6px; 
+            flex-wrap: wrap; 
+        }
+        
+        .order-status { 
+            font-size: 10px; 
+            padding: 3px 8px; 
+            border-radius: 20px; 
+            background: #e0f5ee; 
+            color: #11734c; 
+            display: inline-block; 
+        }
+        
+        .bonus-item { 
+            background: #f8fafd; 
+            border-radius: 14px; 
+            padding: 10px; 
+            margin-bottom: 8px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border: 1px solid #eaf1f8; 
+            flex-wrap: wrap; 
+            gap: 8px; 
+            font-size: 12px;
+        }
+        
+        .progress-bar { 
+            height: 5px; 
+            background: #e2edf2; 
+            border-radius: 10px; 
+            margin-top: 6px; 
+            overflow: hidden; 
+        }
+        
+        .progress-fill { 
+            height: 100%; 
+            background: linear-gradient(90deg, #1d7eaa, #3ba0c9); 
+            border-radius: 10px; 
+            width: 0%; 
+        }
+        
+        .surge-badge { 
+            background: #fff8e7; 
+            border: 1px solid #fde6b6; 
+            padding: 6px 12px; 
+            border-radius: 40px; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px; 
+            font-size: 11px; 
+            margin-bottom: 14px; 
+            color: #c46e2a; 
+            flex-wrap: wrap;
+        }
+        
+        .section-title { 
+            font-size: 15px; 
+            font-weight: 700; 
+            margin-bottom: 12px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            color: #1e2f3a; 
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .empty-state { 
+            text-align: center; 
+            padding: 24px; 
+            color: #95b6c8; 
+            font-size: 12px;
+        }
+        
+        .btn-primary { 
+            width: 100%; 
+            padding: 12px; 
+            background: linear-gradient(95deg, #1d7eaa, #166e94); 
+            border: none; 
+            border-radius: 40px; 
+            color: white; 
+            font-weight: 600; 
+            cursor: pointer; 
+            margin-top: 8px; 
+            font-size: 13px;
+        }
+        
+        .btn-secondary { 
+            background: #f0f7fc; 
+            color: #1d7eaa; 
+            border: 1px solid #cde3ed; 
+        }
+        
+        .form-input { 
+            width: 100%; 
+            padding: 12px 14px; 
+            border: 1.5px solid #e2edf2; 
+            border-radius: 16px; 
+            font-size: 13px; 
+            background: white; 
+            margin-bottom: 14px; 
+        }
+        
+        .alert-info { 
+            background: #e3f2fd; 
+            border-left: 4px solid #2196f3; 
+            padding: 10px; 
+            border-radius: 14px; 
+            color: #1565c0; 
+            font-size: 11px; 
+            margin: 10px 0; 
+        }
+        
+        .hidden { 
+            display: none !important; 
+        }
+        
         .toast-message { 
             position: fixed; 
-            bottom: 90px; 
+            bottom: 80px; 
             left: 50%; 
             transform: translateX(-50%) translateY(120px); 
             background: #1d7eaa; 
             color: white; 
-            padding: 12px 24px; 
+            padding: 10px 20px; 
             border-radius: 60px; 
-            font-size: 13px; 
+            font-size: 12px; 
             font-weight: 500; 
             z-index: 1000; 
-            transition: transform 0.3s ease; 
             max-width: 85%; 
             text-align: center; 
             pointer-events: none;
             opacity: 0;
             transition: opacity 0.2s ease, transform 0.2s ease;
         }
+        
         .toast-message.show { 
             transform: translateX(-50%) translateY(0);
             opacity: 1;
         }
-        .rating-stars i { font-size: 12px; }
+        
+        .rating-stars i { 
+            font-size: 11px; 
+        }
+        
+        .rating-average {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1d7eaa;
+        }
         
         /* SIMULATION POPUP MODAL */
-        .simulation-modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); z-index: 2000; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(8px); }
-        .simulation-modal { max-width: 400px; width: 90%; background: white; border-radius: 40px; overflow: hidden; animation: modalSlideIn 0.3s ease; }
-        .simulation-header { background: linear-gradient(135deg, #1d7eaa, #0f5a77); padding: 20px; text-align: center; color: white; }
-        .simulation-map { background: #c8dce8; height: 260px; position: relative; overflow: hidden; }
-        .map-grid-sim { position: relative; width: 100%; height: 100%; background-image: linear-gradient(#b0c4d4 1px, transparent 1px), linear-gradient(90deg, #b0c4d4 1px, transparent 1px); background-size: 30px 30px; }
-        .sim-vehicle { position: absolute; font-size: 42px; filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3)); transition: left 0.5s ease, top 0.5s ease; transform: translate(-50%, -50%); z-index: 10; }
-        .sim-pin { position: absolute; font-size: 32px; transform: translate(-50%, -50%); }
-        .progress-sim { padding: 16px; background: white; }
-        .progress-bar-sim { height: 8px; background: #e2edf2; border-radius: 10px; overflow: hidden; margin: 10px 0; }
-        .progress-fill-sim { height: 100%; background: linear-gradient(90deg, #1d7eaa, #3ba0c9); width: 0%; transition: width 0.3s; }
-        .sim-status { font-size: 13px; font-weight: 600; text-align: center; margin: 10px 0; }
-        .sim-footer { padding: 16px 20px 20px; display: flex; gap: 12px; }
-        @keyframes modalSlideIn { from { opacity: 0; transform: translateY(30px);} to { opacity: 1; transform: translateY(0);} }
-        button:active { transform: scale(0.97); }
+        .simulation-modal-overlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0; 
+            background: rgba(0,0,0,0.85); 
+            z-index: 2000; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            backdrop-filter: blur(8px); 
+        }
+        
+        .simulation-modal { 
+            max-width: 400px; 
+            width: 90%; 
+            background: white; 
+            border-radius: 32px; 
+            overflow: hidden; 
+            animation: modalSlideIn 0.3s ease; 
+        }
+        
+        .simulation-header { 
+            background: linear-gradient(135deg, #1d7eaa, #0f5a77); 
+            padding: 16px; 
+            text-align: center; 
+            color: white; 
+        }
+        
+        .simulation-header h3 {
+            font-size: 18px;
+            margin: 6px 0;
+        }
+        
+        .simulation-map { 
+            background: #c8dce8; 
+            height: 240px; 
+            position: relative; 
+            overflow: hidden; 
+        }
+        
+        .map-grid-sim { 
+            position: relative; 
+            width: 100%; 
+            height: 100%; 
+            background-image: linear-gradient(#b0c4d4 1px, transparent 1px), linear-gradient(90deg, #b0c4d4 1px, transparent 1px); 
+            background-size: 30px 30px; 
+        }
+        
+        .sim-vehicle { 
+            position: absolute; 
+            font-size: 36px; 
+            filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3)); 
+            transition: left 0.5s ease, top 0.5s ease; 
+            transform: translate(-50%, -50%); 
+            z-index: 10; 
+        }
+        
+        .sim-pin { 
+            position: absolute; 
+            font-size: 28px; 
+            transform: translate(-50%, -50%); 
+        }
+        
+        .progress-sim { 
+            padding: 14px; 
+            background: white; 
+        }
+        
+        .progress-bar-sim { 
+            height: 6px; 
+            background: #e2edf2; 
+            border-radius: 10px; 
+            overflow: hidden; 
+            margin: 10px 0; 
+        }
+        
+        .progress-fill-sim { 
+            height: 100%; 
+            background: linear-gradient(90deg, #1d7eaa, #3ba0c9); 
+            width: 0%; 
+            transition: width 0.3s; 
+        }
+        
+        .sim-status { 
+            font-size: 12px; 
+            font-weight: 600; 
+            text-align: center; 
+            margin: 8px 0; 
+        }
+        
+        .sim-footer { 
+            padding: 14px 16px 18px; 
+            display: flex; 
+            gap: 10px; 
+        }
+        
+        .sim-footer .btn-primary {
+            margin-top: 0;
+            flex: 1;
+        }
+        
+        @keyframes modalSlideIn { 
+            from { opacity: 0; transform: translateY(30px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+        
+        button:active { 
+            transform: scale(0.97); 
+        }
         
         /* CONSENT MODAL */
-        .consent-modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); z-index: 1000; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(6px); }
-        .consent-modal-container { max-width: 400px; width: 90%; background: white; border-radius: 36px; max-height: 85vh; overflow-y: auto; }
-        .consent-modal-header { padding: 24px 24px 12px; text-align: center; border-bottom: 1px solid #e2edf2; }
-        .consent-modal-body { padding: 20px 24px; }
-        .policy-card { background: #f8fbfe; border-radius: 24px; padding: 16px; margin-bottom: 20px; border: 1px solid #e2edf2; }
-        .policy-title { font-weight: 800; margin-bottom: 12px; color: #1d7eaa; }
-        .spec-list { list-style: none; padding-left: 0; }
-        .spec-list li { padding: 8px 0; display: flex; gap: 12px; font-size: 13px; border-bottom: 1px solid #eef2f5; }
-        .vehicle-selector { background: #eef3f8; border-radius: 20px; padding: 12px; margin-bottom: 20px; }
-        .vehicle-option { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 28px; background: white; margin-bottom: 10px; cursor: pointer; border: 1px solid #cde3ed; }
-        .vehicle-option.selected { border: 2px solid #1d7eaa; background: #e3f4fc; }
-        .checkbox-group { margin: 20px 0 16px; background: #f9f9fc; padding: 12px; border-radius: 20px; }
-        .checkbox-label { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; font-size: 13px; cursor: pointer; }
-        .agree-btn { width: 100%; padding: 14px; background: linear-gradient(95deg, #1d7eaa, #166e94); border: none; border-radius: 40px; color: white; font-weight: 700; cursor: pointer; }
-        .agree-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+        .consent-modal-overlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            bottom: 0; 
+            background: rgba(0,0,0,0.85); 
+            z-index: 1000; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            backdrop-filter: blur(6px); 
+        }
+        
+        .consent-modal-container { 
+            max-width: 400px; 
+            width: 90%; 
+            background: white; 
+            border-radius: 28px; 
+            max-height: 85vh; 
+            overflow-y: auto; 
+        }
+        
+        .consent-modal-header { 
+            padding: 20px 20px 10px; 
+            text-align: center; 
+            border-bottom: 1px solid #e2edf2; 
+        }
+        
+        .consent-modal-header h2 {
+            font-size: 20px;
+        }
+        
+        .consent-modal-body { 
+            padding: 16px 18px; 
+        }
+        
+        .policy-card { 
+            background: #f8fbfe; 
+            border-radius: 20px; 
+            padding: 14px; 
+            margin-bottom: 16px; 
+            border: 1px solid #e2edf2; 
+        }
+        
+        .policy-title { 
+            font-weight: 800; 
+            margin-bottom: 10px; 
+            color: #1d7eaa; 
+            font-size: 14px;
+        }
+        
+        .spec-list { 
+            list-style: none; 
+            padding-left: 0; 
+        }
+        
+        .spec-list li { 
+            padding: 6px 0; 
+            display: flex; 
+            gap: 10px; 
+            font-size: 12px; 
+            border-bottom: 1px solid #eef2f5; 
+        }
+        
+        .vehicle-selector { 
+            background: #eef3f8; 
+            border-radius: 16px; 
+            padding: 10px; 
+            margin-bottom: 16px; 
+        }
+        
+        .vehicle-option { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            padding: 10px; 
+            border-radius: 24px; 
+            background: white; 
+            margin-bottom: 8px; 
+            cursor: pointer; 
+            border: 1px solid #cde3ed; 
+        }
+        
+        .vehicle-option.selected { 
+            border: 2px solid #1d7eaa; 
+            background: #e3f4fc; 
+        }
+        
+        .vehicle-option input {
+            width: 18px;
+            height: 18px;
+            margin: 0;
+        }
+        
+        .vehicle-option label {
+            flex: 1;
+            cursor: pointer;
+        }
+        
+        .checkbox-group { 
+            margin: 16px 0 14px; 
+            background: #f9f9fc; 
+            padding: 10px; 
+            border-radius: 16px; 
+        }
+        
+        .checkbox-label { 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            margin-bottom: 12px; 
+            font-size: 12px; 
+            cursor: pointer; 
+        }
+        
+        .checkbox-label input {
+            width: 18px;
+            height: 18px;
+            margin: 0;
+        }
+        
+        .agree-btn { 
+            width: 100%; 
+            padding: 12px; 
+            background: linear-gradient(95deg, #1d7eaa, #166e94); 
+            border: none; 
+            border-radius: 40px; 
+            color: white; 
+            font-weight: 700; 
+            cursor: pointer; 
+            font-size: 14px;
+        }
+        
+        .agree-btn:disabled { 
+            opacity: 0.5; 
+            cursor: not-allowed; 
+        }
     </style>
 </head>
 <body>
@@ -118,7 +682,7 @@
         <div id="dashboardTab">
             <div class="card earnings-card">
                 <div class="balance-row">
-                    <div><div class="balance-label">Saldo GoPay</div><div class="balance-amount" id="balanceAmount">Rp0</div></div>
+                    <div><div class="balance-label">Saldo</div><div class="balance-amount" id="balanceAmount">Rp0</div></div>
                     <button class="withdraw-btn" onclick="showTab('withdraw')"><i class="fas fa-arrow-down"></i> Tarik Saldo</button>
                 </div>
                 <div class="stats-grid">
@@ -130,24 +694,24 @@
             </div>
             <div class="card">
                 <div class="section-title"><i class="fas fa-star" style="color:#f39c12;"></i> Rating Driver</div>
-                <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
                     <div><span class="rating-average" id="driverRatingAvg">4.85</span> <span style="color:#5f8b9f;">/5.0</span></div>
                     <div class="rating-stars" id="driverRatingStars"></div>
-                    <div><span id="totalRatingsCount" style="color:#5f8b9f; font-size:12px;">(24)</span></div>
+                    <div><span id="totalRatingsCount" style="color:#5f8b9f; font-size:11px;">(24)</span></div>
                 </div>
-                <div id="recentRatingsList" style="margin-top: 12px;"></div>
+                <div id="recentRatingsList" style="margin-top: 10px;"></div>
             </div>
             <div class="card">
                 <div class="surge-badge"><i class="fas fa-fire"></i> <span id="surgeText">Surge 1.2x</span> &nbsp;|&nbsp; <i class="fas fa-map-marker-alt"></i> <span id="zoneText">Surabaya Pusat</span></div>
-                <div class="section-title">📦 Order Prioritas <i class="fas fa-hotel" style="color:#1d7eaa;"></i> <span id="vehicleOrderBadge">(Pickup Besar/Hotel)</span></div>
+                <div class="section-title">📦 Order Prioritas <i class="fas fa-hotel" style="color:#1d7eaa;"></i> <span id="vehicleOrderBadge" style="font-size:11px;">(Pickup Besar/Hotel)</span></div>
                 <div id="incomingOrdersList"></div>
                 <button class="btn-primary" onclick="openSimulationPopup()"><i class="fas fa-play-circle"></i> Simulasi Order (Hotel/Pickup) dengan Live Tracking</button>
             </div>
             <div class="card"><div class="section-title">🏆 Bonus Progresif</div><div id="bonusList"></div></div>
             <div class="card"><div class="section-title">📋 Riwayat Order</div><div id="historyOrdersList"></div></div>
         </div>
-        <div id="withdrawTab" class="hidden"><div class="card"><div class="section-title"><i class="fas fa-wallet"></i> Tarik Saldo</div><div class="balance-row"><span class="balance-label">Saldo Tersedia:</span><span class="balance-amount" id="withdrawBalance">Rp0</span></div><input type="number" id="withdrawAmount" class="form-input" placeholder="Jumlah tarik (min Rp10.000)"><select id="bankSelect" class="form-input"><option>BCA - 1234567890 (a.n Bintang)</option><option>Mandiri - 9876543210 (a.n Bintang)</option><option>GoPay Sendiri</option></select><div class="alert-info"><i class="fas fa-info-circle"></i> Biaya withdraw: Rp1.500 (gratis 3x pertama)</div><button class="btn-primary" onclick="processWithdraw()">Konfirmasi Tarik</button><div style="margin-top:24px;"><div class="section-title">📜 Riwayat Penarikan</div><div id="withdrawList"></div></div></div></div>
-        <div id="profileTab" class="hidden"><div class="card" style="text-align:center;"><i class="fas fa-user-circle" style="font-size:64px; color:#1d7eaa;"></i><h3 style="margin:12px 0;">Bintang Permana</h3><p style="color:#5f8b9f;" id="vehicleTypeText">Driver Pickup Logistic</p><div class="stats-grid"><div class="stat-badge"><div class="value" id="profileRating">4.85</div><div class="label">Rating</div></div><div class="stat-badge"><div class="value" id="completionRate">100%</div><div class="label">Penyelesaian</div></div><div class="stat-badge"><div class="value" id="totalDeliveredProfile">0</div><div class="label">Pengiriman</div></div></div><button class="btn-primary btn-secondary" id="toggleOnlineBtn" onclick="toggleOnlineStatus(this)"><i class="fas fa-power-off"></i> Offline</button></div></div>
+        <div id="withdrawTab" class="hidden"><div class="card"><div class="section-title"><i class="fas fa-wallet"></i> Tarik Saldo</div><div class="balance-row"><span class="balance-label">Saldo Tersedia:</span><span class="balance-amount" id="withdrawBalance">Rp0</span></div><input type="number" id="withdrawAmount" class="form-input" placeholder="Jumlah tarik (min Rp10.000)"><select id="bankSelect" class="form-input"><option>BCA - 1234567890 (a.n Bintang)</option><option>Mandiri - 9876543210 (a.n Bintang)</option><option>GoPay Sendiri</option></select><div class="alert-info"><i class="fas fa-info-circle"></i> Biaya withdraw: Rp1.500 (gratis 3x pertama)</div><button class="btn-primary" onclick="processWithdraw()">Konfirmasi Tarik</button><div style="margin-top:20px;"><div class="section-title">📜 Riwayat Penarikan</div><div id="withdrawList"></div></div></div></div>
+        <div id="profileTab" class="hidden"><div class="card" style="text-align:center;"><i class="fas fa-user-circle" style="font-size:56px; color:#1d7eaa;"></i><h3 style="margin:10px 0; font-size:18px;">Bintang Permana</h3><p style="color:#5f8b9f; font-size:12px;" id="vehicleTypeText">Driver Pickup Logistic</p><div class="stats-grid"><div class="stat-badge"><div class="value" id="profileRating">4.85</div><div class="label">Rating</div></div><div class="stat-badge"><div class="value" id="completionRate">100%</div><div class="label">Penyelesaian</div></div><div class="stat-badge"><div class="value" id="totalDeliveredProfile">0</div><div class="label">Pengiriman</div></div></div><button class="btn-primary btn-secondary" id="toggleOnlineBtn" onclick="toggleOnlineStatus(this)"><i class="fas fa-power-off"></i> Offline</button></div></div>
     </div>
     <div class="bottom-nav"><button class="nav-item active" data-tab="dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></button><button class="nav-item" data-tab="withdraw"><i class="fas fa-money-bill-wave"></i><span>Tarik Saldo</span></button><button class="nav-item" data-tab="profile"><i class="fas fa-user"></i><span>Profil</span></button></div>
 </div>
@@ -156,9 +720,9 @@
 <div id="simulationModal" class="simulation-modal-overlay" style="display: none;">
     <div class="simulation-modal">
         <div class="simulation-header">
-            <i class="fas fa-location-dot" style="font-size:24px;"></i>
+            <i class="fas fa-location-dot" style="font-size:22px;"></i>
             <h3>Live Delivery Simulation</h3>
-            <p id="simVehicleName" style="font-size:12px; opacity:0.9;">Kendaraan: Pickup - Hotel Logistic</p>
+            <p id="simVehicleName" style="font-size:11px; opacity:0.9;">Kendaraan: Pickup - Hotel Logistic</p>
         </div>
         <div class="simulation-map">
             <div class="map-grid-sim" id="simMapGrid">
@@ -170,7 +734,7 @@
         <div class="progress-sim">
             <div class="sim-status" id="simStatusText">📍 Menuju restoran untuk pickup...</div>
             <div class="progress-bar-sim"><div class="progress-fill-sim" id="simProgressFill"></div></div>
-            <div class="sim-status" style="font-size:12px; color:#5f8b9f;" id="simDetailInfo">Estimasi sisa: 12 menit | Jarak: 3.2 km</div>
+            <div class="sim-status" style="font-size:11px; color:#5f8b9f;" id="simDetailInfo">Estimasi sisa: 12 menit | Jarak: 3.2 km</div>
         </div>
         <div class="sim-footer">
             <button class="btn-primary" id="simNextBtn" onclick="simulationNextStep()" style="margin:0;">Ambil Pesanan</button>
@@ -182,22 +746,28 @@
 <!-- MODAL PERSETUJUAN LENGKAP -->
 <div id="consentModal" class="consent-modal-overlay">
     <div class="consent-modal-container">
-        <div class="consent-modal-header"><h2><i class="fas fa-shield-alt"></i> Persetujuan Mitra</h2><p style="font-size:12px;">Baca kebijakan & spesifikasi dengan saksama</p></div>
+        <div class="consent-modal-header"><h2><i class="fas fa-shield-alt"></i> Persetujuan Mitra</h2><p style="font-size:11px;">Baca kebijakan & spesifikasi dengan saksama</p></div>
         <div class="consent-modal-body">
             <div class="policy-card">
                 <div class="policy-title"><i class="fas fa-lock"></i> Kebijakan Privasi & Keamanan Data</div>
                 <ul class="spec-list">
-                    <li><i class="fas fa-map-marker-alt"></i> <strong>Lokasi Real-time:</strong> Diakses hanya saat status "Online" untuk keakuratan penjemputan & pengantaran.</li>
-                    <li><i class="fas fa-database"></i> <strong>Perlindungan Data:</strong> Nama, nomor telepon, dan riwayat transaksi dienkripsi.</li>
-                    <li><i class="fas fa-clock"></i> <strong>Retensi Data:</strong> Riwayat order disimpan maksimal 3 bulan.</li>
-                    <li><i class="fas fa-hand-peace"></i> <strong>Hak Driver:</strong> Anda dapat mengunduh data pribadi kapan saja.</li>
+                    <li><i class="fas fa-map-marker-alt"></i> <strong>Lokasi Real-time:</strong> Diakses hanya saat status "Online"</li>
+                    <li><i class="fas fa-database"></i> <strong>Perlindungan Data:</strong> Nama, telepon, transaksi dienkripsi</li>
+                    <li><i class="fas fa-clock"></i> <strong>Retensi Data:</strong> Riwayat order maksimal 3 bulan</li>
+                    <li><i class="fas fa-hand-peace"></i> <strong>Hak Driver:</strong> Dapat mengunduh data pribadi</li>
                 </ul>
             </div>
             <div class="policy-card">
                 <div class="policy-title"><i class="fas fa-tasks"></i> Spesifikasi & Standar Kendaraan</div>
                 <div class="vehicle-selector" id="vehicleSelectorArea">
-                    <div class="vehicle-option" data-vehicle="motor"><input type="radio" name="vehicleType" id="vehicleMotor" value="motor"> <label for="vehicleMotor" style="flex:1;"><i class="fas fa-motorcycle"></i> <strong>Roda Dua (Motor)</strong><br><small>Kapasitas kecil, lincah</small></label></div>
-                    <div class="vehicle-option" data-vehicle="pickup"><input type="radio" name="vehicleType" id="vehiclePickup" value="pickup" checked> <label for="vehiclePickup" style="flex:1;"><i class="fas fa-truck-pickup"></i> <strong>Mobil Pickup / Box</strong><br><small>Logistik hotel, muatan besar</small></label></div>
+                    <div class="vehicle-option" data-vehicle="motor" onclick="selectVehicleType('motor')">
+                        <input type="radio" name="vehicleType" id="vehicleMotor" value="motor"> 
+                        <label for="vehicleMotor" style="flex:1;"><i class="fas fa-motorcycle"></i> <strong>Roda Dua (Motor)</strong><br><small>Kapasitas kecil, lincah</small></label>
+                    </div>
+                    <div class="vehicle-option" data-vehicle="pickup" onclick="selectVehicleType('pickup')">
+                        <input type="radio" name="vehicleType" id="vehiclePickup" value="pickup" checked> 
+                        <label for="vehiclePickup" style="flex:1;"><i class="fas fa-truck-pickup"></i> <strong>Mobil Pickup / Box</strong><br><small>Logistik hotel, muatan besar</small></label>
+                    </div>
                 </div>
                 <ul class="spec-list" id="dynamicSpecList">
                     <li><i class="fas fa-id-card"></i> KTP & NPWP aktif (untuk penarikan > Rp1.000.000)</li>
@@ -216,7 +786,7 @@
 </div>
 
 <script>
-    // Data Driver & Global (Lengkap seperti awal)
+    // Data Driver & Global
     let driverData = { balance: 275000, totalEarningToday: 0, totalEarningWeek: 0, totalOrders: 0, totalTips: 0, totalDelivered: 0, ordersHistory: [], withdrawals: [] };
     let driverRatings = [{ rating: 5, comment: "Pickup rapi, tepat waktu ke hotel", customer: "GM Hotel Mulia", date: "2 jam lalu" },{ rating: 4.5, comment: "Pelayanan oke", customer: "Boulevard Hotel", date: "kemarin" }];
     let dailyOrderCount = 0, weeklyWithdrawCount = 0, currentSurge = 1.2, currentZone = "Surabaya Pusat", isOnline = true, selectedVehicle = "pickup";
@@ -228,8 +798,6 @@
     let simStep = 0;
     let currentOrderEarning = 0;
     let currentOrderDetail = null;
-    
-    // Global variable untuk timeout toast
     let toastTimeout = null;
     
     function formatRupiah(amount){ return 'Rp' + amount.toLocaleString('id-ID'); }
@@ -245,26 +813,12 @@
             t = div; 
         } 
         
-        // Hapus timeout yang masih berjalan
-        if (toastTimeout) {
-            clearTimeout(toastTimeout);
-            toastTimeout = null;
-        }
-        
-        // Hapus class show jika masih ada
+        if (toastTimeout) clearTimeout(toastTimeout);
         t.classList.remove('show');
-        
-        // Update konten dan warna
         t.querySelector('span').innerText = msg; 
         t.style.background = isError ? '#c0392b' : '#1d7eaa'; 
-        
-        // Force reflow agar transisi bekerja
         void t.offsetWidth;
-        
-        // Tampilkan toast
         t.classList.add('show'); 
-        
-        // Set timeout untuk menyembunyikan
         toastTimeout = setTimeout(() => {
             t.classList.remove('show');
             toastTimeout = null;
@@ -286,7 +840,7 @@
         document.getElementById('bonusList').innerHTML = bonusHtml;
         if(driverData.ordersHistory.length === 0) document.getElementById('historyOrdersList').innerHTML = '<div class="empty-state">Belum ada order. Klik Simulasi Order</div>';
         else document.getElementById('historyOrdersList').innerHTML = driverData.ordersHistory.slice(0,8).map(o => `<div class="order-item"><div class="order-header"><span class="order-merchant">🏨 ${o.hotel || 'Hotel'} • ${o.merchant}</span><span class="order-earning">+${formatRupiah(o.fare+o.tip)}</span></div><div class="order-detail"><span><i class="fas fa-road"></i> ${o.distance} km</span><span><i class="fas fa-clock"></i> ${o.time}</span>${o.tip>0?`<span><i class="fas fa-star"></i> Tip ${formatRupiah(o.tip)}</span>`:''}</div><div><span class="order-status">Selesai (${o.type})</span></div></div>`).join('');
-        document.getElementById('incomingOrdersList').innerHTML = `<div class="empty-state" style="padding:15px;"><i class="fas fa-truck-pickup" style="font-size:32px; color:#1d7eaa;"></i><p style="margin-top:8px;">Klik tombol "Simulasi Order" untuk demo live tracking</p><p style="font-size:11px;">Pengiriman ke hotel & logistik</p></div>`;
+        document.getElementById('incomingOrdersList').innerHTML = `<div class="empty-state" style="padding:15px;"><i class="fas fa-truck-pickup" style="font-size:28px; color:#1d7eaa;"></i><p style="margin-top:6px;">Klik tombol "Simulasi Order" untuk demo live tracking</p><p style="font-size:10px;">Pengiriman ke hotel & logistik</p></div>`;
         let vehicleBadge = selectedVehicle === 'pickup' ? '(Pickup Besar/Hotel)' : '(Motor/Pesanan Kecil)';
         document.getElementById('vehicleOrderBadge').innerHTML = vehicleBadge;
         document.getElementById('vehicleTypeText').innerHTML = selectedVehicle === 'pickup' ? 'Driver Pickup (Hotel/Logistik)' : 'Driver Roda Dua';
@@ -300,7 +854,7 @@
         let stars=''; for(let i=1;i<=5;i++) stars += i<=Math.floor(avg)?'<i class="fas fa-star" style="color:#f39c12;"></i>':'<i class="far fa-star" style="color:#ddd;"></i>';
         document.getElementById('driverRatingStars').innerHTML = stars;
         document.getElementById('totalRatingsCount').innerHTML = `(${driverRatings.length} ulasan)`;
-        document.getElementById('recentRatingsList').innerHTML = driverRatings.slice(0,3).map(r=>`<div style="padding:8px 0; border-bottom:1px solid #e2edf2;"><strong>${r.customer}</strong> ★${r.rating} <span style="font-size:11px;">"${r.comment}"</span></div>`).join('');
+        document.getElementById('recentRatingsList').innerHTML = driverRatings.slice(0,3).map(r=>`<div style="padding:6px 0; border-bottom:1px solid #e2edf2; font-size:11px;"><strong>${r.customer}</strong> ★${r.rating.toFixed(1)} <span style="font-size:10px;">"${r.comment}"</span></div>`).join('');
     }
     
     function processWithdraw(){ 
@@ -326,7 +880,7 @@
     function renderWithdrawHistory(){ 
         let c=document.getElementById('withdrawList'); 
         if(driverData.withdrawals.length===0) c.innerHTML='<div class="empty-state">Kosong</div>'; 
-        else c.innerHTML=driverData.withdrawals.slice(0,5).map(w=>`<div class="bonus-item">${w.date} - ${formatRupiah(w.amount)} ${w.fee?`(fee ${formatRupiah(w.fee)})`:''}</div>`).join(''); 
+        else c.innerHTML=driverData.withdrawals.slice(0,5).map(w=>`<div class="bonus-item" style="font-size:11px;">${w.date} - ${formatRupiah(w.amount)} ${w.fee?`(fee ${formatRupiah(w.fee)})`:''}</div>`).join(''); 
     }
     
     function toggleOnlineStatus(btn){ 
@@ -341,7 +895,36 @@
         ['dashboard','withdraw','profile'].forEach(t=>document.getElementById(t+'Tab').classList.add('hidden')); 
         document.getElementById(tabId+'Tab').classList.remove('hidden'); 
         document.querySelectorAll('.nav-item').forEach(btn=>btn.classList.remove('active')); 
+        let activeBtn = Array.from(document.querySelectorAll('.nav-item')).find(btn => btn.dataset.tab === tabId);
+        if(activeBtn) activeBtn.classList.add('active');
         if(tabId==='withdraw') renderWithdrawHistory(); 
+    }
+    
+    function selectVehicleType(type) {
+        selectedVehicle = type;
+        const radioPickup = document.getElementById('vehiclePickup');
+        const radioMotor = document.getElementById('vehicleMotor');
+        if(type === 'pickup') {
+            radioPickup.checked = true;
+            radioMotor.checked = false;
+        } else {
+            radioPickup.checked = false;
+            radioMotor.checked = true;
+        }
+        updateDynamicSpec();
+        document.querySelectorAll('.vehicle-option').forEach(opt => opt.classList.remove('selected'));
+        if(selectedVehicle === 'pickup') document.querySelector('.vehicle-option[data-vehicle="pickup"]').classList.add('selected');
+        else document.querySelector('.vehicle-option[data-vehicle="motor"]').classList.add('selected');
+        updateAllUI();
+    }
+    
+    function updateDynamicSpec() {
+        const specList = document.getElementById('dynamicSpecList');
+        if(selectedVehicle === 'pickup') {
+            specList.innerHTML = `<li><i class="fas fa-truck-pickup"></i> Kapasitas muatan > 300 kg, cocok untuk katering hotel</li><li><i class="fas fa-temperature-low"></i> Wajib box pendingin untuk makanan basah</li><li><i class="fas fa-hotel"></i> Prioritas pengiriman ke hotel bintang 3-5</li><li><i class="fas fa-id-card"></i> SIM A aktif & STNK pickup</li>`;
+        } else {
+            specList.innerHTML = `<li><i class="fas fa-motorcycle"></i> Kapasitas maksimal 15kg, ideal untuk pesanan kecil</li><li><i class="fas fa-shopping-bag"></i> Tas carrier kedap air wajib</li><li><i class="fas fa-city"></i> Area prioritas: perkantoran, rumah tangga</li><li><i class="fas fa-id-card"></i> SIM C & kelengkapan berkendara</li>`;
+        }
     }
     
     // SIMULATION POPUP FUNCTIONS
@@ -469,34 +1052,15 @@
         renderDriverRating();
     }
     
-    function updateDynamicSpec() {
-        const specList = document.getElementById('dynamicSpecList');
-        if(selectedVehicle === 'pickup') {
-            specList.innerHTML = `<li><i class="fas fa-truck-pickup"></i> Kapasitas muatan > 300 kg, cocok untuk katering hotel</li><li><i class="fas fa-temperature-low"></i> Wajib box pendingin untuk makanan basah</li><li><i class="fas fa-hotel"></i> Prioritas pengiriman ke hotel bintang 3-5</li><li><i class="fas fa-id-card"></i> SIM A aktif & STNK pickup</li>`;
-        } else {
-            specList.innerHTML = `<li><i class="fas fa-motorcycle"></i> Kapasitas maksimal 15kg, ideal untuk pesanan kecil</li><li><i class="fas fa-shopping-bag"></i> Tas carrier kedap air wajib</li><li><i class="fas fa-city"></i> Area prioritas: perkantoran, rumah tangga</li><li><i class="fas fa-id-card"></i> SIM C & kelengkapan berkendara</li>`;
-        }
-    }
-    
     function setupConsent(){
-        const radioPickup = document.getElementById('vehiclePickup'), radioMotor = document.getElementById('vehicleMotor');
         const agreePrivacy = document.getElementById('agreePrivacy'), agreeSpec = document.getElementById('agreeSpec'), agreeTerms = document.getElementById('agreeTerms');
         const confirmBtn = document.getElementById('confirmConsentBtn'), modal = document.getElementById('consentModal'), appContainer = document.getElementById('appContainer');
-        function refreshVehicle() {
-            if(radioPickup.checked) selectedVehicle = 'pickup';
-            else if(radioMotor.checked) selectedVehicle = 'motor';
-            updateDynamicSpec();
-            document.querySelectorAll('.vehicle-option').forEach(opt => opt.classList.remove('selected'));
-            if(selectedVehicle === 'pickup') document.querySelector('.vehicle-option[data-vehicle="pickup"]').classList.add('selected');
-            else document.querySelector('.vehicle-option[data-vehicle="motor"]').classList.add('selected');
-            updateAllUI();
-        } 
-        radioPickup.addEventListener('change', refreshVehicle);
-        radioMotor.addEventListener('change', refreshVehicle);
+        
         function checkAll(){ confirmBtn.disabled = !(agreePrivacy.checked && agreeSpec.checked && agreeTerms.checked); }
         agreePrivacy.addEventListener('change',checkAll); agreeSpec.addEventListener('change',checkAll); agreeTerms.addEventListener('change',checkAll);
-        confirmBtn.addEventListener('click',()=>{ modal.style.display='none'; appContainer.style.display='flex'; refreshVehicle(); updateAllUI(); renderDriverRating(); showToast("Selamat datang! Klik Simulasi Order untuk demo live tracking"); });
-        refreshVehicle(); checkAll();
+        confirmBtn.addEventListener('click',()=>{ modal.style.display='none'; appContainer.style.display='flex'; updateAllUI(); renderDriverRating(); showToast("Selamat datang! Klik Simulasi Order untuk demo live tracking"); });
+        updateDynamicSpec();
+        checkAll();
     }
     
     document.querySelectorAll('.nav-item').forEach(btn=>btn.addEventListener('click',()=>showTab(btn.dataset.tab)));
