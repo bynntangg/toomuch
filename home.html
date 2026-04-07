@@ -731,11 +731,12 @@
                     <div class="check-indicator"><i class="fas fa-check"></i></div>
                 </div>
 
-                <div class="role-btn" data-role="processor">
-                    <div class="role-icon">🐄♻️</div>
+                <!-- PERUBAHAN: Mitra Pengolah menjadi Driver -->
+                <div class="role-btn" data-role="driver">
+                    <div class="role-icon">🚚💨</div>
                     <div class="role-info">
-                        <h4>Mitra Pengolah</h4>
-                        <p>Ubah limbah menjadi pakan ternak & kompos</p>
+                        <h4>Driver Mitra</h4>
+                        <p>Antar makanan surplus, dapatkan komisi per pengiriman</p>
                     </div>
                     <div class="check-indicator"><i class="fas fa-check"></i></div>
                 </div>
@@ -861,13 +862,13 @@
                 let roleDisplay = '';
                 if (selectedRole === 'consumer') roleDisplay = 'Konsumen Cerdas';
                 else if (selectedRole === 'horeka') roleDisplay = 'Mitra HOREKA';
-                else roleDisplay = 'Mitra Pengolah';
+                else if (selectedRole === 'driver') roleDisplay = 'Driver Mitra';
                 localStorage.setItem('roleFriendly', roleDisplay);
                 
                 let dashboardUrl = '';
                 if (selectedRole === 'consumer') dashboardUrl = 'consumer.html';
                 else if (selectedRole === 'horeka') dashboardUrl = 'horeka.html';
-                else dashboardUrl = 'processor.html';
+                else if (selectedRole === 'driver') dashboardUrl = 'driver.html';
                 localStorage.setItem('lastDashboard', dashboardUrl);
                 
                 startBtn.classList.add('loading');
@@ -914,6 +915,6 @@
             window.addEventListener('load', checkOverflow);
             checkOverflow();
         })();
-    </script>
+    </script>   
 </body>
 </html>

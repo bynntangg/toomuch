@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>TOO MUCH - Konsumen | Hemat Makanan</title>
+    <title>TOO MUCH - Surplus Food & Limbah Organik</title>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
         rel="stylesheet">
@@ -36,7 +36,6 @@
             overflow-x: hidden;
         }
 
-        /* Fixed status bar & header safe area */
         .status-bar {
             padding: 12px 18px 6px;
             display: flex;
@@ -123,7 +122,41 @@
             line-height: 1.2;
         }
 
-        /* Bottom navigation no overlap */
+        /* Product Type Toggle */
+        .product-type-toggle {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 20px;
+            background: white;
+            padding: 6px;
+            border-radius: 60px;
+            border: 1px solid #e2edf2;
+        }
+
+        .type-btn {
+            flex: 1;
+            text-align: center;
+            padding: 12px 8px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: transparent;
+            border: none;
+            color: #8fadbe;
+        }
+
+        .type-btn.active {
+            background: #1d7eaa;
+            color: white;
+            box-shadow: 0 4px 12px rgba(29, 126, 170, 0.3);
+        }
+
+        .type-btn i {
+            margin-right: 6px;
+        }
+
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -183,7 +216,178 @@
             }
         }
 
-        /* Hero carousel responsive */
+        /* Tracking Map Style */
+        .tracking-container {
+            background: white;
+            border-radius: 28px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #eef3f8;
+        }
+
+        .map-placeholder {
+            background: linear-gradient(135deg, #e8f4f8, #d4eaf1);
+            border-radius: 20px;
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .map-canvas {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: #c8e6f0;
+        }
+
+        .location-marker {
+            position: absolute;
+            font-size: 32px;
+            transition: all 0.5s ease;
+            filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
+            z-index: 10;
+        }
+
+        .resto-marker {
+            position: absolute;
+            font-size: 32px;
+            filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
+            z-index: 5;
+        }
+
+        .customer-marker {
+            position: absolute;
+            font-size: 32px;
+            filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
+            z-index: 5;
+        }
+
+        .tracking-info {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 16px;
+        }
+
+        .driver-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e2edf2;
+            margin-bottom: 16px;
+        }
+
+        .driver-avatar {
+            width: 50px;
+            height: 50px;
+            background: #1d7eaa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .driver-details h4 {
+            font-size: 14px;
+            color: #6b8ea2;
+        }
+
+        .driver-details h3 {
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .tracking-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+            position: relative;
+        }
+
+        .tracking-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            background: #eef2f5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 8px;
+            color: #94abb9;
+            transition: all 0.3s;
+        }
+
+        .tracking-step.active .step-icon {
+            background: #1d7eaa;
+            color: white;
+        }
+
+        .tracking-step.completed .step-icon {
+            background: #4caf50;
+            color: white;
+        }
+
+        .step-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: #94abb9;
+        }
+
+        .tracking-step.active .step-label,
+        .tracking-step.completed .step-label {
+            color: #1d7eaa;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: #e2edf2;
+            z-index: 1;
+        }
+
+        .progress-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: #4caf50;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .eta-info {
+            text-align: center;
+            padding: 12px;
+            background: #fff4e6;
+            border-radius: 16px;
+            margin-top: 16px;
+        }
+
+        .btn-call {
+            background: #4caf50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            margin-top: 12px;
+            width: 100%;
+        }
+
+        /* Hero & Product Styles */
         .hero-carousel {
             position: relative;
             margin-bottom: 22px;
@@ -243,7 +447,6 @@
             border-radius: 10px;
         }
 
-        /* Category chips scroll */
         .category-section {
             margin-bottom: 20px;
         }
@@ -277,7 +480,6 @@
             border-color: #1d7eaa;
         }
 
-        /* Flash sale row */
         .flash-sale {
             background: linear-gradient(105deg, #fff4e6, #ffe8d9);
             padding: 12px 18px;
@@ -290,12 +492,6 @@
             gap: 12px;
         }
 
-        .flash-sale-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
         .timer {
             background: #c26b1a;
             padding: 6px 14px;
@@ -304,10 +500,8 @@
             font-weight: 700;
             font-family: monospace;
             font-size: 16px;
-            letter-spacing: 1px;
         }
 
-        /* Voucher section */
         .voucher-section {
             background: white;
             border-radius: 20px;
@@ -321,7 +515,6 @@
             border: 1px solid #e2edf2;
         }
 
-        /* Search input */
         .search-wrapper {
             position: relative;
             margin-bottom: 22px;
@@ -336,7 +529,6 @@
             background: white;
         }
 
-        /* Product grid 2 columns no overflow */
         .product-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -362,6 +554,18 @@
             justify-content: center;
             font-size: 48px;
             position: relative;
+        }
+
+        .waste-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #e67e22;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 30px;
+            font-size: 10px;
+            font-weight: 800;
         }
 
         .discount-badge {
@@ -392,6 +596,10 @@
             font-size: 11px;
             color: #8fadbe;
             margin: 4px 0 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
         }
 
         .product-price {
@@ -407,6 +615,30 @@
             color: #a3bfce;
         }
 
+        .kg-input {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 8px 0;
+            background: #f0f7fc;
+            padding: 6px 10px;
+            border-radius: 40px;
+        }
+
+        .kg-input input {
+            width: 70px;
+            padding: 6px;
+            border: 1px solid #cde3ed;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .kg-input span {
+            font-size: 12px;
+            color: #5f8b9f;
+        }
+
         .btn-add {
             width: 100%;
             margin-top: 10px;
@@ -420,7 +652,58 @@
             cursor: pointer;
         }
 
-        /* Modal adjustments */
+        .btn-add-waste {
+            background: #e67e22;
+            color: white;
+        }
+
+        .order-status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .status-pending {
+            background: #fff3e0;
+            color: #f39c12;
+        }
+
+        .status-process {
+            background: #e3f2fd;
+            color: #2196f3;
+        }
+
+        .status-delivered {
+            background: #e8f5e9;
+            color: #4caf50;
+        }
+
+        .btn-track {
+            margin-top: 12px;
+            padding: 8px 16px;
+            background: #1d7eaa;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .btn-rate {
+            margin-top: 12px;
+            padding: 8px 16px;
+            background: #f39c12;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
         .modal {
             position: fixed;
             bottom: 0;
@@ -434,6 +717,8 @@
             z-index: 200;
             transition: transform 0.3s ease;
             box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.12);
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         .modal.show {
@@ -455,7 +740,6 @@
             display: block;
         }
 
-        /* orders, forum, profile */
         .order-item,
         .forum-card {
             background: white;
@@ -465,19 +749,33 @@
             border: 1px solid #eef3f8;
         }
 
+        .waste-card {
+            background: linear-gradient(135deg, #fef9e6, #fff4e0);
+            border-left: 6px solid #e67e22;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .waste-number {
+            font-size: 28px;
+            font-weight: 800;
+            color: #e67e22;
+        }
+
+        .waste-label {
+            font-size: 12px;
+            color: #b86f2c;
+            font-weight: 600;
+        }
+
         .empty-state {
             text-align: center;
             padding: 40px 20px;
             color: #8fadbe;
-        }
-
-        .badge-green {
-            background: #e1f7f0;
-            color: #11734c;
-            padding: 4px 10px;
-            border-radius: 30px;
-            font-size: 11px;
-            font-weight: 700;
         }
 
         .toast-message {
@@ -493,17 +791,14 @@
             font-size: 13px;
             z-index: 1000;
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
-            white-space: nowrap;
-            max-width: 85vw;
-            white-space: normal;
             text-align: center;
+            max-width: 85vw;
         }
 
         .hidden {
             display: none !important;
         }
 
-        /* profile stat cards fix */
         .profile-stats {
             display: flex;
             gap: 12px;
@@ -531,6 +826,54 @@
             color: #6b8ea2;
         }
 
+        .rating-stars {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .star {
+            font-size: 40px;
+            cursor: pointer;
+            color: #ddd;
+            transition: all 0.2s;
+        }
+
+        .star.active {
+            color: #ffc107;
+        }
+
+        .rating-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e2edf2;
+            border-radius: 16px;
+            margin: 12px 0;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        /* Buyer Type Badge */
+        .buyer-type-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+
+        .badge-consumer {
+            background: #e3f2fd;
+            color: #2196f3;
+        }
+
+        .badge-farmer {
+            background: #e8f5e9;
+            color: #4caf50;
+        }
+
         @media (max-width: 450px) {
             .main-content {
                 padding: 14px 16px 20px;
@@ -540,13 +883,8 @@
                 height: 110px;
             }
 
-            .category-chip {
-                padding: 6px 16px;
-                font-size: 12px;
-            }
-
-            .hero-slide h2 {
-                font-size: 18px;
+            .map-placeholder {
+                height: 220px;
             }
         }
     </style>
@@ -562,16 +900,16 @@
         <div class="header">
             <div class="logo-area">
                 <h1>🛒 TOO MUCH</h1>
-                <p><i class="fas fa-seedling"></i> Hemat pangan · Selamatkan bumi</p>
+                <p><i class="fas fa-seedling"></i> Surplus Food + Limbah Organik</p>
             </div>
             <div class="header-actions">
                 <button class="cart-btn" onclick="openCart()">
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count" id="cartCount">0</span>
                 </button>
-                <button class="ai-btn" onclick="goToAI()">
-                    <i class="fas fa-robot"></i> AI
-                </button>
+               <button class="ai-btn" onclick="window.location.href='ai-detail.html'">
+  <i class="fas fa-microchip"></i> AI Bisnis
+</button>
             </div>
         </div>
 
@@ -582,43 +920,42 @@
                     <div class="hero-slide active">
                         <h2>Hemat hingga 50% 🎉</h2>
                         <p>Surplus makanan dari restoran terbaik di kotamu</p>
-                        <span
-                            style="background:rgba(255,255,255,0.2); padding:6px 12px; border-radius:40px; font-size:12px;">🍽️
-                            100+ mitra</span>
+                        <span style="background:rgba(255,255,255,0.2); padding:6px 12px; border-radius:40px; font-size:12px;">🍽️ 100+ mitra</span>
+                    </div>
+                    <div class="hero-slide">
+                        <h2>Limbah Jadi Berkah ♻️</h2>
+                        <p>Jual limbah organik ke peternak & produsen pupuk</p>
+                        <span style="background:rgba(255,255,255,0.2); padding:6px 12px; border-radius:40px; font-size:12px;">🐄 Pupuk Organik</span>
                     </div>
                     <div class="hero-slide">
                         <h2>Zero Food Waste 🌱</h2>
-                        <p>Setiap pembelianmu membantu mengurangi limbah makanan</p>
-                        <span
-                            style="background:rgba(255,255,255,0.2); padding:6px 12px; border-radius:40px; font-size:12px;">♻️
-                            Dukung Bumi</span>
-                    </div>
-                    <div class="hero-slide">
-                        <h2>Flash Sale! ⚡</h2>
-                        <p>Diskon tambahan 10% untuk pembelian pertama</p>
-                        <span
-                            style="background:rgba(255,255,255,0.2); padding:6px 12px; border-radius:40px; font-size:12px;">🎁
-                            Promo Terbatas</span>
+                        <p>Selamatkan bumi dengan mengurangi limbah makanan</p>
+                        <span style="background:rgba(255,255,255,0.2); padding:6px 12px; border-radius:40px; font-size:12px;">♻️ Dukung Bumi</span>
                     </div>
                     <div class="carousel-dots" id="carouselDots"></div>
                 </div>
 
-                <div class="voucher-section" id="voucherSection">
+                <!-- PRODUCT TYPE TOGGLE -->
+                <div class="product-type-toggle">
+                    <button class="type-btn active" data-type="surplus" onclick="setProductType('surplus')">
+                        <i class="fas fa-utensils"></i> Makanan Surplus
+                    </button>
+                    <button class="type-btn" data-type="waste" onclick="setProductType('waste')">
+                        <i class="fas fa-trash-alt"></i> Limbah Organik (kg)
+                    </button>
+                </div>
+
+                <div class="voucher-section">
                     <div class="voucher-info" style="display:flex; align-items:center; gap:12px;">
-                        <div class="voucher-icon" style="background:#fee8e0; padding:8px; border-radius:12px;"><i
-                                class="fas fa-ticket-alt"></i></div>
+                        <div class="voucher-icon" style="background:#fee8e0; padding:8px; border-radius:12px;"><i class="fas fa-ticket-alt"></i></div>
                         <div><strong>Diskon 10%</strong><br><small>Min. belanja Rp50.000</small></div>
                     </div>
-                    <button class="voucher-claim" onclick="claimVoucher()"
-                        style="background:none; border:1px solid #1d7eaa; padding:6px 14px; border-radius:40px; font-weight:600;">Klaim</button>
+                    <button class="voucher-claim" onclick="claimVoucher()" style="background:none; border:1px solid #1d7eaa; padding:6px 14px; border-radius:40px; font-weight:600;">Klaim</button>
                 </div>
 
                 <div class="flash-sale">
-                    <div class="flash-sale-left">
-                        <div class="flash-icon"
-                            style="background:#f5a65b; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center;">
-                            <i class="fas fa-bolt"></i>
-                        </div>
+                    <div class="flash-sale-left" style="display:flex; gap:12px; align-items:center;">
+                        <div class="flash-icon" style="background:#f5a65b; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center;"><i class="fas fa-bolt"></i></div>
                         <div>
                             <h4 style="font-weight:800;">FLASH SALE</h4>
                             <p style="font-size:11px;">Diskon tambahan 10%</p>
@@ -627,7 +964,7 @@
                     <div class="timer" id="timer">14:59</div>
                 </div>
 
-                <div class="category-section">
+                <div class="category-section" id="categorySection">
                     <div class="category-scroll" id="categoryScroll">
                         <div class="category-chip active" data-cat="all"><i class="fas fa-fire"></i> Semua</div>
                         <div class="category-chip" data-cat="makanan"><i class="fas fa-utensils"></i> Makanan</div>
@@ -638,24 +975,44 @@
                     </div>
                 </div>
 
+                <!-- Waste Category (different from food) -->
+                <div class="category-section hidden" id="wasteCategorySection">
+                    <div class="category-scroll" id="wasteCategoryScroll">
+                        <div class="category-chip active" data-waste-cat="all"><i class="fas fa-fire"></i> Semua</div>
+                        <div class="category-chip" data-waste-cat="sayur"><i class="fas fa-carrot"></i> Sayuran</div>
+                        <div class="category-chip" data-waste-cat="buah"><i class="fas fa-apple-alt"></i> Buah</div>
+                        <div class="category-chip" data-waste-cat="nasi"><i class="fas fa-bread-slice"></i> Sisa Nasi</div>
+                        <div class="category-chip" data-waste-cat="campuran"><i class="fas fa-blender"></i> Campuran</div>
+                    </div>
+                </div>
+
                 <div class="search-wrapper">
-                    <i class="fas fa-search"
-                        style="position:absolute; left:18px; top:50%; transform:translateY(-50%);"></i>
-                    <input type="text" class="search-input" id="searchFood" placeholder="Cari makanan favoritmu...">
+                    <i class="fas fa-search" style="position:absolute; left:18px; top:50%; transform:translateY(-50%);"></i>
+                    <input type="text" class="search-input" id="searchFood" placeholder="Cari produk...">
                 </div>
 
                 <div class="section-title" style="display:flex; justify-content:space-between; margin:16px 0 12px;">
-                    <h3 style="font-size:18px;"><i class="fas fa-fire"></i> Rekomendasi untukmu</h3>
+                    <h3 style="font-size:18px;" id="sectionTitle"><i class="fas fa-fire"></i> Makanan Surplus</h3>
                     <span onclick="scrollToProducts()" style="font-size:12px; color:#1d7eaa;">Lihat semua →</span>
                 </div>
 
-                <div id="foodListContainer" class="product-grid"></div>
+                <div id="productListContainer" class="product-grid"></div>
             </div>
 
             <!-- Orders Tab -->
             <div id="ordersTab" class="hidden">
-                <div class="section-title" style="margin:0 0 16px 0;">
+                <div class="section-title" style="margin:0 0 8px 0;">
                     <h3><i class="fas fa-receipt"></i> Pesanan Saya</h3>
+                </div>
+                <div class="waste-card">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <i class="fas fa-leaf" style="font-size: 32px; color: #4caf50;"></i>
+                        <div>
+                            <div class="waste-label">Total Limbah Terselamatkan</div>
+                            <div class="waste-number" id="totalWasteSaved">0 <span style="font-size: 14px;">kg</span></div>
+                        </div>
+                    </div>
+                    <i class="fas fa-recycle" style="color: #4caf50; font-size: 24px;"></i>
                 </div>
                 <div id="ordersList" class="orders-list"></div>
             </div>
@@ -663,19 +1020,12 @@
             <!-- Forum Tab -->
             <div id="forumTab" class="hidden">
                 <div class="section-title" style="margin-bottom:12px;">
-                    <h3><i class="fas fa-comments"></i> Forum Diskusi</h3><span style="font-size:12px;">Komunitas Zero
-                        Waste</span>
+                    <h3><i class="fas fa-comments"></i> Forum Diskusi</h3><span style="font-size:12px;">Komunitas Zero Waste</span>
                 </div>
-                <div
-                    style="background:white; border-radius:28px; padding:14px; margin-bottom:24px; display:flex; gap:12px; align-items:center;">
-                    <div
-                        style="width:42px; height:42px; border-radius:50%; background:#1d7eaa; display:flex; align-items:center; justify-content:center; color:white;">
-                        👤</div>
-                    <input type="text" id="postInput" placeholder="Bagikan tips atau pertanyaan..."
-                        style="flex:1; border:none; outline:none; background:transparent; font-size:14px;">
-                    <button id="submitPostBtn"
-                        style="background:#1d7eaa; color:white; border:none; padding:10px 18px; border-radius:40px;"><i
-                            class="fas fa-paper-plane"></i></button>
+                <div style="background:white; border-radius:28px; padding:14px; margin-bottom:24px; display:flex; gap:12px; align-items:center;">
+                    <div style="width:42px; height:42px; border-radius:50%; background:#1d7eaa; display:flex; align-items:center; justify-content:center; color:white;">👤</div>
+                    <input type="text" id="postInput" placeholder="Bagikan tips atau pertanyaan..." style="flex:1; border:none; outline:none; background:transparent; font-size:14px;">
+                    <button id="submitPostBtn" style="background:#1d7eaa; color:white; border:none; padding:10px 18px; border-radius:40px;"><i class="fas fa-paper-plane"></i></button>
                 </div>
                 <div id="forumPostsContainer"></div>
             </div>
@@ -684,8 +1034,7 @@
             <div id="profileTab" class="hidden">
                 <div style="background:white; border-radius:32px; padding:24px; text-align:center; margin-bottom:20px;">
                     <div style="width: 80px; height: 80px; border-radius: 60px; overflow: hidden; margin: 0 auto 16px;">
-                        <img id="profileImage" src="bintang.png" alt="Profile"
-                            style="width: 100%; height: 100%; object-fit: cover;">
+                        <img id="profileImage" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>
                     <h3 id="userName" style="font-size:22px; font-weight:800;">Bintang Permana</h3>
                     <p style="color:#5a7e94; margin-top:6px;" id="userEmail">bintang@too-much.id</p>
@@ -707,9 +1056,7 @@
                         <i class="fas fa-leaf" style="color:#3e9c6e;"></i> <strong>Dampak Positifmu</strong><br>
                         Kamu sudah membantu mengurangi <strong id="totalWasteKg">0 kg</strong> sampah makanan 🌎
                     </div>
-                    <button onclick="logout()"
-                        style="margin-top:24px; background:#fee; color:#b45b2b; width:100%; padding:14px; border-radius:40px; border:none; font-weight:600;"><i
-                            class="fas fa-sign-out-alt"></i> Logout</button>
+                    <button onclick="logout()" style="margin-top:24px; background:#fee; color:#b45b2b; width:100%; padding:14px; border-radius:40px; border:none; font-weight:600;"><i class="fas fa-sign-out-alt"></i> Logout</button>
                 </div>
             </div>
         </div>
@@ -719,14 +1066,63 @@
         <div class="modal" id="cartModal">
             <h3 style="margin-bottom:16px;"><i class="fas fa-shopping-cart"></i> Keranjang Saya</h3>
             <div id="cartItems" style="max-height: 40vh; overflow-y: auto;"></div>
-            <div class="cart-total"
-                style="display:flex; justify-content:space-between; padding:16px 0; font-weight:800; font-size:18px;">
+            <div class="cart-total" style="display:flex; justify-content:space-between; padding:16px 0; font-weight:800; font-size:18px;">
                 <span>Total</span>
                 <span id="cartTotal">Rp0</span>
             </div>
-            <button class="checkout-btn" onclick="checkout()"
-                style="width:100%; background:#1d7eaa; color:white; border:none; padding:16px; border-radius:40px; font-weight:700;">Checkout
-                Sekarang</button>
+            <button class="checkout-btn" onclick="proceedToCheckout()" style="width:100%; background:#1d7eaa; color:white; border:none; padding:16px; border-radius:40px; font-weight:700;">Checkout Sekarang</button>
+        </div>
+
+        <!-- Buyer Type Modal (untuk limbah organik) -->
+        <div class="modal-overlay" id="buyerTypeOverlay" onclick="closeBuyerTypeModal()"></div>
+        <div class="modal" id="buyerTypeModal">
+            <h3 style="margin-bottom:16px;"><i class="fas fa-truck"></i> Pilih Tipe Pembeli</h3>
+            <p style="margin-bottom:20px; font-size:14px; color:#6b8ea2;">Limbah organik ini akan digunakan untuk:</p>
+            <div style="margin-bottom:20px;">
+                <div style="padding:16px; border:1px solid #e2edf2; border-radius:16px; margin-bottom:10px; cursor:pointer; display:flex; align-items:center; gap:12px;" onclick="selectBuyerType('farmer')">
+                    <i class="fas fa-tractor" style="font-size:24px; color:#4caf50;"></i>
+                    <div><strong>Peternak</strong><br><small>Untuk pakan ternak (ayam, kambing, dll)</small></div>
+                </div>
+                <div style="padding:16px; border:1px solid #e2edf2; border-radius:16px; cursor:pointer; display:flex; align-items:center; gap:12px;" onclick="selectBuyerType('fertilizer')">
+                    <i class="fas fa-seedling" style="font-size:24px; color:#8bc34a;"></i>
+                    <div><strong>Produsen Pupuk</strong><br><small>Diolah menjadi kompos/pupuk organik</small></div>
+                </div>
+            </div>
+            <button onclick="closeBuyerTypeModal()" style="width:100%; background:#eef2f5; color:#5f8b9f; border:none; padding:14px; border-radius:40px; font-weight:600;">Batal</button>
+        </div>
+
+        <!-- Tracking Modal -->
+        <div class="modal-overlay" id="trackingOverlay" onclick="closeTrackingModal()"></div>
+        <div class="modal" id="trackingModal">
+            <div id="trackingContent"></div>
+        </div>
+
+        <!-- Rating Modal -->
+        <div class="modal-overlay" id="ratingOverlay" onclick="closeRatingModal()"></div>
+        <div class="modal" id="ratingModal">
+            <h3 style="margin-bottom:16px;"><i class="fas fa-star"></i> Beri Rating untuk Restoran</h3>
+            <div id="ratingOrderInfo" style="padding:12px; background:#f8fafc; border-radius:16px; margin-bottom:16px;"></div>
+            <div class="rating-stars" id="ratingStars">
+                <i class="far fa-star star" data-rating="1"></i>
+                <i class="far fa-star star" data-rating="2"></i>
+                <i class="far fa-star star" data-rating="3"></i>
+                <i class="far fa-star star" data-rating="4"></i>
+                <i class="far fa-star star" data-rating="5"></i>
+            </div>
+            <textarea id="ratingComment" class="rating-input" rows="3" placeholder="Tulis ulasanmu di sini..."></textarea>
+            <button onclick="submitRating()" style="width:100%; background:#1d7eaa; color:white; border:none; padding:14px; border-radius:40px; font-weight:700; margin-top:12px;">Kirim Rating</button>
+        </div>
+
+        <!-- Payment Modal -->
+        <div class="modal-overlay" id="paymentOverlay" onclick="closePaymentModal()"></div>
+        <div class="modal" id="paymentModal">
+            <h3 style="margin-bottom:16px;"><i class="fas fa-credit-card"></i> Metode Pembayaran</h3>
+            <div style="margin-bottom:20px;">
+                <div style="padding:12px; border:1px solid #e2edf2; border-radius:16px; margin-bottom:10px; cursor:pointer;" onclick="selectPaymentMethod('cash')"><i class="fas fa-money-bill-wave"></i> Cash on Delivery</div>
+                <div style="padding:12px; border:1px solid #e2edf2; border-radius:16px; margin-bottom:10px; cursor:pointer;" onclick="selectPaymentMethod('bank')"><i class="fas fa-university"></i> Bank Transfer</div>
+                <div style="padding:12px; border:1px solid #e2edf2; border-radius:16px; cursor:pointer;" onclick="selectPaymentMethod('ewallet')"><i class="fas fa-wallet"></i> E-Wallet</div>
+            </div>
+            <button onclick="closePaymentModal()" style="width:100%; background:#eef2f5; color:#5f8b9f; border:none; padding:14px; border-radius:40px; font-weight:600;">Batal</button>
         </div>
 
         <div class="bottom-nav">
@@ -738,60 +1134,685 @@
     </div>
 
     <script>
-        // Data
+        // ==================== DATA PRODUK ====================
+        // 1. Makanan Surplus (siap konsumsi)
         const foodDatabase = [
-            { id: 1, name: "Nasi Goreng", resto: "Warung MbaK Harum", distance: 1.2, originalPrice: 35000, surplusPrice: 21000, discount: 40, stock: 3, icon: "🍛", category: "makanan" },
-            { id: 2, name: "Chicken Burger", resto: "BurgerHaus", distance: 0.8, originalPrice: 45000, surplusPrice: 27000, discount: 40, stock: 2, icon: "🍔", category: "fastfood" },
-            { id: 3, name: "Salad Ayam", resto: "GreenEat Cafe", distance: 1.5, originalPrice: 38000, surplusPrice: 22000, discount: 42, stock: 5, icon: "🥗", category: "sehat" },
-            { id: 4, name: "Sushi Platter", resto: "SushiKita", distance: 2.1, originalPrice: 65000, surplusPrice: 35000, discount: 46, stock: 2, icon: "🍣", category: "japanese" },
-            { id: 5, name: "Rendang + Nasi", resto: "Dapoer Uni", distance: 0.9, originalPrice: 48000, surplusPrice: 29000, discount: 40, stock: 4, icon: "🍲", category: "indonesian" },
-            { id: 6, name: "Pizza Pepperoni", resto: "PizzaHaus", distance: 1.8, originalPrice: 85000, surplusPrice: 51000, discount: 40, stock: 1, icon: "🍕", category: "fastfood" },
-            { id: 7, name: "Nasi Uduk", resto: "Sari Rasa", distance: 0.5, originalPrice: 25000, surplusPrice: 15000, discount: 40, stock: 6, icon: "🍚", category: "indonesian" },
-            { id: 8, name: "Matcha Latte", resto: "Kopi Kaki Lima", distance: 1.0, originalPrice: 28000, surplusPrice: 16800, discount: 40, stock: 3, icon: "☕", category: "makanan" }
+            { id: 1, name: "Nasi Goreng", resto: "Warung MbaK Harum", originalPrice: 35000, surplusPrice: 21000, discount: 40, stock: 3, icon: "🍛", category: "makanan", type: "surplus" },
+            { id: 2, name: "Chicken Burger", resto: "BurgerHaus", originalPrice: 45000, surplusPrice: 27000, discount: 40, stock: 2, icon: "🍔", category: "fastfood", type: "surplus" },
+            { id: 3, name: "Salad Ayam", resto: "GreenEat Cafe", originalPrice: 38000, surplusPrice: 22000, discount: 42, stock: 5, icon: "🥗", category: "sehat", type: "surplus" },
+            { id: 4, name: "Sushi Platter", resto: "SushiKita", originalPrice: 65000, surplusPrice: 35000, discount: 46, stock: 2, icon: "🍣", category: "japanese", type: "surplus" },
+            { id: 5, name: "Rendang + Nasi", resto: "Dapoer Uni", originalPrice: 48000, surplusPrice: 29000, discount: 40, stock: 4, icon: "🍲", category: "indonesian", type: "surplus" },
+            { id: 6, name: "Pizza Pepperoni", resto: "PizzaHaus", originalPrice: 85000, surplusPrice: 51000, discount: 40, stock: 1, icon: "🍕", category: "fastfood", type: "surplus" },
+            { id: 7, name: "Nasi Uduk", resto: "Sari Rasa", originalPrice: 25000, surplusPrice: 15000, discount: 40, stock: 6, icon: "🍚", category: "indonesian", type: "surplus" },
+            { id: 8, name: "Matcha Latte", resto: "Kopi Kaki Lima", originalPrice: 28000, surplusPrice: 16800, discount: 40, stock: 3, icon: "☕", category: "makanan", type: "surplus" }
         ];
 
-        let forumPosts = JSON.parse(localStorage.getItem('forumPosts')) || [
-            { id: 1, username: "EcoWarrior", avatar: "🌱", content: "Tips mengurangi food waste di rumah: selalu buat daftar belanja!", likes: 24, comments: 5, time: "2 jam lalu" },
-            { id: 2, username: "FoodSaver", avatar: "🍽️", content: "Aplikasi TOO MUCH keren! Langsung hemat 40% 😍", likes: 15, comments: 3, time: "5 jam lalu" }
+        // 2. Limbah Organik (dijual per kg) - untuk peternak & produsen pupuk
+        const wasteDatabase = [
+            { id: 101, name: "Limbah Sayuran Segar", supplier: "Pasar Induk", pricePerKg: 3000, originalPricePerKg: 5000, discount: 40, stock: 50, icon: "🥬", wasteCategory: "sayur", type: "waste", description: "Sayuran tidak layak jual tapi masih bagus untuk pakan ternak" },
+            { id: 102, name: "Limbah Buah-buahan", supplier: "Pasar Buah", pricePerKg: 3500, originalPricePerKg: 6000, discount: 42, stock: 35, icon: "🍎", wasteCategory: "buah", type: "waste", description: "Buah busuk sebagian, cocok untuk kompos" },
+            { id: 103, name: "Sisa Nasi & Makanan", supplier: "Restoran Sederhana", pricePerKg: 2500, originalPricePerKg: 4000, discount: 38, stock: 40, icon: "🍚", wasteCategory: "nasi", type: "waste", description: "Sisa nasi dan lauk, bagus untuk pakan ternak" },
+            { id: 104, name: "Limbah Campuran Organik", supplier: "Pusat Pangan", pricePerKg: 2000, originalPricePerKg: 3500, discount: 43, stock: 100, icon: "🧺", wasteCategory: "campuran", type: "waste", description: "Campuran sayur, buah, nasi - ideal untuk kompos" },
+            { id: 105, name: "Limbah Kulit Buah", supplier: "Pengepul Buah", pricePerKg: 2800, originalPricePerKg: 4500, discount: 38, stock: 60, icon: "🍌", wasteCategory: "buah", type: "waste", description: "Kulit pisang, jeruk, semangka" }
         ];
-        let orders = JSON.parse(localStorage.getItem('consumerOrders') || '[]');
-        let cart = JSON.parse(localStorage.getItem('consumerCart') || '[]');
+
+        let restoranData = {
+            "Warung MbaK Harum": { rating: 4.8, totalRatings: 234 },
+            "BurgerHaus": { rating: 4.5, totalRatings: 189 },
+            "GreenEat Cafe": { rating: 4.9, totalRatings: 312 },
+            "SushiKita": { rating: 4.7, totalRatings: 456 },
+            "Dapoer Uni": { rating: 4.6, totalRatings: 278 },
+            "PizzaHaus": { rating: 4.4, totalRatings: 345 },
+            "Sari Rasa": { rating: 4.3, totalRatings: 167 },
+            "Kopi Kaki Lima": { rating: 4.6, totalRatings: 223 }
+        };
+
+        // State
+        let forumPosts = JSON.parse(localStorage.getItem('forumPosts')) || [
+            { id: 1, username: "Peternak Jaya", avatar: "🐄", content: "Limbah sayuran dari TOO MUCH sangat bagus untuk pakan ternak saya!", likes: 34, comments: 7, time: "5 jam lalu" },
+            { id: 2, username: "KomposOrganik", avatar: "🌱", content: "Beli limbah buah buat kompos, hasilnya bagus banget!", likes: 28, comments: 4, time: "1 hari lalu" }
+        ];
+        
+        let orders = JSON.parse(localStorage.getItem('consumerOrders')) || [];
+        let cart = JSON.parse(localStorage.getItem('consumerCart')) || [];
         let voucherApplied = localStorage.getItem('voucherApplied') === 'true';
         let currentTab = 'home';
         let currentCategory = 'all';
+        let currentWasteCategory = 'all';
         let currentSearch = '';
+        let currentProductType = 'surplus'; // 'surplus' atau 'waste'
+        let selectedPaymentMethod = null;
+        let pendingCheckout = null;
+        let trackingInterval = null;
+        let currentRatingOrder = null;
+        let selectedRating = 0;
+        let pendingWasteItem = null; // untuk menyimpan item limbah sebelum pilih tipe pembeli
+        let pendingWasteKg = 0;
 
+        // Fungsi helper
         function formatRupiah(angka) { return 'Rp' + angka.toLocaleString('id-ID'); }
-        function showToast(msg) { let t = document.createElement('div'); t.className = 'toast-message'; t.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`; document.body.appendChild(t); setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 2000); }
-        function updateCartCount() { let count = cart.reduce((s, i) => s + i.quantity, 0); document.getElementById('cartCount').innerText = count; localStorage.setItem('consumerCart', JSON.stringify(cart)); }
-        function updateStats() { document.getElementById('orderCount').innerText = orders.length; let totalHemat = orders.reduce((s, o) => s + (o.originalPrice - o.price), 0); document.getElementById('totalSaved').innerText = formatRupiah(totalHemat); let wasteSaved = (orders.length * 0.7).toFixed(1); document.getElementById('wasteSaved').innerText = wasteSaved + 'kg'; document.getElementById('totalWasteKg').innerText = wasteSaved + ' kg'; }
-
-        function renderFoodList() {
-            let container = document.getElementById('foodListContainer');
-            let filtered = foodDatabase.filter(f => (currentCategory === 'all' || f.category === currentCategory) && (f.name.toLowerCase().includes(currentSearch.toLowerCase()) || f.resto.toLowerCase().includes(currentSearch.toLowerCase())));
-            if (filtered.length === 0) { container.innerHTML = `<div class="empty-state"><i class="fas fa-utensils"></i><br/>Makanan tidak ditemukan 😢</div>`; return; }
-            container.innerHTML = filtered.map(item => `<div class="product-card"><div class="product-image">${item.icon}<span class="discount-badge">-${item.discount}%</span></div><div class="product-info"><div class="product-name">${item.name}</div><div class="product-resto"><i class="fas fa-store"></i> ${item.resto} • ${item.distance}km</div><div class="product-price">${formatRupiah(item.surplusPrice)}<span class="price-original">${formatRupiah(item.originalPrice)}</span></div><button class="btn-add" onclick="addToCart(${item.id})"><i class="fas fa-cart-plus"></i> Tambah</button></div></div>`).join('');
+        
+        function showToast(msg) { 
+            let t = document.createElement('div'); 
+            t.className = 'toast-message'; 
+            t.innerHTML = `<i class="fas fa-check-circle"></i> ${msg}`; 
+            document.body.appendChild(t); 
+            setTimeout(() => { t.style.opacity = '0'; setTimeout(() => t.remove(), 300); }, 2000); 
         }
-        function addToCart(pid) { let f = foodDatabase.find(f => f.id === pid); if (!f) return; let exist = cart.find(i => i.id === pid); if (exist) exist.quantity++; else cart.push({ id: f.id, name: f.name, price: f.surplusPrice, originalPrice: f.originalPrice, quantity: 1, icon: f.icon }); updateCartCount(); showToast(`${f.name} ditambahkan ke keranjang`); }
-        function openCart() { let cartModal = document.getElementById('cartModal'), overlay = document.getElementById('cartOverlay'), cartDiv = document.getElementById('cartItems'); if (cart.length === 0) cartDiv.innerHTML = '<div class="empty-state">Keranjang kosong</div>'; else cartDiv.innerHTML = cart.map(i => `<div class="cart-item" style="display:flex; justify-content:space-between; padding:12px 0;"><div><span style="font-size:24px;">${i.icon}</span> ${i.name} x${i.quantity}</div><div><strong>${formatRupiah(i.price * i.quantity)}</strong></div></div>`).join(''); let total = cart.reduce((s, i) => s + (i.price * i.quantity), 0); if (voucherApplied) total = total * 0.9; document.getElementById('cartTotal').innerText = formatRupiah(total); cartModal.classList.add('show'); overlay.classList.add('show'); }
-        function closeCart() { document.getElementById('cartModal').classList.remove('show'); document.getElementById('cartOverlay').classList.remove('show'); }
-        function checkout() { if (cart.length === 0) { showToast('Keranjang kosong!'); return; } for (let item of cart) { for (let i = 0; i < item.quantity; i++) orders.push({ id: Date.now() + i, name: item.name, price: item.price, originalPrice: item.originalPrice, date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }), icon: item.icon }); } localStorage.setItem('consumerOrders', JSON.stringify(orders)); cart = []; updateCartCount(); updateStats(); closeCart(); showToast('Checkout berhasil! Terima kasih sudah membantu mengurangi food waste 🌱'); if (currentTab === 'orders') renderOrders(); }
-        function claimVoucher() { if (!voucherApplied) { voucherApplied = true; localStorage.setItem('voucherApplied', 'true'); showToast('Voucher 10% berhasil diklaim! Berlaku untuk checkout berikutnya'); } else showToast('Voucher sudah digunakan'); }
-        function renderOrders() { let cont = document.getElementById('ordersList'); if (!cont) return; if (orders.length === 0) { cont.innerHTML = '<div class="empty-state"><i class="fas fa-box-open"></i><br/>Belum ada pesanan</div>'; return; } cont.innerHTML = orders.slice().reverse().map(o => `<div class="order-item"><div style="display:flex; justify-content:space-between;"><div><span style="font-size:28px;">${o.icon || '🍱'}</span> <strong>${o.name}</strong><br><span style="font-size:11px;">${o.date}</span></div><div><strong>${formatRupiah(o.price)}</strong><br><span class="badge-green">Selesai</span></div></div></div>`).join(''); }
-        function renderForum() { let cont = document.getElementById('forumPostsContainer'); if (!cont) return; if (forumPosts.length === 0) { cont.innerHTML = '<div class="empty-state"><i class="fas fa-comments"></i><br/>Belum ada diskusi</div>'; return; } cont.innerHTML = forumPosts.slice().reverse().map(p => `<div class="forum-card" style="background:white; border-radius:24px; padding:16px; margin-bottom:16px;"><div style="display:flex; gap:12px; margin-bottom:12px;"><div style="width:44px; height:44px; border-radius:50%; background:#eef2f9; display:flex; align-items:center; justify-content:center; font-size:24px;">${p.avatar}</div><div><h4>${p.username}</h4><span style="font-size:11px; color:#8fadbe;">${p.time}</span></div></div><div style="margin-left:56px;"><p>${p.content}</p></div><div style="margin-left:56px; margin-top:12px; display:flex; gap:20px;"><button class="like-btn" data-id="${p.id}" style="background:none; border:none;"><i class="far fa-heart"></i> ${p.likes}</button><button><i class="far fa-comment"></i> ${p.comments}</button></div></div>`).join(''); document.querySelectorAll('.like-btn').forEach(btn => { btn.addEventListener('click', () => { let id = parseInt(btn.dataset.id); let post = forumPosts.find(po => po.id === id); if (post) { post.likes++; localStorage.setItem('forumPosts', JSON.stringify(forumPosts)); renderForum(); } }); }); }
-        function addForumPost(content) { if (!content.trim()) return; forumPosts.push({ id: Date.now(), username: localStorage.getItem('userName') || 'PegiatZeroWaste', avatar: '👤', content: content, likes: 0, comments: 0, time: 'Baru saja' }); localStorage.setItem('forumPosts', JSON.stringify(forumPosts)); renderForum(); document.getElementById('postInput').value = ''; showToast('Postingan berhasil dibagikan!'); }
-        function showTab(tabId) { currentTab = tabId; document.getElementById('homeTab').classList.add('hidden'); document.getElementById('ordersTab').classList.add('hidden'); document.getElementById('forumTab').classList.add('hidden'); document.getElementById('profileTab').classList.add('hidden'); document.getElementById(`${tabId}Tab`).classList.remove('hidden'); document.querySelectorAll('.nav-item').forEach(btn => { btn.classList.remove('active'); if (btn.dataset.tab === tabId) btn.classList.add('active'); }); if (tabId === 'orders') renderOrders(); if (tabId === 'forum') renderForum(); if (tabId === 'profile') updateStats(); }
-        function goToAI() { localStorage.setItem('returnUrl', 'consumer.html'); window.location.href = 'ai-detail.html'; }
-        function logout() { localStorage.clear(); window.location.href = 'index.html'; }
+        
+        function updateCartCount() { 
+            let count = cart.reduce((s, i) => s + i.quantity, 0); 
+            document.getElementById('cartCount').innerText = count; 
+            localStorage.setItem('consumerCart', JSON.stringify(cart)); 
+        }
+        
+        function updateStats() { 
+            document.getElementById('orderCount').innerText = orders.length; 
+            let totalHemat = orders.reduce((s, o) => s + ((o.originalPrice || o.price * 1.5) - o.price), 0); 
+            document.getElementById('totalSaved').innerText = formatRupiah(totalHemat); 
+            let wasteSaved = (orders.filter(o => o.type === 'waste').reduce((s, o) => s + (o.quantity || 1), 0) * 0.5).toFixed(1);
+            document.getElementById('wasteSaved').innerText = wasteSaved + 'kg'; 
+            document.getElementById('totalWasteKg').innerHTML = wasteSaved + ' kg';
+            document.getElementById('totalWasteSaved').innerHTML = wasteSaved;
+        }
+
+        function getRestoRating(restoName) {
+            return restoranData[restoName] || { rating: 4.5, totalRatings: 100 };
+        }
+
+        function updateRestoRating(restoName, newRating, comment) {
+            let current = getRestoRating(restoName);
+            let newTotalRatings = current.totalRatings + 1;
+            let newAvgRating = ((current.rating * current.totalRatings) + newRating) / newTotalRatings;
+            restoranData[restoName] = { rating: newAvgRating, totalRatings: newTotalRatings };
+            localStorage.setItem('restoranData', JSON.stringify(restoranData));
+            renderProductList();
+        }
+
+        // Set product type (Surplus Food atau Waste Organik)
+        function setProductType(type) {
+            currentProductType = type;
+            document.querySelectorAll('.type-btn').forEach(btn => {
+                if (btn.dataset.type === type) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+            
+            // Tampilkan/sembunyikan kategori yang sesuai
+            const foodCategorySection = document.getElementById('categorySection');
+            const wasteCategorySection = document.getElementById('wasteCategorySection');
+            const sectionTitle = document.getElementById('sectionTitle');
+            
+            if (type === 'surplus') {
+                foodCategorySection.classList.remove('hidden');
+                wasteCategorySection.classList.add('hidden');
+                sectionTitle.innerHTML = '<i class="fas fa-fire"></i> Makanan Surplus';
+                currentCategory = 'all';
+                // reset active chip
+                document.querySelectorAll('#categoryScroll .category-chip').forEach(chip => {
+                    chip.classList.remove('active');
+                    if (chip.dataset.cat === 'all') chip.classList.add('active');
+                });
+            } else {
+                foodCategorySection.classList.add('hidden');
+                wasteCategorySection.classList.remove('hidden');
+                sectionTitle.innerHTML = '<i class="fas fa-trash-alt"></i> Limbah Organik (per kg)';
+                currentWasteCategory = 'all';
+                document.querySelectorAll('#wasteCategoryScroll .category-chip').forEach(chip => {
+                    chip.classList.remove('active');
+                    if (chip.dataset.wasteCat === 'all') chip.classList.add('active');
+                });
+            }
+            renderProductList();
+        }
+
+        // Render produk berdasarkan tipe yang dipilih
+        function renderProductList() {
+            let container = document.getElementById('productListContainer');
+            
+            if (currentProductType === 'surplus') {
+                let filtered = foodDatabase.filter(f => 
+                    (currentCategory === 'all' || f.category === currentCategory) && 
+                    (f.name.toLowerCase().includes(currentSearch.toLowerCase()) || f.resto.toLowerCase().includes(currentSearch.toLowerCase()))
+                );
+                
+                if (filtered.length === 0) { 
+                    container.innerHTML = `<div class="empty-state"><i class="fas fa-utensils"></i><br/>Makanan tidak ditemukan 😢</div>`; 
+                    return; 
+                }
+                
+                container.innerHTML = filtered.map(item => {
+                    let restoRating = getRestoRating(item.resto);
+                    let starsHtml = '';
+                    for (let i = 1; i <= 5; i++) {
+                        if (i <= Math.floor(restoRating.rating)) starsHtml += '<i class="fas fa-star"></i>';
+                        else if (i === Math.floor(restoRating.rating) + 1 && restoRating.rating % 1 >= 0.5) starsHtml += '<i class="fas fa-star-half-alt"></i>';
+                        else starsHtml += '<i class="far fa-star"></i>';
+                    }
+                    
+                    return `<div class="product-card">
+                        <div class="product-image">
+                            ${item.icon}
+                            <span class="discount-badge">-${item.discount}%</span>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-name">${item.name}</div>
+                            <div class="product-resto">
+                                <i class="fas fa-store"></i> ${item.resto}
+                                <span style="font-size:10px;">${starsHtml} (${restoRating.totalRatings})</span>
+                            </div>
+                            <div class="product-price">${formatRupiah(item.surplusPrice)}<span class="price-original">${formatRupiah(item.originalPrice)}</span></div>
+                            <button class="btn-add" onclick="addToCart(${item.id}, 'surplus')"><i class="fas fa-cart-plus"></i> Tambah</button>
+                        </div>
+                    </div>`;
+                }).join('');
+            } 
+            else { // waste products
+                let filtered = wasteDatabase.filter(w => 
+                    (currentWasteCategory === 'all' || w.wasteCategory === currentWasteCategory) && 
+                    (w.name.toLowerCase().includes(currentSearch.toLowerCase()) || w.supplier.toLowerCase().includes(currentSearch.toLowerCase()))
+                );
+                
+                if (filtered.length === 0) { 
+                    container.innerHTML = `<div class="empty-state"><i class="fas fa-trash-alt"></i><br/>Limbah tidak ditemukan 😢</div>`; 
+                    return; 
+                }
+                
+                container.innerHTML = filtered.map(item => `
+                    <div class="product-card">
+                        <div class="product-image">
+                            ${item.icon}
+                            <span class="waste-badge">♻️ Organik</span>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-name">${item.name}</div>
+                            <div class="product-resto">
+                                <i class="fas fa-building"></i> ${item.supplier}
+                                <span style="font-size:10px;">${item.description.substring(0, 30)}...</span>
+                            </div>
+                            <div class="product-price">${formatRupiah(item.pricePerKg)}<span class="price-original">${formatRupiah(item.originalPricePerKg)}</span><span style="font-size:11px;"> /kg</span></div>
+                            <div class="kg-input">
+                                <span>Jumlah (kg):</span>
+                                <input type="number" id="kg_${item.id}" min="1" max="${item.stock}" value="1" style="width:70px;">
+                                <span>kg</span>
+                            </div>
+                            <button class="btn-add btn-add-waste" onclick="addWasteToCart(${item.id})"><i class="fas fa-leaf"></i> Beli Limbah</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Tambah makanan surplus ke cart
+        function addToCart(pid, type) {
+            let f = foodDatabase.find(f => f.id === pid);
+            if (!f) return;
+            let exist = cart.find(i => i.id === pid && i.type === 'surplus');
+            if (exist) exist.quantity++;
+            else cart.push({ 
+                id: f.id, name: f.name, price: f.surplusPrice, originalPrice: f.originalPrice, 
+                quantity: 1, icon: f.icon, resto: f.resto, type: 'surplus', category: f.category 
+            });
+            updateCartCount();
+            showToast(`${f.name} ditambahkan ke keranjang`);
+        }
+
+        // Tambah limbah ke cart (per kg)
+        function addWasteToCart(wid) {
+            let waste = wasteDatabase.find(w => w.id === wid);
+            if (!waste) return;
+            let kgInput = document.getElementById(`kg_${wid}`);
+            let kg = parseInt(kgInput.value);
+            if (isNaN(kg) || kg < 1) kg = 1;
+            if (kg > waste.stock) {
+                showToast(`Stok hanya ${waste.stock} kg tersedia`);
+                return;
+            }
+            
+            // Simpan sementara untuk pilih tipe pembeli
+            pendingWasteItem = waste;
+            pendingWasteKg = kg;
+            openBuyerTypeModal();
+        }
+
+        function openBuyerTypeModal() {
+            document.getElementById('buyerTypeOverlay').classList.add('show');
+            document.getElementById('buyerTypeModal').classList.add('show');
+        }
+
+        function closeBuyerTypeModal() {
+            document.getElementById('buyerTypeOverlay').classList.remove('show');
+            document.getElementById('buyerTypeModal').classList.remove('show');
+            pendingWasteItem = null;
+            pendingWasteKg = 0;
+        }
+
+        function selectBuyerType(buyerType) {
+            if (!pendingWasteItem) return;
+            
+            let buyerLabel = buyerType === 'farmer' ? 'Peternak' : 'Produsen Pupuk';
+            let buyerIcon = buyerType === 'farmer' ? '🐄' : '🌱';
+            
+            let exist = cart.find(i => i.id === pendingWasteItem.id && i.type === 'waste' && i.buyerType === buyerType);
+            if (exist) {
+                exist.quantity += pendingWasteKg;
+            } else {
+                cart.push({
+                    id: pendingWasteItem.id,
+                    name: pendingWasteItem.name,
+                    price: pendingWasteItem.pricePerKg,
+                    originalPrice: pendingWasteItem.originalPricePerKg,
+                    quantity: pendingWasteKg,
+                    icon: pendingWasteItem.icon,
+                    supplier: pendingWasteItem.supplier,
+                    type: 'waste',
+                    wasteCategory: pendingWasteItem.wasteCategory,
+                    buyerType: buyerType,
+                    buyerLabel: buyerLabel,
+                    buyerIcon: buyerIcon
+                });
+            }
+            
+            updateCartCount();
+            showToast(`${pendingWasteKg} kg ${pendingWasteItem.name} ditambahkan (${buyerLabel})`);
+            closeBuyerTypeModal();
+        }
+
+        function openCart() { 
+            let cartModal = document.getElementById('cartModal'), overlay = document.getElementById('cartOverlay'), cartDiv = document.getElementById('cartItems'); 
+            if (cart.length === 0) cartDiv.innerHTML = '<div class="empty-state">Keranjang kosong</div>'; 
+            else cartDiv.innerHTML = cart.map(i => {
+                let buyerBadge = i.buyerLabel ? `<span class="buyer-type-badge ${i.buyerType === 'farmer' ? 'badge-farmer' : 'badge-consumer'}">${i.buyerIcon} ${i.buyerLabel}</span>` : '';
+                return `<div class="cart-item" style="display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid #eef3f8;">
+                    <div>
+                        <span style="font-size:24px;">${i.icon}</span> 
+                        <strong>${i.name}</strong> ${buyerBadge}<br>
+                        <span style="font-size:12px;">${i.quantity} ${i.type === 'waste' ? 'kg' : 'item'}</span>
+                    </div>
+                    <div><strong>${formatRupiah(i.price * i.quantity)}</strong></div>
+                </div>`;
+            }).join(''); 
+            let total = cart.reduce((s, i) => s + (i.price * i.quantity), 0); 
+            if (voucherApplied) total = total * 0.9; 
+            document.getElementById('cartTotal').innerText = formatRupiah(total); 
+            cartModal.classList.add('show'); 
+            overlay.classList.add('show'); 
+        }
+        
+        function closeCart() { 
+            document.getElementById('cartModal').classList.remove('show'); 
+            document.getElementById('cartOverlay').classList.remove('show'); 
+        }
+        
+        function proceedToCheckout() {
+            if (cart.length === 0) { showToast('Keranjang kosong!'); return; }
+            closeCart();
+            pendingCheckout = [...cart];
+            document.getElementById('paymentOverlay').classList.add('show');
+            document.getElementById('paymentModal').classList.add('show');
+        }
+        
+        function selectPaymentMethod(method) {
+            selectedPaymentMethod = method;
+            closePaymentModal();
+            processOrder();
+        }
+        
+        function closePaymentModal() {
+            document.getElementById('paymentOverlay').classList.remove('show');
+            document.getElementById('paymentModal').classList.remove('show');
+        }
+        
+        function processOrder() {
+            if (!pendingCheckout || pendingCheckout.length === 0) return;
+            
+            let orderId = Date.now();
+            
+            for (let item of pendingCheckout) {
+                orders.push({ 
+                    id: orderId + Math.random(),
+                    orderGroupId: orderId,
+                    name: item.name,
+                    price: item.price,
+                    originalPrice: item.originalPrice,
+                    quantity: item.quantity,
+                    date: new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }),
+                    icon: item.icon,
+                    resto: item.resto || item.supplier,
+                    type: item.type,
+                    buyerType: item.buyerType,
+                    buyerLabel: item.buyerLabel,
+                    status: 'pending',
+                    paymentMethod: selectedPaymentMethod,
+                    trackingProgress: 0,
+                    rated: false
+                });
+            }
+            
+            localStorage.setItem('consumerOrders', JSON.stringify(orders));
+            cart = [];
+            updateCartCount();
+            updateStats();
+            
+            showToast('Pesanan berhasil dibuat!');
+            
+            setTimeout(() => {
+                updateOrderStatus(orderId, 'process');
+                startTracking(orderId);
+            }, 2000);
+            
+            pendingCheckout = null;
+            selectedPaymentMethod = null;
+            if (currentTab === 'orders') renderOrders();
+            else showTab('orders');
+        }
+        
+        function updateOrderStatus(orderGroupId, newStatus) {
+            orders.forEach(order => {
+                if (order.orderGroupId === orderGroupId) {
+                    order.status = newStatus;
+                }
+            });
+            localStorage.setItem('consumerOrders', JSON.stringify(orders));
+            renderOrders();
+        }
+        
+        function startTracking(orderGroupId) {
+            let progress = 0;
+            if (trackingInterval) clearInterval(trackingInterval);
+            
+            trackingInterval = setInterval(() => {
+                progress += Math.random() * 15 + 5;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(trackingInterval);
+                    updateOrderStatus(orderGroupId, 'delivered');
+                    showToast('Pesanan telah sampai! Jangan lupa beri rating ya ⭐');
+                    renderOrders();
+                }
+                
+                orders.forEach(order => {
+                    if (order.orderGroupId === orderGroupId && order.status === 'process') {
+                        order.trackingProgress = Math.min(progress, 100);
+                    }
+                });
+                localStorage.setItem('consumerOrders', JSON.stringify(orders));
+                
+                if (document.getElementById('trackingModal').classList.contains('show')) {
+                    renderTrackingMap(orderGroupId);
+                }
+            }, 800);
+        }
+        
+        function openTracking(orderGroupId) {
+            renderTrackingMap(orderGroupId);
+            document.getElementById('trackingOverlay').classList.add('show');
+            document.getElementById('trackingModal').classList.add('show');
+        }
+        
+        function renderTrackingMap(orderGroupId) {
+            let order = orders.find(o => o.orderGroupId === orderGroupId);
+            if (!order) return;
+            
+            let progress = order.trackingProgress || 0;
+            let statusText = progress < 30 ? 'Menuju Supplier' : (progress < 70 ? 'Sedang Mengantar' : 'Hampir Sampai');
+            let etaMinutes = Math.max(5, Math.floor((100 - progress) / 10));
+            
+            let content = `
+                <div class="tracking-container">
+                    <h3 style="margin-bottom:16px;"><i class="fas fa-location-dot"></i> Live Tracking Pesanan</h3>
+                    <div class="map-placeholder">
+                        <div class="map-canvas" style="position:relative; height:100%;">
+                            <div class="resto-marker" style="left:10%; top:70%;">🏭</div>
+                            <div class="customer-marker" style="left:85%; top:20%;">🏠</div>
+                            <div class="location-marker" id="driverMarker" style="left:${10 + (progress * 0.75)}%; top:${70 - (progress * 0.5)}%;">🚛</div>
+                            <div style="position:absolute; top:${70 - (progress * 0.25)}%; left:10%; width:${progress * 0.75}%; height:3px; background:#2196f3;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="tracking-info">
+                        <div class="driver-info">
+                            <div class="driver-avatar"><i class="fas fa-truck"></i></div>
+                            <div class="driver-details">
+                                <h4>Kurir</h4>
+                                <h3>Andi Saputra</h3>
+                                <p style="font-size:11px;">⭐ 4.9 • 1.234 pengiriman</p>
+                            </div>
+                            <button class="btn-call" onclick="showToast('Menghubungi kurir...')"><i class="fas fa-phone"></i> Hubungi</button>
+                        </div>
+                        
+                        <div class="tracking-steps">
+                            <div class="progress-line"><div class="progress-fill" style="width:${progress}%"></div></div>
+                            <div class="tracking-step ${progress >= 0 ? 'completed' : ''}">
+                                <div class="step-icon"><i class="fas fa-check"></i></div>
+                                <div class="step-label">Diterima</div>
+                            </div>
+                            <div class="tracking-step ${progress >= 30 ? 'completed' : (progress > 0 ? 'active' : '')}">
+                                <div class="step-icon"><i class="fas fa-store"></i></div>
+                                <div class="step-label">Di Supplier</div>
+                            </div>
+                            <div class="tracking-step ${progress >= 70 ? 'completed' : (progress >= 30 ? 'active' : '')}">
+                                <div class="step-icon"><i class="fas fa-truck"></i></div>
+                                <div class="step-label">Diantar</div>
+                            </div>
+                            <div class="tracking-step ${progress >= 100 ? 'completed' : (progress >= 70 ? 'active' : '')}">
+                                <div class="step-icon"><i class="fas fa-home"></i></div>
+                                <div class="step-label">Sampai</div>
+                            </div>
+                        </div>
+                        
+                        <div class="eta-info">
+                            <i class="fas fa-clock"></i> <strong>${statusText}</strong><br>
+                            <span style="font-size:24px; font-weight:800;">${etaMinutes} menit</span><br>
+                            <span style="font-size:11px;">Estimasi waktu tiba</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('trackingContent').innerHTML = content;
+        }
+        
+        function closeTrackingModal() {
+            if (trackingInterval) clearInterval(trackingInterval);
+            document.getElementById('trackingOverlay').classList.remove('show');
+            document.getElementById('trackingModal').classList.remove('show');
+        }
+        
+        function openRatingModal(order) {
+            currentRatingOrder = order;
+            selectedRating = 0;
+            document.getElementById('ratingComment').value = '';
+            
+            document.querySelectorAll('#ratingStars .star').forEach(star => {
+                star.classList.remove('active');
+                star.className = 'far fa-star star';
+            });
+            
+            document.getElementById('ratingOrderInfo').innerHTML = `
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <span style="font-size:32px;">${order.icon || '🍱'}</span>
+                    <div>
+                        <strong style="font-size:16px;">${order.name}</strong><br>
+                        <small style="color:#6b8ea2;">${order.resto || 'Supplier'}</small>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('ratingOverlay').classList.add('show');
+            document.getElementById('ratingModal').classList.add('show');
+            
+            document.querySelectorAll('#ratingStars .star').forEach(star => {
+                star.onclick = () => {
+                    selectedRating = parseInt(star.dataset.rating);
+                    document.querySelectorAll('#ratingStars .star').forEach((s, idx) => {
+                        if (idx < selectedRating) {
+                            s.className = 'fas fa-star star active';
+                        } else {
+                            s.className = 'far fa-star star';
+                        }
+                    });
+                };
+            });
+        }
+        
+        function closeRatingModal() {
+            document.getElementById('ratingOverlay').classList.remove('show');
+            document.getElementById('ratingModal').classList.remove('show');
+            currentRatingOrder = null;
+        }
+        
+        function submitRating() {
+            if (!currentRatingOrder) return;
+            if (selectedRating === 0) {
+                showToast('Pilih rating terlebih dahulu!');
+                return;
+            }
+            
+            if (currentRatingOrder.type === 'surplus' && currentRatingOrder.resto) {
+                updateRestoRating(currentRatingOrder.resto, selectedRating, document.getElementById('ratingComment').value);
+            }
+            
+            let orderIndex = orders.findIndex(o => o.id === currentRatingOrder.id);
+            if (orderIndex !== -1) {
+                orders[orderIndex].rated = true;
+                localStorage.setItem('consumerOrders', JSON.stringify(orders));
+            }
+            
+            closeRatingModal();
+            renderOrders();
+            showToast(`Terima kasih! Rating ${selectedRating}⭐ telah disimpan 🌟`);
+        }
+        
+        function renderOrders() { 
+            let cont = document.getElementById('ordersList'); 
+            if (!cont) return; 
+            if (orders.length === 0) { 
+                cont.innerHTML = '<div class="empty-state"><i class="fas fa-box-open"></i><br/>Belum ada pesanan</div>'; 
+                return; 
+            }
+            
+            let groupedOrders = {};
+            orders.forEach(order => {
+                let groupId = order.orderGroupId || order.id;
+                if (!groupedOrders[groupId]) groupedOrders[groupId] = [];
+                groupedOrders[groupId].push(order);
+            });
+            
+            cont.innerHTML = Object.values(groupedOrders).map(group => {
+                let firstOrder = group[0];
+                let totalPrice = group.reduce((sum, o) => sum + (o.price * (o.quantity || 1)), 0);
+                let statusText = { 'pending': 'Menunggu Konfirmasi', 'process': 'Sedang Dikirim', 'delivered': 'Telah Sampai' };
+                let statusClass = { 'pending': 'status-pending', 'process': 'status-process', 'delivered': 'status-delivered' };
+                let allRated = group.every(o => o.rated === true);
+                
+                let buyerInfo = '';
+                if (firstOrder.type === 'waste' && firstOrder.buyerLabel) {
+                    buyerInfo = `<div class="buyer-type-badge ${firstOrder.buyerType === 'farmer' ? 'badge-farmer' : 'badge-consumer'}" style="margin-left:0; margin-top:6px; display:inline-block;">
+                        ${firstOrder.buyerIcon} ${firstOrder.buyerLabel}
+                    </div>`;
+                }
+                
+                return `<div class="order-item">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <div>
+                            <span style="font-size:20px;">${firstOrder.icon || '🍱'}</span>
+                            <strong>${group.length} item</strong>
+                            <div style="font-size:11px; color:#8fadbe;">${firstOrder.date}</div>
+                            ${buyerInfo}
+                        </div>
+                        <div style="text-align:right;">
+                            <div class="order-status ${statusClass[firstOrder.status]}">${statusText[firstOrder.status]}</div>
+                            <strong>${formatRupiah(totalPrice)}</strong>
+                        </div>
+                    </div>
+                    <div style="border-top:1px solid #eef3f8; padding-top:12px;">
+                        ${group.map(o => `<div style="font-size:13px; margin-bottom:4px;">${o.name} ${o.type === 'waste' ? `(${o.quantity} kg)` : 'x1'}</div>`).join('')}
+                    </div>
+                    ${firstOrder.status === 'process' ? `<button class="btn-track" onclick="openTracking(${firstOrder.orderGroupId})"><i class="fas fa-map-marked-alt"></i> Lacak Pesanan</button>` : ''}
+                    ${firstOrder.status === 'delivered' && !allRated ? `<button class="btn-rate" onclick='openRatingModal(${JSON.stringify(firstOrder).replace(/'/g, "\\'")})'><i class="fas fa-star"></i> Beri Rating</button>` : ''}
+                    ${firstOrder.status === 'delivered' && allRated ? `<div style="margin-top:12px; text-align:center; font-size:12px; color:#4caf50;"><i class="fas fa-check-circle"></i> Sudah memberi rating</div>` : ''}
+                </div>`;
+            }).join('');
+        }
+        
+        function renderForum() { 
+            let cont = document.getElementById('forumPostsContainer'); 
+            if (!cont) return; 
+            cont.innerHTML = forumPosts.slice().reverse().map(p => `<div class="forum-card"><div style="display:flex; gap:12px;"><div style="width:44px; height:44px; border-radius:50%; background:#eef2f9; display:flex; align-items:center; justify-content:center; font-size:24px;">${p.avatar}</div><div><h4>${p.username}</h4><span style="font-size:11px; color:#8fadbe;">${p.time}</span><p style="margin-top:8px;">${p.content}</p></div></div></div>`).join('');
+        }
+        
+        function addForumPost(content) { 
+            if (!content.trim()) return; 
+            forumPosts.push({ id: Date.now(), username: 'PegiatZeroWaste', avatar: '👤', content: content, likes: 0, comments: 0, time: 'Baru saja' }); 
+            localStorage.setItem('forumPosts', JSON.stringify(forumPosts)); 
+            renderForum(); 
+            document.getElementById('postInput').value = ''; 
+            showToast('Postingan berhasil dibagikan!'); 
+        }
+        
+        function showTab(tabId) { 
+            currentTab = tabId; 
+            document.getElementById('homeTab').classList.add('hidden'); 
+            document.getElementById('ordersTab').classList.add('hidden'); 
+            document.getElementById('forumTab').classList.add('hidden'); 
+            document.getElementById('profileTab').classList.add('hidden'); 
+            document.getElementById(`${tabId}Tab`).classList.remove('hidden'); 
+            document.querySelectorAll('.nav-item').forEach(btn => { btn.classList.remove('active'); if (btn.dataset.tab === tabId) btn.classList.add('active'); }); 
+            if (tabId === 'orders') { renderOrders(); }
+            if (tabId === 'forum') renderForum(); 
+            if (tabId === 'profile') updateStats(); 
+        }
+        
+        function claimVoucher() { if (!voucherApplied) { voucherApplied = true; localStorage.setItem('voucherApplied', 'true'); showToast('Voucher 10% berhasil diklaim!'); } else showToast('Voucher sudah digunakan'); }
+        function goToAI() { showToast('🤖 Fitur AI akan segera hadir!'); }
+        function logout() { localStorage.clear(); window.location.reload(); }
         function scrollToProducts() { document.querySelector('.product-grid')?.scrollIntoView({ behavior: 'smooth' }); }
-        let currentSlide = 0; let slides = document.querySelectorAll('.hero-slide'); function updateCarousel() { slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide)); let dots = document.querySelectorAll('.dot'); dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide)); } function createDots() { let container = document.getElementById('carouselDots'); slides.forEach((_, i) => { let dot = document.createElement('div'); dot.classList.add('dot'); if (i === 0) dot.classList.add('active'); dot.onclick = () => { currentSlide = i; updateCarousel(); }; container.appendChild(dot); }); } setInterval(() => { currentSlide = (currentSlide + 1) % slides.length; updateCarousel(); }, 4500);
-        let timeLeft = 15 * 60; function updateTimer() { let m = Math.floor(timeLeft / 60); let s = timeLeft % 60; document.getElementById('timer').innerHTML = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`; if (timeLeft > 0) { timeLeft--; setTimeout(updateTimer, 1000); } }
-        document.getElementById('searchFood')?.addEventListener('input', (e) => { currentSearch = e.target.value; renderFoodList(); });
-        document.querySelectorAll('.category-chip').forEach(chip => { chip.addEventListener('click', () => { document.querySelectorAll('.category-chip').forEach(c => c.classList.remove('active')); chip.classList.add('active'); currentCategory = chip.dataset.cat; renderFoodList(); }); });
+        
+        // Carousel
+        let currentSlide = 0; let slides = document.querySelectorAll('.hero-slide'); 
+        function updateCarousel() { slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide)); let dots = document.querySelectorAll('.dot'); dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide)); } 
+        function createDots() { let container = document.getElementById('carouselDots'); slides.forEach((_, i) => { let dot = document.createElement('div'); dot.classList.add('dot'); if (i === 0) dot.classList.add('active'); dot.onclick = () => { currentSlide = i; updateCarousel(); }; container.appendChild(dot); }); } 
+        setInterval(() => { currentSlide = (currentSlide + 1) % slides.length; updateCarousel(); }, 4500);
+        
+        let timeLeft = 15 * 60; 
+        function updateTimer() { let m = Math.floor(timeLeft / 60); let s = timeLeft % 60; document.getElementById('timer').innerHTML = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`; if (timeLeft > 0) { timeLeft--; setTimeout(updateTimer, 1000); } }
+        
+        // Event Listeners
+        document.getElementById('searchFood')?.addEventListener('input', (e) => { currentSearch = e.target.value; renderProductList(); });
+        
+        // Category chips untuk makanan surplus
+        document.querySelectorAll('#categoryScroll .category-chip').forEach(chip => { 
+            chip.addEventListener('click', () => { 
+                document.querySelectorAll('#categoryScroll .category-chip').forEach(c => c.classList.remove('active')); 
+                chip.classList.add('active'); 
+                currentCategory = chip.dataset.cat; 
+                renderProductList(); 
+            }); 
+        });
+        
+        // Category chips untuk limbah
+        document.querySelectorAll('#wasteCategoryScroll .category-chip').forEach(chip => { 
+            chip.addEventListener('click', () => { 
+                document.querySelectorAll('#wasteCategoryScroll .category-chip').forEach(c => c.classList.remove('active')); 
+                chip.classList.add('active'); 
+                currentWasteCategory = chip.dataset.wasteCat; 
+                renderProductList(); 
+            }); 
+        });
+        
         document.getElementById('submitPostBtn')?.addEventListener('click', () => addForumPost(document.getElementById('postInput').value));
-        document.getElementById('postInput')?.addEventListener('keypress', (e) => { if (e.key === 'Enter') addForumPost(e.target.value); });
         document.querySelectorAll('.nav-item').forEach(btn => { btn.addEventListener('click', () => showTab(btn.dataset.tab)); });
-        function init() { createDots(); renderFoodList(); updateStats(); renderOrders(); renderForum(); updateTimer(); updateCartCount(); if (!localStorage.getItem('userName')) localStorage.setItem('userName', 'Bintang Permana'); document.getElementById('userName').innerText = localStorage.getItem('userName'); showTab('home'); }
+        
+        function init() { 
+            createDots(); 
+            renderProductList(); 
+            updateStats(); 
+            renderOrders(); 
+            renderForum(); 
+            updateTimer(); 
+            updateCartCount(); 
+            showTab('home'); 
+        }
         init();
     </script>
 </body>
