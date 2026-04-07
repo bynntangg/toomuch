@@ -52,59 +52,74 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 12px;
             border-bottom: 1px solid rgba(29, 126, 170, 0.12);
-            flex-wrap: wrap;
-            gap: 10px;
+            flex-wrap: nowrap;
+        }
+
+        .logo-area {
+            flex: 1;
+            min-width: 0;
         }
 
         .logo-area h1 {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 800;
             background: linear-gradient(135deg, #0f3b5e, #1d7eaa);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
             letter-spacing: -0.3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .logo-area p {
-            font-size: 11px;
+            font-size: 10px;
             color: #5f8b9f;
             font-weight: 500;
             margin-top: 2px;
+            white-space: nowrap;
         }
 
         .header-actions {
             display: flex;
-            gap: 12px;
+            gap: 8px;
             align-items: center;
+            flex-shrink: 0;
         }
 
         .ai-btn {
             background: linear-gradient(145deg, #ffffff, #eff6fa);
             border: 1px solid #cde3ed;
-            padding: 8px 16px;
+            padding: 8px 12px;
             border-radius: 40px;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             color: #1d7eaa;
             cursor: pointer;
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
             transition: all 0.2s;
             white-space: nowrap;
+        }
+
+        .ai-btn i {
+            font-size: 12px;
         }
 
         .cart-btn {
             position: relative;
             background: none;
             border: none;
-            font-size: 26px;
+            font-size: 24px;
             cursor: pointer;
             color: #1d7eaa;
             display: flex;
             align-items: center;
+            flex-shrink: 0;
         }
 
         .cart-count {
@@ -139,7 +154,7 @@
             padding: 12px 8px;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px;
             cursor: pointer;
             transition: all 0.2s;
             background: transparent;
@@ -147,14 +162,14 @@
             color: #8fadbe;
         }
 
+        .type-btn i {
+            margin-right: 6px;
+        }
+
         .type-btn.active {
             background: #1d7eaa;
             color: white;
             box-shadow: 0 4px 12px rgba(29, 126, 170, 0.3);
-        }
-
-        .type-btn i {
-            margin-right: 6px;
         }
 
         .bottom-nav {
@@ -216,7 +231,49 @@
             }
         }
 
-        /* Tracking Map Style */
+        /* Responsive adjustments */
+        @media (max-width: 450px) {
+            .main-content {
+                padding: 14px 16px 20px;
+            }
+
+            .product-image {
+                height: 110px;
+            }
+
+            .map-placeholder {
+                height: 220px;
+            }
+
+            .logo-area h1 {
+                font-size: 18px;
+            }
+
+            .logo-area p {
+                font-size: 9px;
+            }
+
+            .ai-btn span {
+                display: none;
+            }
+
+            .ai-btn {
+                padding: 8px 10px;
+            }
+
+            .ai-btn i {
+                font-size: 14px;
+                margin: 0;
+            }
+        }
+
+        /* Tablet dan laptop tetap tampil normal */
+        @media (min-width: 451px) {
+            .ai-btn span {
+                display: inline;
+            }
+        }
+
         .tracking-container {
             background: white;
             border-radius: 28px;
@@ -387,7 +444,6 @@
             width: 100%;
         }
 
-        /* Hero & Product Styles */
         .hero-carousel {
             position: relative;
             margin-bottom: 22px;
@@ -854,7 +910,6 @@
             resize: vertical;
         }
 
-        /* Buyer Type Badge */
         .buyer-type-badge {
             display: inline-block;
             padding: 2px 10px;
@@ -872,20 +927,6 @@
         .badge-farmer {
             background: #e8f5e9;
             color: #4caf50;
-        }
-
-        @media (max-width: 450px) {
-            .main-content {
-                padding: 14px 16px 20px;
-            }
-
-            .product-image {
-                height: 110px;
-            }
-
-            .map-placeholder {
-                height: 220px;
-            }
         }
     </style>
 </head>
@@ -907,12 +948,13 @@
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-count" id="cartCount">0</span>
                 </button>
-               <button class="ai-btn" onclick="window.location.href='ai-detail.html'">
-  <i class="fas fa-microchip"></i> AI Bisnis
-</button>
+                <button class="ai-btn" onclick="window.location.href='ai-detail.html'">
+                    <i class="fas fa-microchip"></i> <span>AI Bisnis</span>
+                </button>
             </div>
         </div>
 
+        <!-- Rest of your content remains the same -->
         <div class="main-content" id="mainContent">
             <!-- Home Tab -->
             <div id="homeTab">
@@ -975,7 +1017,6 @@
                     </div>
                 </div>
 
-                <!-- Waste Category (different from food) -->
                 <div class="category-section hidden" id="wasteCategorySection">
                     <div class="category-scroll" id="wasteCategoryScroll">
                         <div class="category-chip active" data-waste-cat="all"><i class="fas fa-fire"></i> Semua</div>
@@ -1073,7 +1114,7 @@
             <button class="checkout-btn" onclick="proceedToCheckout()" style="width:100%; background:#1d7eaa; color:white; border:none; padding:16px; border-radius:40px; font-weight:700;">Checkout Sekarang</button>
         </div>
 
-        <!-- Buyer Type Modal (untuk limbah organik) -->
+        <!-- Buyer Type Modal -->
         <div class="modal-overlay" id="buyerTypeOverlay" onclick="closeBuyerTypeModal()"></div>
         <div class="modal" id="buyerTypeModal">
             <h3 style="margin-bottom:16px;"><i class="fas fa-truck"></i> Pilih Tipe Pembeli</h3>
@@ -1135,7 +1176,6 @@
 
     <script>
         // ==================== DATA PRODUK ====================
-        // 1. Makanan Surplus (siap konsumsi)
         const foodDatabase = [
             { id: 1, name: "Nasi Goreng", resto: "Warung MbaK Harum", originalPrice: 35000, surplusPrice: 21000, discount: 40, stock: 3, icon: "🍛", category: "makanan", type: "surplus" },
             { id: 2, name: "Chicken Burger", resto: "BurgerHaus", originalPrice: 45000, surplusPrice: 27000, discount: 40, stock: 2, icon: "🍔", category: "fastfood", type: "surplus" },
@@ -1147,7 +1187,6 @@
             { id: 8, name: "Matcha Latte", resto: "Kopi Kaki Lima", originalPrice: 28000, surplusPrice: 16800, discount: 40, stock: 3, icon: "☕", category: "makanan", type: "surplus" }
         ];
 
-        // 2. Limbah Organik (dijual per kg) - untuk peternak & produsen pupuk
         const wasteDatabase = [
             { id: 101, name: "Limbah Sayuran Segar", supplier: "Pasar Induk", pricePerKg: 3000, originalPricePerKg: 5000, discount: 40, stock: 50, icon: "🥬", wasteCategory: "sayur", type: "waste", description: "Sayuran tidak layak jual tapi masih bagus untuk pakan ternak" },
             { id: 102, name: "Limbah Buah-buahan", supplier: "Pasar Buah", pricePerKg: 3500, originalPricePerKg: 6000, discount: 42, stock: 35, icon: "🍎", wasteCategory: "buah", type: "waste", description: "Buah busuk sebagian, cocok untuk kompos" },
@@ -1167,7 +1206,6 @@
             "Kopi Kaki Lima": { rating: 4.6, totalRatings: 223 }
         };
 
-        // State
         let forumPosts = JSON.parse(localStorage.getItem('forumPosts')) || [
             { id: 1, username: "Peternak Jaya", avatar: "🐄", content: "Limbah sayuran dari TOO MUCH sangat bagus untuk pakan ternak saya!", likes: 34, comments: 7, time: "5 jam lalu" },
             { id: 2, username: "KomposOrganik", avatar: "🌱", content: "Beli limbah buah buat kompos, hasilnya bagus banget!", likes: 28, comments: 4, time: "1 hari lalu" }
@@ -1180,16 +1218,15 @@
         let currentCategory = 'all';
         let currentWasteCategory = 'all';
         let currentSearch = '';
-        let currentProductType = 'surplus'; // 'surplus' atau 'waste'
+        let currentProductType = 'surplus';
         let selectedPaymentMethod = null;
         let pendingCheckout = null;
         let trackingInterval = null;
         let currentRatingOrder = null;
         let selectedRating = 0;
-        let pendingWasteItem = null; // untuk menyimpan item limbah sebelum pilih tipe pembeli
+        let pendingWasteItem = null;
         let pendingWasteKg = 0;
 
-        // Fungsi helper
         function formatRupiah(angka) { return 'Rp' + angka.toLocaleString('id-ID'); }
         
         function showToast(msg) { 
@@ -1229,7 +1266,6 @@
             renderProductList();
         }
 
-        // Set product type (Surplus Food atau Waste Organik)
         function setProductType(type) {
             currentProductType = type;
             document.querySelectorAll('.type-btn').forEach(btn => {
@@ -1237,7 +1273,6 @@
                 else btn.classList.remove('active');
             });
             
-            // Tampilkan/sembunyikan kategori yang sesuai
             const foodCategorySection = document.getElementById('categorySection');
             const wasteCategorySection = document.getElementById('wasteCategorySection');
             const sectionTitle = document.getElementById('sectionTitle');
@@ -1247,7 +1282,6 @@
                 wasteCategorySection.classList.add('hidden');
                 sectionTitle.innerHTML = '<i class="fas fa-fire"></i> Makanan Surplus';
                 currentCategory = 'all';
-                // reset active chip
                 document.querySelectorAll('#categoryScroll .category-chip').forEach(chip => {
                     chip.classList.remove('active');
                     if (chip.dataset.cat === 'all') chip.classList.add('active');
@@ -1265,7 +1299,6 @@
             renderProductList();
         }
 
-        // Render produk berdasarkan tipe yang dipilih
         function renderProductList() {
             let container = document.getElementById('productListContainer');
             
@@ -1306,7 +1339,7 @@
                     </div>`;
                 }).join('');
             } 
-            else { // waste products
+            else {
                 let filtered = wasteDatabase.filter(w => 
                     (currentWasteCategory === 'all' || w.wasteCategory === currentWasteCategory) && 
                     (w.name.toLowerCase().includes(currentSearch.toLowerCase()) || w.supplier.toLowerCase().includes(currentSearch.toLowerCase()))
@@ -1342,7 +1375,6 @@
             }
         }
 
-        // Tambah makanan surplus ke cart
         function addToCart(pid, type) {
             let f = foodDatabase.find(f => f.id === pid);
             if (!f) return;
@@ -1356,7 +1388,6 @@
             showToast(`${f.name} ditambahkan ke keranjang`);
         }
 
-        // Tambah limbah ke cart (per kg)
         function addWasteToCart(wid) {
             let waste = wasteDatabase.find(w => w.id === wid);
             if (!waste) return;
@@ -1368,7 +1399,6 @@
                 return;
             }
             
-            // Simpan sementara untuk pilih tipe pembeli
             pendingWasteItem = waste;
             pendingWasteKg = kg;
             openBuyerTypeModal();
@@ -1764,11 +1794,8 @@
         }
         
         function claimVoucher() { if (!voucherApplied) { voucherApplied = true; localStorage.setItem('voucherApplied', 'true'); showToast('Voucher 10% berhasil diklaim!'); } else showToast('Voucher sudah digunakan'); }
-        function goToAI() { showToast('🤖 Fitur AI akan segera hadir!'); }
-        function logout() { localStorage.clear(); window.location.reload(); }
         function scrollToProducts() { document.querySelector('.product-grid')?.scrollIntoView({ behavior: 'smooth' }); }
         
-        // Carousel
         let currentSlide = 0; let slides = document.querySelectorAll('.hero-slide'); 
         function updateCarousel() { slides.forEach((s, i) => s.classList.toggle('active', i === currentSlide)); let dots = document.querySelectorAll('.dot'); dots.forEach((d, i) => d.classList.toggle('active', i === currentSlide)); } 
         function createDots() { let container = document.getElementById('carouselDots'); slides.forEach((_, i) => { let dot = document.createElement('div'); dot.classList.add('dot'); if (i === 0) dot.classList.add('active'); dot.onclick = () => { currentSlide = i; updateCarousel(); }; container.appendChild(dot); }); } 
@@ -1777,10 +1804,8 @@
         let timeLeft = 15 * 60; 
         function updateTimer() { let m = Math.floor(timeLeft / 60); let s = timeLeft % 60; document.getElementById('timer').innerHTML = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`; if (timeLeft > 0) { timeLeft--; setTimeout(updateTimer, 1000); } }
         
-        // Event Listeners
         document.getElementById('searchFood')?.addEventListener('input', (e) => { currentSearch = e.target.value; renderProductList(); });
         
-        // Category chips untuk makanan surplus
         document.querySelectorAll('#categoryScroll .category-chip').forEach(chip => { 
             chip.addEventListener('click', () => { 
                 document.querySelectorAll('#categoryScroll .category-chip').forEach(c => c.classList.remove('active')); 
@@ -1790,7 +1815,6 @@
             }); 
         });
         
-        // Category chips untuk limbah
         document.querySelectorAll('#wasteCategoryScroll .category-chip').forEach(chip => { 
             chip.addEventListener('click', () => { 
                 document.querySelectorAll('#wasteCategoryScroll .category-chip').forEach(c => c.classList.remove('active')); 
