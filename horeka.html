@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
+        /* Semua style sama seperti sebelumnya, tidak diubah */
         * {
             margin: 0;
             padding: 0;
@@ -887,8 +888,8 @@
         </div>
     </div>
 
-    <!-- MODAL KEBIJAKAN MITRA -->
-    <div class="modal-overlay" id="policyModal" style="display: none;">
+    <!-- MODAL KEBIJAKAN MITRA - HAPUS style="display: none;" -->
+    <div class="modal-overlay" id="policyModal">
         <div class="modal-container">
             <div class="modal-header">
                 <h2><i class="fas fa-handshake"></i> Perjanjian Mitra HOREKA</h2>
@@ -953,8 +954,8 @@
     </div>
 
     <script>
-        // Cek apakah user sudah pernah setuju
-        let hasAgreed = localStorage.getItem('horekaAgreementAccepted') === 'true';
+        // HAPUS deklarasi hasAgreed di sini karena akan conflict
+        // let hasAgreed = localStorage.getItem('horekaAgreementAccepted') === 'true';
         
         // Data awal
         let wasteRecords = JSON.parse(localStorage.getItem('horekaWaste') || '[]');
@@ -1323,6 +1324,7 @@
             if (bottomNav) bottomNav.classList.remove('hide-content');
             
             initDashboard();
+            setupRatingClick();
             showToast('Selamat bergabung! Pelanggan sudah memberi rating untuk Anda ⭐');
         }
 
@@ -1357,66 +1359,39 @@
             }); 
         });
 
-        // --- PERBAIKAN UTAMA: Inisialisasi Modal dan Tampilan Awal ---
-        // Fungsi untuk menampilkan modal dan menyembunyikan konten utama
-        function showModalAndHideContent() {
-            let modal = document.getElementById('policyModal');
-            let mainContent = document.getElementById('mainContent');
-            let bottomNav = document.getElementById('bottomNav');
-            
-            if (modal) {
-                modal.style.display = 'flex'; // Tampilkan modal
-            }
-            if (mainContent) {
-                mainContent.classList.add('hide-content'); // Sembunyikan konten utama
-            }
-            if (bottomNav) {
-                bottomNav.classList.add('hide-content'); // Sembunyikan bottom nav
-            }
-            
-            // Setup checkbox listeners setelah modal ditampilkan
-            setupCheckboxListeners();
-        }
-
-        // Fungsi untuk menyembunyikan modal dan menampilkan konten utama (jika sudah setuju)
-        function hideModalAndShowContent() {
-            let modal = document.getElementById('policyModal');
-            let mainContent = document.getElementById('mainContent');
-            let bottomNav = document.getElementById('bottomNav');
-            
-            if (modal) {
-                modal.style.display = 'none';
-            }
-            if (mainContent) {
-                mainContent.classList.remove('hide-content');
-            }
-            if (bottomNav) {
-                bottomNav.classList.remove('hide-content');
-            }
-        }
-
-        // Fungsi utama untuk memulai aplikasi
-        function startApp() {
-            const hasAgreed = localStorage.getItem('horekaAgreementAccepted') === 'true';
-            
-            if (!hasAgreed) {
-                // Belum setuju: tampilkan modal, sembunyikan konten
-                showModalAndHideContent();
-            } else {
-                // Sudah setuju: sembunyikan modal, tampilkan konten, inisialisasi dashboard
-                hideModalAndShowContent();
-                initDashboard();
-                setupRatingClick();
-            }
-        }
-
         // Setup tombol agree
         let agreeBtn = document.getElementById('agreeBtn');
         if (agreeBtn) {
             agreeBtn.onclick = acceptAgreement;
         }
 
-        // Jalankan aplikasi setelah DOM siap
+        // ========== PERBAIKAN UTAMA ==========
+        // Fungsi untuk memulai aplikasi (dipanggil setelah DOM siap)
+        function startApp() {
+            // Ambil status persetujuan dari localStorage
+            const userHasAgreed = localStorage.getItem('horekaAgreementAccepted') === 'true';
+            
+            const modal = document.getElementById('policyModal');
+            const mainContent = document.getElementById('mainContent');
+            const bottomNav = document.getElementById('bottomNav');
+            
+            if (!userHasAgreed) {
+                // Belum setuju: tampilkan modal, sembunyikan konten
+                if (modal) modal.style.display = 'flex';
+                if (mainContent) mainContent.classList.add('hide-content');
+                if (bottomNav) bottomNav.classList.add('hide-content');
+                setupCheckboxListeners();
+            } else {
+                // Sudah setuju: sembunyikan modal, tampilkan konten
+                if (modal) modal.style.display = 'none';
+                if (mainContent) mainContent.classList.remove('hide-content');
+                if (bottomNav) bottomNav.classList.remove('hide-content');
+                initDashboard();
+                setupRatingClick();
+            }
+        }
+        
+        // Jalankan startApp setelah DOM sepenuhnya dimuat
         document.addEventListener('DOMContentLoaded', startApp);
     </script>
 </body>
