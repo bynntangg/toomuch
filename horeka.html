@@ -506,40 +506,29 @@
             margin-top: 6px;
         }
 
-        /* MODAL - PERBAIKAN UNTUK HP */
+        /* MODAL - PASTIKAN TAMPIL */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 2000;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 99999;
+            display: flex;
             align-items: center;
             justify-content: center;
-            backdrop-filter: blur(8px);
-            transition: all 0.3s ease;
-            overflow-y: auto;
-            padding: 20px;
-        }
-        
-        /* State modal - menggunakan class untuk kontrol yang lebih baik */
-        .modal-overlay:not(.modal-show) {
-            display: none !important;
-        }
-        
-        .modal-overlay.modal-show {
-            display: flex !important;
+            backdrop-filter: blur(10px);
         }
 
         .modal-container {
             max-width: 400px;
-            width: 100%;
+            width: 90%;
             background: white;
             border-radius: 28px;
-            max-height: 90vh;
+            max-height: 85vh;
             overflow-y: auto;
-            margin: auto;
+            margin: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
         }
 
@@ -550,6 +539,7 @@
             top: 0;
             background: white;
             border-radius: 28px 28px 0 0;
+            z-index: 10;
         }
 
         .modal-header h2 {
@@ -659,6 +649,12 @@
             cursor: not-allowed;
         }
 
+        .btn-reset {
+            background: #f0f4f8;
+            color: #5f8b9f;
+            margin-top: 8px;
+        }
+
         .review-stars {
             display: inline-flex;
             gap: 2px;
@@ -689,36 +685,36 @@
         .hide-content {
             display: none !important;
         }
-        
-        /* Mencegah flash modal */
-        .no-flash {
-            visibility: visible;
-        }
 
-        /* Sembunyikan konten utama saat modal aktif */
-        .content-hidden .main-content,
-        .content-hidden .bottom-nav,
-        .content-hidden .header,
-        .content-hidden .status-bar {
-            visibility: hidden;
+        .debug-info {
+            position: fixed;
+            bottom: 5px;
+            left: 5px;
+            font-size: 9px;
+            background: rgba(0,0,0,0.7);
+            color: #0f0;
+            padding: 2px 6px;
+            border-radius: 10px;
+            z-index: 100000;
+            font-family: monospace;
         }
     </style>
 </head>
 
 <body>
-    <div class="app-container" id="appContainer">
+    <div class="app-container">
         <div class="status-bar"><span>9:41</span><span><i class="fas fa-wifi"></i> <i class="fas fa-battery-full"></i></span></div>
         <div class="header">
             <div class="logo-area">
                 <h1>🏨 TOO MUCH</h1>
                 <p><i class="fas fa-chart-line"></i> Mitra HOREKA • Zero Waste</p>
             </div>
-            <button class="ai-btn" onclick="window.location.href='ai-detail.html'">
+            <button class="ai-btn" onclick="alert('Fitur AI akan segera hadir')">
                 <i class="fas fa-microchip"></i> <span>AI Bisnis</span>
             </button>
         </div>
 
-        <div class="main-content" id="mainContent">
+        <div class="main-content" id="mainContent" class="hide-content">
             <div id="dashboardTab">
                 <div class="welcome-banner" id="ratingBannerBtn">
                     <div class="greeting">Selamat datang, <span id="ownerName">Warung MbaK Harum</span>! 👋</div>
@@ -901,7 +897,7 @@
             </div>
         </div>
 
-        <div class="bottom-nav" id="bottomNav">
+        <div class="bottom-nav" id="bottomNav" class="hide-content">
             <button class="nav-item active" data-tab="dashboard"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></button>
             <button class="nav-item" data-tab="upload"><i class="fas fa-upload"></i><span>Upload</span></button>
             <button class="nav-item" data-tab="waste"><i class="fas fa-dumpster"></i><span>Limbah</span></button>
@@ -911,12 +907,12 @@
         </div>
     </div>
 
-    <!-- MODAL KEBIJAKAN MITRA - DIPERBAIKI -->
-    <div class="modal-overlay" id="policyModal">
+    <!-- MODAL KEBIJAKAN MITRA - PASTIKAN TAMPIL DI AWAL -->
+    <div class="modal-overlay" id="policyModal" style="display: flex !important;">
         <div class="modal-container">
             <div class="modal-header">
                 <h2><i class="fas fa-handshake"></i> Perjanjian Mitra HOREKA</h2>
-                <p style="font-size: 11px; color: #8fadbe;">Baca dan setujui kebijakan berikut</p>
+                <p style="font-size: 11px; color: #8fadbe;">✅ Baca dan setujui kebijakan berikut untuk melanjutkan</p>
             </div>
             <div class="modal-body">
                 <div class="policy-section">
@@ -924,15 +920,15 @@
                     <div class="spec-list">
                         <div class="spec-item">
                             <div class="spec-icon"><i class="fas fa-temperature-high"></i></div>
-                            <div class="spec-text"><strong>Suhu Penyimpanan</strong><small>Makanan panas minimal 60°C, dingin maksimal 5°C</small></div>
+                            <div class="spec-text"><strong>Suhu Penyimpanan</strong><br><small>Makanan panas minimal 60°C, dingin maksimal 5°C</small></div>
                         </div>
                         <div class="spec-item">
                             <div class="spec-icon"><i class="fas fa-clock"></i></div>
-                            <div class="spec-text"><strong>Batas Waktu</strong><small>Maksimal 4 jam setelah masak</small></div>
+                            <div class="spec-text"><strong>Batas Waktu</strong><br><small>Maksimal 4 jam setelah masak</small></div>
                         </div>
                         <div class="spec-item">
                             <div class="spec-icon"><i class="fas fa-box"></i></div>
-                            <div class="spec-text"><strong>Kemasan Higienis</strong><small>Wadah food-grade, tertutup rapat</small></div>
+                            <div class="spec-text"><strong>Kemasan Higienis</strong><br><small>Wadah food-grade, tertutup rapat</small></div>
                         </div>
                     </div>
                     <div class="alert-info"><i class="fas fa-shield-alt"></i> Sanksi: Peringatan → Penangguhan 7 hari → Hapus akun</div>
@@ -969,18 +965,24 @@
                         <small>Pelatihan online gratis setiap 3 bulan</small>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer" style="padding: 16px 20px 20px;">
                 <button class="btn-agree" id="agreeBtn" disabled><i class="fas fa-check-circle"></i> Setuju & Mulai Berjualan</button>
+                <button class="btn-agree btn-reset" id="resetBtn" style="background:#f0f4f8; color:#5f8b9f; margin-top:8px;"><i class="fas fa-trash-alt"></i> Reset Persetujuan</button>
             </div>
         </div>
     </div>
 
+    <div class="debug-info" id="debugInfo">Memuat...</div>
+
     <script>
-        // Data awal
-        let wasteRecords = JSON.parse(localStorage.getItem('horekaWaste') || '[]');
-        let surplusList = JSON.parse(localStorage.getItem('horekaSurplus') || '[]');
-        let revenueTotal = parseFloat(localStorage.getItem('horekaRevenue') || '0');
+        // HAPUS SEMUA DATA LOKAL DULU AGAR MODAL PASTI MUNCUL
+        localStorage.removeItem('horekaAgreementAccepted');
+        localStorage.removeItem('horekaName');
+        
+        // ============ DATA ============
+        let wasteRecords = [];
+        let surplusList = [];
+        let revenueTotal = 0;
+        let reviews = [];
 
         let defaultReviews = [
             { id: 1, rating: 5, name: "Budi Santoso", comment: "Makanannya enak banget! Porsi besar dan harga terjangkau. Recommended!", date: "2 hari lalu" },
@@ -992,12 +994,6 @@
             { id: 7, rating: 4, name: "Maya Sari", comment: "Enak dan bersih. Harga bersahabat!", date: "3 minggu lalu" },
             { id: 8, rating: 5, name: "Rizky Fadillah", comment: "Wow! Surplus food tapi kualitas premium.", date: "3 minggu lalu" }
         ];
-
-        let reviews = JSON.parse(localStorage.getItem('horekaReviews'));
-        if (!reviews || reviews.length === 0) {
-            reviews = defaultReviews;
-            localStorage.setItem('horekaReviews', JSON.stringify(reviews));
-        }
 
         let salesChart, revenueChart, carbonChart;
 
@@ -1020,7 +1016,7 @@
         }
 
         function calculateRatingStats() {
-            if (reviews.length === 0) return { avg: 0, total: 0 };
+            if (!reviews || reviews.length === 0) return { avg: 0, total: 0 };
             let sum = reviews.reduce((acc, r) => acc + r.rating, 0);
             let avg = sum / reviews.length;
             return { avg: avg, total: reviews.length };
@@ -1037,7 +1033,7 @@
         function renderAllReviews() {
             let container = document.getElementById('allReviewsList');
             if (!container) return;
-            if (reviews.length === 0) {
+            if (!reviews || reviews.length === 0) {
                 container.innerHTML = '<div class="empty-state">Belum ada ulasan pelanggan</div>';
                 return;
             }
@@ -1198,7 +1194,7 @@
             const activeContainer = document.getElementById('activeSurplusList');
             const surplusCountEl = document.getElementById('surplusCount');
             if (activeContainer) {
-                if (surplusList.length === 0) { 
+                if (!surplusList || surplusList.length === 0) { 
                     activeContainer.innerHTML = '<div class="empty-state">Belum ada surplus diupload</div>'; 
                     if (surplusCountEl) surplusCountEl.innerText = '0 item';
                 }
@@ -1253,7 +1249,7 @@
         function renderWasteHistory() {
             const container = document.getElementById('wasteHistoryList');
             if (!container) return;
-            if (wasteRecords.length === 0) { 
+            if (!wasteRecords || wasteRecords.length === 0) { 
                 container.innerHTML = '<div class="empty-state">Belum ada catatan limbah</div>'; 
                 return; 
             }
@@ -1327,25 +1323,84 @@
             for (let i = 1; i <= 5; i++) {
                 let cb = document.getElementById(`check${i}`);
                 if (cb) {
+                    cb.removeEventListener('change', checkAllCheckboxes);
                     cb.addEventListener('change', checkAllCheckboxes);
                 }
             }
         }
 
         function acceptAgreement() {
+            // Simpan ke localStorage bahwa user sudah setuju
             localStorage.setItem('horekaAgreementAccepted', 'true');
             localStorage.setItem('horekaName', 'Warung MbaK Harum');
             
             // Sembunyikan modal
-            const modal = document.getElementById('policyModal');
-            if (modal) {
-                modal.classList.remove('modal-show');
-            }
+            let modal = document.getElementById('policyModal');
+            if (modal) modal.style.display = 'none';
+            
+            // Tampilkan konten utama
+            let mainContent = document.getElementById('mainContent');
+            let bottomNav = document.getElementById('bottomNav');
+            if (mainContent) mainContent.classList.remove('hide-content');
+            if (bottomNav) bottomNav.classList.remove('hide-content');
             
             // Inisialisasi dashboard
             initDashboard();
             setupRatingClick();
-            showToast('Selamat bergabung! Pelanggan sudah memberi rating untuk Anda ⭐');
+            showToast('✅ Selamat bergabung! Pelanggan sudah memberi rating untuk Anda ⭐');
+            
+            // Update debug
+            let debugInfo = document.getElementById('debugInfo');
+            if (debugInfo) debugInfo.innerHTML = '✅ Status: Sudah Setuju | Dashboard Aktif';
+        }
+
+        function resetAndShowModal() {
+            // Hapus agreement dari localStorage
+            localStorage.removeItem('horekaAgreementAccepted');
+            localStorage.removeItem('horekaName');
+            
+            // Tampilkan modal lagi
+            let modal = document.getElementById('policyModal');
+            if (modal) modal.style.display = 'flex';
+            
+            // Sembunyikan konten utama
+            let mainContent = document.getElementById('mainContent');
+            let bottomNav = document.getElementById('bottomNav');
+            if (mainContent) mainContent.classList.add('hide-content');
+            if (bottomNav) bottomNav.classList.add('hide-content');
+            
+            // Reset checkboxes
+            for (let i = 1; i <= 5; i++) {
+                let cb = document.getElementById(`check${i}`);
+                if (cb) cb.checked = false;
+            }
+            let agreeBtn = document.getElementById('agreeBtn');
+            if (agreeBtn) agreeBtn.disabled = true;
+            
+            setupCheckboxListeners();
+            showToast('🔄 Reset berhasil! Silakan setujui kebijakan lagi.');
+            
+            // Update debug
+            let debugInfo = document.getElementById('debugInfo');
+            if (debugInfo) debugInfo.innerHTML = '⚠️ Status: Belum Setuju | Centang semua checkbox';
+        }
+
+        function loadDataFromStorage() {
+            let storedWaste = localStorage.getItem('horekaWaste');
+            let storedSurplus = localStorage.getItem('horekaSurplus');
+            let storedRevenue = localStorage.getItem('horekaRevenue');
+            let storedReviews = localStorage.getItem('horekaReviews');
+            
+            wasteRecords = storedWaste ? JSON.parse(storedWaste) : [];
+            surplusList = storedSurplus ? JSON.parse(storedSurplus) : [];
+            revenueTotal = storedRevenue ? parseFloat(storedRevenue) : 0;
+            
+            if (storedReviews && JSON.parse(storedReviews).length > 0) {
+                reviews = JSON.parse(storedReviews);
+            } else {
+                reviews = [...defaultReviews];
+                localStorage.setItem('horekaReviews', JSON.stringify(reviews));
+            }
         }
 
         function initDashboard() {
@@ -1372,78 +1427,48 @@
             }
         }
 
-        // Fungsi untuk menampilkan modal dengan benar di semua perangkat
-        function showModal() {
-            const modal = document.getElementById('policyModal');
-            if (modal) {
-                modal.classList.add('modal-show');
-                // Scroll ke atas modal
-                modal.scrollTop = 0;
-            }
-        }
-
-        // ========== PERBAIKAN UTAMA - Start App dengan modal yang konsisten ==========
-        function startApp() {
-            // Ambil status persetujuan dari localStorage
-            const userHasAgreed = localStorage.getItem('horekaAgreementAccepted') === 'true';
+        // ============ START APP ============
+        // Jalankan langsung tanpa menunggu apapun
+        (function() {
+            console.log('Starting app immediately...');
             
-            if (!userHasAgreed) {
-                // Belum setuju: tampilkan modal, jangan inisialisasi konten utama
-                showModal();
-                setupCheckboxListeners();
-                
-                // Sembunyikan konten utama dengan CSS
-                const mainContent = document.getElementById('mainContent');
-                const bottomNav = document.getElementById('bottomNav');
-                const header = document.querySelector('.header');
-                const statusBar = document.querySelector('.status-bar');
-                
-                if (mainContent) mainContent.style.visibility = 'hidden';
-                if (bottomNav) bottomNav.style.visibility = 'hidden';
-                if (header) header.style.visibility = 'hidden';
-                if (statusBar) statusBar.style.visibility = 'hidden';
-            } else {
-                // Sudah setuju: sembunyikan modal, tampilkan konten utama
-                const modal = document.getElementById('policyModal');
-                if (modal) modal.classList.remove('modal-show');
-                
-                // Tampilkan konten utama
-                const mainContent = document.getElementById('mainContent');
-                const bottomNav = document.getElementById('bottomNav');
-                const header = document.querySelector('.header');
-                const statusBar = document.querySelector('.status-bar');
-                
-                if (mainContent) mainContent.style.visibility = 'visible';
-                if (bottomNav) bottomNav.style.visibility = 'visible';
-                if (header) header.style.visibility = 'visible';
-                if (statusBar) statusBar.style.visibility = 'visible';
-                
-                initDashboard();
-                setupRatingClick();
+            // Setup checkbox listeners
+            setupCheckboxListeners();
+            
+            // Setup tombol agree
+            let agreeBtn = document.getElementById('agreeBtn');
+            if (agreeBtn) {
+                agreeBtn.onclick = acceptAgreement;
             }
-        }
-        
-        // Event listener untuk nav items
-        document.querySelectorAll('.nav-item').forEach(btn => { 
-            btn.addEventListener('click', () => { 
-                if (btn.dataset.tab) showTab(btn.dataset.tab); 
-            }); 
-        });
-
-        // Setup tombol agree
-        let agreeBtn = document.getElementById('agreeBtn');
-        if (agreeBtn) {
-            agreeBtn.onclick = acceptAgreement;
-        }
-        
-        // Jalankan startApp setelah DOM sepenuhnya dimuat
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', function() {
-                startApp();
+            
+            // Setup tombol reset
+            let resetBtn = document.getElementById('resetBtn');
+            if (resetBtn) {
+                resetBtn.onclick = resetAndShowModal;
+            }
+            
+            // Setup nav items
+            document.querySelectorAll('.nav-item').forEach(btn => { 
+                btn.addEventListener('click', () => { 
+                    if (btn.dataset.tab) showTab(btn.dataset.tab); 
+                }); 
             });
-        } else {
-            startApp();
-        }
+            
+            // Load data
+            loadDataFromStorage();
+            
+            // Pastikan modal TETAP TAMPIL dan konten tersembunyi
+            let modal = document.getElementById('policyModal');
+            let mainContent = document.getElementById('mainContent');
+            let bottomNav = document.getElementById('bottomNav');
+            
+            if (modal) modal.style.display = 'flex';
+            if (mainContent) mainContent.classList.add('hide-content');
+            if (bottomNav) bottomNav.classList.add('hide-content');
+            
+            let debugInfo = document.getElementById('debugInfo');
+            if (debugInfo) debugInfo.innerHTML = '📋 MODAL AKTIF - Centang semua 5 checkbox untuk mengaktifkan tombol Setuju';
+        })();
     </script>
 </body>
 
