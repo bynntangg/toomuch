@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
     <title>TOO MUCH - Pilih Peran | Zero Food Waste</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         /* RESET & BASE - Optimal untuk Desktop & Mobile */
@@ -59,12 +63,27 @@
         }
 
         @keyframes floatOrb {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(20px, -25px) scale(1.04); }
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(20px, -25px) scale(1.04);
+            }
         }
+
         @keyframes floatOrb2 {
-            0%, 100% { transform: translate(0, 0) scale(1); }
-            50% { transform: translate(-20px, 22px) scale(1.05); }
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(-20px, 22px) scale(1.05);
+            }
         }
 
         .grid-pattern {
@@ -74,7 +93,7 @@
             width: 100%;
             height: 100%;
             background-image: linear-gradient(rgba(139, 92, 246, 0.02) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(139, 92, 246, 0.02) 1px, transparent 1px);
+                linear-gradient(90deg, rgba(139, 92, 246, 0.02) 1px, transparent 1px);
             background-size: 50px 50px;
             pointer-events: none;
             z-index: 0;
@@ -94,8 +113,15 @@
         }
 
         @keyframes containerGlow {
-            from { opacity: 0; transform: translateY(20px) scale(0.98); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         /* Untuk Desktop, container bisa sedikit lebih lebar tapi tetap proporsional */
@@ -103,6 +129,7 @@
             .container {
                 max-width: 620px;
             }
+
             body {
                 padding: 32px;
             }
@@ -217,11 +244,13 @@
         .hero-stat-item {
             text-align: center;
         }
+
         .hero-stat-number {
             font-size: 14px;
             font-weight: 700;
             color: #c084fc;
         }
+
         .hero-stat-label {
             font-size: 9px;
             color: #7e6b9e;
@@ -268,7 +297,7 @@
             margin-bottom: 8px;
         }
 
-        .card > p {
+        .card>p {
             color: #a78bfa;
             font-size: 14px;
             margin-bottom: 28px;
@@ -378,6 +407,7 @@
             transform: translateY(-2px);
             box-shadow: 0 10px 22px rgba(124, 58, 237, 0.45);
         }
+
         .btn-primary:active {
             transform: translateY(1px);
         }
@@ -464,6 +494,7 @@
             white-space: normal;
             word-break: break-word;
         }
+
         .toast-message.show {
             transform: translateX(-50%) translateY(0);
         }
@@ -476,10 +507,21 @@
 
         /* Shake animation */
         @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px);
+            }
+
+            75% {
+                transform: translateX(5px);
+            }
         }
+
         .shake-card {
             animation: shake 0.3s ease-in-out;
         }
@@ -496,10 +538,23 @@
         }
 
         @keyframes floatParticle {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.12; }
-            90% { opacity: 0.12; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.12;
+            }
+
+            90% {
+                opacity: 0.12;
+            }
+
+            100% {
+                transform: translateY(-10vh) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         /* ========== RESPONSIVE DESIGN: MOBILE & DESKTOP ========== */
@@ -508,22 +563,28 @@
             .card {
                 padding: 38px 32px;
             }
+
             .role-btn {
                 padding: 18px 24px;
             }
+
             .role-icon {
                 font-size: 46px;
                 min-width: 62px;
             }
+
             .role-info h4 {
                 font-size: 18px;
             }
+
             .role-info p {
                 font-size: 12px;
             }
+
             .hero-stats {
                 gap: 36px;
             }
+
             .footer {
                 padding: 10px 28px;
                 font-size: 12px;
@@ -538,85 +599,112 @@
                 padding-top: 24px;
                 padding-bottom: 32px;
             }
+
             .container {
                 max-width: 100%;
             }
+
             .hero-section {
                 margin-bottom: 18px;
             }
+
             .logo-core {
                 width: 75px;
                 height: 75px;
             }
+
             .logo-core i {
                 font-size: 40px;
             }
+
             .logo-title {
                 font-size: 34px;
             }
+
             .logo-title-accent {
                 font-size: 10px;
             }
+
+            .logo-img {
+                width: 80%;
+                height: auto;
+            }
+
             .card {
                 padding: 24px 18px;
                 border-radius: 40px;
             }
+
             .welcome-badge {
                 font-size: 11px;
                 padding: 5px 16px;
                 margin-bottom: 18px;
             }
+
             .card h2 {
                 font-size: 24px;
             }
-            .card > p {
+
+            .card>p {
                 font-size: 12px;
                 margin-bottom: 22px;
             }
+
             .role-buttons {
                 gap: 12px;
                 margin-bottom: 24px;
             }
+
             .role-btn {
                 padding: 12px 16px;
                 gap: 14px;
                 border-radius: 28px;
             }
+
             .role-icon {
                 font-size: 34px;
                 min-width: 48px;
             }
+
             .role-info h4 {
                 font-size: 15px;
             }
+
             .role-info p {
                 font-size: 10px;
             }
+
             .check-indicator {
                 width: 24px;
                 height: 24px;
                 font-size: 11px;
             }
+
             .btn-primary {
                 padding: 14px 20px;
                 font-size: 15px;
             }
+
             .impact-stats {
                 gap: 12px;
                 margin-top: 20px;
             }
+
             .stat-number {
                 font-size: 15px;
             }
+
             .stat-label {
                 font-size: 9px;
             }
+
             .footer {
                 margin-top: 20px;
                 padding: 8px 16px;
                 font-size: 10px;
                 gap: 6px;
             }
+
             .hero-stats {
                 gap: 20px;
             }
@@ -628,25 +716,32 @@
                 font-size: 28px;
                 min-width: 42px;
             }
+
             .role-info h4 {
                 font-size: 13px;
             }
+
             .role-info p {
                 font-size: 9px;
             }
+
             .card {
                 padding: 20px 14px;
             }
+
             .hero-stats {
                 gap: 14px;
             }
+
             .hero-stat-number {
                 font-size: 12px;
             }
+
             .btn-primary {
                 padding: 12px 16px;
                 font-size: 14px;
             }
+
             .footer {
                 padding: 6px 12px;
                 font-size: 9px;
@@ -654,22 +749,29 @@
         }
 
         /* Mencegah overflow */
-        .hero-badge span, .tagline-text, .role-info p {
+        .hero-badge span,
+        .tagline-text,
+        .role-info p {
             word-break: keep-all;
         }
-        
-        img, svg, iframe {
+
+        img,
+        svg,
+        iframe {
             max-width: 100%;
         }
     </style>
 </head>
+
 <body>
     <!-- Background Elements -->
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="grid-pattern"></div>
 
-    <div id="particlesContainer" style="position:fixed; top:0; left:0; width:100%; height:100%; overflow:hidden; pointer-events:none; z-index:0;"></div>
+    <div id="particlesContainer"
+        style="position:fixed; top:0; left:0; width:100%; height:100%; overflow:hidden; pointer-events:none; z-index:0;">
+    </div>
 
     <div class="container">
         <!-- Header Section -->
@@ -682,7 +784,7 @@
 
             <div class="logo-container">
                 <div class="logo-core">
-                    <i class="fas fa-seedling"></i>
+                    <img src="logo.png" alt="Logo" class="logo-img">
                 </div>
             </div>
 
@@ -698,9 +800,18 @@
             </div>
 
             <div class="hero-stats">
-                <div class="hero-stat-item"><div class="hero-stat-number">12.4K kg</div><div class="hero-stat-label">WASTE SAVED</div></div>
-                <div class="hero-stat-item"><div class="hero-stat-number">2.5K+</div><div class="hero-stat-label">PARTNERS</div></div>
-                <div class="hero-stat-item"><div class="hero-stat-number">45K+</div><div class="hero-stat-label">MEALS</div></div>
+                <div class="hero-stat-item">
+                    <div class="hero-stat-number">12.4K kg</div>
+                    <div class="hero-stat-label">WASTE SAVED</div>
+                </div>
+                <div class="hero-stat-item">
+                    <div class="hero-stat-number">2.5K+</div>
+                    <div class="hero-stat-label">PARTNERS</div>
+                </div>
+                <div class="hero-stat-item">
+                    <div class="hero-stat-number">45K+</div>
+                    <div class="hero-stat-label">MEALS</div>
+                </div>
             </div>
         </div>
 
@@ -748,9 +859,18 @@
             </button>
 
             <div class="impact-stats">
-                <div class="stat-item"><div class="stat-number">40%+</div><div class="stat-label">Penghematan</div></div>
-                <div class="stat-item"><div class="stat-number">100+</div><div class="stat-label">Mitra HOREKA</div></div>
-                <div class="stat-item"><div class="stat-number">87%</div><div class="stat-label">Akurasi AI</div></div>
+                <div class="stat-item">
+                    <div class="stat-number">40%+</div>
+                    <div class="stat-label">Penghematan</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Mitra HOREKA</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">87%</div>
+                    <div class="stat-label">Akurasi AI</div>
+                </div>
             </div>
         </div>
 
@@ -767,17 +887,17 @@
     </div>
 
     <script>
-        (function() {
+        (function () {
             // Lightweight particles
             function createLightParticles() {
                 const container = document.getElementById('particlesContainer');
                 if (!container) return;
                 while (container.firstChild) container.removeChild(container.firstChild);
-                
+
                 const icons = ['✨', '⭐', '💜', '🌟', '🍃', '🌱', '🌀'];
                 const isMobile = window.innerWidth < 768;
                 const particleCount = isMobile ? 6 : 12;
-                
+
                 for (let i = 0; i < particleCount; i++) {
                     const particle = document.createElement('div');
                     particle.classList.add('floating-particle');
@@ -790,14 +910,14 @@
                     container.appendChild(particle);
                 }
             }
-            
+
             let selectedRole = null;
             let isProcessing = false;
             const roleBtns = document.querySelectorAll('.role-btn');
             const startBtn = document.getElementById('startBtn');
             const toastEl = document.getElementById('toast');
             const toastText = toastEl?.querySelector('span');
-            
+
             function showToast(message, isError = false) {
                 if (!toastEl || !toastText) return;
                 toastText.textContent = message;
@@ -812,11 +932,11 @@
                 setTimeout(() => {
                     toastEl.classList.remove('show');
                     if (iconElem && !isError) {
-                        setTimeout(() => { if(iconElem) iconElem.className = 'fas fa-info-circle'; }, 200);
+                        setTimeout(() => { if (iconElem) iconElem.className = 'fas fa-info-circle'; }, 200);
                     }
                 }, 2200);
             }
-            
+
             // Role selection
             roleBtns.forEach(btn => {
                 btn.addEventListener('click', (e) => {
@@ -824,14 +944,14 @@
                     roleBtns.forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
                     selectedRole = btn.dataset.role;
-                    
+
                     const iconSpan = btn.querySelector('.role-icon');
                     if (iconSpan) {
                         iconSpan.style.transform = 'scale(1.05)';
-                        setTimeout(() => { if(iconSpan) iconSpan.style.transform = ''; }, 130);
+                        setTimeout(() => { if (iconSpan) iconSpan.style.transform = ''; }, 130);
                     }
                 });
-                
+
                 btn.setAttribute('tabindex', '0');
                 btn.addEventListener('keypress', (e) => {
                     if (e.key === 'Enter' || e.key === ' ') {
@@ -840,7 +960,7 @@
                     }
                 });
             });
-            
+
             // Start button action
             startBtn?.addEventListener('click', () => {
                 if (isProcessing) return;
@@ -853,32 +973,32 @@
                     }
                     return;
                 }
-                
+
                 isProcessing = true;
                 localStorage.setItem('userRole', selectedRole);
                 localStorage.setItem('userName', 'Bintang Permana');
                 localStorage.setItem('joinTimestamp', new Date().toISOString());
-                
+
                 let roleDisplay = '';
                 if (selectedRole === 'consumer') roleDisplay = 'Konsumen Cerdas';
                 else if (selectedRole === 'horeka') roleDisplay = 'Mitra HOREKA';
                 else if (selectedRole === 'driver') roleDisplay = 'Driver Mitra';
                 localStorage.setItem('roleFriendly', roleDisplay);
-                
+
                 let dashboardUrl = '';
                 if (selectedRole === 'consumer') dashboardUrl = 'consumer.html';
                 else if (selectedRole === 'horeka') dashboardUrl = 'horeka.html';
                 else if (selectedRole === 'driver') dashboardUrl = 'driver.html';
                 localStorage.setItem('lastDashboard', dashboardUrl);
-                
+
                 startBtn.classList.add('loading');
                 startBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Memuat Dashboard...';
-                
+
                 setTimeout(() => {
                     window.location.href = dashboardUrl;
                 }, 300);
             });
-            
+
             startBtn?.setAttribute('tabindex', '0');
             startBtn?.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
@@ -886,7 +1006,7 @@
                     startBtn.click();
                 }
             });
-            
+
             // Initialize
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', () => {
@@ -897,16 +1017,16 @@
                 createLightParticles();
                 document.body.style.overflowX = 'hidden';
             }
-            
+
             // Handle resize untuk menjaga tampilan
             let resizeTimer;
-            window.addEventListener('resize', function() {
+            window.addEventListener('resize', function () {
                 if (resizeTimer) clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(function() {
+                resizeTimer = setTimeout(function () {
                     document.body.style.overflowX = 'hidden';
                 }, 100);
             });
-            
+
             const checkOverflow = () => {
                 if (document.body.scrollWidth > window.innerWidth) {
                     document.body.style.overflowX = 'hidden';
@@ -915,6 +1035,7 @@
             window.addEventListener('load', checkOverflow);
             checkOverflow();
         })();
-    </script>   
+    </script>
 </body>
+
 </html>
